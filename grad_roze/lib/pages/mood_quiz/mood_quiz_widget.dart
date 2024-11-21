@@ -643,7 +643,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                                       0, 10, 0, 0),
                                   child: FFButtonWidget(
                                     onPressed: () {
-                                      context.pushNamed('customerHome');
+                                      context.pushNamed('HomePage');
                                     },
                                     text: 'Home',
                                     options: FFButtonOptions(
