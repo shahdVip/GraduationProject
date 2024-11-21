@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grad_roze/custom/theme.dart';
 
 class MomentsWidget extends StatelessWidget {
   final String imageUrl;
@@ -44,11 +45,12 @@ class MomentsWidget extends StatelessWidget {
             const SizedBox(height: 4), // Add spacing between image and text
             Text(
               text, // Display dynamic text
-              style: const TextStyle(
-                fontSize: 9,
-                color: Color(0xFF040425),
-                fontWeight: FontWeight.bold,
-              ),
+              style: FlutterFlowTheme.of(context).titleLarge.override(
+                    fontFamily: 'Funnel Display',
+                    useGoogleFonts: false,
+                    fontSize: 9,
+                    fontWeight: FontWeight.bold,
+                  ),
               textAlign: TextAlign.center,
             ),
           ],

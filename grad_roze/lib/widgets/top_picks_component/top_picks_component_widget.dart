@@ -118,7 +118,7 @@ class _TopPicksComponentWidgetState extends State<TopPicksComponentWidget>
                     Text(
                       'Name of the pick',
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'FunnelDisplay',
+                            fontFamily: 'Funnel Display',
                             fontSize: 8,
                             letterSpacing: 0.0,
                             fontWeight: FontWeight.w500,

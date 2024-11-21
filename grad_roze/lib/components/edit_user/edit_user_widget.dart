@@ -14,7 +14,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'dart:convert';
 import 'package:http_parser/http_parser.dart';
-import 'dart:convert';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 

@@ -14,8 +14,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 
-import 'dart:io';
-
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
 import 'package:flutter/material.dart';

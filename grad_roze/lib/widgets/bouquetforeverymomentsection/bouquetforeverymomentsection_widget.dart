@@ -53,11 +53,11 @@ class _BouquetforeverymomentsectionWidgetState
                     child: Text(
                       'Bouquet for every moment',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'FunnelDisplay',
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w600,
-                          useGoogleFonts: false,
-                          color: const Color(0xff770404)),
+                            fontFamily: 'Funnel Display',
+                            letterSpacing: 0.0,
+                            fontWeight: FontWeight.w600,
+                            useGoogleFonts: false,
+                          ),
                     ),
                   ),
                   FFButtonWidget(
@@ -75,7 +75,7 @@ class _BouquetforeverymomentsectionWidgetState
                       color: const Color.fromARGB(0, 4, 4, 37),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'FunnelDisplay',
+                                fontFamily: 'Funnel Display',
                                 color: const Color(0xFF040425),
                                 fontSize: 10,
                                 letterSpacing: 0.0,
