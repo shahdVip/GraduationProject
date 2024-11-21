@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context),
-      backgroundColor: const Color(0xfffffffff),
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       body: const SingleChildScrollView(
         child: Column(
           children: [
@@ -38,14 +38,14 @@ class HomePage extends StatelessWidget {
 
   AppBar appBar(BuildContext context) {
     return AppBar(
-      title: const Text(
-        'Roseh',
-        style: TextStyle(
-            color: Color(0xFF040425),
-            fontSize: 18,
-            fontWeight: FontWeight.bold),
+      title: Text(
+        'Roze',
+        style: FlutterFlowTheme.of(context).titleLarge.override(
+              fontFamily: 'Funnel Display',
+              useGoogleFonts: false,
+            ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       elevation: 0.0,
       centerTitle: true,
       leading: GestureDetector(
@@ -108,7 +108,7 @@ class CustomSearchDelegate extends SearchDelegate {
     return ThemeData(
       textTheme: const TextTheme(
         titleLarge: TextStyle(
-          fontFamily: 'FunnelDisplay',
+          fontFamily: 'Funnel Display',
           color: Color(0xFF040425), // Search bar text color
           fontSize: 18,
           fontWeight: FontWeight.bold,
@@ -118,10 +118,11 @@ class CustomSearchDelegate extends SearchDelegate {
         hintStyle: TextStyle(
             color: Color.fromARGB(255, 255, 255, 255)), // Hint text color
       ),
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         color: Colors.white, // Search bar background color
         elevation: 0, // Remove shadow
-        iconTheme: IconThemeData(color: Color(0xFF040425)), // Back button color
+        iconTheme: IconThemeData(
+            color: FlutterFlowTheme.of(context).primary), // Back button color
       ),
     );
   }
@@ -188,7 +189,7 @@ class CustomSearchDelegate extends SearchDelegate {
               title: Text(
             result,
             style: const TextStyle(
-              fontFamily: 'FunnelDisplay',
+              fontFamily: 'Funnel Display',
               fontSize: 14,
               color: Color(0xff770404), // Result text color
               fontWeight: FontWeight.w600,
@@ -250,12 +251,12 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                 child: Container(
                   width: double.infinity,
                   height: 120,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
                         Color(0x00F0F0F0),
-                        Color.fromARGB(211, 242, 242, 242),
-                        Colors.white
+                        FlutterFlowTheme.of(context).accent1,
+                        FlutterFlowTheme.of(context).secondaryBackground
                       ],
                       stops: [0, 0.5, 1],
                       begin: AlignmentDirectional(0, -1),
@@ -275,7 +276,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'FunnelDisplay',
+                                  fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                   useGoogleFonts: false,
@@ -286,7 +287,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'FunnelDisplay',
+                                  fontFamily: 'Funnel Display',
                                   fontSize: 12,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -317,12 +318,12 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                 child: Container(
                   width: double.infinity,
                   height: 120,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
                         Color(0x00F0F0F0),
-                        Color.fromARGB(211, 242, 242, 242),
-                        Colors.white
+                        FlutterFlowTheme.of(context).accent1,
+                        FlutterFlowTheme.of(context).secondaryBackground
                       ],
                       stops: [0, 0.5, 1],
                       begin: AlignmentDirectional(0, -1),
@@ -342,7 +343,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'FunnelDisplay',
+                                  fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                   useGoogleFonts: false,
@@ -353,7 +354,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'FunnelDisplay',
+                                  fontFamily: 'Funnel Display',
                                   fontSize: 12,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,
@@ -384,12 +385,12 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                 child: Container(
                   width: double.infinity,
                   height: 120,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
                         Color(0x00F0F0F0),
-                        Color.fromARGB(211, 242, 242, 242),
-                        Colors.white
+                        FlutterFlowTheme.of(context).accent1,
+                        FlutterFlowTheme.of(context).secondaryBackground
                       ],
                       stops: [0, 0.5, 1],
                       begin: AlignmentDirectional(0, -1),
@@ -409,7 +410,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'FunnelDisplay',
+                                  fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.bold,
                                   useGoogleFonts: false,
@@ -420,7 +421,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'FunnelDisplay',
+                                  fontFamily: 'Funnel Display',
                                   fontSize: 12,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w500,

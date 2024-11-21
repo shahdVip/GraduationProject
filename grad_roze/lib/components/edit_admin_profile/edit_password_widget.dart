@@ -46,45 +46,38 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('jwt_token');
 
-    if (token != null) {
-      try {
-        // Make the request to update the password
-        final response = await http.put(
-          Uri.parse(updatePasswordUrl),
-          headers: {
-            'Authorization': 'Bearer $token',
-            'Content-Type': 'application/json',
-          },
-          body: jsonEncode({'newPassword': newPassword}),
-        );
+    try {
+      // Make the request to update the password
+      final response = await http.put(
+        Uri.parse(updatePasswordUrl),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({'newPassword': newPassword}),
+      );
 
-        // Check the response status
-        if (response.statusCode == 200) {
-          // Password updated successfully
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Password updated successfully.')),
-          );
-          Navigator.pop(context); // Close the bottom sheet
-        } else {
-          // Handle error response
-          final errorData = jsonDecode(response.body);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                content:
-                    Text(errorData['message'] ?? 'Failed to update password.')),
-          );
-          Navigator.pop(context);
-        }
-      } catch (e) {
-        // Handle exceptions
+      // Check the response status
+      if (response.statusCode == 200) {
+        // Password updated successfully
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('An error occurred: $e')),
+          SnackBar(content: Text('Password updated successfully.')),
         );
+        Navigator.pop(context); // Close the bottom sheet
+      } else {
+        // Handle error response
+        final errorData = jsonDecode(response.body);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content:
+                  Text(errorData['message'] ?? 'Failed to update password.')),
+        );
+        Navigator.pop(context);
       }
-    } else {
-      // No token found, show an error message
+    } catch (e) {
+      // Handle exceptions
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('User is not authenticated.')),
+        SnackBar(content: Text('An error occurred: $e')),
       );
     }
   }

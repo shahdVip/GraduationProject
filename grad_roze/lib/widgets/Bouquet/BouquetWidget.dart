@@ -66,7 +66,7 @@ class BouquetWidget extends StatelessWidget {
                     Text(
                       title,
                       style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'FunnelDisplay',
+                            fontFamily: 'Funnel Display',
                             letterSpacing: 0.0,
                             useGoogleFonts: false,
                           ),
@@ -75,7 +75,7 @@ class BouquetWidget extends StatelessWidget {
                       '\$$price',
                       style:
                           FlutterFlowTheme.of(context).headlineSmall.override(
-                                fontFamily: 'FunnelDisplay',
+                                fontFamily: 'Funnel Display',
                                 letterSpacing: 0.0,
                                 useGoogleFonts: false,
                               ),
@@ -104,7 +104,7 @@ class BouquetWidget extends StatelessWidget {
                 child: Text(
                   'Ordered on $orderDate',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
-                        fontFamily: 'FunnelDisplay',
+                        fontFamily: 'Funnel Display',
                         letterSpacing: 0.0,
                         useGoogleFonts: false,
                       ),
