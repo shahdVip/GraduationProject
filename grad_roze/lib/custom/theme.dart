@@ -227,21 +227,21 @@ class ThemeTypography extends Typography {
   String get titleLargeFamily => 'FunnelDisplay';
   TextStyle get titleLarge => TextStyle(
         fontFamily: 'FunnelDisplay',
-        color: theme.primaryText,
+        color: theme.primary,
         fontWeight: FontWeight.w600,
         fontSize: 18.0,
       );
   String get titleMediumFamily => 'FunnelDisplay';
   TextStyle get titleMedium => TextStyle(
         fontFamily: 'FunnelDisplay',
-        color: theme.primaryText,
+        color: theme.primary,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
   String get titleSmallFamily => 'FunnelDisplay';
   TextStyle get titleSmall => TextStyle(
         fontFamily: 'FunnelDisplay',
-        color: theme.primaryText,
+        color: theme.primary,
         fontWeight: FontWeight.w600,
         fontSize: 14.0,
       );
@@ -303,7 +303,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color alternate = const Color(0xFF262D34);
   late Color primaryText = const Color(0xFFFFFFFF);
   late Color secondaryText = const Color(0xFFFFFFEE);
-  late Color primaryBackground = const Color(0xFF040425);
+  late Color primaryBackground = const Color(0xFFF7F8F8);
   late Color secondaryBackground = const Color(0xFF040425);
   late Color accent1 = const Color(0xCE040425);
   late Color accent2 = const Color(0x91FFFFFF);
@@ -312,7 +312,7 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color success = const Color(0xFFFFE45C);
   late Color warning = const Color(0xBEDBAEAE);
   late Color error = const Color(0xBEDBAEAE);
-  late Color info = const Color(0xFF040425);
+  late Color info = const Color(0xFFFFFFFF);
 }
 
 extension TextStyleHelper on TextStyle {

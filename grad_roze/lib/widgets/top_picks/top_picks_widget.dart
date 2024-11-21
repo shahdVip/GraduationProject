@@ -61,11 +61,11 @@ class _TopPicksWidgetState extends State<TopPicksWidget> {
                       child: Text(
                         'Our Top Picks',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'FunnelDisplay',
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w600,
-                            useGoogleFonts: false,
-                            color: Color(0xff770404)),
+                              fontFamily: 'Funnel Display',
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.w600,
+                              useGoogleFonts: false,
+                            ),
                       ),
                     ),
                   ],
@@ -148,7 +148,7 @@ class _TopPicksWidgetState extends State<TopPicksWidget> {
                   iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                   color: Color(0x00040425),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'FunnelDisplay',
+                        fontFamily: 'Funnel Display',
                         color: Color(0xFF040425),
                         fontSize: 10,
                         letterSpacing: 0.0,

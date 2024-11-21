@@ -1,4 +1,3 @@
-import 'home.dart' show MomentPageWidget;
 import 'package:flutter/material.dart';
 
 class MomentPageModel {
