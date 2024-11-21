@@ -1,0 +1,30 @@
+final url = 'http://192.168.1.9:3000';
+
+final registeration = url + "/registeration";
+final signInEndpoint = url + "/signin";
+
+final loggedInInfo = url + '/loggedInInfo'; // Replace with your profile API URL
+final updateProfilePhoto = url + '/updateProfilePhoto';
+final updatePhoneNumberUrl = url + '/updatePhoneNumber';
+final updatePasswordUrl = url + '/updatePassword';
+final deleteAdminUrl = url + '/deleteAdmin';
+final createAdminUrl = url + '/create-admin';
+final resendCodeUrl = url + '/resend-otp';
+final verifyOtpUrl = url + '/verify-otp';
+final deleteUserUrl = url + '/delete-user';
+final createUserRequestUrl = url + '/userRequests/create';
+final fetchUserRequestUrl = url + '/userRequests/all';
+final approveUserRequestUrl = url + '/userRequests/approve';
+final denyUserRequestUrl = url + '/userRequests/deny';
+final adminUsrCreate = url + '/adminUsrRegisteration';
+final usrLstBaseUrl = url + '/adminApproved';
+final pendingUsrLstUrl = url + '/notAdminApproved';
+final allUsrLstUrl = url + '/allUsers';
+final deleteUserUrll = url + '/deleteUser';
+final sendResetPasswordUrl = url + '/send-reset-link';
+final resetPasswordUrl = url + '/reset-password';
+final savePreferenceUrl = url + '/userPreference/save-preference';
+final deleteAllPreferenceUrl = url + '/userPreference/delete-all';
+final initilizePreferenceUrl = url + '/userPreference/initialize-preference';
+final updatePreferenceUrl = url + '/userPreference/update-preference';
+final fetchMomentsUrl = url + '/moments';
