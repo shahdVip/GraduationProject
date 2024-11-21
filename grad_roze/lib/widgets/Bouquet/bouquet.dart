@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-
 class Bouquet {
   final String name;
   final List<String> tags;
@@ -28,22 +25,5 @@ class Bouquet {
       business: json['business'],
       price: json['price'].toDouble(),
     );
-  }
-}
-
-class BouquetService {
-  static const String baseUrl =
-      'http://localhost:5000/api/bouquets'; // Backend URL
-
-  // Fetch bouquets filtered by a tag
-  static Future<List<Bouquet>> fetchBouquetsByTag(String tag) async {
-    final response = await http.get(Uri.parse('$baseUrl/items?tag=$tag'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> data = jsonDecode(response.body);
-      return data.map((json) => Bouquet.fromJson(json)).toList();
-    } else {
-      throw Exception('Failed to fetch bouquets');
-    }
   }
 }

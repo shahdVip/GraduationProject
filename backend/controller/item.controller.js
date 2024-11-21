@@ -15,6 +15,20 @@ const fetchRecommendedItems = async (req, res) => {
   }
 };
 
+const fetchItemsByTag = async (req, res) => {
+  const { tag } = req.params; // Get the tag from the request URL (e.g., /items/tag/flowers)
+  
+  try {
+    const items = await Item.find({ tags: tag }); // Look for items with the tag
+    if (items.length === 0) { // If no items are found
+      return res.status(404).json({ message: `No items found with tag: ${tag}` });
+    }
+    res.status(200).json(items); // Send the items as a JSON response
+  } catch (error) {
+    console.error(`Error fetching items by tag: ${error.message}`);
+    res.status(500).json({ message: "Error fetching items", error }); // Handle errors
+  }
+};
 
 
 // Controller to fetch all items
@@ -84,4 +98,4 @@ const getItemById = async (req, res) => {
 // Middleware for image upload
 const uploadImage = upload.single('image');
 
-module.exports = { fetchItems, addItem, uploadImage, createItemController, getItemById ,fetchRecommendedItems};
+module.exports = { fetchItemsByTag, fetchItems, addItem, uploadImage, createItemController, getItemById ,fetchRecommendedItems};
