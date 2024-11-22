@@ -28,3 +28,4 @@ final deleteAllPreferenceUrl = url + '/userPreference/delete-all';
 final initilizePreferenceUrl = url + '/userPreference/initialize-preference';
 final updatePreferenceUrl = url + '/userPreference/update-preference';
 final fetchMomentsUrl = url + '/moments';
+final fetchMomentPageUrl = url + '/momentPage';
