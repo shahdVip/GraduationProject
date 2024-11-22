@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const db = require('../config/db');
 
 const itemSchema = new mongoose.Schema({
+  id: {type: String, required: true },
   name: { type: String, required: true },
   flowerType: { type: String, required: true },
   tags: { type: [String], required: true },
