@@ -84,6 +84,8 @@ class BouquetViewWidget extends StatelessWidget {
                             fontFamily: 'Funnel Display',
                             letterSpacing: 0.0,
                             useGoogleFonts: false,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            fontWeight: FontWeight.bold,
                           ),
                     ),
                   ],
