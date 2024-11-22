@@ -3,40 +3,16 @@ import '/custom/util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import 'BouquetViewModel.dart';
 export 'BouquetViewModel.dart';
 
-class BouquetViewWidget extends StatefulWidget {
-  const BouquetViewWidget({super.key});
+class BouquetViewWidget extends StatelessWidget {
+  final BouquetViewModel model;
 
-  @override
-  State<BouquetViewWidget> createState() => _BouquetViewWidgetState();
-}
-
-class _BouquetViewWidgetState extends State<BouquetViewWidget> {
-  late BouquetViewModel _model;
-
-  @override
-  void setState(VoidCallback callback) {
-    super.setState(callback);
-    _model.onUpdate();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _model = createModel(context, () => BouquetViewModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
-  }
-
-  @override
-  void dispose() {
-    _model.maybeDispose();
-
-    super.dispose();
-  }
+  const BouquetViewWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +27,7 @@ class _BouquetViewWidgetState extends State<BouquetViewWidget> {
             BoxShadow(
               blurRadius: 4,
               color: Color(0x3F15212B),
-              offset: Offset(
-                0.0,
-                3,
-              ),
+              offset: Offset(0.0, 3),
             )
           ],
           borderRadius: BorderRadius.circular(12),
@@ -79,8 +52,8 @@ class _BouquetViewWidgetState extends State<BouquetViewWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(
-                          'assets/images/shphoto.jpg',
+                        child: Image.network(
+                          model.imageUrl,
                           width: double.infinity,
                           height: 110,
                           fit: BoxFit.cover,
@@ -97,7 +70,7 @@ class _BouquetViewWidgetState extends State<BouquetViewWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'item name',
+                      model.name,
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Funnel Display',
                             color: FlutterFlowTheme.of(context).primary,
@@ -106,7 +79,7 @@ class _BouquetViewWidgetState extends State<BouquetViewWidget> {
                           ),
                     ),
                     Text(
-                      '\$120',
+                      '\$${model.price}',
                       style: FlutterFlowTheme.of(context).labelMedium.override(
                             fontFamily: 'Funnel Display',
                             letterSpacing: 0.0,
@@ -122,7 +95,7 @@ class _BouquetViewWidgetState extends State<BouquetViewWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      'business name',
+                      model.businessName,
                       style: FlutterFlowTheme.of(context).bodySmall.override(
                             fontFamily: 'Funnel Display',
                             color: FlutterFlowTheme.of(context).secondaryText,
