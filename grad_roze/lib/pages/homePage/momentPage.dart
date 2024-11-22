@@ -30,22 +30,29 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
     try {
       final response = await http.get(
         Uri.parse(
-            'http://192.168.1.9:3000/item/items/tag/${widget.moment.text}'),
+          'http://192.168.1.9:3000/item/items/tag/${widget.moment.text}',
+        ),
       );
 
       if (response.statusCode == 200) {
         List jsonResponse = json.decode(response.body);
+
+        // Return an empty list if the response is empty or invalid
+        if (jsonResponse.isEmpty) {
+          return [];
+        }
+
         return jsonResponse
             .map((data) => BouquetViewModel.fromJson(data))
             .toList();
       } else {
         print('Failed to load bouquets: Status Code ${response.statusCode}');
         print('Response body: ${response.body}');
-        throw Exception('Failed to load bouquets');
+        return []; // Return empty list instead of throwing an exception
       }
     } catch (e) {
       print('Error fetching bouquets: $e');
-      throw Exception('Failed to load bouquets');
+      return []; // Return empty list in case of any error
     }
   }
 
