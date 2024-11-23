@@ -85,7 +85,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                       child: widget.profilePhoto == null ||
                               widget.profilePhoto.isEmpty
                           ? Image.asset(
-                              'assets/images/default_avatar.png', // Path to your default image
+                              'assets/images/defaults/default_avatar.png', // Path to your default image
                               width: double.infinity,
                               height: double.infinity,
                               fit: BoxFit.cover,

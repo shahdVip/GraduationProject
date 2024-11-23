@@ -112,6 +112,9 @@ flutter:
   - assets/rive_animations/
   - assets/pdfs/
   - assets/jsons/
+  - assets/images/moodQuiz/
+  - assets/images/defaults/
+  - assets/images/onboarding/
 
   fonts:
   - family: 'Funnel Display'
