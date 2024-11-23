@@ -39,7 +39,7 @@ const gracefulExit = async () => {
 
 process.on('SIGINT', gracefulExit); // Handle Ctrl+C
 process.on('SIGTERM', gracefulExit); // Handle termination signals
-// 
+// nn
 
 module.exports = mongoose;
 
