@@ -37,6 +37,7 @@ const addItem = async (req, res) => {
       ...req.body,
       purchaseTimes: req.body.purchaseTimes || 0,
       careTips: req.body.careTips || "",
+      wrapColor: req.body.wrapColor || [], // Default to an empty array if not provided
     };
     const newItem = await createItem(itemData);
     res.status(201).json(newItem);
@@ -44,7 +45,6 @@ const addItem = async (req, res) => {
     res.status(500).json({ message: 'Error creating bouquet', error: error.message });
   }
 };
-
 
 // Set up `multer` for handling image uploads
 const storage = multer.diskStorage({
@@ -57,6 +57,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+
+
 const createItemController = async (req, res) => {
   try {
     const imageURL = req.file ? `/uploads/${req.file.filename}` : null;
@@ -65,10 +67,11 @@ const createItemController = async (req, res) => {
       imageURL,
       purchaseTimes: req.body.purchaseTimes || 0, // Default to 0 if not provided
       careTips: req.body.careTips || "", // Default to an empty string if not provided
+      wrapColor: req.body.wrapColor || [], // Default to an empty array if not provided
     };
 
-    const existingBouqet = await Item.findOne({ name: itemData.name });
-    if (existingBouqet) {
+    const existingBouquet = await Item.findOne({ name: itemData.name });
+    if (existingBouquet) {
       return res.status(409).json({ message: 'Bouquet already exists' });
     }
 
