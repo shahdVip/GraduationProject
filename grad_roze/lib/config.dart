@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 final url = 'http://192.168.1.7:3000';
+=======
+final url = 'http://192.168.1.9:3000';
+>>>>>>> 4eac463725e56d90738310eede6707f4085311c1
 
 final registeration = url + "/registeration";
 final signInEndpoint = url + "/signin";
@@ -28,3 +32,4 @@ final deleteAllPreferenceUrl = url + '/userPreference/delete-all';
 final initilizePreferenceUrl = url + '/userPreference/initialize-preference';
 final updatePreferenceUrl = url + '/userPreference/update-preference';
 final fetchMomentsUrl = url + '/moments';
+final fetchMomentPageUrl = url + '/momentPage';

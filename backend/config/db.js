@@ -10,7 +10,7 @@
 // module.exports = connection;
 const mongoose = require('mongoose');
 
-const dbURI = 'mongodb+srv://s12028433:Bgy5FM4dvXs0d0c9@rozecluster0.vgbnq.mongodb.net/RozeDatabase?retryWrites=true&w=majority';
+const dbURI = 'mongodb+srv://Sewar:securepasswordsewar@rozecluster0.vgbnq.mongodb.net/RozeDatabase?retryWrites=true&w=majorit';
 
 const connectDB = async () => {
   try {
@@ -42,4 +42,3 @@ process.on('SIGTERM', gracefulExit); // Handle termination signals
 // nn
 
 module.exports = mongoose;
-
