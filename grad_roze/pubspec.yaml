@@ -108,15 +108,12 @@ flutter:
   - assets/images/slider/
   - assets/images/moodQuiz/
   - assets/images/defaults/
-
-  - assets/images/moments/
   - assets/images/onboarding/
   - assets/videos/
   - assets/audios/
   - assets/rive_animations/
   - assets/pdfs/
   - assets/jsons/
-  - assets/images/moodQuiz/
   - assets/images/defaults/
   - assets/images/onboarding/
 
