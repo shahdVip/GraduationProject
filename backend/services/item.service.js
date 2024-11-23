@@ -11,7 +11,6 @@ const getAllItems = async () => {
   }
 };
 
-// Service to handle item creation
 const createItem = async (itemData) => {
   try {
     const newItem = new Item(itemData);
@@ -23,23 +22,22 @@ const createItem = async (itemData) => {
 };
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 297dd3c33dc47857849d874c0f54afa11d77cb3f
 // Function to fetch items based on user preferences
 const getRecommendedItems = async (username) => {
   try {
-    // Fetch user preferences
     const userPreference = await UserPreference.findOne({ username });
     if (!userPreference) {
       throw new Error('User preferences not found');
     }
 
-    // Extract preferences
     const { flowerType, colors, tags } = userPreference;
 
-    // Fetch all items
     const items = await Item.find();
 
-    // Score items based on preferences
     const scoredItems = items.map((item) => {
       let score = 0;
 
@@ -56,17 +54,12 @@ const getRecommendedItems = async (username) => {
       return { item, score };
     });
 
-    // Sort items by score in descending order
     scoredItems.sort((a, b) => b.score - a.score);
 
-    // Return items with a positive score
     return scoredItems.filter(({ score }) => score > 0).map(({ item }) => item);
   } catch (error) {
     throw new Error('Error fetching recommended items: ' + error.message);
   }
 };
 
-
-
-
-module.exports = { getAllItems, createItem ,getRecommendedItems};
+module.exports = { getAllItems, createItem, getRecommendedItems };
