@@ -89,7 +89,7 @@ class _UserSectionBusWidgetState extends State<UserSectionBusWidget> {
                   child:
                       widget.profilePhoto == null || widget.profilePhoto.isEmpty
                           ? Image.asset(
-                              'assets/images/default_avatar.png', // Path to your default image
+                              'assets/images/defaults/default_avatar.png', // Path to your default image
                               width: 60.0,
                               height: 60.0,
                               fit: BoxFit.cover,

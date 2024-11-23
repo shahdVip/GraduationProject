@@ -154,116 +154,111 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
       case 0:
         body = json.encode({
           'username': username,
-          'color': 'red', // Customize based on cardIndex
-          'flowerType': 'gerbera', // Customize based on cardIndex
+          'color': ['pink'], // Customize based on cardIndex
+          'flowerType': ['rose', 'gardenmum'], // Customize based on cardIndex
           'tag': [
-            'romantic',
-            'anniversary',
-            'luxurious'
+            'birthday',
           ], // Customize based on cardIndex
         });
         break;
       case 1:
         body = json.encode({
           'username': username,
-          'color': 'white', // Customize based on cardIndex
-          'flowerType': 'Lilies', // Customize based on cardIndex
-          'tag': [
-            'romantic',
-            'birthday',
-            'luxurious',
-            'calm'
-          ], // Customize based on cardIndex
+          'color': ['white', 'blue'], // Customize based on cardIndex
+          'flowerType': ['daisy', 'hydrangea'], // Customize based on cardIndex
+          'tag': ['birthday'], // Customize based on cardIndex
         });
         break;
       case 2:
         body = json.encode({
           'username': username,
-          'color': 'blue', // Customize based on cardIndex
-          'flowerType': 'orchid', // Customize based on cardIndex
-          'tag': ['eid', 'luxurious'], // Customize based on cardIndex
+          'color': ['pink'], // Customize based on cardIndex
+          'flowerType': ['lily'], // Customize based on cardIndex
+          'tag': [
+            'anniversary',
+            'thank you',
+            'birthday',
+            'get well soon'
+          ], // Customize based on cardIndex
         });
         break;
       case 3:
         body = json.encode({
           'username': username,
-          'color': 'pink', // Customize based on cardIndex
-          'flowerType': 'peonies', // Customize based on cardIndex
+          'color': ['yellow', 'orange'], // Customize based on cardIndex
+          'flowerType': ['sunflower', 'lily'], // Customize based on cardIndex
           'tag': [
-            'cheerful',
-            'luxurious',
-            'graduation'
+            'get well soon',
+            'graduation',
+            'anniversary',
+            'birthday',
+            'thank you'
           ], // Customize based on cardIndex
         });
         break;
       case 4:
         body = json.encode({
           'username': username,
-          'color': 'green', // Customize based on cardIndex
-          'flowerType': 'wildflower', // Customize based on cardIndex
+          'color': ['pink'], // Customize based on cardIndex
+          'flowerType': ['carnation'], // Customize based on cardIndex
           'tag': [
-            'christmas',
-            'luxurious',
+            'graduation',
           ], // Customize based on cardIndex
         });
         break;
       case 5:
         body = json.encode({
           'username': username,
-          'color': 'orange', // Customize based on cardIndex
-          'flowerType': 'tulip', // Customize based on cardIndex
-          'tag': [
-            'mother',
-            'cheerful',
-          ], // Customize based on cardIndex
+          'color': ['white'], // Customize based on cardIndex
+          'flowerType': ['tulip'], // Customize based on cardIndex
+          'tag': ['get well soon'], // Customize based on cardIndex
         });
         break;
       case 6:
         body = json.encode({
           'username': username,
-          'color': 'white', // Customize based on cardIndex
-          'flowerType': 'peonies', // Customize based on cardIndex
+          'color': [
+            'white',
+            'orange',
+            'purple'
+          ], // Customize based on cardIndex
+          'flowerType': [
+            'wildflower',
+            'rose',
+            'gardenmum'
+          ], // Customize based on cardIndex
           'tag': [
-            'bridal',
-            'luxurious',
-            'calm'
+            'graduation',
           ], // Customize based on cardIndex
         });
         break;
       case 7:
         body = json.encode({
           'username': username,
-          'color': 'orange', // Customize based on cardIndex
-          'flowerType': 'orchid', // Customize based on cardIndex
+          'color': ['pink'], // Customize based on cardIndex
+          'flowerType': ['gerbera'], // Customize based on cardIndex
           'tag': [
-            'eid',
-            'ramadan',
-            'luxurious',
+            'get well soon',
           ], // Customize based on cardIndex
         });
         break;
       case 8:
         body = json.encode({
           'username': username,
-          'color': 'yellow', // Customize based on cardIndex
-          'flowerType': 'sunflower', // Customize based on cardIndex
+          'color': ['red'], // Customize based on cardIndex
+          'flowerType': ['rose'], // Customize based on cardIndex
           'tag': [
-            'get well soon',
-            'birthday',
-            'cheerful',
-            'graduation'
+            'anniversary',
           ], // Customize based on cardIndex
         });
         break;
       case 9:
         body = json.encode({
           'username': username,
-          'color': 'red', // Customize based on cardIndex
-          'flowerType': 'rose', // Customize based on cardIndex
+          'color': 'pink', // Customize based on cardIndex
+          'flowerType': 'orchid', // Customize based on cardIndex
           'tag': [
-            'romantic',
-            'anniversary',
-            'luxurious',
+            'graduation',
           ], // Customize based on cardIndex
         });
         break;
@@ -402,7 +397,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
-                  'assets/images/shphoto.jpg',
+                  'assets/images/favicon.png',
                   width: 60,
                   height: 60,
                   fit: BoxFit.cover,
@@ -495,7 +490,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                               () => ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'assets/images/gerbera_red_romantic_anniv.jpeg',
+                                      'assets/images/exploreQuiz/1.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
@@ -504,7 +499,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                               () => ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'assets/images/Lilies_luxurious_romantic_calm_white_anniv_birthday_getwell_thanku_.jpeg',
+                                      'assets/images/exploreQuiz/2.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
@@ -513,7 +508,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                               () => ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'assets/images/orchid_luxurious_blue_eid.jpeg',
+                                      'assets/images/exploreQuiz/3.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
@@ -522,7 +517,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                               () => ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'assets/images/peonie_pink_grad.jpeg',
+                                      'assets/images/exploreQuiz/4.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
@@ -531,7 +526,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                               () => ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'assets/images/christmas.jpeg',
+                                      'assets/images/exploreQuiz/5.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
@@ -540,7 +535,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                               () => ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'assets/images/tulip_pink_white_orange_mothersday.jpeg',
+                                      'assets/images/exploreQuiz/6.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
@@ -549,7 +544,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                               () => ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'assets/images/bridal.jpeg',
+                                      'assets/images/exploreQuiz/7.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
@@ -558,7 +553,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                               () => ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'assets/images/orchid_calm_orange_ramadan_eid.jpeg',
+                                      'assets/images/exploreQuiz/8.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
@@ -567,7 +562,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                               () => ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'assets/images/sunflowers.jpeg',
+                                      'assets/images/exploreQuiz/9.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
@@ -576,7 +571,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                               () => ClipRRect(
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
-                                      'assets/images/roses_romantic_luxurious_red_anniv_.jpeg',
+                                      'assets/images/exploreQuiz/10.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,
