@@ -29,7 +29,7 @@ const itemSchema = new mongoose.Schema(
     description: { type: String, required: true },
     business: { type: String, required: true },
     color: { type: [String], required: true },
-    wrapColor: { type: [String], required: true }, // Add the wrapColor field
+    wrapColor: { type: [String], required: false , default: ['white'] }, // Add the wrapColor field
     price: { type: Number, required: true },
     purchaseTimes: { type: Number, default: 0 }, // New field with default value
     careTips: { type: String, default: '' }, // New field with default value
