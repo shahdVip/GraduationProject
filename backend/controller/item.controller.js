@@ -4,6 +4,7 @@ const UserPreference = require('../model/userPreference.model');
 const multer = require('multer');
 const path = require('path');
 
+<<<<<<< HEAD
 
 const fetchItemsByTag = async (req, res) => {
   const { tag } = req.params; // Get the tag from the request URL (e.g., /items/tag/flowers)
@@ -21,6 +22,8 @@ const fetchItemsByTag = async (req, res) => {
 };
 
 
+=======
+>>>>>>> 297dd3c33dc47857849d874c0f54afa11d77cb3f
 // Controller to fetch all items
 const fetchItems = async (req, res) => {
   try {
@@ -31,7 +34,6 @@ const fetchItems = async (req, res) => {
   }
 };
 
-// Controller to add an item
 const addItem = async (req, res) => {
   try {
     const itemData = {
@@ -46,6 +48,7 @@ const addItem = async (req, res) => {
   }
 };
 
+
 // Set up `multer` for handling image uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -57,7 +60,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// Controller to handle item creation with an image
 const createItemController = async (req, res) => {
   try {
     const imageURL = req.file ? `/uploads/${req.file.filename}` : null;
@@ -80,6 +82,7 @@ const createItemController = async (req, res) => {
   }
 };
 
+
 // Controller to fetch an item by its ID
 const getItemById = async (req, res) => {
   try {
@@ -96,6 +99,10 @@ const getItemById = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
+=======
+// Controller to fetch recommended items based on user preferences
+>>>>>>> 297dd3c33dc47857849d874c0f54afa11d77cb3f
 const fetchRecommendedItems = async (req, res) => {
   try {
     const { username } = req.body; // Assuming the username is sent in the body
@@ -114,4 +121,9 @@ const fetchRecommendedItems = async (req, res) => {
 
 // Middleware for image upload
 const uploadImage = upload.single('image');
+<<<<<<< HEAD
 module.exports = { fetchItemsByTag,fetchItems, addItem, uploadImage, createItemController, getItemById, fetchRecommendedItems };
+=======
+
+module.exports = { fetchItems, addItem, uploadImage, createItemController, getItemById, fetchRecommendedItems };
+>>>>>>> 297dd3c33dc47857849d874c0f54afa11d77cb3f
