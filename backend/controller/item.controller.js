@@ -4,7 +4,6 @@ const UserPreference = require('../model/userPreference.model');
 const multer = require('multer');
 const path = require('path');
 
-<<<<<<< HEAD
 
 const fetchItemsByTag = async (req, res) => {
   const { tag } = req.params; // Get the tag from the request URL (e.g., /items/tag/flowers)
@@ -22,8 +21,6 @@ const fetchItemsByTag = async (req, res) => {
 };
 
 
-=======
->>>>>>> 297dd3c33dc47857849d874c0f54afa11d77cb3f
 // Controller to fetch all items
 const fetchItems = async (req, res) => {
   try {
@@ -98,11 +95,7 @@ const getItemById = async (req, res) => {
     res.status(500).json({ message: 'Error fetching bouquet', error: error.message });
   }
 };
-
-<<<<<<< HEAD
-=======
 // Controller to fetch recommended items based on user preferences
->>>>>>> 297dd3c33dc47857849d874c0f54afa11d77cb3f
 const fetchRecommendedItems = async (req, res) => {
   try {
     const { username } = req.body; // Assuming the username is sent in the body
@@ -121,9 +114,4 @@ const fetchRecommendedItems = async (req, res) => {
 
 // Middleware for image upload
 const uploadImage = upload.single('image');
-<<<<<<< HEAD
 module.exports = { fetchItemsByTag,fetchItems, addItem, uploadImage, createItemController, getItemById, fetchRecommendedItems };
-=======
-
-module.exports = { fetchItems, addItem, uploadImage, createItemController, getItemById, fetchRecommendedItems };
->>>>>>> 297dd3c33dc47857849d874c0f54afa11d77cb3f
