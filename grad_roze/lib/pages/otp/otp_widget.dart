@@ -179,7 +179,7 @@ class _OtpWidgetState extends State<OtpWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Image.asset(
-                              'assets/images/mail-attack_(1).png',
+                              'assets/images/defaults/mail-attack_(1).png',
                               width: 150,
                               height: 150,
                               fit: BoxFit.cover,
