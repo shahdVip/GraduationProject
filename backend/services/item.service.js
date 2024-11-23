@@ -13,7 +13,7 @@ const getAllItems = async () => {
 
 const createItem = async (itemData) => {
   try {
-    const newItem = new Item(itemData);
+    const newItem = new Item(itemData); // wrapColor is automatically handled here
     await newItem.save();
     return newItem;
   } catch (error) {
