@@ -325,7 +325,7 @@ class _NewAdminWidgetState extends State<NewAdminWidget>
                                                           Colors.transparent,
                                                       radius: 100,
                                                       backgroundImage: AssetImage(
-                                                          'assets/images/userphoto.png'),
+                                                          'assets/images/defaults/userphoto.png'),
                                                     ),
                                             ),
                                             Align(
