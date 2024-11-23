@@ -78,62 +78,6 @@ class _TopPicksWidgetState extends State<TopPicksWidget> {
               decoration: BoxDecoration(
                 color: Color(0x00FFFFFF),
               ),
-              child: GridView(
-                padding: EdgeInsets.zero,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 0,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 1,
-                ),
-                scrollDirection: Axis.vertical,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      // Action for topPicksComponentModel1
-                      print('Top Picks Component 1 tapped');
-                    },
-                    child: wrapWithModel(
-                      model: _model.topPicksComponentModel1,
-                      updateCallback: () => safeSetState(() {}),
-                      child: TopPicksComponentWidget(),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Action for topPicksComponentModel2
-                      print('Top Picks Component 2 tapped');
-                    },
-                    child: wrapWithModel(
-                      model: _model.topPicksComponentModel2,
-                      updateCallback: () => safeSetState(() {}),
-                      child: TopPicksComponentWidget(),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Action for topPicksComponentModel3
-                      print('Top Picks Component 3 tapped');
-                    },
-                    child: wrapWithModel(
-                      model: _model.topPicksComponentModel3,
-                      updateCallback: () => safeSetState(() {}),
-                      child: TopPicksComponentWidget(),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Action for topPicksComponentModel4
-                      print('Top Picks Component 4 tapped');
-                    },
-                    child: wrapWithModel(
-                      model: _model.topPicksComponentModel4,
-                      updateCallback: () => safeSetState(() {}),
-                      child: TopPicksComponentWidget(),
-                    ),
-                  ),
-                ],
-              ),
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
@@ -149,14 +93,14 @@ class _TopPicksWidgetState extends State<TopPicksWidget> {
                   color: Color(0x00040425),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Funnel Display',
-                        color: Color(0xFF040425),
+                        color: FlutterFlowTheme.of(context).primary,
                         fontSize: 10,
                         letterSpacing: 0.0,
                         useGoogleFonts: false,
                       ),
                   elevation: 0,
                   borderSide: BorderSide(
-                    color: Color(0xFF040425),
+                    color: FlutterFlowTheme.of(context).primary,
                   ),
                   borderRadius: BorderRadius.circular(8),
                 ),

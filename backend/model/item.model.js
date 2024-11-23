@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const db = require('../config/db');
 
-// Define allowed enum values for tags
 const allowedTags = [
   'Get Well Soon',
   'Thank You',
@@ -29,10 +28,15 @@ const itemSchema = new mongoose.Schema(
     description: { type: String, required: true },
     business: { type: String, required: true },
     color: { type: [String], required: true },
+<<<<<<< HEAD
     wrapColor: { type: [String], required: false , default: ['white'] }, // Add the wrapColor field
+=======
+    wrapColor: { type: [String], required: true }, // Add the wrapColor field
+>>>>>>> 4eac463725e56d90738310eede6707f4085311c1
     price: { type: Number, required: true },
     purchaseTimes: { type: Number, default: 0 }, // New field with default value
     careTips: { type: String, default: '' }, // New field with default value
+    
   },
   { autoIndex: false }
 );
