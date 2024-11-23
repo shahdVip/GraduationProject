@@ -46,7 +46,6 @@ const addItem = async (req, res) => {
   }
 };
 
-
 // Set up `multer` for handling image uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -57,6 +56,8 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage: storage });
+
+
 
 const createItemController = async (req, res) => {
   try {
@@ -80,21 +81,6 @@ const createItemController = async (req, res) => {
     res.status(500).json({ message: 'Error creating bouquet', error: error.message });
   }
 };
-
-
-
-// Set up `multer` for handling image uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-const upload = multer({ storage: storage });
-
-
 
 
 // Controller to fetch an item by its ID
