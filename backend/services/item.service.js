@@ -13,13 +13,14 @@ const getAllItems = async () => {
 
 const createItem = async (itemData) => {
   try {
-    const newItem = new Item(itemData);
+    const newItem = new Item(itemData); // wrapColor is automatically handled here
     await newItem.save();
     return newItem;
   } catch (error) {
     throw new Error('Error creating item: ' + error.message);
   }
 };
+
 
 
 // Function to fetch items based on user preferences
