@@ -10,9 +10,10 @@ const allowedTags = [
   'Graduation'
 ];
 
-const bouqetSchema = new mongoose.Schema(
+const itemSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, unique: true },
+    id: {type: String, required: true, unique: true },
+    name: { type: String, required: true },
     flowerType: { type: [String], required: true },
     tags: {
       type: [String],
@@ -35,5 +36,5 @@ const bouqetSchema = new mongoose.Schema(
   { autoIndex: false }
 );
 
-const BouqetsModel = db.model('bouqets', bouqetSchema);
-module.exports = BouqetsModel;
+const ItemsModel = db.model('items', itemSchema);
+module.exports = ItemsModel;

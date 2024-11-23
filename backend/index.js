@@ -3,7 +3,7 @@ const db = require('./config/db');
 const UserModel = require('./model/user.model');
 const UserRequestModel = require('./model/userRequest.model');
 const UserPreferenceModel = require('./model/userPreference.model');
-const BouqetModel = require('./model/bouqet.model');
+const ItemModel = require('./model/item.model');
 const MomentModel = require('./model/moment.model');
 
 const PORT = 3000;

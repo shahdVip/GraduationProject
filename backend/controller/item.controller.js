@@ -1,5 +1,5 @@
-const { getAllItems, createItem, getRecommendedItems } = require('../services/bouqet.service');
-const Bouqet = require('../model/bouqet.model');
+const { getAllItems, createItem, getRecommendedItems } = require('../services/item.service');
+const Item = require('../model/item.model');
 const UserPreference = require('../model/userPreference.model');
 const multer = require('multer');
 const path = require('path');
@@ -50,7 +50,7 @@ const createItemController = async (req, res) => {
       careTips: req.body.careTips || "", // Default to an empty string if not provided
     };
 
-    const existingBouqet = await Bouqet.findOne({ name: itemData.name });
+    const existingBouqet = await Item.findOne({ name: itemData.name });
     if (existingBouqet) {
       return res.status(409).json({ message: 'Bouquet already exists' });
     }
@@ -67,7 +67,7 @@ const createItemController = async (req, res) => {
 const getItemById = async (req, res) => {
   try {
     const { id } = req.params;
-    const bouquet = await Bouqet.findById(id);
+    const bouquet = await Item.findById(id);
 
     if (!bouquet) {
       return res.status(404).json({ message: 'Bouquet not found' });

@@ -1016,7 +1016,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                                             radius:
                                                                                 100,
                                                                             backgroundImage:
-                                                                                AssetImage('assets/images/userphoto.png'),
+                                                                                AssetImage('assets/images/defaults/userphoto.png'),
                                                                           ),
                                                                   ),
                                                                   Align(

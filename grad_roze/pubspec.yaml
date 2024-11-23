@@ -105,7 +105,9 @@ flutter:
   - assets/images/
   - assets/icons/
   - assets/images/slider/
-  - assets/images/exploreQuiz/
+  - assets/images/moodQuiz/
+  - assets/images/defaults/
+
   - assets/images/moments/
   - assets/images/onboarding/
   - assets/videos/
