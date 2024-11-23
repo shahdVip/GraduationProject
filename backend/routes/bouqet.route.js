@@ -6,21 +6,14 @@ const {
   uploadImage,
   getItemById,
   fetchRecommendedItems,
-} = require('../controller/item.controller');
+} = require('../controller/bouqet.controller');
 
 const router = express.Router();
 
-router.get('/items', fetchItems);
-router.post('/items', addItem);
+router.get('/bouqets', fetchItems);
+router.post('/bouqets', addItem);
 router.post('/create', uploadImage, createItemController);
-router.get('/items/:id', getItemById); // Route to fetch an item by ID
-
-
-
-
-// Route to fetch recommended items
+router.get('/bouqets/:id', getItemById); // Route to fetch an item by ID
 router.post('/recommendations', fetchRecommendedItems);
-
-
 
 module.exports = router;

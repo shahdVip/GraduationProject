@@ -1,0 +1,39 @@
+const mongoose = require('mongoose');
+const db = require('../config/db');
+
+// Define allowed enum values for tags
+const allowedTags = [
+  'Get Well Soon',
+  'Thank You',
+  'Engangement',
+  'Congratulations',
+  'Graduation'
+];
+
+const bouqetSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, unique: true },
+    flowerType: { type: [String], required: true },
+    tags: {
+      type: [String],
+      required: true,
+      validate: {
+        validator: function (tags) {
+          return tags.every(tag => allowedTags.includes(tag));
+        },
+        message: props => `${props.value} contains invalid tags. Allowed tags are: ${allowedTags.join(', ')}`,
+      },
+    },
+    imageURL: { type: String, required: true },
+    description: { type: String, required: true },
+    business: { type: String, required: true },
+    color: { type: [String], required: true },
+    price: { type: Number, required: true },
+    purchaseTimes: { type: Number, default: 0 }, // New field with default value
+    careTips: { type: String, default: '' }, // New field with default value
+  },
+  { autoIndex: false }
+);
+
+const BouqetsModel = db.model('bouqets', bouqetSchema);
+module.exports = BouqetsModel;
