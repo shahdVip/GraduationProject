@@ -5,14 +5,14 @@ const db = require('../config/db');
 const allowedTags = [
   'Get Well Soon',
   'Thank You',
-  'Engangement',
+  'Engagement',
   'Congratulations',
   'Graduation'
 ];
 
 const itemSchema = new mongoose.Schema(
   {
-    id: {type: String, required: true, unique: true },
+    id: { type: String, required: true, unique: true },
     name: { type: String, required: true },
     flowerType: { type: [String], required: true },
     tags: {
@@ -29,6 +29,7 @@ const itemSchema = new mongoose.Schema(
     description: { type: String, required: true },
     business: { type: String, required: true },
     color: { type: [String], required: true },
+    wrapColor: { type: [String], required: true }, // Add the wrapColor field
     price: { type: Number, required: true },
     purchaseTimes: { type: Number, default: 0 }, // New field with default value
     careTips: { type: String, default: '' }, // New field with default value
