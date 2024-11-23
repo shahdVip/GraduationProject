@@ -14,14 +14,13 @@ const getAllItems = async () => {
 // Service to handle item creation
 const createItem = async (itemData) => {
   try {
-    const newItem = new Item(itemData); // itemData should include the price field
+    const newItem = new Item(itemData);
     await newItem.save();
     return newItem;
   } catch (error) {
     throw new Error('Error creating item: ' + error.message);
   }
 };
-
 
 
 
@@ -45,14 +44,14 @@ const getRecommendedItems = async (username) => {
       let score = 0;
 
       // Increase score for matching flowerType
-      if (flowerType.includes(item.flowerType)) score += 1;
+      if (flowerType.some(type => item.flowerType.includes(type))) score += 1;
 
       // Increase score for matching color
-      if (colors.includes(item.color)) score += 1;
+      if (colors.some(color => item.color.includes(color))) score += 1;
 
       // Increase score for matching tags
       const matchingTags = item.tags.filter(tag => tags.includes(tag));
-      score += matchingTags.length; // Increase score by the number of matching tags
+      score += matchingTags.length;
 
       return { item, score };
     });

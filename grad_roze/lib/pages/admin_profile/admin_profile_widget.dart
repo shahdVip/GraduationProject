@@ -209,7 +209,7 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                           ? NetworkImage(
                                               profilePhotoUrl) // Use the URL from the database
                                           : AssetImage(
-                                                  'assets/images/default_avatar.png')
+                                                  'assets/images/defaults/default_avatar.png')
                                               as ImageProvider,
                                     ),
                             ),
