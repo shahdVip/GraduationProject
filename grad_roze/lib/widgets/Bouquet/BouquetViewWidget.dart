@@ -17,7 +17,7 @@ class BouquetViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
+      padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
       child: Container(
         width: 160,
         height: 180,
