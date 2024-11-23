@@ -21,11 +21,6 @@ const createItem = async (itemData) => {
   }
 };
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 297dd3c33dc47857849d874c0f54afa11d77cb3f
 // Function to fetch items based on user preferences
 const getRecommendedItems = async (username) => {
   try {

@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 const db = require('../config/db');
 
-<<<<<<< HEAD
-=======
-// Define allowed enum values for tags
->>>>>>> 297dd3c33dc47857849d874c0f54afa11d77cb3f
 const allowedTags = [
   'Get Well Soon',
   'Thank You',
@@ -28,10 +24,6 @@ const itemSchema = new mongoose.Schema(
         message: props => `${props.value} contains invalid tags. Allowed tags are: ${allowedTags.join(', ')}`,
       },
     },
-<<<<<<< HEAD
-    id: { type: String, required: true },
-=======
->>>>>>> 297dd3c33dc47857849d874c0f54afa11d77cb3f
     imageURL: { type: String, required: true },
     description: { type: String, required: true },
     business: { type: String, required: true },
