@@ -51,8 +51,8 @@ class _TopPicksComponentWidgetState extends State<TopPicksComponentWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 50.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 50.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -75,13 +75,13 @@ class _TopPicksComponentWidgetState extends State<TopPicksComponentWidget>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
       child: Container(
         width: 155,
         height: 156,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 2,
               color: Color(0x520E151B),
@@ -94,7 +94,7 @@ class _TopPicksComponentWidgetState extends State<TopPicksComponentWidget>
           borderRadius: BorderRadius.circular(12),
         ),
         child: Padding(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -110,7 +110,7 @@ class _TopPicksComponentWidgetState extends State<TopPicksComponentWidget>
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 3, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 3, 0, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

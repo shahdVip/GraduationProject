@@ -45,7 +45,7 @@ class _EditPhoneWidgetState extends State<EditPhoneWidget> {
 
     if (newPhoneNumber.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please enter a phone number')),
+        const SnackBar(content: Text('Please enter a phone number')),
       );
       return;
     }
@@ -56,7 +56,7 @@ class _EditPhoneWidgetState extends State<EditPhoneWidget> {
     if (token == null) {
       // Handle case where token is not available
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('User is not authenticated')),
+        const SnackBar(content: Text('User is not authenticated')),
       );
       return;
     }
@@ -77,13 +77,13 @@ class _EditPhoneWidgetState extends State<EditPhoneWidget> {
 
       if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Phone number updated successfully')),
+          const SnackBar(content: Text('Phone number updated successfully')),
         );
         Navigator.pop(context, newPhoneNumber); // Pass the new phone number
       } else {
         Navigator.pop(context); // Pass the new phone number
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to update phone number')),
+          const SnackBar(content: Text('Failed to update phone number')),
         );
       }
     } catch (e) {
@@ -150,7 +150,7 @@ class _EditPhoneWidgetState extends State<EditPhoneWidget> {
               ),
               // Generated code for this Text Widget...
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                 child: Text(
                   'Edit Phone number',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(

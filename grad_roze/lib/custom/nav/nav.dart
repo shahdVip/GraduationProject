@@ -45,12 +45,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'onboarding',
           path: '/onboarding',
-          builder: (context, params) => OnboardingWidget(),
+          builder: (context, params) => const OnboardingWidget(),
         ),
         FFRoute(
           name: 'SignInUp',
           path: '/signInUp',
-          builder: (context, params) => SignInUpWidget(),
+          builder: (context, params) => const SignInUpWidget(),
         ),
         FFRoute(
           name: 'OTP',

@@ -1,4 +1,4 @@
-import 'bouquetViewWidget.dart' show BouquetViewWidget;
+import '/config.dart' show url;
 
 class BouquetViewModel {
   final String id;
@@ -22,6 +22,6 @@ class BouquetViewModel {
         name: json['name'],
         price: json['price'].toDouble(),
         businessName: json['business'],
-        imageUrl: 'http://192.168.1.9:3000${json['imageURL']}');
+        imageUrl: '$url${json['imageURL']}');
   }
 }
