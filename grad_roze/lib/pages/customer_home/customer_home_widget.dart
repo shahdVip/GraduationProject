@@ -99,8 +99,8 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 60.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 60.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -118,8 +118,8 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 50.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 50.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -155,7 +155,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -173,12 +173,13 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                 ),
                 Container(
                   height: 1000,
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: Container(
                           width: double.infinity,
                           height: 420,
@@ -191,7 +192,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return Center(
+                                return const Center(
                                     child: CircularProgressIndicator());
                               } else if (snapshot.hasError) {
                                 return Center(
@@ -215,7 +216,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                               return GridView.builder(
                                 padding: EdgeInsets.zero,
                                 gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 10,
                                   childAspectRatio: 1,
@@ -224,15 +225,16 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                 itemBuilder: (context, index) {
                                   final item = items[index];
                                   return Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 12, 0, 0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            12, 12, 0, 0),
                                     child: Container(
                                       width: 160,
                                       height: 180,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4,
                                             color: Color(0x3F15212B),
@@ -243,15 +245,16 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                         shape: BoxShape.rectangle,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 12),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0, 0, 0, 12),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Expanded(
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(8, 8, 8, 0),
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(8, 8, 8, 0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   height: 100,
@@ -275,8 +278,9 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(16, 4, 16, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(16, 4, 16, 0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -302,8 +306,9 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(16, 4, 16, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(16, 4, 16, 0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -495,8 +500,8 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                       ),
                       Flexible(
                         child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 12, 16, 24),
                           child: FFButtonWidget(
                             onPressed: () {
                               print('Button pressed ...');
@@ -505,11 +510,11 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 45,
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              iconPadding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              color: Color(0x00FFFFFF),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 0),
+                              color: const Color(0x00FFFFFF),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(

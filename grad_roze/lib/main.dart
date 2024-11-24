@@ -17,6 +17,8 @@ void main() async {
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   // This widget is the root of your application.
   @override
   State<MyApp> createState() => _MyAppState();
@@ -50,7 +52,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false, // Hides the debug banner
 
       title: 'Rozeh',
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

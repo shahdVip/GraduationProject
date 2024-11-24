@@ -43,12 +43,12 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 5,
               color: Color(0x44111417),
@@ -61,7 +61,7 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -75,9 +75,9 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
                     width: 2,
                   ),
                 ),
-                alignment: AlignmentDirectional(0, 0),
+                alignment: const AlignmentDirectional(0, 0),
                 child: Padding(
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(6),
                     child: Image.asset(
@@ -91,7 +91,7 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +107,8 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
                             ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -117,8 +118,8 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
                               size: 16,
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  4, 0, 0, 0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
                                 text: TextSpan(
@@ -133,7 +134,7 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                    TextSpan(
+                                    const TextSpan(
                                       text: '15 Dec. 2024',
                                       style: TextStyle(),
                                     )
@@ -152,7 +153,8 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -162,8 +164,8 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
                               size: 16,
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  4, 0, 0, 0),
                               child: RichText(
                                 textScaler: MediaQuery.of(context).textScaler,
                                 text: TextSpan(
@@ -178,7 +180,7 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                    TextSpan(
+                                    const TextSpan(
                                       text: '500.0',
                                       style: TextStyle(),
                                     )

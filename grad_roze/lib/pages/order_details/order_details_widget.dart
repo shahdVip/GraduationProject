@@ -64,9 +64,9 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                   FlutterFlowTheme.of(context).accent4,
                   FlutterFlowTheme.of(context).secondaryBackground
                 ],
-                stops: [0, 1],
-                begin: AlignmentDirectional(0, -1),
-                end: AlignmentDirectional(0, 1),
+                stops: const [0, 1],
+                begin: const AlignmentDirectional(0, -1),
+                end: const AlignmentDirectional(0, 1),
               ),
             ),
             child: Column(
@@ -74,7 +74,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 64, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 64, 0, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -95,7 +95,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 64, 16, 44),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 64, 16, 44),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -112,7 +112,8 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                 ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                         child: Text(
                           '\$500.00',
                           style: FlutterFlowTheme.of(context)
@@ -126,7 +127,8 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                         child: Text(
                           'ID #: 14258',
                           style: FlutterFlowTheme.of(context)
@@ -142,7 +144,8 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                         child: Text(
                           'A bright and cheerful bouquet of 12 mixed flowers, perfect for lifting spirits and sending warm, get-well-soon wishes.',
                           style:
@@ -154,7 +157,8 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                         child: Material(
                           color: Colors.transparent,
                           elevation: 2,
@@ -172,15 +176,16 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(12),
+                              padding: const EdgeInsets.all(12),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 0, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              8, 0, 0, 0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -245,8 +250,9 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                   ),
                                   Expanded(
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8, 0, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              8, 0, 0, 0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -310,7 +316,8 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 24),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 24),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -322,10 +329,11 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                 text: 'Done',
                                 options: FFButtonOptions(
                                   height: 50,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24, 0, 24, 0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
+                                  iconPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 0),
                                   color: FlutterFlowTheme.of(context).primary,
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
@@ -338,14 +346,14 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                                         fontWeight: FontWeight.w600,
                                       ),
                                   elevation: 0,
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                     color: Colors.transparent,
                                   ),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                               ),
                             ),
-                          ].divide(SizedBox(width: 16)),
+                          ].divide(const SizedBox(width: 16)),
                         ),
                       ),
                     ],

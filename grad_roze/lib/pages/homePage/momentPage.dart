@@ -7,6 +7,7 @@ import '../../widgets/MomentsModel.dart';
 export '../../widgets/MomentsModel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '/config.dart' show url;
 
 class MomentPageWidget extends StatefulWidget {
   final MomentsModel moment;
@@ -30,7 +31,7 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
     try {
       final response = await http.get(
         Uri.parse(
-          'http://192.168.1.9:3000/item/items/tag/${widget.moment.text}',
+          '$url/item/items/tag/${widget.moment.text}',
         ),
       );
 
@@ -81,17 +82,17 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
         future: _futureBouquets,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No bouquets available'));
+            return const Center(child: Text('No bouquets available'));
           } else {
             final bouquets = snapshot.data!;
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, // Number of items per row
                   crossAxisSpacing: 8.0, // Spacing between columns
                   mainAxisSpacing: 8.0, // Spacing between rows

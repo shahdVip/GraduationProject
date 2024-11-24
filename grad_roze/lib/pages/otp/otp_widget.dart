@@ -98,12 +98,12 @@ class _OtpWidgetState extends State<OtpWidget> {
                   elevation: 0,
                   insetPadding: EdgeInsets.zero,
                   backgroundColor: Colors.transparent,
-                  alignment: AlignmentDirectional(0, 0)
+                  alignment: const AlignmentDirectional(0, 0)
                       .resolve(Directionality.of(context)),
                   child: GestureDetector(
                     onTap: () => FocusScope.of(dialogContext).unfocus(),
                     child:
-                        UsrRgstrDialogWidget(), // Replace with your dialog widget
+                        const UsrRgstrDialogWidget(), // Replace with your dialog widget
                   ),
                 );
               },
@@ -111,7 +111,7 @@ class _OtpWidgetState extends State<OtpWidget> {
           } else {
             // Handle failed user request creation
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Failed to create user request.')),
+              const SnackBar(content: Text('Failed to create user request.')),
             );
           }
         }
@@ -125,14 +125,14 @@ class _OtpWidgetState extends State<OtpWidget> {
 
         if (deleteResponse.statusCode == 200) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
                 content: Text('Incorrect/Expired OTP. Sign up again.'),
                 backgroundColor: Colors.red),
           );
           context.pushNamed('onboarding');
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
                 content: Text('Failed to delete user record.'),
                 backgroundColor: Colors.red),
           );
@@ -411,14 +411,14 @@ class _OtpWidgetState extends State<OtpWidget> {
                                   if (response.statusCode == 200) {
                                     // Success - Show a success message
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
+                                      const SnackBar(
                                           content:
                                               Text('OTP resent successfully')),
                                     );
                                   } else {
                                     // Error - Show an error message
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
+                                      const SnackBar(
                                           content: Text('Failed to resend OTP'),
                                           backgroundColor: Colors.red),
                                     );
@@ -426,7 +426,7 @@ class _OtpWidgetState extends State<OtpWidget> {
                                 } catch (e) {
                                   // Exception - Show an error message
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                         content: Text('An error occurred'),
                                         backgroundColor: Colors.red),
                                   );

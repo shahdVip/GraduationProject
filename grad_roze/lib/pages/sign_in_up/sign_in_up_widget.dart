@@ -153,7 +153,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
       } else if (response.statusCode == 409) {
         // Username or email already exists
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('User already exists'),
             backgroundColor: Colors.red,
           ),
@@ -161,7 +161,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
       } else {
         // Other errors
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('Registration failed. Please try again.'),
             backgroundColor: Colors.red,
           ),
