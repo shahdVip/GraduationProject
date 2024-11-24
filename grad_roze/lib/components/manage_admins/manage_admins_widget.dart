@@ -50,7 +50,7 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
       height: 270,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             blurRadius: 5,
             color: Color(0x3B1D2429),
@@ -60,7 +60,7 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
             ),
           )
         ],
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(0),
           bottomRight: Radius.circular(0),
           topLeft: Radius.circular(16),
@@ -68,7 +68,7 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -83,7 +83,7 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
                   builder: (context) {
                     return Padding(
                       padding: MediaQuery.viewInsetsOf(context),
-                      child: NewAdminWidget(),
+                      child: const NewAdminWidget(),
                     );
                   },
                 ).then((value) => safeSetState(() {}));
@@ -92,8 +92,8 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
               options: FFButtonOptions(
                 width: double.infinity,
                 height: 60,
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                 color: FlutterFlowTheme.of(context).primaryBackground,
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Funnel Display',
@@ -102,7 +102,7 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
                       letterSpacing: 0.0,
                     ),
                 elevation: 2,
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.transparent,
                   width: 1,
                 ),
@@ -111,7 +111,7 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
               child: FFButtonWidget(
                 onPressed: () async {
                   await showModalBottomSheet(
@@ -122,7 +122,7 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
                     builder: (context) {
                       return Padding(
                         padding: MediaQuery.viewInsetsOf(context),
-                        child: DeleteAdminWidget(),
+                        child: const DeleteAdminWidget(),
                       );
                     },
                   ).then((value) => safeSetState(() {}));
@@ -131,8 +131,8 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
                 options: FFButtonOptions(
                   width: double.infinity,
                   height: 60,
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                  iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                  iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                   color: FlutterFlowTheme.of(context).primaryBackground,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Funnel Display',
@@ -141,7 +141,7 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
                         letterSpacing: 0.0,
                       ),
                   elevation: 2,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 1,
                   ),
@@ -151,7 +151,7 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
               child: FFButtonWidget(
                 onPressed: () async {
                   context.pop();
@@ -160,8 +160,8 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
                 options: FFButtonOptions(
                   width: double.infinity,
                   height: 60,
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                  iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                  iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'Lexend Deca',
@@ -171,7 +171,7 @@ class _ManageAdminsWidgetState extends State<ManageAdminsWidget> {
                         fontWeight: FontWeight.normal,
                       ),
                   elevation: 0,
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.transparent,
                     width: 0,
                   ),

@@ -37,7 +37,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
     if (newPassword.isEmpty) {
       // Show a snackbar or alert dialog to inform the user
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please enter a valid password.')),
+        const SnackBar(content: Text('Please enter a valid password.')),
       );
       return;
     }
@@ -61,7 +61,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
       if (response.statusCode == 200) {
         // Password updated successfully
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Password updated successfully.')),
+          const SnackBar(content: Text('Password updated successfully.')),
         );
         Navigator.pop(context); // Close the bottom sheet
       } else {
@@ -105,7 +105,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
     return Material(
       color: Colors.transparent,
       elevation: 5,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0),
           bottomRight: Radius.circular(0),
@@ -118,7 +118,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
         height: 300,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0),
             bottomRight: Radius.circular(0),
             topLeft: Radius.circular(16),
@@ -135,7 +135,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                     child: Container(
                       width: 50,
                       height: 4,
@@ -148,7 +148,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                 child: Text(
                   'Edit Password',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -163,7 +163,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                 key: _model.formKey,
                 autovalidateMode: AutovalidateMode.always,
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                   child: TextFormField(
                     controller: _model.shortBioTextController,
                     focusNode: _model.shortBioFocusNode,
@@ -230,7 +230,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
                       contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
+                          const EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
                       prefixIcon: Icon(
                         Icons.password_rounded,
                         color: FlutterFlowTheme.of(context).secondaryText,
@@ -270,7 +270,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                     child: FFButtonWidget(
                       onPressed: () {
                         updatePassword(context);
@@ -279,8 +279,10 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                       options: FFButtonOptions(
                         width: 200,
                         height: 50,
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleMedium.override(
@@ -290,7 +292,7 @@ class _EditPasswordWidgetState extends State<EditPasswordWidget> {
                                   letterSpacing: 0.0,
                                 ),
                         elevation: 3,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1,
                         ),

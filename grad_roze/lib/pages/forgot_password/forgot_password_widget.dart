@@ -20,7 +20,7 @@ class ForgotPasswordWidget extends StatefulWidget {
   ForgotPasswordWidget({
     super.key,
     bool? emailfield,
-  }) : this.emailfield = emailfield ?? true;
+  }) : emailfield = emailfield ?? true;
 
   bool emailfield;
 
@@ -62,7 +62,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
 
     if (email.isEmpty || otp.isEmpty || newPassword.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please fill in all fields')),
+        const SnackBar(content: Text('Please fill in all fields')),
       );
       return;
     }
@@ -80,12 +80,12 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
 
       if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Password reset successfully')),
+          const SnackBar(content: Text('Password reset successfully')),
         );
         context.pushNamed('SignInUp');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to reset password')),
+          const SnackBar(content: Text('Failed to reset password')),
         );
         setState(() {
           widget.emailfield = true; // Toggle the boolean parameter
@@ -103,7 +103,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
     final email = _model.emailAddressTextController.text.trim();
     if (email.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please enter your email')),
+        const SnackBar(content: Text('Please enter your email')),
       );
       return;
     }
@@ -117,14 +117,14 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
 
       if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('OTP sent to your email')),
+          const SnackBar(content: Text('OTP sent to your email')),
         );
         setState(() {
           widget.emailfield = false; // Toggle the boolean parameter
         });
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to send OTP')),
+          const SnackBar(content: Text('Failed to send OTP')),
         );
       }
     } catch (e) {
@@ -158,17 +158,17 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
               context.pushNamed('SignInUp');
             },
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
         body: SafeArea(
           top: true,
           child: Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: const AlignmentDirectional(0, 0),
             child: Container(
               width: double.infinity,
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxWidth: 670,
               ),
               decoration: BoxDecoration(
@@ -180,15 +180,16 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 32, 0, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  12, 32, 0, 8),
                               child: Text(
                                 'Forgot Password',
                                 textAlign: TextAlign.start,
@@ -204,8 +205,8 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 12, 12),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 12, 12),
                               child: Text(
                                 'A reset link will be sent to your email',
                                 textAlign: TextAlign.start,
@@ -224,17 +225,18 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  if (widget!.emailfield)
+                                  if (widget.emailfield)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 12, 16, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16, 12, 16, 0),
                                       child: TextFormField(
                                         controller:
                                             _model.emailAddressTextController,
                                         focusNode: _model.emailAddressFocusNode,
                                         onChanged: (_) => EasyDebounce.debounce(
                                           '_model.emailAddressTextController',
-                                          Duration(milliseconds: 2000),
+                                          const Duration(milliseconds: 2000),
                                           () => safeSetState(() {}),
                                         ),
                                         autofocus: false,
@@ -320,8 +322,8 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                           contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 16, 16, 8),
+                                              const EdgeInsetsDirectional
+                                                  .fromSTEB(0, 16, 16, 8),
                                           suffixIcon: _model
                                                   .emailAddressTextController!
                                                   .text
@@ -365,10 +367,11 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                             .asValidator(context),
                                       ),
                                     ),
-                                  if (!widget!.emailfield)
+                                  if (!widget.emailfield)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 15, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 15, 0, 0),
                                       child: PinCodeTextField(
                                         autoDisposeControllers: false,
                                         appContext: context,
@@ -401,7 +404,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                           fieldHeight: 44,
                                           fieldWidth: 44,
                                           borderWidth: 2,
-                                          borderRadius: BorderRadius.only(
+                                          borderRadius: const BorderRadius.only(
                                             bottomLeft: Radius.circular(12),
                                             bottomRight: Radius.circular(12),
                                             topLeft: Radius.circular(12),
@@ -428,10 +431,11 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                       ),
                                     ),
                                   // Generated code for this newPassword Widget...
-                                  if (!widget!.emailfield)
+                                  if (!widget.emailfield)
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16, 12, 16, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16, 12, 16, 0),
                                       child: TextFormField(
                                         controller:
                                             _model.newPasswordTextController,
@@ -520,8 +524,8 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
                                           contentPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 16, 16, 8),
+                                              const EdgeInsetsDirectional
+                                                  .fromSTEB(0, 16, 16, 8),
                                           suffixIcon: InkWell(
                                             onTap: () => safeSetState(
                                               () => _model
@@ -574,20 +578,20 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                   ),
                   Stack(
                     children: [
-                      if (widget!.emailfield)
+                      if (widget.emailfield)
                         Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 12, 16, 24),
                           child: FFButtonWidget(
                             onPressed: sendOtp,
                             text: 'Send Link',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 60,
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              iconPadding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleMedium
@@ -599,7 +603,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                     useGoogleFonts: false,
                                   ),
                               elevation: 4,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1,
                               ),
@@ -607,20 +611,20 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                             ),
                           ),
                         ),
-                      if (!widget!.emailfield)
+                      if (!widget.emailfield)
                         Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 12, 16, 24),
                           child: FFButtonWidget(
                             onPressed: resetPassword,
                             text: 'Reset Password',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 60,
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              iconPadding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 0),
                               color: FlutterFlowTheme.of(context).primary,
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleMedium
@@ -632,7 +636,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                                     useGoogleFonts: false,
                                   ),
                               elevation: 4,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1,
                               ),

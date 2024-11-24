@@ -1,23 +1,46 @@
-import '/custom/icon_button.dart';
-import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
 import 'BouquetPageWidget.dart' show BouquetPageWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import '/config.dart' show url;
 
 class BouquetPageModel extends FlutterFlowModel<BouquetPageWidget> {
-  ///  State fields for stateful widgets in this page.
-
+  /// State fields for stateful widgets in this page.
   // State field(s) for RatingBar widget.
   double? ratingBarValue;
 
-  @override
-  void initState(BuildContext context) {}
+  // State field for storing bouquet data.
+  Map<String, dynamic>? bouquetData;
+
+  /// Fetch bouquet data from the API by ID.
+  Future<void> fetchBouquetData(BuildContext context, String bouquetId) async {
+    String apiUrl = '$url/item/items'; // Replace with your actual API base URL
+    final myurl = Uri.parse('$apiUrl/$bouquetId');
+
+    try {
+      final response = await http.get(myurl);
+
+      if (response.statusCode == 200) {
+        bouquetData = json.decode(response.body);
+        print(response.body); // Parse JSON response
+      } else {
+        throw Exception('Failed to load bouquet');
+      }
+    } catch (error) {
+      // Handle API errors gracefully
+      print('Error fetching bouquet data: $error');
+      bouquetData = null;
+    }
+  }
 
   @override
-  void dispose() {}
+  void initState(BuildContext context) {
+    // Initialize state fields if necessary
+  }
+
+  @override
+  void dispose() {
+    // Clean up resources if necessary
+  }
 }

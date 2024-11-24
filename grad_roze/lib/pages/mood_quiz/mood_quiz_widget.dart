@@ -335,15 +335,15 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
             curve: Curves.bounceOut,
             delay: 0.0.ms,
             duration: 700.0.ms,
-            begin: Offset(1.0, 1.0),
-            end: Offset(3.0, 3.0),
+            begin: const Offset(1.0, 1.0),
+            end: const Offset(3.0, 3.0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 700.0.ms,
-            begin: Offset(0.0, 15.0),
-            end: Offset(35.0, 0.0),
+            begin: const Offset(0.0, 15.0),
+            end: const Offset(35.0, 0.0),
           ),
         ],
       ),
@@ -356,15 +356,15 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
             curve: Curves.bounceOut,
             delay: 0.0.ms,
             duration: 700.0.ms,
-            begin: Offset(1.0, 1.0),
-            end: Offset(3.0, 3.0),
+            begin: const Offset(1.0, 1.0),
+            end: const Offset(3.0, 3.0),
           ),
           MoveEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 700.0.ms,
-            begin: Offset(0.0, 15),
-            end: Offset(-35.0, 0.0),
+            begin: const Offset(0.0, 15),
+            end: const Offset(-35.0, 0.0),
           ),
         ],
       ),
@@ -399,7 +399,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             automaticallyImplyLeading: false,
             title: Align(
-              alignment: AlignmentDirectional(0, 0),
+              alignment: const AlignmentDirectional(0, 0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
@@ -410,20 +410,21 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                 ),
               ),
             ),
-            actions: [],
+            actions: const [],
             centerTitle: false,
             elevation: 0,
           ),
           body: SafeArea(
             top: true,
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 12, 0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   if (cardIndex < 10)
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
                       child: Text(
                         'Discover Your Favorites',
                         style: FlutterFlowTheme.of(context).titleLarge.override(
@@ -601,11 +602,11 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                           scale: 0.9,
                         ),
                         Align(
-                          alignment: AlignmentDirectional(1, 0),
+                          alignment: const AlignmentDirectional(1, 0),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 25, 0),
-                            child: Icon(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0, 0, 25, 0),
+                            child: const Icon(
                               Icons.favorite_rounded,
                               color: Color(0xD5770404),
                               size: 70,
@@ -615,11 +616,11 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                           ),
                         ),
                         Align(
-                          alignment: AlignmentDirectional(-1, 0),
+                          alignment: const AlignmentDirectional(-1, 0),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                            child: Icon(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                20, 0, 0, 0),
+                            child: const Icon(
                               Icons.heart_broken_rounded,
                               color: Color(0xE37C8890),
                               size: 70,
@@ -647,9 +648,9 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                                     ),
                               ),
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 10, 0, 0),
                                   child: FFButtonWidget(
                                     onPressed: () {
@@ -659,12 +660,13 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                                     options: FFButtonOptions(
                                       width: 130,
                                       height: 40,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 0, 0, 0),
-                                      color: Color(0x00FFFFFF),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 0, 0),
+                                      color: const Color(0x00FFFFFF),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .titleMedium
                                           .override(
