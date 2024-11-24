@@ -72,21 +72,21 @@ class _OrderSectionWidgetState extends State<OrderSectionWidget> {
               children: [
                 Expanded(
                   child: Align(
-                    alignment: AlignmentDirectional(0, -1),
+                    alignment: const AlignmentDirectional(0, -1),
                     child: Container(
                       width: double.infinity,
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 970,
                       ),
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 0, 0, 0),
                               child: Text(
                                 'Below is a summary of orders.',
                                 style: FlutterFlowTheme.of(context)
@@ -99,14 +99,14 @@ class _OrderSectionWidgetState extends State<OrderSectionWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 8, 16, 8),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 8, 16, 8),
                               child: TextFormField(
                                 controller: _model.textController,
                                 focusNode: _model.textFieldFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
                                   '_model.textController',
-                                  Duration(milliseconds: 2000),
+                                  const Duration(milliseconds: 2000),
                                   () => safeSetState(() {}),
                                 ),
                                 autofocus: false,
@@ -158,7 +158,7 @@ class _OrderSectionWidgetState extends State<OrderSectionWidget> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
+                                      const EdgeInsetsDirectional.fromSTEB(
                                           20, 0, 0, 0),
                                   prefixIcon: Icon(
                                     Icons.search,
@@ -197,8 +197,8 @@ class _OrderSectionWidgetState extends State<OrderSectionWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 0, 16, 0),
                               child: Container(
                                 width: double.infinity,
                                 height: 40,
@@ -207,7 +207,7 @@ class _OrderSectionWidgetState extends State<OrderSectionWidget> {
                                       .primaryBackground,
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                alignment: AlignmentDirectional(-1, 0),
+                                alignment: const AlignmentDirectional(-1, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -216,7 +216,8 @@ class _OrderSectionWidgetState extends State<OrderSectionWidget> {
                                     Expanded(
                                       flex: 4,
                                       child: Align(
-                                        alignment: AlignmentDirectional(-1, 0),
+                                        alignment:
+                                            const AlignmentDirectional(-1, 0),
                                         child: Text(
                                           'Order',
                                           style: FlutterFlowTheme.of(context)
@@ -230,7 +231,8 @@ class _OrderSectionWidgetState extends State<OrderSectionWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(1, 0),
+                                      alignment:
+                                          const AlignmentDirectional(1, 0),
                                       child: Text(
                                         'Price',
                                         style: FlutterFlowTheme.of(context)
@@ -243,13 +245,13 @@ class _OrderSectionWidgetState extends State<OrderSectionWidget> {
                                       ),
                                     ),
                                   ]
-                                      .addToStart(SizedBox(width: 40))
-                                      .addToEnd(SizedBox(width: 40)),
+                                      .addToStart(const SizedBox(width: 40))
+                                      .addToEnd(const SizedBox(width: 40)),
                                 ),
                               ),
                             ),
                             ListView(
-                              padding: EdgeInsets.fromLTRB(
+                              padding: const EdgeInsets.fromLTRB(
                                 0,
                                 0,
                                 0,
@@ -259,15 +261,15 @@ class _OrderSectionWidgetState extends State<OrderSectionWidget> {
                               scrollDirection: Axis.vertical,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 5, 0, 0),
                                   child: wrapWithModel(
                                     model: _model.orderListModel,
                                     updateCallback: () => safeSetState(() {}),
-                                    child: OrderListWidget(),
+                                    child: const OrderListWidget(),
                                   ),
                                 ),
-                              ].divide(SizedBox(height: 1)),
+                              ].divide(const SizedBox(height: 1)),
                             ),
                           ],
                         ),

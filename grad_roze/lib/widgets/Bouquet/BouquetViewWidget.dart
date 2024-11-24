@@ -1,3 +1,5 @@
+import 'package:grad_roze/pages/BouquetPage/BouquetPageWidget.dart';
+
 import '/custom/theme.dart';
 import '/custom/util.dart';
 import 'package:flutter/material.dart';
@@ -17,98 +19,125 @@ class BouquetViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
-      child: Container(
-        width: 160,
-        height: 180,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 4,
-              color: Color(0x3F15212B),
-              offset: Offset(0.0, 3),
-            )
-          ],
-          borderRadius: BorderRadius.circular(12),
-          shape: BoxShape.rectangle,
-        ),
-        child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
-                  child: Container(
-                    width: double.infinity,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).info,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.network(
-                          model.imageUrl,
-                          width: double.infinity,
-                          height: 110,
-                          fit: BoxFit.cover,
+      padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 0),
+      child: InkWell(
+        splashColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onTap: () async {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BouquetPageWidget(
+                bouquetId: model.id,
+              ),
+            ),
+          );
+        },
+        child: Container(
+          width: 200,
+          height: 180,
+          decoration: BoxDecoration(
+            color: FlutterFlowTheme.of(context).secondaryBackground,
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 4,
+                color: Color(0x3F15212B),
+                offset: Offset(0.0, 3),
+              ),
+            ],
+            borderRadius: BorderRadius.circular(12),
+            shape: BoxShape.rectangle,
+          ),
+          child: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
+                    child: Container(
+                      width: double.infinity,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).info,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.network(
+                            model.imageUrl,
+                            width: double.infinity,
+                            height: 110,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      model.name,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Funnel Display',
-                            color: FlutterFlowTheme.of(context).primary,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: false,
-                          ),
-                    ),
-                    Text(
-                      '\$${model.price}',
-                      style: FlutterFlowTheme.of(context).labelMedium.override(
-                            fontFamily: 'Funnel Display',
-                            letterSpacing: 0.0,
-                            useGoogleFonts: false,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            fontWeight: FontWeight.bold,
-                          ),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        model.name,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Funnel Display',
+                              color: FlutterFlowTheme.of(context).primary,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: false,
+                            ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      model.businessName,
-                      style: FlutterFlowTheme.of(context).bodySmall.override(
-                            fontFamily: 'Funnel Display',
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            letterSpacing: 0.0,
-                            useGoogleFonts: false,
-                          ),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '\$${model.price}',
+                        style: FlutterFlowTheme.of(context)
+                            .labelMedium
+                            .override(
+                              fontFamily: 'Funnel Display',
+                              letterSpacing: 0.0,
+                              useGoogleFonts: false,
+                              color: FlutterFlowTheme.of(context).primaryText,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        model.businessName,
+                        style: FlutterFlowTheme.of(context).bodySmall.override(
+                              fontFamily: 'Funnel Display',
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              letterSpacing: 0.0,
+                              useGoogleFonts: false,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
