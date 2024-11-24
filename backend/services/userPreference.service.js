@@ -1,11 +1,10 @@
 const UserPreferenceModel = require('../model/userPreference.model');
 
+
 // Service for initializing user preferences
 const initializeUserPreference = async (username) => {
-  // Check if a preference document already exists
   let userPreference = await UserPreferenceModel.findOne({ username });
   if (!userPreference) {
-    // If not, create a new one with empty arrays
     userPreference = new UserPreferenceModel({ username });
     await userPreference.save();
   }
@@ -13,34 +12,35 @@ const initializeUserPreference = async (username) => {
 };
 
 // Service for updating user preferences
-const updateUserPreference = async (username, color, flowerType, tags) => {
-  // Find the user's preference document
+const updateUserPreference = async (username, colors, flowerTypes, tags) => {
   const userPreference = await UserPreferenceModel.findOne({ username });
   if (!userPreference) {
     throw new Error('User preference not found');
   }
 
-  // Add color and flowerType to arrays if not already present
-  if (color && !userPreference.colors.includes(color)) {
-    userPreference.colors.push(color);
-  }
-  if (flowerType && !userPreference.flowerType.includes(flowerType)) {
-    userPreference.flowerType.push(flowerType);
-  }
-
-  // Add multiple tags if they are not already present
-  if (tags && Array.isArray(tags)) {
-    tags.forEach(tag => {
-      if (!userPreference.tags.includes(tag)) {
-        userPreference.tags.push(tag);
+  // Add colors to array if not already present
+  if (Array.isArray(colors)) {
+    colors.forEach((color) => {
+      if (!userPreference.colors.includes(color)) {
+        userPreference.colors.push(color);
       }
     });
   }
 
-  // Save the updated document
+  // Add flower types to array if not already present
+  if (Array.isArray(flowerTypes)) {
+    flowerTypes.forEach((flower) => {
+      if (!userPreference.flowerType.includes(flower)) {
+        userPreference.flowerType.push(flower);
+      }
+    });
+  }
+
+ 
+  
+
   await userPreference.save();
   return userPreference;
 };
-
 
 module.exports = { initializeUserPreference, updateUserPreference };

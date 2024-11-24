@@ -56,16 +56,19 @@ class _TopPicksWidgetState extends State<TopPicksWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    // Generated code for this Text Widget...
                     Align(
                       alignment: AlignmentDirectional(-1, 0),
                       child: Text(
                         'Our Top Picks',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Funnel Display',
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                              useGoogleFonts: false,
-                            ),
+                        style: FlutterFlowTheme.of(context)
+                            .titleMedium
+                            .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleMediumFamily,
+                                color: FlutterFlowTheme.of(context).secondary,
+                                letterSpacing: 0.0,
+                                useGoogleFonts: false),
                       ),
                     ),
                   ],
@@ -79,33 +82,39 @@ class _TopPicksWidgetState extends State<TopPicksWidget> {
                 color: Color(0x00FFFFFF),
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
-              child: FFButtonWidget(
-                onPressed: () {
-                  print('Button pressed ...');
-                },
-                text: 'View More',
-                options: FFButtonOptions(
-                  height: 40,
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                  iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                  color: Color(0x00040425),
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Funnel Display',
-                        color: FlutterFlowTheme.of(context).primary,
-                        fontSize: 10,
-                        letterSpacing: 0.0,
-                        useGoogleFonts: false,
-                      ),
-                  elevation: 0,
-                  borderSide: BorderSide(
-                    color: FlutterFlowTheme.of(context).primary,
+            // Generated code for this Button Widget...
+            Flexible(
+              child: Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+                child: FFButtonWidget(
+                  onPressed: () {
+                    print('Button pressed ...');
+                  },
+                  text: 'View More',
+                  options: FFButtonOptions(
+                    width: double.infinity,
+                    height: 60,
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                    color: Color(0x00040425),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).titleSmallFamily,
+                          color: FlutterFlowTheme.of(context).secondary,
+                          fontSize: 14,
+                          letterSpacing: 0.0,
+                          fontWeight: FontWeight.w500,
+                          useGoogleFonts: false,
+                        ),
+                    elevation: 0,
+                    borderSide: BorderSide(
+                      color: FlutterFlowTheme.of(context).secondary,
+                    ),
+                    borderRadius: BorderRadius.circular(50),
                   ),
-                  borderRadius: BorderRadius.circular(8),
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
