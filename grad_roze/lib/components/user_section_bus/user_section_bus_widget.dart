@@ -86,21 +86,20 @@ class _UserSectionBusWidgetState extends State<UserSectionBusWidget> {
                 padding: const EdgeInsets.all(2.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child:
-                      widget.profilePhoto == null || widget.profilePhoto.isEmpty
-                          ? Image.asset(
-                              'assets/images/defaults/default_avatar.png', // Path to your default image
-                              width: 60.0,
-                              height: 60.0,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.network(
-                              widget
-                                  .profilePhoto, // Use the passed profile photo URL
-                              width: 60.0,
-                              height: 60.0,
-                              fit: BoxFit.cover,
-                            ),
+                  child: widget.profilePhoto.isEmpty
+                      ? Image.asset(
+                          'assets/images/defaults/default_avatar.png', // Path to your default image
+                          width: 60.0,
+                          height: 60.0,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.network(
+                          widget
+                              .profilePhoto, // Use the passed profile photo URL
+                          width: 60.0,
+                          height: 60.0,
+                          fit: BoxFit.cover,
+                        ),
                 ),
               ),
             ),

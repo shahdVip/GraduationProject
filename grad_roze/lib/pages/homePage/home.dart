@@ -257,19 +257,20 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0x00F0F0F0),
+                        const Color(0x00F0F0F0),
                         FlutterFlowTheme.of(context).accent1,
                         FlutterFlowTheme.of(context).secondaryBackground
                       ],
-                      stops: [0, 0.5, 1],
-                      begin: AlignmentDirectional(0, -1),
-                      end: AlignmentDirectional(0, 1),
+                      stops: const [0, 0.5, 1],
+                      begin: const AlignmentDirectional(0, -1),
+                      end: const AlignmentDirectional(0, 1),
                     ),
                   ),
                   child: Align(
                     alignment: const AlignmentDirectional(0, 1),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -324,19 +325,20 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0x00F0F0F0),
+                        const Color(0x00F0F0F0),
                         FlutterFlowTheme.of(context).accent1,
                         FlutterFlowTheme.of(context).secondaryBackground
                       ],
-                      stops: [0, 0.5, 1],
-                      begin: AlignmentDirectional(0, -1),
-                      end: AlignmentDirectional(0, 1),
+                      stops: const [0, 0.5, 1],
+                      begin: const AlignmentDirectional(0, -1),
+                      end: const AlignmentDirectional(0, 1),
                     ),
                   ),
                   child: Align(
                     alignment: const AlignmentDirectional(0, 1),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -391,19 +393,20 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0x00F0F0F0),
+                        const Color(0x00F0F0F0),
                         FlutterFlowTheme.of(context).accent1,
                         FlutterFlowTheme.of(context).secondaryBackground
                       ],
-                      stops: [0, 0.5, 1],
-                      begin: AlignmentDirectional(0, -1),
-                      end: AlignmentDirectional(0, 1),
+                      stops: const [0, 0.5, 1],
+                      begin: const AlignmentDirectional(0, -1),
+                      end: const AlignmentDirectional(0, 1),
                     ),
                   ),
                   child: Align(
                     alignment: const AlignmentDirectional(0, 1),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
