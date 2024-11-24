@@ -5,7 +5,6 @@ import 'package:grad_roze/pages/admin_users_section/admin_users_section_widget.d
 import 'package:grad_roze/pages/order_section/order_section_widget.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:get/get.dart';
-import '/custom/model.dart';
 import '/custom/util.dart';
 
 import 'navigation_menu_users_model.dart';
