@@ -65,7 +65,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
       if (response.statusCode == 200) {
         Navigator.pop(context);
         // User deleted successfully
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('User deleted successfully!'),
         ));
       } else {
@@ -173,7 +173,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
     } else {
       // Show an error if the image is missing
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('No image selected for upload')),
+        const SnackBar(content: Text('No image selected for upload')),
       );
       return; // Exit the function early
     }
@@ -184,7 +184,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
 
       if (response.statusCode == 200) {
         // If the server returns a success response
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('User updated successfully!'),
         ));
         Navigator.pop(context);
@@ -237,8 +237,8 @@ class _EditUserWidgetState extends State<EditUserWidget>
             curve: Curves.bounceOut,
             delay: 300.0.ms,
             duration: 400.0.ms,
-            begin: Offset(0.0, 100.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 100.0),
+            end: const Offset(0.0, 0.0),
           ),
           FadeEffect(
             curve: Curves.easeInOut,
@@ -283,11 +283,11 @@ class _EditUserWidgetState extends State<EditUserWidget>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 70, 16, 16),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 70, 16, 16),
                 child: Container(
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 12,
                         color: Color(0x1E000000),
@@ -304,7 +304,8 @@ class _EditUserWidgetState extends State<EditUserWidget>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 16, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(24, 16, 0, 0),
                         child: Text(
                           'Edit User',
                           style: FlutterFlowTheme.of(context)
@@ -318,14 +319,15 @@ class _EditUserWidgetState extends State<EditUserWidget>
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(30, 0, 30, 0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16, 12, 16, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -341,12 +343,12 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsets.all(2),
+                                        padding: const EdgeInsets.all(2),
                                         child: Container(
                                           width: 90,
                                           height: 90,
                                           clipBehavior: Clip.antiAlias,
-                                          decoration: BoxDecoration(
+                                          decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
                                           ),
                                           child: _image != null
@@ -362,14 +364,11 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                                       Colors.transparent,
                                                   radius: 100,
                                                   backgroundImage: (widget
-                                                                  .profilePhoto ==
-                                                              null ||
-                                                          widget.profilePhoto
-                                                              .isEmpty)
+                                                          .profilePhoto.isEmpty)
                                                       ? const AssetImage(
                                                           'assets/images/defaults/default_avatar.png') // Default image
                                                       : NetworkImage(widget
-                                                          .profilePhoto!), // Profile photo from the URL
+                                                          .profilePhoto), // Profile photo from the URL
                                                 ),
                                         ),
                                       ),
@@ -379,11 +378,10 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                       text: 'Change Photo',
                                       options: FFButtonOptions(
                                         height: 44,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24, 0, 24, 0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0, 0, 0, 0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(24, 0, 24, 0),
+                                        iconPadding: const EdgeInsetsDirectional
+                                            .fromSTEB(0, 0, 0, 0),
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                         textStyle: FlutterFlowTheme.of(context)
@@ -413,21 +411,22 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                         hoverElevation: 3,
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 16)),
+                                  ].divide(const SizedBox(width: 16)),
                                 ),
                               ),
                               Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 12),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 12),
                                     child: TextFormField(
                                       controller: _model.emailTextController,
                                       focusNode: _model.emailFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.emailTextController',
-                                        Duration(milliseconds: 2000),
+                                        const Duration(milliseconds: 2000),
                                         () => safeSetState(() {}),
                                       ),
                                       autofocus: false,
@@ -509,7 +508,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                                       ?.clear();
                                                   safeSetState(() {});
                                                 },
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.clear,
                                                   color: Color(0xFF757575),
                                                   size: 22,
@@ -531,14 +530,15 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 12),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 12),
                                     child: TextFormField(
                                       controller: _model.addressTextController,
                                       focusNode: _model.addressFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.addressTextController',
-                                        Duration(milliseconds: 2000),
+                                        const Duration(milliseconds: 2000),
                                         () => safeSetState(() {}),
                                       ),
                                       autofocus: false,
@@ -622,7 +622,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                                       ?.clear();
                                                   safeSetState(() {});
                                                 },
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.clear,
                                                   color: Color(0xFF757575),
                                                   size: 22,
@@ -643,15 +643,16 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 12),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 12),
                                     child: TextFormField(
                                       controller:
                                           _model.phineNumberTextController,
                                       focusNode: _model.phineNumberFocusNode,
                                       onChanged: (_) => EasyDebounce.debounce(
                                         '_model.phineNumberTextController',
-                                        Duration(milliseconds: 2000),
+                                        const Duration(milliseconds: 2000),
                                         () => safeSetState(() {}),
                                       ),
                                       autofocus: false,
@@ -736,7 +737,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                                       ?.clear();
                                                   safeSetState(() {});
                                                 },
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.clear,
                                                   color: Color(0xFF757575),
                                                   size: 22,
@@ -758,8 +759,9 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 12),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 12),
                                     child: TextFormField(
                                       controller: _model.passwordTextController,
                                       focusNode: _model.passwordFocusNode,
@@ -845,7 +847,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                             _model.passwordVisibility
                                                 ? Icons.visibility_outlined
                                                 : Icons.visibility_off_outlined,
-                                            color: Color(0xFF757575),
+                                            color: const Color(0xFF757575),
                                             size: 22,
                                           ),
                                         ),
@@ -865,7 +867,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                 ],
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16, 0, 16, 24),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -877,9 +879,8 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                             CrossAxisAlignment.start,
                                         children: [
                                           Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    16, 16, 0, 0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(16, 16, 0, 0),
                                             child: SelectionArea(
                                                 child: Text(
                                               'This user role is: ',
@@ -895,9 +896,8 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                             )),
                                           ),
                                           Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    16, 4, 0, 0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(16, 4, 0, 0),
                                             child: SelectionArea(
                                                 child: Text(
                                               widget.role,
@@ -915,7 +915,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                         ],
                                       ),
                                     ),
-                                  ].divide(SizedBox(width: 16)),
+                                  ].divide(const SizedBox(width: 16)),
                                 ),
                               ),
                             ],
@@ -923,13 +923,14 @@ class _EditUserWidgetState extends State<EditUserWidget>
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 24),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24, 12, 24, 24),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Align(
-                              alignment: AlignmentDirectional(0, 0.05),
+                              alignment: const AlignmentDirectional(0, 0.05),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   Navigator.pop(context);
@@ -937,10 +938,11 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                 text: 'Cancel',
                                 options: FFButtonOptions(
                                   height: 44,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       24, 0, 24, 0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 0, 0, 0),
+                                  iconPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0, 0, 0, 0),
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
                                   textStyle: FlutterFlowTheme.of(context)
@@ -972,7 +974,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
                             ),
                             Container(
                               height: 95,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -983,10 +985,11 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                     text: 'Save Changes',
                                     options: FFButtonOptions(
                                       height: 44,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24, 0, 24, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              24, 0, 24, 0),
                                       iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
+                                          const EdgeInsetsDirectional.fromSTEB(
                                               0, 0, 0, 0),
                                       color:
                                           FlutterFlowTheme.of(context).primary,
@@ -1010,25 +1013,25 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 5, 0, 0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 5, 0, 0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         await deleteUser(
                                             widget.usernamee, context);
                                       },
                                       text: 'Delete User',
-                                      icon: FaIcon(
+                                      icon: const FaIcon(
                                         FontAwesomeIcons.trashAlt,
                                         size: 15,
                                       ),
                                       options: FFButtonOptions(
                                         height: 44,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24, 0, 24, 0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0, 0, 0, 0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(24, 0, 24, 0),
+                                        iconPadding: const EdgeInsetsDirectional
+                                            .fromSTEB(0, 0, 0, 0),
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                         textStyle: FlutterFlowTheme.of(context)

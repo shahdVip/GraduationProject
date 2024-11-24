@@ -69,7 +69,7 @@ class _FavoriteListWidgetState extends State<FavoriteListWidget> {
                   letterSpacing: 0.0,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
@@ -84,14 +84,15 @@ class _FavoriteListWidgetState extends State<FavoriteListWidget> {
                   color: FlutterFlowTheme.of(context).alternate,
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
                   child: ListView(
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
                         child: Container(
                           width: 100,
                           height: 72,
@@ -102,7 +103,7 @@ class _FavoriteListWidgetState extends State<FavoriteListWidget> {
                               BoxShadow(
                                 blurRadius: 0,
                                 color: FlutterFlowTheme.of(context).alternate,
-                                offset: Offset(
+                                offset: const Offset(
                                   0,
                                   1,
                                 ),
@@ -110,8 +111,8 @@ class _FavoriteListWidgetState extends State<FavoriteListWidget> {
                             ],
                           ),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16, 0, 16, 0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -128,7 +129,7 @@ class _FavoriteListWidgetState extends State<FavoriteListWidget> {
                                     ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(2),
+                                    padding: const EdgeInsets.all(2),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(44),
                                       child: Image.asset(
@@ -142,8 +143,9 @@ class _FavoriteListWidgetState extends State<FavoriteListWidget> {
                                 ),
                                 Expanded(
                                   child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 0, 0, 0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            12, 0, 0, 0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -152,9 +154,8 @@ class _FavoriteListWidgetState extends State<FavoriteListWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 4),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 0, 4),
                                           child: Text(
                                             'business name',
                                             style: FlutterFlowTheme.of(context)

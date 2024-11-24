@@ -157,7 +157,7 @@ class _DeleteAdminWidgetState extends State<DeleteAdminWidget> {
               ),
               // Generated code for this Text Widget...
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                 child: Text(
                   'Delete Admin',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -182,15 +182,15 @@ class _DeleteAdminWidgetState extends State<DeleteAdminWidget> {
               ),
 
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                child: Container(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                child: SizedBox(
                   width: double.infinity,
                   child: TextFormField(
                     controller: _model.shortBioTextController,
                     focusNode: _model.shortBioFocusNode,
                     onChanged: (_) => EasyDebounce.debounce(
                       '_model.shortBioTextController',
-                      Duration(milliseconds: 2000),
+                      const Duration(milliseconds: 2000),
                       () => safeSetState(() {}),
                     ),
                     autofocus: true,
@@ -251,7 +251,7 @@ class _DeleteAdminWidgetState extends State<DeleteAdminWidget> {
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
                       contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
+                          const EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
                       prefixIcon: Icon(
                         Icons.person_outlined,
                         color: FlutterFlowTheme.of(context).secondaryText,
@@ -262,7 +262,7 @@ class _DeleteAdminWidgetState extends State<DeleteAdminWidget> {
                                 _model.shortBioTextController?.clear();
                                 safeSetState(() {});
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.clear,
                                 color: Color(0xFF757575),
                                 size: 22,
@@ -290,22 +290,24 @@ class _DeleteAdminWidgetState extends State<DeleteAdminWidget> {
                 children: [
                   // Generated code for this Button Widget...
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                     child: FFButtonWidget(
                       onPressed: () {
                         deleteAdmin();
                       },
                       text: 'Delete Admin',
-                      icon: FaIcon(
+                      icon: const FaIcon(
                         FontAwesomeIcons.trashAlt,
                         size: 15,
                       ),
                       options: FFButtonOptions(
                         width: 270,
                         height: 50,
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        color: Color(0x00FFFFFF),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        color: const Color(0x00FFFFFF),
                         textStyle:
                             FlutterFlowTheme.of(context).titleMedium.override(
                                   fontFamily: 'Funnel Display',
@@ -315,7 +317,7 @@ class _DeleteAdminWidgetState extends State<DeleteAdminWidget> {
                                   decoration: TextDecoration.underline,
                                 ),
                         elevation: 0,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 0,
                         ),

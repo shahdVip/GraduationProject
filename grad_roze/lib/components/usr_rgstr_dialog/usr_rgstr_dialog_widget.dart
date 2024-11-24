@@ -42,18 +42,18 @@ class _UsrRgstrDialogWidgetState extends State<UsrRgstrDialogWidget> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: AlignmentDirectional(0, 0),
+      alignment: const AlignmentDirectional(0, 0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+        padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
         child: Container(
           width: double.infinity,
-          constraints: BoxConstraints(
+          constraints: const BoxConstraints(
             maxWidth: 530,
             maxHeight: 250,
           ),
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 blurRadius: 3,
                 color: Color(0x33000000),
@@ -70,13 +70,13 @@ class _UsrRgstrDialogWidgetState extends State<UsrRgstrDialogWidget> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 16, 24, 16),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24, 16, 24, 16),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +93,8 @@ class _UsrRgstrDialogWidgetState extends State<UsrRgstrDialogWidget> {
                             ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: Text(
                           'Your registration request has been successfully sent to the Admin and is awaiting approval.\n',
                           style:
@@ -108,7 +109,7 @@ class _UsrRgstrDialogWidgetState extends State<UsrRgstrDialogWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 12),
+                  padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 12),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -120,9 +121,10 @@ class _UsrRgstrDialogWidgetState extends State<UsrRgstrDialogWidget> {
                         text: 'Done',
                         options: FFButtonOptions(
                           height: 40,
-                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20, 0, 20, 0),
                           iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
@@ -131,7 +133,7 @@ class _UsrRgstrDialogWidgetState extends State<UsrRgstrDialogWidget> {
                                     letterSpacing: 0.0,
                                   ),
                           elevation: 0,
-                          borderSide: BorderSide(
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
                           ),
                           borderRadius: BorderRadius.circular(40),
