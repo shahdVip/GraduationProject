@@ -11,7 +11,7 @@ const allowedTags = [
 
 const itemSchema = new mongoose.Schema(
   {
-    id: { type: String, required: true, unique: true },
+    id: { type: String, required: false, unique: true },
     name: { type: String, required: true },
     flowerType: { type: [String], required: true },
     tags: {

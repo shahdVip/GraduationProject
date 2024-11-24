@@ -1,3 +1,5 @@
+import 'package:grad_roze/config.dart';
+
 import 'bouquetViewWidget.dart' show BouquetViewWidget;
 
 class BouquetViewModel {
@@ -22,6 +24,6 @@ class BouquetViewModel {
         name: json['name'],
         price: json['price'].toDouble(),
         businessName: json['business'],
-        imageUrl: 'http://192.168.1.9:3000${json['imageURL']}');
+        imageUrl: '$url${json['imageURL']}');
   }
 }
