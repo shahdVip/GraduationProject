@@ -74,16 +74,15 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 500,
                 child: Stack(
-                  alignment: AlignmentDirectional(0, -1),
+                  alignment: const AlignmentDirectional(0, -1),
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0, -1),
-                      child: widget.profilePhoto == null ||
-                              widget.profilePhoto.isEmpty
+                      alignment: const AlignmentDirectional(0, -1),
+                      child: widget.profilePhoto.isEmpty
                           ? Image.asset(
                               'assets/images/defaults/default_avatar.png', // Path to your default image
                               width: double.infinity,
@@ -99,9 +98,10 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                             ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, -1),
+                      alignment: const AlignmentDirectional(0, -1),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 44, 16, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(16, 44, 16, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,7 +165,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, 1),
+                      alignment: const AlignmentDirectional(0, 1),
                       child: ClipRRect(
                         child: BackdropFilter(
                           filter: ImageFilter.blur(
@@ -178,19 +178,19 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              final _datePickedDate = await showDatePicker(
+                              final datePickedDate = await showDatePicker(
                                 context: context,
                                 initialDate: getCurrentTimestamp,
                                 firstDate: getCurrentTimestamp,
                                 lastDate: getCurrentTimestamp,
                               );
 
-                              if (_datePickedDate != null) {
+                              if (datePickedDate != null) {
                                 safeSetState(() {
                                   _model.datePicked = DateTime(
-                                    _datePickedDate.year,
-                                    _datePickedDate.month,
-                                    _datePickedDate.day,
+                                    datePickedDate.year,
+                                    datePickedDate.month,
+                                    datePickedDate.day,
                                   );
                                 });
                               }
@@ -198,20 +198,21 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                             child: Container(
                               width: double.infinity,
                               height: 144,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Color(0x801D2429),
                               ),
                               child: // Generated code for this Column Widget...
                                   Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     15, 0, 15, 0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 8, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 8, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -234,8 +235,9 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 4, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -278,8 +280,9 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 4, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -300,8 +303,9 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 4, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -315,7 +319,8 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                                             ),
                                             direction: Axis.horizontal,
                                             rating: 3,
-                                            unratedColor: Color(0x47FF6A73),
+                                            unratedColor:
+                                                const Color(0x47FF6A73),
                                             itemCount: 5,
                                             itemSize: 24,
                                           ),
@@ -334,7 +339,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -350,7 +355,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 44),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 44),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   primary: false,
@@ -358,13 +363,14 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                       child: Container(
                         width: 100,
                         height: 400,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primaryBackground,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 4,
                               color: Color(0x301D2429),
@@ -377,7 +383,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.asset(

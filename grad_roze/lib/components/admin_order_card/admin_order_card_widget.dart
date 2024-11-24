@@ -46,8 +46,8 @@ class _AdminOrderCardWidgetState extends State<AdminOrderCardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 30.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 30.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -72,7 +72,7 @@ class _AdminOrderCardWidgetState extends State<AdminOrderCardWidget>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
+      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 1),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -80,7 +80,7 @@ class _AdminOrderCardWidgetState extends State<AdminOrderCardWidget>
           boxShadow: [
             BoxShadow(
               color: FlutterFlowTheme.of(context).primaryBackground,
-              offset: Offset(
+              offset: const Offset(
                 0.0,
                 1,
               ),
@@ -93,7 +93,7 @@ class _AdminOrderCardWidgetState extends State<AdminOrderCardWidget>
           ),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
+          padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 12, 8),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -108,7 +108,7 @@ class _AdminOrderCardWidgetState extends State<AdminOrderCardWidget>
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +124,8 @@ class _AdminOrderCardWidgetState extends State<AdminOrderCardWidget>
                             ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: Container(
                           height: 25,
                           decoration: BoxDecoration(
@@ -137,10 +138,10 @@ class _AdminOrderCardWidgetState extends State<AdminOrderCardWidget>
                             ),
                           ),
                           child: Align(
-                            alignment: AlignmentDirectional(0, 0),
+                            alignment: const AlignmentDirectional(0, 0),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(7, 0, 7, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  7, 0, 7, 0),
                               child: Text(
                                 'ID #: 42929',
                                 style: FlutterFlowTheme.of(context)

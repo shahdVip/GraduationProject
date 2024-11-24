@@ -42,10 +42,10 @@ class _OrderListWidgetState extends State<OrderListWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
       child: Container(
         width: double.infinity,
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxWidth: 570,
         ),
         decoration: BoxDecoration(
@@ -57,13 +57,13 @@ class _OrderListWidgetState extends State<OrderListWidget> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+          padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +80,7 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                           ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                       child: Text(
                         'Mon. July 3rd',
                         style:
@@ -92,7 +92,8 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                       child: Container(
                         height: 32,
                         decoration: BoxDecoration(
@@ -104,9 +105,10 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                           ),
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0, 0),
+                          alignment: const AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(7, 0, 7, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                7, 0, 7, 0),
                             child: Text(
                               'ID #: 42929',
                               style: FlutterFlowTheme.of(context)
@@ -146,9 +148,10 @@ class _OrderListWidgetState extends State<OrderListWidget> {
                     text: 'View details',
                     options: FFButtonOptions(
                       height: 20,
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      color: Color(0x00E3E7ED),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      color: const Color(0x00E3E7ED),
                       textStyle:
                           FlutterFlowTheme.of(context).bodyMedium.override(
                                 fontFamily: 'Funnel Display',
