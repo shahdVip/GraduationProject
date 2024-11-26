@@ -1286,7 +1286,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
@@ -1298,6 +1298,8 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             cursorColor:
                                                                 FlutterFlowTheme.of(
@@ -1483,15 +1485,20 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
                                                                   useGoogleFonts:
                                                                       false,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             keyboardType:
                                                                 TextInputType
@@ -1679,15 +1686,20 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
                                                                   useGoogleFonts:
                                                                       false,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             cursorColor:
                                                                 FlutterFlowTheme.of(
@@ -1872,15 +1884,20 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
                                                                   useGoogleFonts:
                                                                       false,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             keyboardType:
                                                                 TextInputType
@@ -2062,15 +2079,20 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
                                                                   useGoogleFonts:
                                                                       false,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             cursorColor:
                                                                 FlutterFlowTheme.of(
@@ -2249,7 +2271,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
@@ -2257,10 +2279,12 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                                       false,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryText,
+                                                                      .primary,
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             minLines: 1,
                                                             cursorColor:
