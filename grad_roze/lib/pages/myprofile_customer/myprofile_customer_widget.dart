@@ -1,37 +1,78 @@
+import 'package:grad_roze/components/edit_address/edit_address_widget.dart';
+import 'package:grad_roze/config.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '/components/edit_admin_profile/edit_password_widget.dart';
 import '/components/edit_admin_profile/edit_phone_widget.dart';
-import '/components/manage_admins/manage_admins_widget.dart';
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
 import '/custom/widgets.dart';
 import 'package:flutter/material.dart';
-import '/config.dart';
-import 'package:http/http.dart' as http;
-import 'admin_profile_model.dart';
-export 'admin_profile_model.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
-class AdminprofileWidget extends StatefulWidget {
-  const AdminprofileWidget({super.key});
+import 'myprofile_customer_model.dart';
+export 'myprofile_customer_model.dart';
+
+class MyprofileCustomerWidget extends StatefulWidget {
+  const MyprofileCustomerWidget({super.key});
 
   @override
-  State<AdminprofileWidget> createState() => _AdminprofileWidgetState();
+  State<MyprofileCustomerWidget> createState() =>
+      _MyprofileCustomerWidgetState();
 }
 
-class _AdminprofileWidgetState extends State<AdminprofileWidget> {
-  late AdminprofileModel _model;
+class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
+  late MyprofileCustomerModel _model;
+  String Username = ""; // To store the fetched username
+  String Phone = "";
+  String Email = "";
+  String Address = "";
 
-  String adminUsername = ""; // To store the fetched username
-  String adminPhone = "";
-  String adminEmail = "";
   String profilePhotoUrl = "";
   bool isLoading = true; // To show loading indicator while fetching
 
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  Future<void> _fetchUserProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs
+        .getString('jwt_token'); // Retrieve the token from shared preferences
+    if (token != null) {
+      try {
+        final response = await http.get(
+          Uri.parse(loggedInInfo),
+          headers: {'Authorization': 'Bearer $token'},
+        );
+
+        if (response.statusCode == 200) {
+          final data = jsonDecode(response.body);
+          setState(() {
+            Username = data['username']; // Set the fetched username
+            Phone = data['phoneNumber'];
+            Email = data['email'];
+            Address = data['address'];
+            profilePhotoUrl = data['profilePhoto'];
+            isLoading = false; // Stop loading
+          });
+        } else {
+          setState(() {
+            isLoading = false; // Stop loading even if error occurs
+          });
+          // Handle error if needed
+          print('Failed to load profile');
+        }
+      } catch (e) {
+        setState(() {
+          isLoading = false; // Stop loading in case of error
+        });
+        print('Error: $e');
+      }
+    } else {
+      print('No token found');
+    }
+  }
 
   Uint8List? _image;
   void selectImage() async {
@@ -48,7 +89,7 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         final token =
             prefs.getString('jwt_token'); // Token from shared preferences
-        final username = adminUsername; // Username fetched from the profile
+        final username = Username; // Username fetched from the profile
 
         if (token == null) {
           print('Token or username not available');
@@ -85,49 +126,12 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
     }
   }
 
-  // Fetch the logged-in user's profile info from the backend
-  Future<void> _fetchUserProfile() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs
-        .getString('jwt_token'); // Retrieve the token from shared preferences
-    if (token != null) {
-      try {
-        final response = await http.get(
-          Uri.parse(loggedInInfo),
-          headers: {'Authorization': 'Bearer $token'},
-        );
-
-        if (response.statusCode == 200) {
-          final data = jsonDecode(response.body);
-          setState(() {
-            adminUsername = data['username']; // Set the fetched username
-            adminPhone = data['phoneNumber'];
-            adminEmail = data['email'];
-            profilePhotoUrl = data['profilePhoto'];
-            isLoading = false; // Stop loading
-          });
-        } else {
-          setState(() {
-            isLoading = false; // Stop loading even if error occurs
-          });
-          // Handle error if needed
-          print('Failed to load profile');
-        }
-      } catch (e) {
-        setState(() {
-          isLoading = false; // Stop loading in case of error
-        });
-        print('Error: $e');
-      }
-    } else {
-      print('No token found');
-    }
-  }
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AdminprofileModel());
+    _model = createModel(context, () => MyprofileCustomerModel());
     _fetchUserProfile(); // Fetch user profile when the page loads
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -152,48 +156,47 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
             borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 60,
             icon: Icon(
               Icons.arrow_back_rounded,
               color: FlutterFlowTheme.of(context).info,
-              size: 30.0,
+              size: 30,
             ),
             onPressed: () async {
               context.pop();
             },
           ),
-          actions: const [],
+          actions: [],
           centerTitle: false,
-          elevation: 0.0,
+          elevation: 0,
         ),
         body: Align(
-          alignment: const AlignmentDirectional(0.0, 0.0),
+          alignment: AlignmentDirectional(0, 0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              SizedBox(
-                width: 140.0,
+              Container(
+                width: 140,
                 child: Stack(
                   children: [
                     Align(
-                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      alignment: AlignmentDirectional(0, 0),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 12.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: Container(
-                          width: 100.0,
-                          height: 100.0,
+                          width: 100,
+                          height: 100,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             shape: BoxShape.circle,
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.all(2.0),
+                            padding: EdgeInsets.all(2),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(50.0),
+                              borderRadius: BorderRadius.circular(50),
                               child: _image != null
                                   ? CircleAvatar(
                                       backgroundColor: Colors.transparent,
@@ -217,15 +220,14 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                       ),
                     ),
                     Align(
-                      alignment: const AlignmentDirectional(1.0, 0.0),
+                      alignment: AlignmentDirectional(1, 0),
                       child: Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 12.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: SafeArea(
                           child: ClipOval(
                             child: Container(
-                              width: 44.0,
-                              height: 44.0,
+                              width: 44,
+                              height: 44,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -233,17 +235,17 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                 border: Border.all(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  width: 4.0,
+                                  width: 4,
                                 ),
                               ),
                               child: FlutterFlowIconButton(
-                                borderRadius: 0.0,
-                                buttonSize: 60.0,
+                                borderRadius: 0,
+                                buttonSize: 60,
                                 icon: Icon(
                                   Icons.edit_outlined,
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryText,
-                                  size: 25.0,
+                                  size: 25,
                                 ),
                                 onPressed: selectImage,
                               ),
@@ -256,52 +258,50 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 12.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
                 child: Text(
-                  adminUsername.isEmpty ? 'Loading...' : adminUsername,
+                  Username.isEmpty ? 'Loading...' : Username,
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).headlineSmall.override(
                         fontFamily: 'Funnel Display',
-                        useGoogleFonts: false,
                         color: FlutterFlowTheme.of(context).info,
                         letterSpacing: 0.0,
+                        useGoogleFonts: false,
                       ),
                 ),
               ),
               Text(
-                adminEmail.isEmpty ? 'Loading...' : adminEmail,
+                Email.isEmpty ? 'Loading...' : Email,
                 style: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: 'Funnel Display',
-                      useGoogleFonts: false,
                       color: FlutterFlowTheme.of(context).accent4,
                       letterSpacing: 0.0,
+                      useGoogleFonts: false,
                     ),
               ),
               Expanded(
                 child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                   child: Container(
                     width: double.infinity,
-                    height: 400.0,
+                    height: 400,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
-                          blurRadius: 3.0,
+                          blurRadius: 3,
                           color: Color(0x33000000),
                           offset: Offset(
-                            0.0,
-                            -1.0,
+                            0,
+                            -1,
                           ),
                         )
                       ],
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(0.0),
-                        bottomRight: Radius.circular(0.0),
-                        topLeft: Radius.circular(16.0),
-                        topRight: Radius.circular(16.0),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
+                        topLeft: Radius.circular(16),
+                        topRight: Radius.circular(16),
                       ),
                     ),
                     child: SingleChildScrollView(
@@ -310,15 +310,14 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 0.0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // Generated code for this Text Widget...
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 12),
                                   child: Text(
                                     'Settings',
@@ -326,28 +325,28 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                         .headlineSmall
                                         .override(
                                           fontFamily: 'Funnel Display',
-                                          useGoogleFonts: false,
                                           color: FlutterFlowTheme.of(context)
                                               .primary,
                                           letterSpacing: 0.0,
+                                          useGoogleFonts: false,
                                         ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 10.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 10),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0.0, 8.0, 16.0, 8.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 16, 8),
                                         child: Icon(
                                           Icons.phone_android,
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                          size: 24.0,
+                                          size: 24,
                                         ),
                                       ),
                                       Expanded(
@@ -357,10 +356,8 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding:
-                                                  const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                      0.0, 0.0, 12.0, 0.0),
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 12, 0),
                                               child: Text(
                                                 'Phone Number',
                                                 textAlign: TextAlign.start,
@@ -370,23 +367,21 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Funnel Display',
-                                                          useGoogleFonts: false,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: false,
                                                         ),
                                               ),
                                             ),
                                             Padding(
-                                              padding:
-                                                  const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                      0.0, 0.0, 12.0, 0.0),
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 12, 0),
                                               child: Text(
-                                                adminPhone.isEmpty
+                                                Phone.isEmpty
                                                     ? 'Loading...'
-                                                    : adminPhone,
+                                                    : Phone,
                                                 textAlign: TextAlign.start,
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -394,11 +389,11 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Funnel Display',
-                                                          useGoogleFonts: false,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: false,
                                                         ),
                                               ),
                                             ),
@@ -406,13 +401,13 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                         ),
                                       ),
                                       FlutterFlowIconButton(
-                                        borderRadius: 8.0,
-                                        buttonSize: 40.0,
+                                        borderRadius: 8,
+                                        buttonSize: 40,
                                         icon: Icon(
                                           Icons.edit_outlined,
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                          size: 24.0,
+                                          size: 24,
                                         ),
                                         onPressed: () async {
                                           String? updatedPhoneNumber =
@@ -430,15 +425,14 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                                   padding:
                                                       MediaQuery.viewInsetsOf(
                                                           context),
-                                                  child:
-                                                      const EditPhoneWidget(),
+                                                  child: EditPhoneWidget(),
                                                 ),
                                               );
                                             },
                                           );
                                           if (updatedPhoneNumber != null) {
                                             setState(() {
-                                              adminPhone =
+                                              Phone =
                                                   updatedPhoneNumber; // Update your phone number variable
                                             });
                                           }
@@ -448,23 +442,22 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 10.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 10),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0.0, 8.0, 16.0, 8.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 16, 8),
                                         child: Icon(
-                                          Icons.password_rounded,
+                                          Icons.location_on_rounded,
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                          size: 24.0,
+                                          size: 24,
                                         ),
                                       ),
-                                      // Generated code for this Column Widget...
                                       Expanded(
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
@@ -472,9 +465,118 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding:
-                                                  const EdgeInsetsDirectional
-                                                      .fromSTEB(0, 0, 12, 0),
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 12, 0),
+                                              child: Text(
+                                                'Address',
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Funnel Display',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 12, 0),
+                                              child: Text(
+                                                Address.isEmpty
+                                                    ? 'Loading...'
+                                                    : Address,
+                                                textAlign: TextAlign.start,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Funnel Display',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      FlutterFlowIconButton(
+                                        borderColor: Colors.transparent,
+                                        borderRadius: 8,
+                                        buttonSize: 40,
+                                        icon: Icon(
+                                          Icons.edit_outlined,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24,
+                                        ),
+                                        onPressed: () async {
+                                          String? updatedAddress =
+                                              await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () =>
+                                                    FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child: EditAddressWidget(),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                          if (updatedAddress != null) {
+                                            setState(() {
+                                              Address =
+                                                  updatedAddress; // Update your phone number variable
+                                            });
+                                          }
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 10),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 16, 8),
+                                        child: Icon(
+                                          Icons.password_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 12, 0),
                                               child: Text(
                                                 'Password',
                                                 textAlign: TextAlign.start,
@@ -484,11 +586,11 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                                         .override(
                                                           fontFamily:
                                                               'Funnel Display',
-                                                          useGoogleFonts: false,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
                                                           letterSpacing: 0.0,
+                                                          useGoogleFonts: false,
                                                         ),
                                               ),
                                             ),
@@ -496,13 +598,13 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                         ),
                                       ),
                                       FlutterFlowIconButton(
-                                        borderRadius: 8.0,
-                                        buttonSize: 40.0,
+                                        borderRadius: 8,
+                                        buttonSize: 40,
                                         icon: Icon(
                                           Icons.edit_outlined,
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                          size: 24.0,
+                                          size: 24,
                                         ),
                                         onPressed: () async {
                                           await showModalBottomSheet(
@@ -519,8 +621,7 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                                   padding:
                                                       MediaQuery.viewInsetsOf(
                                                           context),
-                                                  child:
-                                                      const EditPasswordWidget(),
+                                                  child: EditPasswordWidget(),
                                                 ),
                                               );
                                             },
@@ -532,102 +633,137 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 10.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 10),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0.0, 8.0, 16.0, 8.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 16, 8),
                                         child: Icon(
-                                          Icons.manage_accounts_outlined,
+                                          Icons.history_outlined,
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                          size: 24.0,
+                                          size: 24,
                                         ),
                                       ),
                                       Expanded(
                                         child: Padding(
-                                          padding: const EdgeInsetsDirectional
-                                              .fromSTEB(0.0, 0.0, 12.0, 0.0),
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 12, 0),
                                           child: Text(
-                                            'Manage Admins',
+                                            'Orders History',
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Funnel Display',
-                                                  useGoogleFonts: false,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: false,
                                                 ),
                                           ),
                                         ),
                                       ),
                                       FlutterFlowIconButton(
-                                        borderRadius: 8.0,
-                                        buttonSize: 40.0,
+                                        borderColor: Colors.transparent,
+                                        borderRadius: 8,
+                                        buttonSize: 40,
                                         icon: Icon(
                                           Icons.arrow_forward_ios_rounded,
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                          size: 18.0,
+                                          size: 18,
                                         ),
                                         onPressed: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            backgroundColor: Colors.transparent,
-                                            enableDrag: false,
-                                            useSafeArea: true,
-                                            context: context,
-                                            builder: (context) {
-                                              return GestureDetector(
-                                                onTap: () =>
-                                                    FocusScope.of(context)
-                                                        .unfocus(),
-                                                child: Padding(
-                                                  padding:
-                                                      MediaQuery.viewInsetsOf(
-                                                          context),
-                                                  child:
-                                                      const ManageAdminsWidget(),
-                                                ),
-                                              );
-                                            },
-                                          ).then(
-                                              (value) => safeSetState(() {}));
+                                          print('order history button');
                                         },
                                       ),
                                     ],
                                   ),
                                 ),
-                                // Generated code for this Row Widget...
-
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 8.0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 10),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0.0, 8.0, 16.0, 8.0),
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 16, 8),
                                         child: Icon(
-                                          Icons.login_rounded,
+                                          Icons.favorite,
                                           color: FlutterFlowTheme.of(context)
                                               .secondaryText,
-                                          size: 24.0,
+                                          size: 24,
                                         ),
                                       ),
                                       Expanded(
                                         child: Padding(
-                                          padding: const EdgeInsetsDirectional
-                                              .fromSTEB(0.0, 0.0, 12.0, 0.0),
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 12, 0),
+                                          child: Text(
+                                            'Favorie Businesses',
+                                            textAlign: TextAlign.start,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Funnel Display',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      FlutterFlowIconButton(
+                                        borderColor: Colors.transparent,
+                                        borderRadius: 8,
+                                        buttonSize: 40,
+                                        icon: Icon(
+                                          Icons.arrow_forward_ios_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 18,
+                                        ),
+                                        onPressed: () async {
+                                          context.pushNamed('favoriteList');
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 8),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 16, 8),
+                                        child: Icon(
+                                          Icons.login_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 12, 0),
                                           child: Text(
                                             'Log out of account',
                                             textAlign: TextAlign.start,
@@ -635,11 +771,11 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Funnel Display',
-                                                  useGoogleFonts: false,
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
                                                   letterSpacing: 0.0,
+                                                  useGoogleFonts: false,
                                                 ),
                                           ),
                                         ),
@@ -658,30 +794,31 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                         },
                                         text: 'Log Out?',
                                         options: FFButtonOptions(
-                                          height: 25.0,
-                                          padding: const EdgeInsetsDirectional
-                                              .fromSTEB(16.0, 0.0, 16.0, 0.0),
+                                          height: 25,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16, 0, 16, 0),
                                           iconPadding:
-                                              const EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 0),
                                           color: Colors.transparent,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Funnel Display',
-                                                useGoogleFonts: false,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .error,
+                                                        .primary,
                                                 letterSpacing: 0.0,
+                                                useGoogleFonts: false,
                                               ),
-                                          elevation: 0.0,
-                                          borderSide: const BorderSide(
+                                          elevation: 0,
+                                          borderSide: BorderSide(
                                             color: Colors.transparent,
                                           ),
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                              BorderRadius.circular(8),
                                           hoverColor:
                                               FlutterFlowTheme.of(context)
                                                   .secondaryBackground,
@@ -689,13 +826,13 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                           ),
-                                          hoverElevation: 2.0,
+                                          hoverElevation: 2,
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                              ].divide(const SizedBox(height: 10.0)),
+                              ].divide(SizedBox(height: 10)),
                             ),
                           ),
                         ],
