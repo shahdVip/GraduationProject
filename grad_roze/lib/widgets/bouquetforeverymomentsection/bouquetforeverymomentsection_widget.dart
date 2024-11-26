@@ -50,14 +50,19 @@ class _BouquetforeverymomentsectionWidgetState
                 children: [
                   Align(
                     alignment: const AlignmentDirectional(-1, 0),
-                    child: Text(
-                      'Bouquet for every moment',
-                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Funnel Display',
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w700,
-                            useGoogleFonts: false,
-                          ),
+                    child: Padding(
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
+                      child: Text(
+                        'Bouquet for every moment',
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: 'Funnel Display',
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w700,
+                                  useGoogleFonts: false,
+                                ),
+                      ),
                     ),
                   ),
                 ],

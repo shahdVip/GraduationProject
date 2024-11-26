@@ -1,5 +1,4 @@
 import 'package:grad_roze/pages/homePage/momentPage.dart';
-
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
@@ -14,9 +13,7 @@ import '/widgets/MomentsModel.dart';
 
 class BouquetPageWidget extends StatefulWidget {
   final String bouquetId;
-
   const BouquetPageWidget({super.key, required this.bouquetId});
-
   @override
   State<BouquetPageWidget> createState() => _BouquetPageWidgetState();
 }
@@ -24,12 +21,10 @@ class BouquetPageWidget extends StatefulWidget {
 class _BouquetPageWidgetState extends State<BouquetPageWidget> {
   late BouquetPageModel _model;
   late MomentsModel m;
-
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => BouquetPageModel());
-
     // Fetch bouquet data using the model
     _model.fetchBouquetData(context, widget.bouquetId).then((_) {
       setState(() {
@@ -44,16 +39,16 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          automaticallyImplyLeading: false,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_rounded,
-                color: FlutterFlowTheme.of(context).primaryText),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-          elevation: 0,
-        ),
+        // appBar: AppBar(
+        //   backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        //   automaticallyImplyLeading: false,
+        //   leading: IconButton(
+        //     icon: Icon(Icons.arrow_back_rounded,
+        //         color: FlutterFlowTheme.of(context).primaryText),
+        //     onPressed: () => Navigator.of(context).pop(),
+        //   ),
+        //   elevation: 0,
+        // ),
         body: SafeArea(
           top: true,
           child: _model.bouquetData == null
@@ -102,19 +97,55 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       // Dynamic Image
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(0),
-                                        child: Image.network(
-                                          '$url${_model.bouquetData?['imageURL']}' ??
-                                              '',
-                                          width: double.infinity,
-                                          height: 280,
-                                          fit: BoxFit.cover,
-                                          errorBuilder:
-                                              (context, error, stackTrace) =>
+                                      Stack(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                            child: Image.network(
+                                              '$url${_model.bouquetData?['imageURL']}' ??
+                                                  '',
+                                              width: double.infinity,
+                                              height: 280,
+                                              fit: BoxFit.cover,
+                                              errorBuilder: (context, error,
+                                                      stackTrace) =>
                                                   const Icon(Icons.broken_image,
                                                       size: 100),
-                                        ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 20, 0, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(20, 0, 0, 0),
+                                                  child: FlutterFlowIconButton(
+                                                    borderRadius: 8,
+                                                    buttonSize: 40,
+                                                    fillColor:
+                                                        Colors.transparent,
+                                                    icon: Icon(
+                                                      Icons.arrow_back,
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      size: 24,
+                                                    ),
+                                                    onPressed: () async {
+                                                      context.safePop();
+                                                    },
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(16.0),
@@ -128,7 +159,13 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                   'Unknown Business',
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelSmall,
+                                                      .labelSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Funnel Display',
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
                                             ),
                                             const SizedBox(
                                                 height: 8), // Spacing
@@ -138,7 +175,13 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                   'Unknown Bouquet',
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .headlineLarge,
+                                                      .headlineLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Funnel Display',
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
                                             ),
                                             const SizedBox(
                                                 height: 8), // Spacing
@@ -149,33 +192,57 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                   'No description',
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelMedium,
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Funnel Display',
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
                                             ),
                                             const SizedBox(
                                                 height: 16), // Spacing
-                                            // Rating Bar
-                                            RatingBar.builder(
-                                              initialRating: (_model
+                                            RatingBarIndicator(
+                                              rating: (_model
                                                       .bouquetData?['rating']
                                                       ?.toDouble() ??
-                                                  3.0),
-                                              minRating: 1,
-                                              direction: Axis.horizontal,
-                                              allowHalfRating: true,
-                                              itemCount: 5,
+                                                  3.0), // Set the rating value
+                                              itemCount: 5, // Number of stars
+                                              itemSize:
+                                                  30.0, // Adjust the size of the stars
+                                              direction: Axis
+                                                  .horizontal, // Horizontal display
                                               itemBuilder: (context, _) => Icon(
                                                 Icons.star,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .tertiary,
+                                                        .success,
                                               ),
-                                              onRatingUpdate: (rating) {
-                                                setState(() {
-                                                  _model.ratingBarValue =
-                                                      rating;
-                                                });
-                                              },
                                             ),
+                                            // Rating Bar
+                                            // RatingBar.builder(
+                                            //   initialRating: (_model
+                                            //           .bouquetData?['rating']
+                                            //           ?.toDouble() ??
+                                            //       3.0),
+                                            //   minRating: 1,
+                                            //   direction: Axis.horizontal,
+                                            //   allowHalfRating: true,
+                                            //   itemCount: 5,
+                                            //   itemBuilder: (context, _) => Icon(
+                                            //     Icons.star,
+                                            //     color:
+                                            //         FlutterFlowTheme.of(context)
+                                            //             .success,
+                                            //   ),
+                                            //   // onRatingUpdate: (rating) {
+                                            //   //   setState(() {
+                                            //   //     _model.ratingBarValue =
+                                            //   //         rating;
+                                            //   //   });
+                                            //   // },
+                                            //
+                                            // ),
                                             const SizedBox(
                                                 height: 16), // Spacing
                                             Divider(
@@ -191,7 +258,13 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                               'Tags:',
                                               style:
                                                   FlutterFlowTheme.of(context)
-                                                      .labelSmall,
+                                                      .labelSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Funnel Display',
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
                                             ),
                                             const SizedBox(
                                                 height: 8), // Spacing
@@ -240,10 +313,23 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                                 textStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .titleSmall
-                                                                    .copyWith(
-                                                                      color: const Color(
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Funnel Display',
+                                                                      color: Color(
                                                                           0xFF040425),
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontStyle:
+                                                                          FontStyle
+                                                                              .italic,
+                                                                      useGoogleFonts:
+                                                                          false,
                                                                     ),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            50),
                                                               ),
                                                             ),
                                                           );
@@ -254,7 +340,6 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                             'No tags available')
                                                       ],
                                             ),
-
                                             const SizedBox(
                                                 height: 16), // Spacing
                                             // Price
@@ -267,13 +352,25 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                   'Price',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .labelSmall,
+                                                      .labelSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Funnel Display',
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
                                                 ),
                                                 Text(
                                                   '\$${_model.bouquetData?['price'] ?? 'N/A'}',
                                                   style: FlutterFlowTheme.of(
                                                           context)
-                                                      .headlineMedium,
+                                                      .headlineMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Funnel Display',
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
                                                 ),
                                               ],
                                             ),
@@ -297,14 +394,29 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmall
-                                                        .copyWith(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                        ),
+                                                textStyle: FlutterFlowTheme.of(
+                                                        context)
+                                                    .titleSmall
+                                                    .override(
+                                                        fontFamily:
+                                                            'Funnel Display',
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        letterSpacing: 0.0,
+                                                        shadows: [
+                                                          Shadow(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            offset: Offset(
+                                                                2.0, 2.0),
+                                                            blurRadius: 2.0,
+                                                          )
+                                                        ],
+                                                        useGoogleFonts: false),
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
                                               ),
                                             ),
                                           ],
@@ -330,10 +442,13 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                         'Care Tips',
                                         style: FlutterFlowTheme.of(context)
                                             .headlineSmall
-                                            .copyWith(
+                                            .override(
+                                              fontFamily: 'Funnel Display',
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: false,
                                             ),
                                       ),
                                     ),
@@ -343,13 +458,8 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                       height: 200,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
+                                            .secondaryBackground,
                                         borderRadius: BorderRadius.circular(8),
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                          width: 1,
-                                        ),
                                       ),
                                       child: Padding(
                                         padding: const EdgeInsets.all(16.0),
@@ -358,7 +468,13 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                             _model.bouquetData?['careTips'] ??
                                                 'No Tips',
                                             style: FlutterFlowTheme.of(context)
-                                                .labelMedium,
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily: 'Funnel Display',
+                                                  color: Color(0xFF040425),
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: false,
+                                                ),
                                           ),
                                         ),
                                       ),
