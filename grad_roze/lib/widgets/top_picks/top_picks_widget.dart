@@ -94,18 +94,19 @@ class TopPicksWidget extends StatelessWidget {
                           iconAlignment: IconAlignment.end,
                           iconPadding:
                               EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          color: Color(0x00040425),
+                          color: Color(0x00040425), // Button background color
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleSmallFamily,
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  fontSize: 14,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  useGoogleFonts: false),
-                          elevation: 0,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleSmallFamily,
+                                color: FlutterFlowTheme.of(context).secondary,
+                                fontSize: 14,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w500,
+                                useGoogleFonts: false,
+                              ),
+                          elevation: 0, // No shadow
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),
