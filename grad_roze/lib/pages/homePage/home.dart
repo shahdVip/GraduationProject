@@ -15,6 +15,11 @@ export '../../widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_
 export '../../widgets/top_picks/top_picks_model.dart';
 export '../../widgets/top_picks_component/top_picks_component_model.dart';
 
+import '../../widgets/CustomizeSectionWidget.dart';
+import '../../widgets/CustomizeSectionModel.dart';
+export '../../widgets/CustomizeSectionModel.dart';
+export '../../widgets/CustomizeSectionWidget.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
@@ -30,6 +35,8 @@ class HomePage extends StatelessWidget {
             BouquetforeverymomentsectionWidget(),
             SizedBox(height: 20),
             TopPicksWidget(),
+            SizedBox(height: 20),
+            CustomizeSectionWidget(),
           ],
         ),
       ),
