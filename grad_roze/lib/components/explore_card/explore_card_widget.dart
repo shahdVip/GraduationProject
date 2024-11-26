@@ -70,7 +70,7 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
           width: 200,
           height: 180,
           decoration: BoxDecoration(
-            color: FlutterFlowTheme.of(context).secondaryBackground,
+            color: FlutterFlowTheme.of(context).primaryBackground,
             boxShadow: const [
               BoxShadow(
                 blurRadius: 4,
@@ -128,7 +128,7 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
                         widget.item['name'] ?? '',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Funnel Display',
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: Color(0xff040425),
                               letterSpacing: 0.0,
                               useGoogleFonts: false,
                             ),
@@ -144,15 +144,14 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
                     children: [
                       Text(
                         '\$${widget.item['price']}' ?? '',
-                        style: FlutterFlowTheme.of(context)
-                            .labelMedium
-                            .override(
-                              fontFamily: 'Funnel Display',
-                              letterSpacing: 0.0,
-                              useGoogleFonts: false,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        style:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Funnel Display',
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: false,
+                                  color: Color(0xff770404),
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                     ],
                   ),
@@ -166,7 +165,7 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
                         widget.item['business'] ?? '',
                         style: FlutterFlowTheme.of(context).bodySmall.override(
                               fontFamily: 'Funnel Display',
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: Color(0xff040425),
                               letterSpacing: 0.0,
                               useGoogleFonts: false,
                             ),

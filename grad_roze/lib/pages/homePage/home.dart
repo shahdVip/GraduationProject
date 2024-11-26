@@ -7,7 +7,6 @@ import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/custom/util.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../widgets/CarouselSliderModel.dart';
 export '../../widgets/CarouselSliderModel.dart';
 
@@ -17,28 +16,36 @@ export '../../widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_
 export '../../widgets/top_picks/top_picks_model.dart';
 export '../../widgets/top_picks_component/top_picks_component_model.dart';
 
+import '../../widgets/CustomizeSectionWidget.dart';
+import '../../widgets/CustomizeSectionModel.dart';
+export '../../widgets/CustomizeSectionModel.dart';
+export '../../widgets/CustomizeSectionWidget.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBar(context),
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: const SingleChildScrollView(
-          child: Column(
-            children: [
-              const CarouselSliderWidget(),
-              const SizedBox(height: 20),
-              const BouquetforeverymomentsectionWidget(),
-              const SizedBox(height: 20),
-              const TopPicksWidget(),
-              const SizedBox(height: 20),
-              ExploreWidget(),
-              const SizedBox(height: 20),
-            ],
-          ),
-        ));
+      appBar: appBar(context),
+      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+      body: const SingleChildScrollView(
+        child: Column(
+          children: [
+            CarouselSliderWidget(),
+            SizedBox(height: 20),
+            BouquetforeverymomentsectionWidget(),
+            SizedBox(height: 20),
+            TopPicksWidget(),
+            SizedBox(height: 20),
+            ExploreWidget(),
+            SizedBox(height: 20),
+            CustomizeSectionWidget(),
+            SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
   }
 
   AppBar appBar(BuildContext context) {

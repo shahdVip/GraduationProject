@@ -51,7 +51,6 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
     with TickerProviderStateMixin {
   late CustomerHomeModel _model;
   late Future<List<BouquetViewModel>> _itemsFuture;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = <String, AnimationInfo>{};

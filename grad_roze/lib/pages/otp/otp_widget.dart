@@ -26,7 +26,6 @@ class OtpWidget extends StatefulWidget {
 
   final String email;
   final String role;
-
   @override
   State<OtpWidget> createState() => _OtpWidgetState();
 }

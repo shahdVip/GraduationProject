@@ -298,5 +298,5 @@ class _ExploreWidgetState extends State<ExploreWidget>
 // // Use your ExploreCard widget to display each item
 //                       },
 //                     ),
-              
+
 //             ),

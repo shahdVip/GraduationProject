@@ -33,7 +33,6 @@ import 'package:http/http.dart' as http;
 
 import 'dart:convert';
 import '/config.dart' show url;
-
 import 'momentPage_model.dart';
 export 'momentPage_model.dart';
 
@@ -54,7 +53,6 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
   bool isSearching = false;
   List<dynamic> allItems = [];
   List<dynamic> filteredAllItems = [];
-
   @override
   void initState() {
     super.initState();

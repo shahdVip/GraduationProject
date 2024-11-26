@@ -18,7 +18,6 @@ import 'package:provider/provider.dart';
 
 class ExploreModel extends FlutterFlowModel<ExploreWidget> {
   ///  State fields for stateful widgets in this component.
-
   // Model for topPicksComponent component.
   late ExploreCardModel exploreCardModel;
 

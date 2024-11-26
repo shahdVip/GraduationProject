@@ -1,6 +1,5 @@
 const Item = require('../model/item.model');
 const UserPreference = require('../model/userPreference.model');
-
 // Service to fetch all items
 const getAllItems = async () => {
   try {
@@ -10,7 +9,6 @@ const getAllItems = async () => {
     throw new Error('Error fetching items: ' + error.message);
   }
 };
-
 const createItem = async (itemData) => {
   try {
     const newItem = new Item(itemData); // wrapColor is automatically handled here
@@ -20,7 +18,6 @@ const createItem = async (itemData) => {
     throw new Error('Error creating item: ' + error.message);
   }
 };
-
 // Function to fetch items based on user preferences
 const getRecommendedItems = async (username) => {
   try {
