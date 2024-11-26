@@ -49,7 +49,7 @@ score += matchingColors.length;
 
       return { item, score };
     });
-    const filteredItems = scoredItems.filter(({ score }) => score > 0);
+    const filteredItems = scoredItems.filter(({ score }) => score > 1);
     filteredItems.sort((a, b) => b.score - a.score);
 
     return filteredItems

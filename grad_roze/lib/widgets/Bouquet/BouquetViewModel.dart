@@ -25,6 +25,5 @@ class BouquetViewModel {
         price: json['price'].toDouble(),
         businessName: json['business'],
         imageUrl: '$url${json['imageURL']}');
-        imageUrl: '$url${json['imageURL']}');
   }
 }

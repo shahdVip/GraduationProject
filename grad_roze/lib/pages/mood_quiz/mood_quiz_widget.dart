@@ -38,68 +38,6 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
 
   final animationsMap = <String, AnimationInfo>{};
 
-  // Future<void> deleteAllPreferences() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   String? token = prefs.getString('jwt_token');
-  //   final response = await http.delete(
-  //     Uri.parse(deleteAllPreferenceUrl), // Replace with your API URL
-  //     headers: {
-  //       'Authorization': 'Bearer $token'
-  //     }, // Include JWT token if needed
-  //   );
-
-  //   if (response.statusCode == 200) {
-  //     print('All preferences deleted successfully');
-  //   } else {
-  //     print('Failed to delete preferences');
-  //   }
-  // }
-
-  // Future<bool> saveUserPreference(String itemId, bool liked) async {
-  //   // Retrieve the JWT token from shared preferences
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   String? token = prefs.getString('jwt_token');
-
-  //   if (token == null) {
-  //     print('Token not found. User needs to sign in.');
-  //     return false; // Return false to indicate failure
-  //   }
-
-  //   // Retrieve the username from shared preferences (if stored)
-  //   String? username = prefs.getString('username');
-  //   if (username == null) {
-  //     print('Username not found. User needs to sign in.');
-  //     return false; // Return false to indicate failure
-  //   }
-
-  //   // Make the HTTP request to save the preference
-  //   final response = await http.post(
-  //     Uri.parse(savePreferenceUrl),
-  //     body: jsonEncode({
-  //       'username': username, // Use the stored username
-  //       'itemId': itemId, // Replace with actual item ID
-  //       'liked': liked,
-  //     }),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': 'Bearer $token', // Include the JWT token in the header
-  //     },
-  //   );
-
-  //   print(response.statusCode);
-  //   if (response.statusCode == 200) {
-  //     print('Preference saved successfully!');
-  //     return true; // Return true to indicate success
-  //   } else {
-  //     print('Failed to save preference');
-  //     return false; // Return false to indicate failure
-  //   }
-  // }
-
-  //String imageUrl = '';
-
-  //String baseUrl = 'http://192.168.1.6:3000'; // Your server's base URL
-
   Future<void> initializeUserPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     final String? username =

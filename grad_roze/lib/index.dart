@@ -25,3 +25,6 @@ export 'pages/customer_profile/customer_profile_widget.dart'
 export 'pages/mood_quiz/mood_quiz_widget.dart' show MoodQuizWidget;
 export 'pages/customer_home/customer_home_widget.dart' show CustomerHomeWidget;
 export 'pages/homePage/home.dart' show HomePage;
+export 'pages/full_explore/full_explore_widget.dart' show ViewMoreExploreWidget;
+export 'pages/full_top_picks/full_top_picks_widget.dart'
+    show FullTopPicksWidget;

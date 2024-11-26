@@ -227,7 +227,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                 itemCount:
                                     bouquets.length > 4 ? 4 : bouquets.length,
                                 itemBuilder: (context, index) {
-                                  final item = items[index];
+                                  final item = bouquets[index];
                                   return Padding(
                                     padding:
                                         const EdgeInsetsDirectional.fromSTEB(
@@ -272,7 +272,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                                         BorderRadius.circular(
                                                             12),
                                                     child: Image.network(
-                                                      '$url${item.imageURL}',
+                                                      '$url${item.imageUrl}',
                                                       width: double.infinity,
                                                       height: 110,
                                                       fit: BoxFit.cover,
@@ -320,7 +320,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    item.business,
+                                                    item.businessName,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodySmall
