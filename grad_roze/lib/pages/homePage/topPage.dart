@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grad_roze/custom/icon_button.dart';
+import 'package:grad_roze/custom/nav/nav.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/widgets/Bouquet/BouquetViewModel.dart';
 import 'package:grad_roze/config.dart';
@@ -62,21 +64,34 @@ class _TopPageWidgetState extends State<TopPageWidget> {
     return Scaffold(
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        automaticallyImplyLeading: true,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        automaticallyImplyLeading: false,
+        leading: FlutterFlowIconButton(
+          borderColor: Colors.transparent,
+          borderRadius: 30,
+          borderWidth: 1,
+          buttonSize: 60,
+          icon: Icon(
+            Icons.arrow_back_rounded,
+            color: FlutterFlowTheme.of(context).primary,
+            size: 30,
+          ),
+          onPressed: () async {
+            context.pop();
+          },
+        ),
         title: Text(
-          'Our Top Picks', // Use the moment's name here
-          style: FlutterFlowTheme.of(context).displaySmall.override(
+          'Top Picks',
+          style: FlutterFlowTheme.of(context).headlineMedium.override(
                 fontFamily: 'Funnel Display',
+                color: FlutterFlowTheme.of(context).primary,
                 letterSpacing: 0.0,
                 useGoogleFonts: false,
               ),
         ),
-        elevation: 0,
-        iconTheme: IconThemeData(
-          color:
-              FlutterFlowTheme.of(context).primary, // Set the back icon color
-        ),
+        actions: [],
+        centerTitle: false,
+        elevation: 1,
       ),
       body: FutureBuilder<List<BouquetViewModel>>(
         future: _futureBouquets,

@@ -3,7 +3,7 @@ const Item = require('../model/item.model');
 const UserPreference = require('../model/userPreference.model');
 const multer = require('multer');
 const path = require('path');
-
+const fs = require('fs');
 
 const fetchItemsByTag = async (req, res) => {
   const { tag } = req.params; // Get the tag from the request URL (e.g., /items/tag/flowers)
@@ -67,17 +67,35 @@ const createItemController = async (req, res) => {
       imageURL,
       purchaseTimes: req.body.purchaseTimes || 0, // Default to 0 if not provided
       careTips: req.body.careTips || "", // Default to an empty string if not provided
-      wrapColor: req.body.wrapColor || [], // Default to an empty array if not provided
+      wrapColor: req.body.wrapColor, // Default to an empty array if not provided 
     };
 
-    const existingBouquet = await Item.findOne({ name: itemData.name });
+    const existingBouquet = await Item.findOne({ id: itemData.id });
     if (existingBouquet) {
+      // Log and delete uploaded image if item already exists
+      if (imageURL) {
+        const filePath = path.join(__dirname, '..', 'uploads', req.file.filename);
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.error('Error deleting file:', err);
+          }
+        });
+      }
       return res.status(409).json({ message: 'Bouquet already exists' });
     }
 
     const newItem = await createItem(itemData);
     res.status(201).json(newItem);
   } catch (error) {
+    // Log and delete uploaded image if an error occurs
+    if (req.file) {
+      const filePath = path.join(__dirname, '..', '..', 'uploads', req.file.filename);
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error('Error deleting file:', err);
+        } 
+      });
+    }
     res.status(500).json({ message: 'Error creating bouquet', error: error.message });
   }
 };

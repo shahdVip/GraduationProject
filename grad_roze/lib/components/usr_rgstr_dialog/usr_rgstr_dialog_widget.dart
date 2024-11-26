@@ -125,7 +125,8 @@ class _UsrRgstrDialogWidgetState extends State<UsrRgstrDialogWidget> {
                               20, 0, 20, 0),
                           iconPadding:
                               const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          color: FlutterFlowTheme.of(context).primary,
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Funnel Display',
