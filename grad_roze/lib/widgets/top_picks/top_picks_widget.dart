@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../custom/theme.dart';
+import '../../pages/homePage/topPage.dart';
 import 'top_picks_model.dart';
 import '../Bouquet/BouquetViewWidget.dart';
 
@@ -83,7 +84,12 @@ class TopPicksWidget extends StatelessWidget {
                               horizontal: 20, vertical: 10),
                         ),
                         onPressed: () {
-                          print('View More button pressed');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const TopPageWidget(),
+                            ),
+                          );
                         },
                         child: Text(
                           'View More',
