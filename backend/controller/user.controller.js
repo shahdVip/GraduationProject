@@ -253,6 +253,7 @@ exports.register = async (req, res) => {
   try {
     const { email, password, address, phoneNumber, username, role } = req.body;
     let profilePhotoUrl = '';
+    const adminApproved = req.body.adminApproved === 'true'; // Convert 'true' to a boolean
 
     // Handle profile photo URL if a file is uploaded
     if (req.file) {
@@ -282,7 +283,8 @@ exports.register = async (req, res) => {
       role,
       profilePhoto: profilePhotoUrl,
       otp,
-      otpExpiration
+      otpExpiration,
+      adminApproved
     });
 
     // Save the user in the database

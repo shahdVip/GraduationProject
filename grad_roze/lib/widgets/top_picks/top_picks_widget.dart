@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:grad_roze/components/admin_order_card/admin_order_card_model.dart';
+import 'package:grad_roze/custom/nav/nav.dart';
+import 'package:grad_roze/custom/widgets.dart';
+import 'package:grad_roze/index.dart';
 import 'package:provider/provider.dart';
 
 import '../../custom/theme.dart';
@@ -45,7 +49,7 @@ class TopPicksWidget extends StatelessWidget {
                         child: Text(
                           'Our Top Picks',
                           style:
-                              FlutterFlowTheme.of(context).bodyLarge.override(
+                              FlutterFlowTheme.of(context).titleMedium.override(
                                     fontFamily: 'Funnel Display',
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w700,
@@ -68,27 +72,42 @@ class TopPicksWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 5),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: FlutterFlowTheme.of(context)
-                              .secondaryBackground, // Custom button color
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                30), // More rounded radius
-                            side: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 1), // Added border
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                        ),
+                      padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+                      child: FFButtonWidget(
                         onPressed: () {
-                          print('View More button pressed');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  FullTopPicksWidget(topPicks: model.topPicks),
+                            ),
+                          );
                         },
-                        child: Text(
-                          'View More',
-                          style: FlutterFlowTheme.of(context).bodyLarge,
+                        text: 'View More',
+                        icon: Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          size: 15,
+                        ),
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 40,
+                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                          iconAlignment: IconAlignment.end,
+                          iconPadding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                          color: Color(0x00040425),
+                          textStyle: FlutterFlowTheme.of(context)
+                              .titleSmall
+                              .override(
+                                  fontFamily: FlutterFlowTheme.of(context)
+                                      .titleSmallFamily,
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  fontSize: 14,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  useGoogleFonts: false),
+                          elevation: 0,
+                          borderRadius: BorderRadius.circular(50),
                         ),
                       ),
                     ),

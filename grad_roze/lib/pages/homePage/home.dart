@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:grad_roze/components/explore_section/explore_widget.dart';
+import 'package:grad_roze/components/explore_widget/explore_widget.dart';
 import 'package:grad_roze/widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_widget.dart';
 import 'package:grad_roze/widgets/top_picks/top_picks_widget.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/custom/util.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../widgets/CarouselSliderModel.dart';
 export '../../widgets/CarouselSliderModel.dart';
@@ -18,25 +19,26 @@ export '../../widgets/top_picks_component/top_picks_component_model.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context),
-      backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-      body: const SingleChildScrollView(
-        child: Column(
-          children: [
-            CarouselSliderWidget(),
-            SizedBox(height: 20),
-            BouquetforeverymomentsectionWidget(),
-            SizedBox(height: 20),
-            TopPicksWidget(),
-            SizedBox(height: 20),
-            ExploreWidget(),
-          ],
-        ),
-      ),
-    );
+        appBar: appBar(context),
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        body: const SingleChildScrollView(
+          child: Column(
+            children: [
+              const CarouselSliderWidget(),
+              const SizedBox(height: 20),
+              const BouquetforeverymomentsectionWidget(),
+              const SizedBox(height: 20),
+              const TopPicksWidget(),
+              const SizedBox(height: 20),
+              ExploreWidget(),
+              const SizedBox(height: 20),
+            ],
+          ),
+        ));
   }
 
   AppBar appBar(BuildContext context) {
@@ -278,7 +280,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                           Text(
                             'Matching Bouquet',
                             style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                                .titleLarge
                                 .override(
                                   fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
@@ -346,7 +348,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                           Text(
                             'Customize Bouquet',
                             style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                                .titleLarge
                                 .override(
                                   fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
@@ -414,7 +416,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                           Text(
                             'Meaningful Bouquet',
                             style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                                .titleLarge
                                 .override(
                                   fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
@@ -447,13 +449,18 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
             CarouselSliderController(),
         options: CarouselOptions(
           initialPage: 1,
-          viewportFraction: 0.5,
+          viewportFraction: 0.7,
           disableCenter: true,
           enlargeCenterPage: true,
           enlargeFactor: 0.25,
           enableInfiniteScroll: true,
           scrollDirection: Axis.horizontal,
-          autoPlay: false,
+          autoPlay: true, // Enable auto-play
+          autoPlayInterval:
+              Duration(seconds: 3), // Interval between auto-play slides
+          autoPlayAnimationDuration:
+              Duration(milliseconds: 800), // Animation duration
+          autoPlayCurve: Curves.fastOutSlowIn, // Animation curve
           onPageChanged: (index, _) => _model.carouselCurrentIndex = index,
         ),
       ),

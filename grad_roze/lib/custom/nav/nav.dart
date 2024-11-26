@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_model.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_widget.dart';
 import 'package:grad_roze/pages/favorite_list/favorite_list_widget.dart';
+import 'package:grad_roze/pages/full_top_picks/full_top_picks_model.dart';
+import 'package:grad_roze/pages/full_top_picks/full_top_picks_widget.dart';
 import 'package:grad_roze/pages/navigation_menu/navigation_menu.dart';
 import 'package:grad_roze/pages/navigation_menu_users/navigation_menu_users.dart';
 import 'package:provider/provider.dart';
@@ -58,6 +60,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => OtpWidget(
             email: params.getParam(
               'email',
+              ParamType.String,
+            ),
+            role: params.getParam(
+              'role',
               ParamType.String,
             ),
           ),
@@ -182,7 +188,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage',
           path: '/homePage',
           builder: (context, params) => const HomePage(),
-        )
+        ),
+        FFRoute(
+          name: 'FullExplore',
+          path: '/fullExplore',
+          builder: (context, params) => const ViewMoreExploreWidget(),
+        ),
+        // FFRoute(
+        //   name: 'FullTopPicks',
+        //   path: '/fullTopPicks',
+        //   builder: (context, params) => const FullTopPicksWidget(),
+        // )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 
