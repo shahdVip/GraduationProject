@@ -159,18 +159,47 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             // Business Name
-                                            Text(
-                                              _model.bouquetData?['business'] ??
-                                                  'Unknown Business',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Funnel Display',
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: false,
-                                                      ),
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                //   context.pushNamed('businessProfile',queryParameters: {
+                                                //   'username': serializeParam(
+                                                //     _model.emailAddressCreateTextController.text,
+                                                //     ParamType.String,
+                                                //   ),
+                                                //   'email': serializeParam(
+                                                //     _model.rolesValue!,
+                                                //     ParamType.String,
+                                                //   ),'address': serializeParam(
+                                                //     _model.rolesValue!,
+                                                //     ParamType.String,
+                                                //   ),'phoneNumber': serializeParam(
+                                                //     _model.rolesValue!,
+                                                //     ParamType.String,
+                                                //   ),'profilePhoto': serializeParam(
+                                                //     _model.rolesValue!,
+                                                //     ParamType.String,
+                                                //   ),
+                                                // }.withoutNulls,);
+                                              },
+                                              child: Text(
+                                                _model.bouquetData?[
+                                                        'business'] ??
+                                                    'Unknown Business',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Funnel Display',
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
                                             ),
                                             const SizedBox(
                                                 height: 8), // Spacing
