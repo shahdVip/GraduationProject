@@ -16,6 +16,7 @@ const checkUserPreferenceExistsController = async (req, res) => {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+
 // Controller for initializing user preferences
 const initializeUserPreferenceController = async (req, res) => {
   try {

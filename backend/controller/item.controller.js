@@ -5,8 +5,6 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-
-
 const fetchItemsByTag = async (req, res) => {
   const { tag } = req.params; // Get the tag from the request URL (e.g., /items/tag/flowers)
   
@@ -72,7 +70,7 @@ const createItemController = async (req, res) => {
       imageURL,
       purchaseTimes: req.body.purchaseTimes || 0, // Default to 0 if not provided
       careTips: req.body.careTips || "", // Default to an empty string if not provided
-      wrapColor: req.body.wrapColor, // Default to an empty array if not provided
+      wrapColor: req.body.wrapColor, // Default to an empty array if not provided 
     };
 
     const existingBouquet = await Item.findOne({ id: itemData.id });

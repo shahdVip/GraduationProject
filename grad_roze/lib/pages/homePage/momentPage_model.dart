@@ -20,7 +20,6 @@ import 'package:provider/provider.dart';
 
 class MomentPageModel extends FlutterFlowModel<MomentPageWidget> {
   ///  State fields for stateful widgets in this page.
-
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

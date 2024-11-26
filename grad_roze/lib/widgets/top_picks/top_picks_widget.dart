@@ -6,6 +6,7 @@ import 'package:grad_roze/index.dart';
 import 'package:provider/provider.dart';
 
 import '../../custom/theme.dart';
+import '../../pages/homePage/topPage.dart';
 import 'top_picks_model.dart';
 import '../Bouquet/BouquetViewWidget.dart';
 
@@ -78,8 +79,7 @@ class TopPicksWidget extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  FullTopPicksWidget(topPicks: model.topPicks),
+                              builder: (context) => const TopPageWidget(),
                             ),
                           );
                         },
@@ -95,18 +95,19 @@ class TopPicksWidget extends StatelessWidget {
                           iconAlignment: IconAlignment.end,
                           iconPadding:
                               EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          color: Color(0x00040425),
+                          color: Color(0x00040425), // Button background color
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(
-                                  fontFamily: FlutterFlowTheme.of(context)
-                                      .titleSmallFamily,
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  fontSize: 14,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  useGoogleFonts: false),
-                          elevation: 0,
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .titleSmallFamily,
+                                color: FlutterFlowTheme.of(context).secondary,
+                                fontSize: 14,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.w500,
+                                useGoogleFonts: false,
+                              ),
+                          elevation: 0, // No shadow
                           borderRadius: BorderRadius.circular(50),
                         ),
                       ),

@@ -1,5 +1,4 @@
 import 'package:grad_roze/pages/homePage/momentPage.dart';
-
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
@@ -14,9 +13,7 @@ import '/widgets/MomentsModel.dart';
 
 class BouquetPageWidget extends StatefulWidget {
   final String bouquetId;
-
   const BouquetPageWidget({super.key, required this.bouquetId});
-
   @override
   State<BouquetPageWidget> createState() => _BouquetPageWidgetState();
 }
@@ -24,12 +21,10 @@ class BouquetPageWidget extends StatefulWidget {
 class _BouquetPageWidgetState extends State<BouquetPageWidget> {
   late BouquetPageModel _model;
   late MomentsModel m;
-
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => BouquetPageModel());
-
     // Fetch bouquet data using the model
     _model.fetchBouquetData(context, widget.bouquetId).then((_) {
       setState(() {
@@ -159,47 +154,18 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             // Business Name
-                                            InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                //   context.pushNamed('businessProfile',queryParameters: {
-                                                //   'username': serializeParam(
-                                                //     _model.emailAddressCreateTextController.text,
-                                                //     ParamType.String,
-                                                //   ),
-                                                //   'email': serializeParam(
-                                                //     _model.rolesValue!,
-                                                //     ParamType.String,
-                                                //   ),'address': serializeParam(
-                                                //     _model.rolesValue!,
-                                                //     ParamType.String,
-                                                //   ),'phoneNumber': serializeParam(
-                                                //     _model.rolesValue!,
-                                                //     ParamType.String,
-                                                //   ),'profilePhoto': serializeParam(
-                                                //     _model.rolesValue!,
-                                                //     ParamType.String,
-                                                //   ),
-                                                // }.withoutNulls,);
-                                              },
-                                              child: Text(
-                                                _model.bouquetData?[
-                                                        'business'] ??
-                                                    'Unknown Business',
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelSmall
-                                                        .override(
-                                                          fontFamily:
-                                                              'Funnel Display',
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: false,
-                                                        ),
-                                              ),
+                                            Text(
+                                              _model.bouquetData?['business'] ??
+                                                  'Unknown Business',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelSmall
+                                                      .override(
+                                                        fontFamily:
+                                                            'Funnel Display',
+                                                        letterSpacing: 0.0,
+                                                        useGoogleFonts: false,
+                                                      ),
                                             ),
                                             const SizedBox(
                                                 height: 8), // Spacing
@@ -374,7 +340,6 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                             'No tags available')
                                                       ],
                                             ),
-
                                             const SizedBox(
                                                 height: 16), // Spacing
                                             // Price
