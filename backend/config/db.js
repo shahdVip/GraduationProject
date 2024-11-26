@@ -10,7 +10,7 @@
 // module.exports = connection;
 const mongoose = require('mongoose');
 
-const dbURI = 'mongodb+srv://Sewar:securepasswordsewar@rozecluster0.vgbnq.mongodb.net/RozeDatabase?retryWrites=true&w=majorit';
+const dbURI = 'mongodb+srv://Sewar:securepasswordsewar@rozecluster0.vgbnq.mongodb.net/RozeDatabase?retryWrites=true&w=majority';
 
 const connectDB = async () => {
   try {

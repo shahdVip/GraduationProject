@@ -1,4 +1,6 @@
-import '/config.dart' show url;
+import 'package:grad_roze/config.dart';
+
+import 'bouquetViewWidget.dart' show BouquetViewWidget;
 
 class BouquetViewModel {
   final String id;

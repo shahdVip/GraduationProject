@@ -1,4 +1,4 @@
-const url = 'http://192.168.1.9:3000';
+const url = 'http://192.168.1.2:3000';
 
 final registeration = "$url/registeration";
 final signInEndpoint = "$url/signin";
@@ -27,5 +27,9 @@ final savePreferenceUrl = '$url/userPreference/save-preference';
 final deleteAllPreferenceUrl = '$url/userPreference/delete-all';
 final initilizePreferenceUrl = '$url/userPreference/initialize-preference';
 final updatePreferenceUrl = '$url/userPreference/update-preference';
+final fetchPreferenceUrl = '$url/item/recommendations';
+final fetchflowerTypes = '$url/userPreference/fTypes';
 final fetchMomentsUrl = '$url/moments';
 final fetchMomentPageUrl = '$url/momentPage';
+final fetchAllItemsUrl = '$url/item/items';
+final userPreferencesEndpoint = '$url/userPreference/preference-exists';
