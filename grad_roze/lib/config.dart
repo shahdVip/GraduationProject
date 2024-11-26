@@ -29,11 +29,8 @@ final initilizePreferenceUrl = '$url/userPreference/initialize-preference';
 final updatePreferenceUrl = '$url/userPreference/update-preference';
 final fetchPreferenceUrl = '$url/item/recommendations';
 final fetchflowerTypes = '$url/userPreference/fTypes';
-final fetchPreferenceUrl = '$url/item/recommendations';
-final fetchflowerTypes = '$url/userPreference/fTypes';
+
 final fetchMomentsUrl = '$url/moments';
 final fetchMomentPageUrl = '$url/momentPage';
-final fetchAllItemsUrl = '$url/item/items';
-final userPreferencesEndpoint = '$url/userPreference/preference-exists';
 final fetchAllItemsUrl = '$url/item/items';
 final userPreferencesEndpoint = '$url/userPreference/preference-exists';
