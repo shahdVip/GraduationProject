@@ -54,7 +54,7 @@ dependencies:
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
   mask_text_input_formatter: 2.9.0
-  image_picker: ^0.8.7+1
+  image_picker: ^1.1.2
   mime_type: 1.0.0
   file_picker: 8.1.2
   video_player: 2.9.2
@@ -72,6 +72,10 @@ dependencies:
 
   get: ^4.6.5 # Replace with the latest version if needed
   flutter_spinkit: ^5.2.1
+  camera: ^0.11.0+2
+  palette_generator: ^0.3.3+5
+  permission_handler: ^11.3.1
+  image: ^4.3.0
 http:
 
   # The following adds the Cupertino Icons font to your application.

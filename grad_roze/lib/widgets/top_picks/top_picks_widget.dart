@@ -47,7 +47,7 @@ class TopPicksWidget extends StatelessWidget {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
                         child: Text(
-                          'Our Top Picks',
+                          'Top Picks',
                           style:
                               FlutterFlowTheme.of(context).titleMedium.override(
                                     fontFamily: 'Funnel Display',
