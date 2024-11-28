@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_model.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_widget.dart';
+import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
 import 'package:grad_roze/pages/favorite_list/favorite_list_widget.dart';
 import 'package:grad_roze/pages/full_top_picks/full_top_picks_model.dart';
 import 'package:grad_roze/pages/full_top_picks/full_top_picks_widget.dart';
@@ -42,7 +43,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => const OnboardingWidget(),
+          builder: (context, _) => const CameraPageWidget(),
         ),
         FFRoute(
           name: 'onboarding',
