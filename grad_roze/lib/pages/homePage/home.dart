@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:grad_roze/components/BottomNavBar.dart';
 import 'package:grad_roze/components/explore_widget/explore_widget.dart';
 import 'package:grad_roze/widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_widget.dart';
 import 'package:grad_roze/widgets/top_picks/top_picks_widget.dart';
