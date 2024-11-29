@@ -330,22 +330,18 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
               ),
         ),
         elevation: 0,
-        iconTheme: IconThemeData(
-          color: FlutterFlowTheme.of(context).primary,
-        ),
       ),
       body: Column(
         children: [
           if (_isCameraInitialized)
             Expanded(
               child: Stack(
+                alignment: Alignment.center, // Center everything in the stack
                 children: [
-                  CameraPreview(_cameraController!),
-                  Center(
-                    child: CustomPaint(
-                      size: Size.infinite,
-                      painter: RectangleOverlayPainter(),
-                    ),
+                  CameraPreview(_cameraController!), // Camera feed
+                  CustomPaint(
+                    size: Size.infinite,
+                    painter: RectangleOverlayPainter(), // Overlay rectangle
                   ),
                 ],
               ),
