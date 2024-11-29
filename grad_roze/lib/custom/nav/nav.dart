@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:grad_roze/components/bottomNavBar/customer_layout.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_model.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_widget.dart';
 import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
@@ -43,7 +44,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => const CameraPageWidget(),
+          builder: (context, _) => const OnboardingWidget(),
         ),
         FFRoute(
           name: 'onboarding',
@@ -188,7 +189,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => const HomePage(),
+          builder: (context, params) => CustomerLayout(),
         ),
         FFRoute(
           name: 'FullExplore',
