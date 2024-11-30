@@ -203,7 +203,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                           letterSpacing: 0.0,
                           useGoogleFonts: false,
                         ),
-                    keyboardType: TextInputType.number,
+
                     cursorColor: FlutterFlowTheme.of(context).primary,
                     validator: (_) =>
                         errorMessage, // Use the validator to show the error
@@ -260,7 +260,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                           );
 
                           if (response.statusCode == 200) {
-                            Navigator.pop(context);
+                            Navigator.pop(context, newAddress);
                             // Address updated successfully
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

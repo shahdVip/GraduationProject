@@ -809,7 +809,7 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                                 fontFamily: 'Funnel Display',
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primary,
+                                                        .error,
                                                 letterSpacing: 0.0,
                                                 useGoogleFonts: false,
                                               ),

@@ -1,4 +1,4 @@
-final url = 'http://192.168.1.8:3000';
+final url = 'http://192.168.2.16:3000';
 
 final registeration = "$url/registeration";
 final signInEndpoint = "$url/signin";

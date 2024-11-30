@@ -12,7 +12,7 @@ const allowedTags = [
 const itemSchema = new mongoose.Schema(
   {
     id: { type: String, required: false, unique: true },
-    name: { type: String, required: true },
+    name: { type: String, required: true ,unique: true},
     flowerType: { type: [String], required: true },
     tags: {
       type: [String],
