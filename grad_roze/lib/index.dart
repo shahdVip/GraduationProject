@@ -28,3 +28,6 @@ export 'pages/homePage/home.dart' show HomePage;
 export 'pages/full_explore/full_explore_widget.dart' show ViewMoreExploreWidget;
 export 'pages/full_top_picks/full_top_picks_widget.dart'
     show FullTopPicksWidget;
+export 'pages/myprofile_customer/myprofile_customer_widget.dart'
+    show MyprofileCustomerWidget;
+export 'pages/cart/cart_widget.dart' show CartWidget;

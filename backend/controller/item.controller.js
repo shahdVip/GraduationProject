@@ -21,6 +21,28 @@ const fetchItemsByTag = async (req, res) => {
 };
 
 
+// Controller function to fetch items by business name
+const getItemsByBusiness = async (req, res) => {
+  const { businessName } = req.params; // Extract businessName from route parameters
+
+  try {
+    // Fetch items matching the provided business name
+    const items = await Item.find({ business: businessName });
+
+    if (!items || items.length === 0) {
+      return res.status(404).json({ message: 'No items found for the given business name.' });
+    }
+
+    // Return the fetched items
+    res.status(200).json(items);
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching items by business:', error);
+    res.status(500).json({ message: 'An error occurred while fetching items.', error: error.message });
+  }
+};
+
+
 // Controller to fetch all items
 const fetchItems = async (req, res) => {
   try {
@@ -155,4 +177,4 @@ const getTopRatedItems = async (req, res) => {
 
 // Middleware for image upload
 const uploadImage = upload.single('image');
-module.exports = { getTopRatedItems, getTop4RatedItems,fetchItemsByTag,fetchItems, addItem, uploadImage, createItemController, getItemById, fetchRecommendedItems };
+module.exports = { getTopRatedItems, getTop4RatedItems,fetchItemsByTag,fetchItems, addItem,getItemsByBusiness, uploadImage, createItemController, getItemById, fetchRecommendedItems };

@@ -1,4 +1,5 @@
 import 'package:grad_roze/pages/homePage/momentPage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+
 import 'BouquetPageModel.dart';
 import '/widgets/MomentsModel.dart';
 
@@ -154,18 +157,38 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             // Business Name
-                                            Text(
-                                              _model.bouquetData?['business'] ??
-                                                  'Unknown Business',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelSmall
-                                                      .override(
-                                                        fontFamily:
-                                                            'Funnel Display',
-                                                        letterSpacing: 0.0,
-                                                        useGoogleFonts: false,
-                                                      ),
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                  'businessProfile',
+                                                  queryParameters: {
+                                                    'username': serializeParam(
+                                                      _model.bouquetData?[
+                                                          'business'],
+                                                      ParamType.String,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              },
+                                              child: Text(
+                                                _model.bouquetData?[
+                                                        'business'] ??
+                                                    'Unknown Business',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelSmall
+                                                        .override(
+                                                          fontFamily:
+                                                              'Funnel Display',
+                                                          letterSpacing: 0.0,
+                                                          useGoogleFonts: false,
+                                                        ),
+                                              ),
                                             ),
                                             const SizedBox(
                                                 height: 8), // Spacing
@@ -378,8 +401,50 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                 height: 16), // Spacing
                                             // Add to Cart Button
                                             FFButtonWidget(
-                                              onPressed: () {
-                                                print('Added to cart');
+                                              onPressed: () async {
+                                                SharedPreferences prefs =
+                                                    await SharedPreferences
+                                                        .getInstance();
+                                                String? username = prefs.getString(
+                                                    'username'); // Retrieve username from shared preferences
+
+                                                if (username != null) {
+                                                  try {
+                                                    // Replace with your API URL
+                                                    final response =
+                                                        await http.post(
+                                                      Uri.parse(
+                                                          '$url/cart/add'),
+                                                      headers: {
+                                                        'Content-Type':
+                                                            'application/json'
+                                                      },
+                                                      body: jsonEncode({
+                                                        'username': username,
+                                                        'itemName': _model
+                                                                .bouquetData?[
+                                                            'name'], // Replace with actual item name
+                                                        'quantity':
+                                                            1, // Default quantity
+                                                      }),
+                                                    );
+
+                                                    if (response.statusCode ==
+                                                        200) {
+                                                      print(
+                                                          'Item added to cart');
+                                                    } else {
+                                                      print(
+                                                          'Failed to add item to cart: ${response.body}');
+                                                    }
+                                                  } catch (e) {
+                                                    print(
+                                                        'Error adding item to cart: $e');
+                                                  }
+                                                } else {
+                                                  print(
+                                                      'Username not found in shared preferences');
+                                                }
                                               },
                                               text: 'Add to Cart',
                                               icon: Icon(

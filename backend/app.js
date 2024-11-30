@@ -7,6 +7,8 @@ const userRequestRoutes = require('./routes/userRequest.route');
 const userPreferenceRoutes = require('./routes/userPreference.route');
 const itemRoutes = require('./routes/item.route');
 const momentRoutes = require("./routes/moments.route");
+const cartRoutes = require('./routes/userCart.route');
+
 
 require('dotenv').config(); // To load environment variables
 
@@ -26,6 +28,7 @@ app.use('/userRequests', userRequestRoutes);
 app.use('/userPreference', userPreferenceRoutes); // Add the user preference routes
 app.use("/moments", momentRoutes);
 app.use('/item', itemRoutes);
+app.use('/cart', cartRoutes);
 
 
 

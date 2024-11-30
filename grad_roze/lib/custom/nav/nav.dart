@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_model.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_widget.dart';
+import 'package:grad_roze/pages/cart/cart_widget.dart';
 import 'package:grad_roze/pages/favorite_list/favorite_list_widget.dart';
 import 'package:grad_roze/pages/full_top_picks/full_top_picks_model.dart';
 import 'package:grad_roze/pages/full_top_picks/full_top_picks_widget.dart';
+import 'package:grad_roze/pages/myprofile_customer/myprofile_customer_widget.dart';
 import 'package:grad_roze/pages/navigation_menu/navigation_menu.dart';
 import 'package:grad_roze/pages/navigation_menu_users/navigation_menu_users.dart';
 import 'package:provider/provider.dart';
@@ -112,22 +114,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 'username',
                 ParamType.String,
               ),
-              email: params.getParam(
-                'email',
-                ParamType.String,
-              ),
-              address: params.getParam(
-                'address',
-                ParamType.String,
-              ),
-              phoneNumber: params.getParam(
-                'phoneNumber',
-                ParamType.String,
-              ),
-              profilePhoto: params.getParam(
-                'profilePhoto',
-                ParamType.String,
-              ),
             );
           },
         ),
@@ -193,6 +179,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'FullExplore',
           path: '/fullExplore',
           builder: (context, params) => const ViewMoreExploreWidget(),
+        ),
+        FFRoute(
+          name: 'myprofileCustomer',
+          path: '/myprofileCustomer',
+          builder: (context, params) => const MyprofileCustomerWidget(),
+        ),
+        FFRoute(
+          name: 'cart',
+          path: '/cart',
+          builder: (context, params) => const CartWidget(),
         ),
         // FFRoute(
         //   name: 'FullTopPicks',

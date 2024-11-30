@@ -71,5 +71,7 @@ router.put('/reset-password', UserController.resetPasswordWithOtp);
 
 router.put('/update-address', UserController.verifyToken, UserController.updateAddress);
 
+router.get('/user/:username', UserController.getUserByUsername);
+
 
 module.exports = router;

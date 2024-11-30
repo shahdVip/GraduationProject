@@ -123,14 +123,32 @@ class BouquetViewWidget extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text(
-                        model.businessName,
-                        style: FlutterFlowTheme.of(context).bodySmall.override(
-                              fontFamily: 'Funnel Display',
-                              color: Color(0xff040425),
-                              letterSpacing: 0.0,
-                              useGoogleFonts: false,
-                            ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'businessProfile',
+                            queryParameters: {
+                              'username': serializeParam(
+                                model.businessName,
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
+                        },
+                        child: Text(
+                          model.businessName,
+                          style:
+                              FlutterFlowTheme.of(context).bodySmall.override(
+                                    fontFamily: 'Funnel Display',
+                                    color: Color(0xff040425),
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
+                        ),
                       ),
                     ],
                   ),
