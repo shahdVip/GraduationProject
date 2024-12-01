@@ -89,7 +89,7 @@ class _TopPageWidgetState extends State<TopPageWidget> {
                 useGoogleFonts: false,
               ),
         ),
-        actions: [],
+        actions: const [],
         centerTitle: false,
         elevation: 1,
       ),

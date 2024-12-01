@@ -128,67 +128,67 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
   void _showMatchResult(Color dominantColor, String imagePath) {
     Map<String, List<Color>> bouquets = {
       "red": [
-        Color(0xFFFF0000), // Bright red
-        Color(0xFFB22222), // Firebrick
-        Color(0xFF8B0000), // Dark red
-        Color.fromARGB(255, 158, 19, 30), // Tomato
-        Color(0xFFDC143C), // Crimson
-        Color(0xFF770404),
+        const Color(0xFFFF0000), // Bright red
+        const Color(0xFFB22222), // Firebrick
+        const Color(0xFF8B0000), // Dark red
+        const Color.fromARGB(255, 158, 19, 30), // Tomato
+        const Color(0xFFDC143C), // Crimson
+        const Color(0xFF770404),
       ],
       "yellow": [
-        Color(0xFFFFFF00), // Yellow
-        Color(0xFFFFD700), // Gold
-        Color(0xFFF0E68C), // Khaki
-        Color(0xFFFFE135), // Banana yellow
-        Color(0xFFFFF8DC), // Cornsilk
+        const Color(0xFFFFFF00), // Yellow
+        const Color(0xFFFFD700), // Gold
+        const Color(0xFFF0E68C), // Khaki
+        const Color(0xFFFFE135), // Banana yellow
+        const Color(0xFFFFF8DC), // Cornsilk
       ],
       "pink": [
-        Color(0xFFFFC0CB), // Light pink
-        Color(0xFFFF69B4), // Hot pink
-        Color.fromARGB(255, 235, 7, 83), // Pale violet red
-        Color.fromARGB(255, 201, 9, 73), // Sandy pink
-        Color(0xFFFF1493), // Deep pink
+        const Color(0xFFFFC0CB), // Light pink
+        const Color(0xFFFF69B4), // Hot pink
+        const Color.fromARGB(255, 235, 7, 83), // Pale violet red
+        const Color.fromARGB(255, 201, 9, 73), // Sandy pink
+        const Color(0xFFFF1493), // Deep pink
       ],
       "green": [
-        Color(0xFF008000), // Green
-        Color(0xFF32CD32), // Lime green
-        Color(0xFF006400), // Dark green
-        Color(0xFF228B22), // Forest green
-        Color(0xFF7CFC00), // Lawn green
-        Color(0xFF98FB98), // Pale green
+        const Color(0xFF008000), // Green
+        const Color(0xFF32CD32), // Lime green
+        const Color(0xFF006400), // Dark green
+        const Color(0xFF228B22), // Forest green
+        const Color(0xFF7CFC00), // Lawn green
+        const Color(0xFF98FB98), // Pale green
       ],
       "blue": [
-        Color(0xFF0000FF), // Blue
-        Color(0xFF4682B4), // Steel blue
-        Color(0xFF1E90FF), // Dodger blue
-        Color(0xFF87CEFA), // Light sky blue
-        Color(0xFF6495ED), // Cornflower blue
-        Color(0xFF4169E1), // Royal blue
+        const Color(0xFF0000FF), // Blue
+        const Color(0xFF4682B4), // Steel blue
+        const Color(0xFF1E90FF), // Dodger blue
+        const Color(0xFF87CEFA), // Light sky blue
+        const Color(0xFF6495ED), // Cornflower blue
+        const Color(0xFF4169E1), // Royal blue
       ],
       "white": [
-        Color(0xFFFFFFFF), // White
-        Color(0xFFFAF9F6), // Off-white
-        Color(0xFFEEE9E9), // Snow white
-        Color(0xFFF5F5DC), // Beige
-        Color(0xFFF8F8FF),
-        Color.fromARGB(255, 143, 143, 143),
-        Color.fromARGB(255, 197, 197, 197), // Ghost white
+        const Color(0xFFFFFFFF), // White
+        const Color(0xFFFAF9F6), // Off-white
+        const Color(0xFFEEE9E9), // Snow white
+        const Color(0xFFF5F5DC), // Beige
+        const Color(0xFFF8F8FF),
+        const Color.fromARGB(255, 143, 143, 143),
+        const Color.fromARGB(255, 197, 197, 197), // Ghost white
       ],
       "purple": [
-        Color(0xFF800080), // Purple
-        Color(0xFF9370DB), // Medium purple
-        Color(0xFF4B0082), // Indigo
-        Color(0xFFBA55D3), // Orchid
-        Color.fromARGB(255, 185, 32, 185), // Thistle
-        Color(0xFF8A2BE2), // Blue violet
+        const Color(0xFF800080), // Purple
+        const Color(0xFF9370DB), // Medium purple
+        const Color(0xFF4B0082), // Indigo
+        const Color(0xFFBA55D3), // Orchid
+        const Color.fromARGB(255, 185, 32, 185), // Thistle
+        const Color(0xFF8A2BE2), // Blue violet
       ],
       "orange": [
-        Color(0xFFFFA500), // Orange
-        Color(0xFFFF4500), // Orange red
-        Color.fromARGB(255, 226, 149, 76), // Coral
-        Color(0xFFFF6347), // Tomato
-        Color.fromARGB(255, 253, 91, 27), // Light salmon
-        Color.fromARGB(255, 122, 96, 37),
+        const Color(0xFFFFA500), // Orange
+        const Color(0xFFFF4500), // Orange red
+        const Color.fromARGB(255, 226, 149, 76), // Coral
+        const Color(0xFFFF6347), // Tomato
+        const Color.fromARGB(255, 253, 91, 27), // Light salmon
+        const Color.fromARGB(255, 122, 96, 37),
       ],
     };
 

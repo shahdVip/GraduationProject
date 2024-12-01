@@ -77,7 +77,7 @@ class _MatchingPageWidgetState extends State<MatchingPageWidget> {
           children: [
             // Search bar
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
               child: TextFormField(
                 onChanged: (value) {
                   setState(() {
@@ -116,7 +116,8 @@ class _MatchingPageWidgetState extends State<MatchingPageWidget> {
                     ),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  contentPadding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                  contentPadding:
+                      const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                   prefixIcon: Icon(
                     Icons.search,
                     color: FlutterFlowTheme.of(context).secondaryText,

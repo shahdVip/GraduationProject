@@ -10,7 +10,6 @@ import '/custom/util.dart';
 import '/custom/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:http/http.dart' as http;
-import 'package:google_fonts/google_fonts.dart';
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -555,12 +554,8 @@ class _AdminUsersSectionWidgetState extends State<AdminUsersSectionWidget> {
                                           updateCallback: () =>
                                               safeSetState(() {}),
                                           child: UserSectionCusWidget(
-                                              username: user['username'],
-                                              email: user['email'],
-                                              profilePhoto:
-                                                  user['profilePhoto'],
-                                              phoneNumber: user['phoneNumber'],
-                                              address: user['address']),
+                                            userData: user,
+                                          ),
                                         ),
                                     for (var user in filteredUsers)
                                       if (user['adminApproved'] == true &&
@@ -571,12 +566,8 @@ class _AdminUsersSectionWidgetState extends State<AdminUsersSectionWidget> {
                                           updateCallback: () =>
                                               safeSetState(() {}),
                                           child: UserSectionBusWidget(
-                                              username: user['username'],
-                                              email: user['email'],
-                                              profilePhoto:
-                                                  user['profilePhoto'],
-                                              phoneNumber: user['phoneNumber'],
-                                              address: user['address']),
+                                            userData: user,
+                                          ),
                                         ),
                                     for (var user in filteredUsers)
                                       if (user['adminApproved'] == false ||

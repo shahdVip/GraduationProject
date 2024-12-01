@@ -3,6 +3,8 @@ import 'package:grad_roze/pages/homePage/home.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({super.key});
+
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }
@@ -13,11 +15,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   // Define pages for navigation
   final List<Widget> _pages = [
-    HomePage(),
-    PlaceholderWidget('Page 2'),
-    PlaceholderWidget('Page 3'),
-    PlaceholderWidget('Page 4'),
-    PlaceholderWidget('Page 5'),
+    const HomePage(),
+    const PlaceholderWidget('Page 2'),
+    const PlaceholderWidget('Page 3'),
+    const PlaceholderWidget('Page 4'),
+    const PlaceholderWidget('Page 5'),
   ];
 
   @override
@@ -37,7 +39,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         buttonBackgroundColor: Colors.white,
         backgroundColor: Colors.blueAccent,
         animationCurve: Curves.easeInOut,
-        animationDuration: Duration(milliseconds: 600),
+        animationDuration: const Duration(milliseconds: 600),
         onTap: (index) {
           setState(() {
             _page = index;
@@ -53,14 +55,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
 class PlaceholderWidget extends StatelessWidget {
   final String text;
 
-  const PlaceholderWidget(this.text, {Key? key}) : super(key: key);
+  const PlaceholderWidget(this.text, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Text(
         text,
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
       ),
     );
   }
