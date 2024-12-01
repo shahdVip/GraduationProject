@@ -349,7 +349,7 @@ class _AddInInventoryWidgetState extends State<AddInInventoryWidget>
                                                           Colors.transparent,
                                                       radius: 100,
                                                       backgroundImage: AssetImage(
-                                                          'assets/images/defaults/userphoto.png'),
+                                                          'assets/images/defaults/bouquet.png'),
                                                     ),
                                             ),
                                             Align(
