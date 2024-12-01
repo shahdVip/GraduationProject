@@ -93,7 +93,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
             }
             //context.pushNamed('moodQuiz'); // Navigate to the user home page
           } else {
-            context.pushNamed('onboarding');
+            context.pushNamed('inventory');
           }
         } else {
           String message = 'Something went wrong!';

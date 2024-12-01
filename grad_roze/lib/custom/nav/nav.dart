@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:grad_roze/pages/business_pages/inventory/inventory_widget.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_model.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_widget.dart';
 import 'package:grad_roze/pages/cart/cart_widget.dart';
@@ -189,6 +190,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'cart',
           path: '/cart',
           builder: (context, params) => const CartWidget(),
+        ),
+        FFRoute(
+          name: 'inventory',
+          path: '/inventory',
+          builder: (context, params) => const InventoryWidget(),
         ),
         // FFRoute(
         //   name: 'FullTopPicks',
