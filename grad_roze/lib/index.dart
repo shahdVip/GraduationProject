@@ -31,3 +31,5 @@ export 'pages/full_top_picks/full_top_picks_widget.dart'
 export 'pages/myprofile_customer/myprofile_customer_widget.dart'
     show MyprofileCustomerWidget;
 export 'pages/cart/cart_widget.dart' show CartWidget;
+export 'pages/business_pages/inventory/inventory_widget.dart'
+    show InventoryWidget;
