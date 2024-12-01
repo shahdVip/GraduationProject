@@ -2,8 +2,6 @@ import '/custom/theme.dart';
 import '/custom/util.dart';
 import '/custom/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'order_list_model.dart';
 export 'order_list_model.dart';

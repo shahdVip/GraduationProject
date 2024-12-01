@@ -22,4 +22,16 @@ class UserService {
     }
 }
 
-module.exports=UserService;
+
+// Service to update user's address
+const updateUserAddress = async (username, newAddress) => {
+    const updatedUser = await UserModel.findOneAndUpdate(
+      { username }, // Filter by username
+      { address: newAddress }, // Update address
+      { new: true } // Return the updated document
+    );
+
+    return updatedUser;
+  };
+
+module.exports={ updateUserAddress ,UserService};

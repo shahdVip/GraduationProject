@@ -9,8 +9,6 @@ import '/custom/widgets.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 import 'forgot_password_model.dart';

@@ -85,7 +85,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
             } else {
               // Handle other errors if needed
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
+                const SnackBar(
                   content: Text('Error checking preferences'),
                   backgroundColor: Colors.red,
                 ),
@@ -93,7 +93,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
             }
             //context.pushNamed('moodQuiz'); // Navigate to the user home page
           } else {
-            context.pushNamed('onboarding');
+            context.pushNamed('inventory');
           }
         } else {
           String message = 'Something went wrong!';
@@ -152,8 +152,9 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
       request.fields['phoneNumber'] = _model.phoneCreateTextController.text;
       request.fields['username'] = _model.usernameCreateTextController.text;
       request.fields['role'] = _model.rolesValue!; // Use non-null assertion
-      if (_model.rolesValue == 'Customer')
+      if (_model.rolesValue == 'Customer') {
         request.fields['adminApproved'] = 'true';
+      }
       // Add the image file if available
       if (_image != null) {
         var file = http.MultipartFile.fromBytes(

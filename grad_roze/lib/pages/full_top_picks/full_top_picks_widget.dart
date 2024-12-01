@@ -47,8 +47,8 @@ class _FullTopPicksWidgetState extends State<FullTopPicksWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 20.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -97,7 +97,7 @@ class _FullTopPicksWidgetState extends State<FullTopPicksWidget>
                   useGoogleFonts: false,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1,
         ),
@@ -108,7 +108,7 @@ class _FullTopPicksWidgetState extends State<FullTopPicksWidget>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
                 child: Text(
                   'Elevate Your Occasions with Our Most Popular Flower Choices!',
                   style: FlutterFlowTheme.of(context).labelLarge.override(

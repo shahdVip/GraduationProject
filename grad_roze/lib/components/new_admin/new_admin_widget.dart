@@ -1,18 +1,15 @@
 import 'package:grad_roze/config.dart';
 import 'package:image_picker/image_picker.dart';
 import '/custom/animations.dart';
-import '/custom/drop_down.dart';
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
 import '/custom/widgets.dart';
-import '/custom/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'new_admin_model.dart';
 export 'new_admin_model.dart';

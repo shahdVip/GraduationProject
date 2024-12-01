@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grad_roze/custom/theme.dart';
-import 'package:grad_roze/custom/widgets.dart';
 import 'package:grad_roze/pages/homePage/momentPage.dart';
-import '/widgets/MomentsModel.dart';
 import 'package:grad_roze/services/moment_service.dart';
 import 'package:grad_roze/widgets/moments_widget.dart';
 

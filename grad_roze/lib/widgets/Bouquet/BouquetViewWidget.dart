@@ -90,7 +90,7 @@ class BouquetViewWidget extends StatelessWidget {
                         model.name,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Funnel Display',
-                              color: Color(0xff040425),
+                              color: const Color(0xff040425),
                               letterSpacing: 0.0,
                               useGoogleFonts: false,
                             ),
@@ -111,7 +111,7 @@ class BouquetViewWidget extends StatelessWidget {
                                   fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
                                   useGoogleFonts: false,
-                                  color: Color(0xff770404),
+                                  color: const Color(0xff770404),
                                   fontWeight: FontWeight.bold,
                                 ),
                       ),
@@ -123,14 +123,32 @@ class BouquetViewWidget extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text(
-                        model.businessName,
-                        style: FlutterFlowTheme.of(context).bodySmall.override(
-                              fontFamily: 'Funnel Display',
-                              color: Color(0xff040425),
-                              letterSpacing: 0.0,
-                              useGoogleFonts: false,
-                            ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'businessProfile',
+                            queryParameters: {
+                              'username': serializeParam(
+                                model.businessName,
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
+                        },
+                        child: Text(
+                          model.businessName,
+                          style:
+                              FlutterFlowTheme.of(context).bodySmall.override(
+                                    fontFamily: 'Funnel Display',
+                                    color: Color(0xff040425),
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
+                        ),
                       ),
                     ],
                   ),

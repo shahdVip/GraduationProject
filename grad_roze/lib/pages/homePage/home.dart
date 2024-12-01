@@ -10,7 +10,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../widgets/CarouselSliderModel.dart';
 export '../../widgets/CarouselSliderModel.dart';
-
+import 'package:grad_roze/custom/icon_button.dart';
 export '../../widgets/MomentsModel.dart';
 
 export '../../widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_model.dart';
@@ -61,7 +61,10 @@ class HomePage extends StatelessWidget {
       elevation: 0.0,
       centerTitle: true,
       leading: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          print('profile button');
+          context.pushNamed('myprofileCustomer');
+        },
         child: Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10),
@@ -77,31 +80,24 @@ class HomePage extends StatelessWidget {
         ),
       ), //container
       actions: [
-        SearchDelegate(context),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+          child: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 60,
+            icon: Icon(
+              Icons.shopping_cart_outlined,
+              color: FlutterFlowTheme.of(context).primary,
+              size: 24,
+            ),
+            onPressed: () {
+              // context.pushNamed('cart'); // Navigate to the home page
+            },
+          ),
+        ),
       ],
-    );
-  }
-
-  GestureDetector SearchDelegate(BuildContext context) {
-    return GestureDetector(
-      onTap: () => showSearch(
-        context: context,
-        delegate: CustomSearchDelegate(),
-      ),
-      child: Container(
-        width: 37,
-        alignment: Alignment.center,
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: const Color(0xFFF7F8F8), //COLOR OF THE BACKGROUND!
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: SvgPicture.asset(
-          'assets/icons/search.svg',
-          height: 17,
-          width: 17,
-        ),
-      ),
     );
   }
 }
@@ -464,9 +460,9 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
           scrollDirection: Axis.horizontal,
           autoPlay: true, // Enable auto-play
           autoPlayInterval:
-              Duration(seconds: 3), // Interval between auto-play slides
+              const Duration(seconds: 3), // Interval between auto-play slides
           autoPlayAnimationDuration:
-              Duration(milliseconds: 800), // Animation duration
+              const Duration(milliseconds: 800), // Animation duration
           autoPlayCurve: Curves.fastOutSlowIn, // Animation curve
           onPageChanged: (index, _) => _model.carouselCurrentIndex = index,
         ),
