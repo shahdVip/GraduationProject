@@ -127,9 +127,6 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (_model == null) {
-      return const Center(child: CircularProgressIndicator());
-    }
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -155,14 +152,14 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
               child: TextFormField(
                 controller: _model.textController,
                 focusNode: _model.textFieldFocusNode,
                 onChanged: (_) {
                   EasyDebounce.debounce(
                     '_model.textController',
-                    Duration(milliseconds: 2000),
+                    const Duration(milliseconds: 2000),
                     () {
                       setState(() {
                         isSearching = true; // Set the search flag
@@ -225,7 +222,8 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
                     ),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  contentPadding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                  contentPadding:
+                      const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                   prefixIcon: Icon(
                     Icons.search,
                     color: FlutterFlowTheme.of(context).secondaryText,
@@ -276,7 +274,7 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
                               padding: EdgeInsets.zero,
                               shrinkWrap: true,
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 8.0,
                                 mainAxisSpacing: 8.0,

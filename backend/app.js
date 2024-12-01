@@ -7,6 +7,9 @@ const userRequestRoutes = require('./routes/userRequest.route');
 const userPreferenceRoutes = require('./routes/userPreference.route');
 const itemRoutes = require('./routes/item.route');
 const momentRoutes = require("./routes/moments.route");
+const cartRoutes = require('./routes/userCart.route');
+const inventoryRoutes = require('./routes/inventory.route');
+
 
 require('dotenv').config(); // To load environment variables
 
@@ -17,6 +20,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(body_parser.json());
+app.use('/uploadsFlowers', express.static(path.join(__dirname, 'uploadsFlowers')));
+
 
 
 
@@ -27,6 +32,9 @@ app.use('/userPreference', userPreferenceRoutes); // Add the user preference rou
 app.use("/moments", momentRoutes);
 app.use('/item', itemRoutes);
 
+
+app.use('/cart', cartRoutes);
+app.use('/inventory', inventoryRoutes);
 
 
 module.exports = app;

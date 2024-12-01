@@ -5,22 +5,13 @@ import '/custom/util.dart';
 import 'package:flutter/material.dart';
 import 'user_section_cus_model.dart';
 export 'user_section_cus_model.dart';
+import '/config.dart';
 
 class UserSectionCusWidget extends StatefulWidget {
-  final String username;
-  final String email;
-  final String profilePhoto;
-  final String phoneNumber;
-  final String address;
+  final Map<String, dynamic> userData;
 
-  const UserSectionCusWidget(
-      {super.key,
-      required this.username,
-      required this.email,
-      required this.profilePhoto,
-      required this.phoneNumber,
-      required this.address});
-
+  const UserSectionCusWidget({required this.userData, Key? key})
+      : super(key: key);
   @override
   State<UserSectionCusWidget> createState() => _UserSectionCusWidgetState();
 }
@@ -87,19 +78,27 @@ class _UserSectionCusWidgetState extends State<UserSectionCusWidget> {
                 padding: const EdgeInsets.all(2.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: widget.profilePhoto.isEmpty
+                  child: (widget.userData['profilePhoto'] == null ||
+                          widget.userData['profilePhoto'].isEmpty)
                       ? Image.asset(
-                          'assets/images/defaults/default_avatar.png', // Path to your default image
+                          'assets/images/defaults/default_avatar.png',
                           width: 60.0,
                           height: 60.0,
                           fit: BoxFit.cover,
                         )
                       : Image.network(
-                          widget
-                              .profilePhoto, // Use the passed profile photo URL
+                          '$url${widget.userData['profilePhoto']}',
                           width: 60.0,
                           height: 60.0,
                           fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/images/defaults/default_avatar.png',
+                              width: 60.0,
+                              height: 60.0,
+                              fit: BoxFit.cover,
+                            );
+                          },
                         ),
                 ),
               ),
@@ -124,16 +123,16 @@ class _UserSectionCusWidgetState extends State<UserSectionCusWidget> {
                         context.pushNamed(
                           'customerProfile',
                           queryParameters: {
-                            'username': widget.username,
-                            'email': widget.email,
-                            'address': widget.address,
-                            'phoneNumber': widget.phoneNumber,
-                            'profilePhoto': widget.profilePhoto
+                            'username': widget.userData['username'],
+                            'email': widget.userData['email'],
+                            'address': widget.userData['address'],
+                            'phoneNumber': widget.userData['phoneNumber'],
+                            'profilePhoto': widget.userData['profilePhoto'],
                           },
                         );
                       },
                       child: Text(
-                        widget.username,
+                        widget.userData['username'],
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
                               fontFamily: 'Funnel Display',
                               useGoogleFonts: false,
@@ -146,7 +145,7 @@ class _UserSectionCusWidgetState extends State<UserSectionCusWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           0.0, 0.0, 12.0, 0.0),
                       child: Text(
-                        widget.email,
+                        widget.userData['email'],
                         style: FlutterFlowTheme.of(context).labelSmall.override(
                               fontFamily: 'Funnel Display',
                               useGoogleFonts: false,
@@ -209,9 +208,9 @@ class _UserSectionCusWidgetState extends State<UserSectionCusWidget> {
                       return Padding(
                         padding: MediaQuery.viewInsetsOf(context),
                         child: EditUserWidget(
-                          usernamee: widget.username,
+                          usernamee: widget.userData['username'],
                           role: 'Customer',
-                          profilePhoto: widget.profilePhoto,
+                          profilePhoto: widget.userData['profilePhoto'],
                         ),
                       );
                     },

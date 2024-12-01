@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/index.dart';
 import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
+import 'package:grad_roze/pages/cart/cart_widget.dart';
 
 class CustomerLayout extends StatefulWidget {
+  const CustomerLayout({super.key});
+
   @override
   _CustomerLayoutState createState() => _CustomerLayoutState();
 }
@@ -14,9 +17,9 @@ class _CustomerLayoutState extends State<CustomerLayout> {
 
   // List of pages displayed for each tab
   final List<Widget> _pages = [
-    CameraPageWidget(),
-    HomePage(),
-    HomePage(),
+    const CameraPageWidget(),
+    const HomePage(),
+    const CartWidget(),
   ];
 
   @override
@@ -29,7 +32,7 @@ class _CustomerLayoutState extends State<CustomerLayout> {
         circleWidth: 60, // Size of the floating circle
         circleColor:
             FlutterFlowTheme.of(context).primary, // Floating circle color
-        activeIcons: <Widget>[
+        activeIcons: const <Widget>[
           Icon(Icons.camera, color: Colors.white),
           Icon(Icons.home, color: Colors.white),
           Icon(Icons.shopping_cart_outlined, color: Colors.white),

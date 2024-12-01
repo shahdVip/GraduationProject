@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
-
+import '../main.dart';
 export 'keep_alive_wrapper.dart';
 export 'lat_lng.dart';
 export 'place.dart';
@@ -33,6 +33,9 @@ pickImage(ImageSource source) async {
   }
   print('no image is selected');
 }
+
+void setDarkModeSetting(BuildContext context, ThemeMode themeMode) =>
+    MyApp.of(context).setThemeMode(themeMode);
 
 T valueOrDefault<T>(T? value, T defaultValue) =>
     (value is String && value.isEmpty) || value == null ? defaultValue : value;

@@ -54,8 +54,9 @@ class _ExploreWidgetState extends State<ExploreWidget>
 
   // Fetch recommended items from the backend API
   Future<void> fetchRecommendedItems() async {
-    if (username.isEmpty)
+    if (username.isEmpty) {
       return; // Prevent making the API call if username is empty
+    }
 
     final response = await http.post(
       Uri.parse(fetchPreferenceUrl), // Replace with your API endpoint
@@ -103,15 +104,15 @@ class _ExploreWidgetState extends State<ExploreWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 20.0),
+            end: const Offset(0.0, 0.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.698, 0),
-            end: Offset(0, 0),
+            begin: const Offset(0.698, 0),
+            end: const Offset(0, 0),
           ),
         ],
       ),
@@ -128,24 +129,24 @@ class _ExploreWidgetState extends State<ExploreWidget>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
       child: Container(
         width: double.infinity,
         height: 350,
-        decoration: BoxDecoration(),
+        decoration: const BoxDecoration(),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Align(
-              alignment: AlignmentDirectional(-1, 0),
+              alignment: const AlignmentDirectional(-1, 0),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(-1, 0),
+                      alignment: const AlignmentDirectional(-1, 0),
                       child: Text(
                         'Blossoms to Match Your Style',
                         style:
@@ -206,23 +207,23 @@ class _ExploreWidgetState extends State<ExploreWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
               child: FFButtonWidget(
                 onPressed: () {
                   context.pushNamed('FullExplore');
                 },
                 text: 'View More',
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_forward_ios_outlined,
                   size: 15,
                 ),
                 options: FFButtonOptions(
                   width: double.infinity,
                   height: 40,
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
                   iconAlignment: IconAlignment.end,
-                  iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                  color: Color(0x00040425),
+                  iconPadding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                  color: const Color(0x00040425),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                       fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
                       color: FlutterFlowTheme.of(context).secondary,

@@ -10,12 +10,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import '/config.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import 'dart:convert';
 import 'package:http_parser/http_parser.dart';
-import 'dart:typed_data';
-import 'package:http/http.dart' as http;
 
 import 'package:mime/mime.dart';
 

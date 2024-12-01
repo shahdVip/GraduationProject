@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:grad_roze/config.dart';
 import 'package:image_picker/image_picker.dart';
 import '/custom/animations.dart';
@@ -13,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'admin_user_creation_bottomsheet_model.dart';
 export 'admin_user_creation_bottomsheet_model.dart';

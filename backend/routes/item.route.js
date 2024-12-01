@@ -10,6 +10,7 @@ const {
   getTop4RatedItems,
   getTopRatedItems,
   fetchItemsByColor,
+  getItemsByBusiness,
 } = require('../controller/item.controller');
 
 const router = express.Router();
@@ -23,6 +24,9 @@ router.get('/items/tag/:tag',fetchItemsByTag);
 router.get('/items/color/:color',fetchItemsByColor);
 router.get('/top4-rated-items', getTop4RatedItems);
 router.get('/top-rated-items', getTopRatedItems);
+
+// Route to fetch items by business name
+router.get('/business/:businessName', getItemsByBusiness);
 
 // Route to fetch recommended items
 

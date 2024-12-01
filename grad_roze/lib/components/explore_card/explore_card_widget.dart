@@ -47,14 +47,13 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(12, 12, 0, 5),
+      padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 0, 5),
       child: InkWell(
         splashColor: Colors.transparent,
         focusColor: Colors.transparent,
         hoverColor: Colors.transparent,
         highlightColor: Colors.transparent,
         onTap: () async {
-          print('itemmmmmmmmmmmmmmm:${widget.item}');
           var itemId = widget.item['id'];
 
           Navigator.push(
@@ -110,7 +109,7 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
                             height: 110,
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
-                              return Icon(Icons.broken_image,
+                              return const Icon(Icons.broken_image,
                                   size: 110); // Handle broken image URL
                             },
                           ),
@@ -120,7 +119,7 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -128,7 +127,7 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
                         widget.item['name'] ?? '',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'Funnel Display',
-                              color: Color(0xff040425),
+                              color: const Color(0xff040425),
                               letterSpacing: 0.0,
                               useGoogleFonts: false,
                             ),
@@ -137,7 +136,7 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -149,7 +148,7 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
                                   fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
                                   useGoogleFonts: false,
-                                  color: Color(0xff770404),
+                                  color: const Color(0xff770404),
                                   fontWeight: FontWeight.bold,
                                 ),
                       ),
@@ -157,18 +156,36 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 4, 16, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Text(
-                        widget.item['business'] ?? '',
-                        style: FlutterFlowTheme.of(context).bodySmall.override(
-                              fontFamily: 'Funnel Display',
-                              color: Color(0xff040425),
-                              letterSpacing: 0.0,
-                              useGoogleFonts: false,
-                            ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(
+                            'businessProfile',
+                            queryParameters: {
+                              'username': serializeParam(
+                                widget.item['business'],
+                                ParamType.String,
+                              ),
+                            }.withoutNulls,
+                          );
+                        },
+                        child: Text(
+                          widget.item['business'] ?? '',
+                          style:
+                              FlutterFlowTheme.of(context).bodySmall.override(
+                                    fontFamily: 'Funnel Display',
+                                    color: Color(0xff040425),
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
+                        ),
                       ),
                     ],
                   ),
