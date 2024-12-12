@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:grad_roze/components/bottomNavBar/customer_layout.dart';
+import 'package:grad_roze/components/business_components/business_layout.dart';
 import 'package:grad_roze/pages/business_pages/inventory/inventory_widget.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_model.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_widget.dart';
@@ -176,7 +177,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => CustomerLayout(),
+          builder: (context, params) => const CustomerLayout(),
         ),
         FFRoute(
           name: 'FullExplore',
@@ -198,7 +199,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/inventory',
           builder: (context, params) => const InventoryWidget(),
         ),
-
+        FFRoute(
+          name: 'business_Pages',
+          path: '/business',
+          builder: (context, params) => const BusinessLayout(),
+        ),
         // FFRoute(
         //   name: 'FullTopPicks',
         //   path: '/fullTopPicks',

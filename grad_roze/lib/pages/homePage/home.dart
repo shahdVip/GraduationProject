@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
       ), //container
       actions: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
           child: FlutterFlowIconButton(
             borderColor: Colors.transparent,
             borderRadius: 30,

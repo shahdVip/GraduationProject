@@ -5,6 +5,10 @@ const UserRequestModel = require('./model/userRequest.model');
 const UserPreferenceModel = require('./model/userPreference.model');
 const ItemModel = require('./model/item.model');
 const MomentModel = require('./model/moment.model');
+const express = require('express');
+const path = require('path');
+
+app.use('/frontend-assets', express.static(path.join(__dirname, '../grad_roze/assets')));
 
 const PORT = 3000;
 

@@ -230,7 +230,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {},
-                            child: Container(
+                            child: SizedBox(
                               width: double.infinity,
                               height: 144,
                               // decoration: const BoxDecoration(
@@ -373,11 +373,11 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                     children: [
                       Expanded(
                         child: isLoading
-                            ? Center(child: CircularProgressIndicator())
+                            ? const Center(child: CircularProgressIndicator())
                             : GridView.builder(
                                 padding: const EdgeInsets.all(8.0),
                                 gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 8.0,
                                   mainAxisSpacing: 8.0,
