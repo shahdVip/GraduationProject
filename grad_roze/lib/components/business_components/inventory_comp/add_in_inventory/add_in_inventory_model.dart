@@ -1,19 +1,8 @@
-import '/custom/animations.dart';
-import '/custom/count_controller.dart';
-import '/custom/icon_button.dart';
-import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
-import 'dart:math';
-import 'dart:ui';
-import 'update_in_inventory_widget.dart' show UpdateInInventoryWidget;
+import 'add_in_inventory_widget.dart' show AddInInventoryWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-class UpdateInInventoryModel extends FlutterFlowModel<UpdateInInventoryWidget> {
+class AddInInventoryModel extends FlutterFlowModel<AddInInventoryWidget> {
   ///  State fields for stateful widgets in this component.
   final formKey = GlobalKey<FormState>();
   // State field(s) for flowerType widget.

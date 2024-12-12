@@ -6,15 +6,16 @@ import '/custom/util.dart';
 import '/custom/widgets.dart';
 import 'dart:math';
 import 'dart:ui';
-import 'add_in_inventory_widget.dart' show AddInInventoryWidget;
+import 'addBouquet.dart' show AddBouquetWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class AddInInventoryModel extends FlutterFlowModel<AddInInventoryWidget> {
+class AddBouquetModel extends FlutterFlowModel<AddBouquetWidget> {
   ///  State fields for stateful widgets in this component.
+
   final formKey = GlobalKey<FormState>();
   // State field(s) for flowerType widget.
   FocusNode? flowerTypeFocusNode;
@@ -41,12 +42,18 @@ class AddInInventoryModel extends FlutterFlowModel<AddInInventoryWidget> {
     return null;
   }
 
-  // State field(s) for caretips widget.
-  FocusNode? caretipsFocusNode;
-  TextEditingController? caretipsTextController;
-  String? Function(BuildContext, String?)? caretipsTextControllerValidator;
+  // State field(s) for desc widget.
+  FocusNode? descFocusNode;
+  TextEditingController? descTextController;
+  String? Function(BuildContext, String?)? descTextControllerValidator;
+  // State field(s) for careTips widget.
+  FocusNode? careTipsFocusNode;
+  TextEditingController? careTipsTextController;
+  String? Function(BuildContext, String?)? careTipsTextControllerValidator;
   // State field(s) for quantity widget.
   int? quantityValue;
+
+  get textFieldFocusNode => null;
 
   @override
   void initState(BuildContext context) {
@@ -62,7 +69,10 @@ class AddInInventoryModel extends FlutterFlowModel<AddInInventoryWidget> {
     colorFocusNode?.dispose();
     colorTextController?.dispose();
 
-    caretipsFocusNode?.dispose();
-    caretipsTextController?.dispose();
+    descFocusNode?.dispose();
+    descTextController?.dispose();
+
+    careTipsFocusNode?.dispose();
+    careTipsTextController?.dispose();
   }
 }

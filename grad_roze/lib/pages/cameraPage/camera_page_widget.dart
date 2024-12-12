@@ -2,12 +2,9 @@ import 'package:grad_roze/pages/cameraPage/MatchingPage.dart';
 
 import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:camera/camera.dart';
 import 'dart:io';
-import 'dart:ui' as ui;
 import 'package:palette_generator/palette_generator.dart';
 import 'package:image/image.dart' as img;
 

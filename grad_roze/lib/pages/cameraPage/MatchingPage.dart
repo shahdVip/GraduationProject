@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grad_roze/components/explore_card/explore_card_widget.dart';
 import 'package:grad_roze/custom/theme.dart';
-import 'package:grad_roze/widgets/Bouquet/BouquetViewModel.dart';
 import 'package:grad_roze/config.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

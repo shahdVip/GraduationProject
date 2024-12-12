@@ -181,7 +181,7 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
                           style:
                               FlutterFlowTheme.of(context).bodySmall.override(
                                     fontFamily: 'Funnel Display',
-                                    color: Color(0xff040425),
+                                    color: const Color(0xff040425),
                                     letterSpacing: 0.0,
                                     useGoogleFonts: false,
                                   ),

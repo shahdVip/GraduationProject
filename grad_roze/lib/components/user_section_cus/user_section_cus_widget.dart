@@ -10,8 +10,7 @@ import '/config.dart';
 class UserSectionCusWidget extends StatefulWidget {
   final Map<String, dynamic> userData;
 
-  const UserSectionCusWidget({required this.userData, Key? key})
-      : super(key: key);
+  const UserSectionCusWidget({required this.userData, super.key});
   @override
   State<UserSectionCusWidget> createState() => _UserSectionCusWidgetState();
 }
