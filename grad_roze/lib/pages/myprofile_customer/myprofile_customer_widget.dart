@@ -168,23 +168,24 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
               context.pop();
             },
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
         body: Align(
-          alignment: AlignmentDirectional(0, 0),
+          alignment: const AlignmentDirectional(0, 0),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
+              SizedBox(
                 width: 140,
                 child: Stack(
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0, 0),
+                      alignment: const AlignmentDirectional(0, 0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: Container(
                           width: 100,
                           height: 100,
@@ -194,7 +195,7 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                             shape: BoxShape.circle,
                           ),
                           child: Padding(
-                            padding: EdgeInsets.all(2),
+                            padding: const EdgeInsets.all(2),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(50),
                               child: _image != null
@@ -220,9 +221,10 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(1, 0),
+                      alignment: const AlignmentDirectional(1, 0),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: SafeArea(
                           child: ClipOval(
                             child: Container(
@@ -258,7 +260,7 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 12),
                 child: Text(
                   Username.isEmpty ? 'Loading...' : Username,
                   textAlign: TextAlign.center,
@@ -281,13 +283,13 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                   child: Container(
                     width: double.infinity,
                     height: 400,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           blurRadius: 3,
                           color: Color(0x33000000),
@@ -297,7 +299,7 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                           ),
                         )
                       ],
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(0),
                         bottomRight: Radius.circular(0),
                         topLeft: Radius.circular(16),
@@ -310,14 +312,14 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                16, 16, 16, 0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 12),
                                   child: Text(
                                     'Settings',
@@ -333,15 +335,15 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 10),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 8, 16, 8),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0, 8, 16, 8),
                                         child: Icon(
                                           Icons.phone_android,
                                           color: FlutterFlowTheme.of(context)
@@ -356,8 +358,9 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 12, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 12, 0),
                                               child: Text(
                                                 'Phone Number',
                                                 textAlign: TextAlign.start,
@@ -376,8 +379,9 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 12, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 12, 0),
                                               child: Text(
                                                 Phone.isEmpty
                                                     ? 'Loading...'
@@ -425,7 +429,8 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                                   padding:
                                                       MediaQuery.viewInsetsOf(
                                                           context),
-                                                  child: EditPhoneWidget(),
+                                                  child:
+                                                      const EditPhoneWidget(),
                                                 ),
                                               );
                                             },
@@ -442,15 +447,15 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 10),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 8, 16, 8),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0, 8, 16, 8),
                                         child: Icon(
                                           Icons.location_on_rounded,
                                           color: FlutterFlowTheme.of(context)
@@ -465,8 +470,9 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 12, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 12, 0),
                                               child: Text(
                                                 'Address',
                                                 textAlign: TextAlign.start,
@@ -485,8 +491,9 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 12, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 12, 0),
                                               child: Text(
                                                 Address.isEmpty
                                                     ? 'Loading...'
@@ -535,7 +542,8 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                                   padding:
                                                       MediaQuery.viewInsetsOf(
                                                           context),
-                                                  child: EditAddressWidget(),
+                                                  child:
+                                                      const EditAddressWidget(),
                                                 ),
                                               );
                                             },
@@ -552,15 +560,15 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 10),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 8, 16, 8),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0, 8, 16, 8),
                                         child: Icon(
                                           Icons.password_rounded,
                                           color: FlutterFlowTheme.of(context)
@@ -575,8 +583,9 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 12, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 12, 0),
                                               child: Text(
                                                 'Password',
                                                 textAlign: TextAlign.start,
@@ -621,7 +630,8 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                                   padding:
                                                       MediaQuery.viewInsetsOf(
                                                           context),
-                                                  child: EditPasswordWidget(),
+                                                  child:
+                                                      const EditPasswordWidget(),
                                                 ),
                                               );
                                             },
@@ -633,15 +643,15 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 10),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 8, 16, 8),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0, 8, 16, 8),
                                         child: Icon(
                                           Icons.history_outlined,
                                           color: FlutterFlowTheme.of(context)
@@ -651,9 +661,8 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                       ),
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 12, 0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 12, 0),
                                           child: Text(
                                             'Orders History',
                                             textAlign: TextAlign.start,
@@ -688,15 +697,15 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 10),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 8, 16, 8),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0, 8, 16, 8),
                                         child: Icon(
                                           Icons.favorite,
                                           color: FlutterFlowTheme.of(context)
@@ -706,9 +715,8 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                       ),
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 12, 0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 12, 0),
                                           child: Text(
                                             'Favorie Businesses',
                                             textAlign: TextAlign.start,
@@ -743,15 +751,15 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 8),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 8, 16, 8),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0, 8, 16, 8),
                                         child: Icon(
                                           Icons.login_rounded,
                                           color: FlutterFlowTheme.of(context)
@@ -761,9 +769,8 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                       ),
                                       Expanded(
                                         child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 12, 0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 0, 12, 0),
                                           child: Text(
                                             'Log out of account',
                                             textAlign: TextAlign.start,
@@ -795,12 +802,11 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                         text: 'Log Out?',
                                         options: FFButtonOptions(
                                           height: 25,
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16, 0, 16, 0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(16, 0, 16, 0),
                                           iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 0, 0, 0),
+                                              const EdgeInsetsDirectional
+                                                  .fromSTEB(0, 0, 0, 0),
                                           color: Colors.transparent,
                                           textStyle: FlutterFlowTheme.of(
                                                   context)
@@ -814,7 +820,7 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                                 useGoogleFonts: false,
                                               ),
                                           elevation: 0,
-                                          borderSide: BorderSide(
+                                          borderSide: const BorderSide(
                                             color: Colors.transparent,
                                           ),
                                           borderRadius:
@@ -832,7 +838,7 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                     ],
                                   ),
                                 ),
-                              ].divide(SizedBox(height: 10)),
+                              ].divide(const SizedBox(height: 10)),
                             ),
                           ),
                         ],

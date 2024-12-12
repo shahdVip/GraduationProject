@@ -78,6 +78,9 @@ dependencies:
   image: ^4.3.0
   curved_navigation_bar: ^1.0.6
   circle_nav_bar: ^2.1.1
+  advanced_chips_input: ^0.1.5
+  flutter_chips_input: ^2.0.0
+  chips_input_autocomplete: ^1.2.1
 http:
 
   # The following adds the Cupertino Icons font to your application.
@@ -123,6 +126,7 @@ flutter:
   - assets/jsons/
   - assets/images/defaults/
   - assets/images/onboarding/
+  - assets/images/defaults/bouquet.png
 
   fonts:
   - family: 'Funnel Display'

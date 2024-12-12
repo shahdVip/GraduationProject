@@ -3,7 +3,7 @@ import 'package:grad_roze/config.dart';
 class BouquetViewModel {
   final String id;
   final String name;
-  final double price;
+  final int price;
   final String businessName;
   final String imageUrl;
 
@@ -20,7 +20,7 @@ class BouquetViewModel {
     return BouquetViewModel(
         id: json['_id'],
         name: json['name'],
-        price: json['price'].toDouble(),
+        price: json['price'].toInt(),
         businessName: json['business'],
         imageUrl: '$url${json['imageURL']}');
   }

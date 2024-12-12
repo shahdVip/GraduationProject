@@ -1,8 +1,8 @@
+import 'package:grad_roze/components/business_components/inventory_comp/flower_in_inventory_card/flower_in_inventory_card_widget.dart';
 import 'package:grad_roze/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '/components/business_components/add_in_inventory/add_in_inventory_widget.dart';
-import '/components/business_components/flower_in_inventory_card/flower_in_inventory_card_widget.dart';
+import '../../../components/business_components/inventory_comp/add_in_inventory/add_in_inventory_widget.dart';
 import '/components/business_components/drawer/drawer_widget.dart';
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
@@ -135,7 +135,7 @@ class _InventoryWidgetState extends State<InventoryWidget> {
                     onTap: () => FocusScope.of(context).unfocus(),
                     child: Padding(
                       padding: MediaQuery.viewInsetsOf(context),
-                      child: AddInInventoryWidget(),
+                      child: const AddInInventoryWidget(),
                     ),
                   );
                 },
@@ -153,14 +153,6 @@ class _InventoryWidgetState extends State<InventoryWidget> {
               size: 24,
             ),
           ),
-          drawer: Drawer(
-            elevation: 16,
-            child: wrapWithModel(
-              model: _model.sidedrawerModel,
-              updateCallback: () => safeSetState(() {}),
-              child: SidedrawerWidget(),
-            ),
-          ),
           body: SafeArea(
             top: true,
             child: Row(
@@ -169,13 +161,13 @@ class _InventoryWidgetState extends State<InventoryWidget> {
               children: [
                 Expanded(
                   child: Align(
-                    alignment: AlignmentDirectional(0, -1),
+                    alignment: const AlignmentDirectional(0, -1),
                     child: Container(
                       width: double.infinity,
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 970,
                       ),
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -185,7 +177,7 @@ class _InventoryWidgetState extends State<InventoryWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       10, 16, 0, 0),
                                   child: FlutterFlowIconButton(
                                     borderRadius: 8,
@@ -201,7 +193,7 @@ class _InventoryWidgetState extends State<InventoryWidget> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       4, 16, 0, 4),
                                   child: Text(
                                     'Inventory',
@@ -219,8 +211,8 @@ class _InventoryWidgetState extends State<InventoryWidget> {
                               ],
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 0, 0, 0),
                               child: Text(
                                 'Below are a list of flowers in your inventory.',
                                 style: FlutterFlowTheme.of(context)
@@ -233,8 +225,8 @@ class _InventoryWidgetState extends State<InventoryWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 8, 16, 0),
                               child: TextFormField(
                                 controller: _model.textController,
                                 focusNode: _model.textFieldFocusNode,
@@ -287,7 +279,7 @@ class _InventoryWidgetState extends State<InventoryWidget> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
+                                      const EdgeInsetsDirectional.fromSTEB(
                                           20, 0, 0, 0),
                                   suffixIcon: Icon(
                                     Icons.search_rounded,
@@ -309,14 +301,14 @@ class _InventoryWidgetState extends State<InventoryWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 10, 0, 0),
                               child: FutureBuilder<List<dynamic>>(
                                 future: _flowersFuture,
                                 builder: (context, snapshot) {
                                   if (snapshot.connectionState ==
                                       ConnectionState.waiting) {
-                                    return Center(
+                                    return const Center(
                                         child: CircularProgressIndicator());
                                   } else if (snapshot.hasError) {
                                     return Center(
@@ -324,7 +316,7 @@ class _InventoryWidgetState extends State<InventoryWidget> {
                                             Text('Error: ${snapshot.error}'));
                                   } else if (!snapshot.hasData ||
                                       snapshot.data!.isEmpty) {
-                                    return Center(
+                                    return const Center(
                                         child: Text('No flowers in inventory'));
                                   }
 

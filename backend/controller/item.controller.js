@@ -1,9 +1,10 @@
-const { getAllItems, createItem, getRecommendedItems } = require('../services/item.service');
+const { getAllItems, getRecommendedItems } = require('../services/item.service');
 const Item = require('../model/item.model');
 const UserPreference = require('../model/userPreference.model');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const mongoose = require('mongoose');
 
 const fetchItemsByTag = async (req, res) => {
   const { tag } = req.params; // Get the tag from the request URL (e.g., /items/tag/flowers)
@@ -55,7 +56,61 @@ const getItemsByBusiness = async (req, res) => {
   }
 };
 
+const updateItem =async (req, res) => {
+  const { id } = req.params;
 
+  // Validate ObjectId
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: 'Invalid item ID' });
+  }
+
+  const {
+    name,
+    color,
+    flowerType,
+    tags,
+    description,
+    careTips,
+    price,
+    imageURL,
+  } = req.body;
+
+  // Skip imageURL if it's not provided or empty
+  const updatedFields = {
+    ...(name && { name }),
+    ...(color && { color }),
+    ...(flowerType && { flowerType }),
+    ...(tags && { tags }),
+    ...(description && { description }),
+    ...(careTips && { careTips }),
+    ...(price && { price }),
+  };
+
+  if (req.file) {
+    // Handle uploaded image if a new one is provided
+    updatedFields.imageURL = `/uploads/${req.file.filename}`;
+  } else if (imageURL) {
+    // Use existing imageURL if provided
+    updatedFields.imageURL = imageURL;
+  }
+
+  try {
+    const updatedItem = await Item.findByIdAndUpdate(
+      id,
+      { $set: updatedFields },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedItem) {
+      return res.status(404).json({ message: 'Item not found' });
+    }
+
+    res.status(200).json({ message: 'Item updated successfully', updatedItem });
+  } catch (error) {
+    console.error('Error updating item:', error);
+    res.status(500).json({ message: 'Failed to update item', error: error.message });
+  }
+};
 // Controller to fetch all items
 const fetchItems = async (req, res) => {
   try {
@@ -66,49 +121,53 @@ const fetchItems = async (req, res) => {
   }
 };
 
-const addItem = async (req, res) => {
-  try {
-    const itemData = {
-      ...req.body,
-      purchaseTimes: req.body.purchaseTimes || 0,
-      careTips: req.body.careTips || "",
-      wrapColor: req.body.wrapColor || [], // Default to an empty array if not provided
-    };
-    const newItem = await createItem(itemData);
-    res.status(201).json(newItem);
-  } catch (error) {
-    res.status(500).json({ message: 'Error creating bouquet', error: error.message });
-  }
-};
-
 // Set up `multer` for handling image uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, path.join(__dirname, '../uploads')); // Directory where files are stored
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
+    cb(null, `${Date.now()}-${file.originalname}`); // Unique filename
   },
 });
 const upload = multer({ storage: storage });
 
 
 
-const createItemController = async (req, res) => {
+// Helper function to delete uploaded files
+const deleteFile = (filePath) => {
+  fs.unlink(filePath, (err) => {
+    if (err) {
+      console.error('Error deleting file:', err);
+    }
+  });
+};
+
+// Create item controller
+const createItem = async (req, res) => {
   try {
-    const imageURL = req.file ? `/uploads/${req.file.filename}` : null;
+    let imageURL = null;
+
+    if (req.file) {
+      imageURL = `/uploads/${req.file.filename}`;
+    } else if (req.body.useDefaultImage === 'true') {
+      imageURL = '/frontend-assets/images/defaults/bouquet.png';
+    }
     const itemData = {
       ...req.body,
+      tags: req.body.tags ? req.body.tags.split(',') : [],
+      color: req.body.color ? req.body.color.split(',') : [],
+      flowerType: req.body.flowerType ? req.body.flowerType.split(',') : [],
       imageURL,
-      purchaseTimes: req.body.purchaseTimes || 0, // Default to 0 if not provided
-      careTips: req.body.careTips || "", // Default to an empty string if not provided
-      wrapColor: req.body.wrapColor, // Default to an empty array if not provided 
+      purchaseTimes: req.body.purchaseTimes || 0,
+      careTips: req.body.careTips || '',
+      wrapColor: req.body.wrapColor || ['white'],
     };
 
-    const existingBouquet = await Item.findOne({ id: itemData.id });
-    if (existingBouquet) {
-      // Log and delete uploaded image if item already exists
-      if (imageURL) {
+    // Check if item already exists
+    const existingItem = await Item.findOne({ name: itemData.name });
+    if (existingItem) {
+      if (req.file) {
         const filePath = path.join(__dirname, '..', 'uploads', req.file.filename);
         fs.unlink(filePath, (err) => {
           if (err) {
@@ -119,22 +178,18 @@ const createItemController = async (req, res) => {
       return res.status(409).json({ message: 'Bouquet already exists' });
     }
 
-    const newItem = await createItem(itemData);
+    // Save new item
+    const newItem = await Item.create(itemData);
     res.status(201).json(newItem);
   } catch (error) {
-    // Log and delete uploaded image if an error occurs
     if (req.file) {
-      const filePath = path.join(__dirname, '..', '..', 'uploads', req.file.filename);
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          console.error('Error deleting file:', err);
-        } 
-      });
+      const filePath = path.join(__dirname, '..', 'uploads', req.file.filename);
+      deleteFile(filePath);
     }
+    console.error('Error creating item:', error);
     res.status(500).json({ message: 'Error creating bouquet', error: error.message });
   }
 };
-
 
 // Controller to fetch an item by its ID
 const getItemById = async (req, res) => {
@@ -186,4 +241,4 @@ const getTopRatedItems = async (req, res) => {
 
 // Middleware for image upload
 const uploadImage = upload.single('image');
-module.exports = { getItemsByBusiness,fetchItemsByColor,getTopRatedItems, getTop4RatedItems,fetchItemsByTag,fetchItems, addItem, uploadImage, createItemController, getItemById, fetchRecommendedItems };
+module.exports = { updateItem,getItemsByBusiness,fetchItemsByColor,getTopRatedItems, getTop4RatedItems,fetchItemsByTag,fetchItems, createItem, uploadImage, getItemById, fetchRecommendedItems };

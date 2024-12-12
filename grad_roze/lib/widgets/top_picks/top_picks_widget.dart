@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grad_roze/components/admin_order_card/admin_order_card_model.dart';
-import 'package:grad_roze/custom/nav/nav.dart';
 import 'package:grad_roze/custom/widgets.dart';
-import 'package:grad_roze/index.dart';
 import 'package:provider/provider.dart';
 
 import '../../custom/theme.dart';
