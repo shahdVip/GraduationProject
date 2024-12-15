@@ -70,9 +70,30 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
           if (userRole == 'Admin') {
             context.pushNamed('NavigationMenu'); // Navigate to the admin page
           } else if (userRole == 'Customer') {
-            context.pushNamed('moodQuiz'); // Navigate to the user home page
+            // Check if username exists in userPreferences collection
+            final preferenceResponse = await http.get(
+              Uri.parse('$userPreferencesEndpoint/$loggedUsername'),
+              headers: {"Authorization": "Bearer $token"},
+            );
+
+            if (preferenceResponse.statusCode == 200) {
+              // Username exists in the userPreferences collection
+              context.pushNamed('HomePage'); // Navigate to the home page
+            } else if (preferenceResponse.statusCode == 404) {
+              // Username not found, navigate to the moodQuiz page
+              context.pushNamed('moodQuiz');
+            } else {
+              // Handle other errors if needed
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Error checking preferences'),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+            //context.pushNamed('moodQuiz'); // Navigate to the user home page
           } else {
-            context.pushNamed('onboarding');
+            context.pushNamed('inventory');
           }
         } else {
           String message = 'Something went wrong!';
@@ -101,6 +122,12 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
       setState(() {
         _isNotValidate = true;
       });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Some fields are missing"),
+          backgroundColor: Colors.red, // You can choose a color
+        ),
+      );
       print("Some fields are missing");
     }
   }
@@ -125,7 +152,8 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
       request.fields['phoneNumber'] = _model.phoneCreateTextController.text;
       request.fields['username'] = _model.usernameCreateTextController.text;
       request.fields['role'] = _model.rolesValue!; // Use non-null assertion
-
+      if (_model.rolesValue == 'Customer')
+        request.fields['adminApproved'] = 'true';
       // Add the image file if available
       if (_image != null) {
         var file = http.MultipartFile.fromBytes(
@@ -148,12 +176,16 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
               _model.emailAddressCreateTextController.text,
               ParamType.String,
             ),
+            'role': serializeParam(
+              _model.rolesValue!,
+              ParamType.String,
+            ),
           }.withoutNulls,
         );
       } else if (response.statusCode == 409) {
         // Username or email already exists
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('User already exists'),
             backgroundColor: Colors.red,
           ),
@@ -161,7 +193,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
       } else {
         // Other errors
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('Registration failed. Please try again.'),
             backgroundColor: Colors.red,
           ),
@@ -334,7 +366,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.asset(
-                                    'assets/images/shphoto.jpg',
+                                    'assets/images/favicon.png',
                                     width: 70,
                                     height: 70,
                                     fit: BoxFit.cover,
@@ -1016,7 +1048,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                                             radius:
                                                                                 100,
                                                                             backgroundImage:
-                                                                                AssetImage('assets/images/userphoto.png'),
+                                                                                AssetImage('assets/images/defaults/userphoto.png'),
                                                                           ),
                                                                   ),
                                                                   Align(
@@ -1254,7 +1286,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
@@ -1266,6 +1298,8 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             cursorColor:
                                                                 FlutterFlowTheme.of(
@@ -1451,15 +1485,20 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
                                                                   useGoogleFonts:
                                                                       false,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             keyboardType:
                                                                 TextInputType
@@ -1647,15 +1686,20 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
                                                                   useGoogleFonts:
                                                                       false,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             cursorColor:
                                                                 FlutterFlowTheme.of(
@@ -1840,15 +1884,20 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
                                                                   useGoogleFonts:
                                                                       false,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             keyboardType:
                                                                 TextInputType
@@ -2030,15 +2079,20 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
                                                                   useGoogleFonts:
                                                                       false,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             cursorColor:
                                                                 FlutterFlowTheme.of(
@@ -2217,7 +2271,7 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                             ),
                                                             style: FlutterFlowTheme
                                                                     .of(context)
-                                                                .bodyMedium
+                                                                .headlineMedium
                                                                 .override(
                                                                   fontFamily:
                                                                       'Funnel Display',
@@ -2225,10 +2279,12 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                                                       false,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryText,
+                                                                      .primary,
                                                                   fontSize: 16,
                                                                   letterSpacing:
                                                                       0.0,
+                                                                  lineHeight:
+                                                                      1.5,
                                                                 ),
                                                             minLines: 1,
                                                             cursorColor:

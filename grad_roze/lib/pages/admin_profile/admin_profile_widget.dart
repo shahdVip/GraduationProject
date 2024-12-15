@@ -50,7 +50,7 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
             prefs.getString('jwt_token'); // Token from shared preferences
         final username = adminUsername; // Username fetched from the profile
 
-        if (token == null || username == null) {
+        if (token == null) {
           print('Token or username not available');
           return;
         }
@@ -203,13 +203,12 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                   : CircleAvatar(
                                       backgroundColor: Colors.transparent,
                                       radius: 100,
-                                      backgroundImage: profilePhotoUrl !=
-                                                  null &&
-                                              profilePhotoUrl.isNotEmpty
+                                      backgroundImage: profilePhotoUrl
+                                              .isNotEmpty
                                           ? NetworkImage(
                                               profilePhotoUrl) // Use the URL from the database
-                                          : AssetImage(
-                                                  'assets/images/default_avatar.png')
+                                          : const AssetImage(
+                                                  'assets/images/defaults/default_avatar.png')
                                               as ImageProvider,
                                     ),
                             ),
@@ -319,7 +318,7 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                               children: [
                                 // Generated code for this Text Widget...
                                 Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 0, 0, 12),
                                   child: Text(
                                     'Settings',
@@ -473,8 +472,9 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0, 0, 12, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(0, 0, 12, 0),
                                               child: Text(
                                                 'Password',
                                                 textAlign: TextAlign.start,
@@ -673,7 +673,7 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                                 useGoogleFonts: false,
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .primary,
+                                                        .error,
                                                 letterSpacing: 0.0,
                                               ),
                                           elevation: 0.0,

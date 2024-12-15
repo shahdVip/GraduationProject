@@ -1,19 +1,9 @@
-const { getAllItems, createItem ,getRecommendedItems} = require('../services/item.service');
+const { getAllItems, createItem, getRecommendedItems } = require('../services/item.service');
 const Item = require('../model/item.model');
+const UserPreference = require('../model/userPreference.model');
 const multer = require('multer');
 const path = require('path');
-
-
-
-const fetchRecommendedItems = async (req, res) => {
-  try {
-    const { username } = req.body; // Get the username from the request body
-    const recommendedItems = await getRecommendedItems(username);
-    res.status(200).json(recommendedItems);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching recommended items', error: error.message });
-  }
-};
+const fs = require('fs');
 
 const fetchItemsByTag = async (req, res) => {
   const { tag } = req.params; // Get the tag from the request URL (e.g., /items/tag/flowers)
@@ -31,6 +21,28 @@ const fetchItemsByTag = async (req, res) => {
 };
 
 
+// Controller function to fetch items by business name
+const getItemsByBusiness = async (req, res) => {
+  const { businessName } = req.params; // Extract businessName from route parameters
+
+  try {
+    // Fetch items matching the provided business name
+    const items = await Item.find({ business: businessName });
+
+    if (!items || items.length === 0) {
+      return res.status(404).json({ message: 'No items found for the given business name.' });
+    }
+
+    // Return the fetched items
+    res.status(200).json(items);
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching items by business:', error);
+    res.status(500).json({ message: 'An error occurred while fetching items.', error: error.message });
+  }
+};
+
+
 // Controller to fetch all items
 const fetchItems = async (req, res) => {
   try {
@@ -41,14 +53,18 @@ const fetchItems = async (req, res) => {
   }
 };
 
-// Controller to add an item
 const addItem = async (req, res) => {
   try {
-    const itemData = req.body; // Make sure the request body includes all necessary fields, including `price`
+    const itemData = {
+      ...req.body,
+      purchaseTimes: req.body.purchaseTimes || 0,
+      careTips: req.body.careTips || "",
+      wrapColor: req.body.wrapColor || [], // Default to an empty array if not provided
+    };
     const newItem = await createItem(itemData);
     res.status(201).json(newItem);
   } catch (error) {
-    res.status(500).json({ message: 'Error creating item', error: error.message });
+    res.status(500).json({ message: 'Error creating bouquet', error: error.message });
   }
 };
 
@@ -63,39 +79,102 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// Controller to handle item creation with an image
+
+
+
+
+
 const createItemController = async (req, res) => {
   try {
-    const imageURL = req.file ? `/uploads/${req.file.filename}` : null; // Construct image URL if uploaded
+    const imageURL = req.file ? `/uploads/${req.file.filename}` : null;
     const itemData = {
       ...req.body,
-      imageURL, // Include the image URL in itemData
+      imageURL,
+      purchaseTimes: req.body.purchaseTimes || 0, // Default to 0 if not provided
+      careTips: req.body.careTips || "", // Default to an empty string if not provided
+      wrapColor: req.body.wrapColor, // Default to an empty array if not provided 
     };
+
+    const existingBouquet = await Item.findOne({ id: itemData.id });
+    if (existingBouquet) {
+      // Log and delete uploaded image if item already exists
+      if (imageURL) {
+        const filePath = path.join(__dirname, '..', 'uploads', req.file.filename);
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.error('Error deleting file:', err);
+          }
+        });
+      }
+      return res.status(409).json({ message: 'Bouquet already exists' });
+    }
 
     const newItem = await createItem(itemData);
     res.status(201).json(newItem);
   } catch (error) {
-    res.status(500).json({ message: 'Error creating item', error: error.message });
+    // Log and delete uploaded image if an error occurs
+    if (req.file) {
+      const filePath = path.join(__dirname, '..', '..', 'uploads', req.file.filename);
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.error('Error deleting file:', err);
+        } 
+      });
+    }
+    res.status(500).json({ message: 'Error creating bouquet', error: error.message });
   }
 };
+
+
 
 // Controller to fetch an item by its ID
 const getItemById = async (req, res) => {
   try {
     const { id } = req.params;
-    const item = await Item.findById(id);
+    const bouquet = await Item.findById(id);
 
-    if (!item) {
-      return res.status(404).json({ message: 'Item not found' });
+    if (!bouquet) {
+      return res.status(404).json({ message: 'Bouquet not found' });
     }
 
-    res.status(200).json(item);
+    res.status(200).json(bouquet);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching item', error: error.message });
+    res.status(500).json({ message: 'Error fetching bouquet', error: error.message });
+  }
+};
+// Controller to fetch recommended items based on user preferences
+const fetchRecommendedItems = async (req, res) => {
+  try {
+    const { username } = req.body; // Assuming the username is sent in the body
+
+    const recommendedItems = await getRecommendedItems(username);
+
+    if (recommendedItems.length === 0) {
+      return res.status(404).json({ message: 'No recommended items found' });
+    }
+
+    res.status(200).json(recommendedItems);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching recommended items', error: error.message });
+  }
+};
+const getTop4RatedItems = async (req, res) => {
+  try {
+    const topRatedItems = await Item.find().sort({ rating: -1 }).limit(4);
+    res.status(200).json(topRatedItems);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error: Unable to fetch items.', error: err });
+  }
+};
+const getTopRatedItems = async (req, res) => {
+  try {
+    const topRatedItems = await Item.find().sort({ rating: -1 }).limit(10);
+    res.status(200).json(topRatedItems);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error: Unable to fetch items.', error: err });
   }
 };
 
 // Middleware for image upload
 const uploadImage = upload.single('image');
-
-module.exports = { fetchItemsByTag, fetchItems, addItem, uploadImage, createItemController, getItemById ,fetchRecommendedItems};
+module.exports = { getTopRatedItems, getTop4RatedItems,fetchItemsByTag,fetchItems, addItem,getItemsByBusiness, uploadImage, createItemController, getItemById, fetchRecommendedItems };

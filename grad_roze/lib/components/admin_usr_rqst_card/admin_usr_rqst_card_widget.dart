@@ -132,24 +132,23 @@ class _AdminUsrRqstCardWidgetState extends State<AdminUsrRqstCardWidget> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(50.0),
-                  child:
-                      widget.profilePhoto == null || widget.profilePhoto.isEmpty
-                          ? Image.asset(
-                              'assets/images/default_avatar.png', // Path to your default image
-                              width: 60.0,
-                              height: 60.0,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.network(
-                              widget
-                                  .profilePhoto, // Use the passed profile photo URL
-                              width: 60.0,
-                              height: 60.0,
-                              fit: BoxFit.cover,
-                            ),
+                  child: widget.profilePhoto.isEmpty
+                      ? Image.asset(
+                          'assets/images/defaults/default_avatar.png', // Path to your default image
+                          width: 60.0,
+                          height: 60.0,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.network(
+                          widget
+                              .profilePhoto, // Use the passed profile photo URL
+                          width: 60.0,
+                          height: 60.0,
+                          fit: BoxFit.cover,
+                        ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                   child: Text(
                     widget.username, // Display the username
                     style: FlutterFlowTheme.of(context).titleSmall.override(

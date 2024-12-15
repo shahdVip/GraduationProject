@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:grad_roze/components/explore_card/explore_card_widget.dart';
+import 'package:grad_roze/config.dart';
+
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
@@ -6,6 +11,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -14,17 +20,8 @@ export 'business_profile_model.dart';
 
 class BusinessProfileWidget extends StatefulWidget {
   final String username;
-  final String email;
-  final String address;
-  final String phoneNumber;
-  final String profilePhoto;
-  const BusinessProfileWidget(
-      {super.key,
-      required this.username,
-      required this.email,
-      required this.address,
-      required this.phoneNumber,
-      required this.profilePhoto});
+
+  const BusinessProfileWidget({super.key, required this.username});
 
   @override
   State<BusinessProfileWidget> createState() => _BusinessProfileWidgetState();
@@ -36,12 +33,70 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   bool favtoggle = true;
 
+  String email = '';
+  String address = '';
+  String phoneNumber = '';
+  String profilePhoto = '';
+
+  List<dynamic> items = [];
+  bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => BusinessProfileModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+
+    fetchUserData();
+    fetchItems();
+  }
+
+  Future<void> fetchItems() async {
+    try {
+      final response =
+          await http.get(Uri.parse('$url/item/business/${widget.username}'));
+      if (response.statusCode == 200) {
+        setState(() {
+          items = json.decode(response.body);
+          isLoading = false;
+        });
+      } else {
+        throw Exception('Failed to load items');
+      }
+    } catch (e) {
+      print('Error fetching items: $e');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  // Function to fetch user data
+  Future<void> fetchUserData() async {
+    try {
+      // Replace with your backend API URL
+      final apiurl = Uri.parse('$url/user/${widget.username}');
+
+      // Make the GET request
+      final response = await http.get(apiurl);
+
+      if (response.statusCode == 200) {
+        // Parse the response
+        final data = json.decode(response.body);
+        setState(() {
+          email = data['email'];
+          address = data['address'];
+          phoneNumber = data['phoneNumber'];
+          profilePhoto = data['profilePhoto'];
+        });
+      } else {
+        // Handle error
+        print('Failed to fetch user data: ${response.body}');
+      }
+    } catch (e) {
+      print('Error fetching user data: $e');
+    }
   }
 
   @override
@@ -74,34 +129,33 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 500,
                 child: Stack(
-                  alignment: AlignmentDirectional(0, -1),
+                  alignment: const AlignmentDirectional(0, -1),
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0, -1),
-                      child: widget.profilePhoto == null ||
-                              widget.profilePhoto.isEmpty
+                      alignment: const AlignmentDirectional(0, -1),
+                      child: profilePhoto.isEmpty
                           ? Image.asset(
-                              'assets/images/default_avatar.png', // Path to your default image
+                              'assets/images/defaults/default_avatar.png', // Path to your default image
                               width: double.infinity,
                               height: double.infinity,
                               fit: BoxFit.cover,
                             )
                           : Image.network(
-                              widget
-                                  .profilePhoto, // Use the passed profile photo URL
+                              profilePhoto, // Use the passed profile photo URL
                               width: double.infinity,
                               height: double.infinity,
                               fit: BoxFit.cover,
                             ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, -1),
+                      alignment: const AlignmentDirectional(0, -1),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 44, 16, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(16, 44, 16, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -149,7 +203,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                                     : Icon(
                                         Icons.favorite,
                                         color: FlutterFlowTheme.of(context)
-                                            .primary,
+                                            .primaryText,
                                         size: 25,
                                       ),
                                 onPressed: () {
@@ -165,7 +219,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, 1),
+                      alignment: const AlignmentDirectional(0, 1),
                       child: ClipRRect(
                         child: BackdropFilter(
                           filter: ImageFilter.blur(
@@ -177,41 +231,25 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                             focusColor: Colors.transparent,
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
-                            onTap: () async {
-                              final _datePickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: getCurrentTimestamp,
-                                firstDate: getCurrentTimestamp,
-                                lastDate: getCurrentTimestamp,
-                              );
-
-                              if (_datePickedDate != null) {
-                                safeSetState(() {
-                                  _model.datePicked = DateTime(
-                                    _datePickedDate.year,
-                                    _datePickedDate.month,
-                                    _datePickedDate.day,
-                                  );
-                                });
-                              }
-                            },
+                            onTap: () async {},
                             child: Container(
                               width: double.infinity,
                               height: 144,
-                              decoration: BoxDecoration(
-                                color: Color(0x801D2429),
-                              ),
+                              // decoration: const BoxDecoration(
+                              //   color: Color(0x801D2429),
+                              // ),
                               child: // Generated code for this Column Widget...
                                   Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     15, 0, 15, 0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 8, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 8, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -234,13 +272,14 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 4, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Text(
-                                            widget.address,
+                                            address,
                                             style: FlutterFlowTheme.of(context)
                                                 .labelSmall
                                                 .override(
@@ -262,7 +301,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                                             ),
                                           ),
                                           Text(
-                                            widget.phoneNumber,
+                                            phoneNumber,
                                             style: FlutterFlowTheme.of(context)
                                                 .labelSmall
                                                 .override(
@@ -278,13 +317,14 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 4, 0, 0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Text(
-                                            widget.email,
+                                            email,
                                             style: FlutterFlowTheme.of(context)
                                                 .labelSmall
                                                 .override(
@@ -295,29 +335,6 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                                                       .secondaryBackground,
                                                   letterSpacing: 0.0,
                                                 ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 4, 0, 0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          RatingBarIndicator(
-                                            itemBuilder: (context, index) =>
-                                                Icon(
-                                              Icons.star_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                            direction: Axis.horizontal,
-                                            rating: 3,
-                                            unratedColor: Color(0x47FF6A73),
-                                            itemCount: 5,
-                                            itemSize: 24,
                                           ),
                                         ],
                                       ),
@@ -334,7 +351,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -350,47 +367,33 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 44),
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  primary: false,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                      child: Container(
-                        width: 100,
-                        height: 400,
-                        decoration: BoxDecoration(
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 4,
-                              color: Color(0x301D2429),
-                              offset: Offset(
-                                0.0,
-                                1,
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 44),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height -
+                      200, // Adjust height as needed
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: isLoading
+                            ? Center(child: CircularProgressIndicator())
+                            : GridView.builder(
+                                padding: const EdgeInsets.all(8.0),
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 8.0,
+                                  mainAxisSpacing: 8.0,
+                                  childAspectRatio: 0.7,
+                                ),
+                                itemCount: items.length,
+                                itemBuilder: (context, index) {
+                                  final item = items[index];
+                                  return ExploreCardWidget(item: item);
+                                },
                               ),
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(4),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.asset(
-                              'assets/images/shphoto.jpg',
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

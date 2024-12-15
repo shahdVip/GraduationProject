@@ -8,7 +8,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'onboarding_model.dart';
 export 'onboarding_model.dart';
@@ -277,7 +276,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                         topRight: Radius.circular(16),
                                       ),
                                       child: Image.asset(
-                                        'assets/images/WhatsApp_Image_2024-10-10_at_14.25.11_780be297.jpg',
+                                        'assets/images/onboarding/WhatsApp_Image_2024-10-10_at_14.25.11_780be297.jpg',
                                         width: 120,
                                         height: 120,
                                         fit: BoxFit.cover,
@@ -286,7 +285,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                 () => ClipRRect(
                                       borderRadius: BorderRadius.circular(16),
                                       child: Image.asset(
-                                        'assets/images/download_(5).jpeg',
+                                        'assets/images/onboarding/download_(5).jpeg',
                                         width: 120,
                                         height: 160,
                                         fit: BoxFit.cover,
@@ -300,7 +299,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                         topRight: Radius.circular(16),
                                       ),
                                       child: Image.asset(
-                                        'assets/images/WhatsApp_Image_2024-10-10_at_14.25.11_79e2682e.jpg',
+                                        'assets/images/onboarding/WhatsApp_Image_2024-10-10_at_14.25.11_79e2682e.jpg',
                                         width: 100,
                                         height: 0,
                                         fit: BoxFit.cover,
@@ -314,7 +313,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                         topRight: Radius.circular(0),
                                       ),
                                       child: Image.asset(
-                                        'assets/images/download.jpg',
+                                        'assets/images/onboarding/download.jpg',
                                         width: 80,
                                         height: 180,
                                         fit: BoxFit.cover,
@@ -323,7 +322,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                 () => ClipRRect(
                                       borderRadius: BorderRadius.circular(16),
                                       child: Image.asset(
-                                        'assets/images/download_(8).jpeg',
+                                        'assets/images/onboarding/download_(8).jpeg',
                                         width: 120,
                                         height: 160,
                                         fit: BoxFit.cover,
@@ -332,7 +331,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                 () => ClipRRect(
                                       borderRadius: BorderRadius.circular(16),
                                       child: Image.asset(
-                                        'assets/images/ROSERIE_(1).jpg',
+                                        'assets/images/onboarding/ROSERIE_(1).jpg',
                                         width: 120,
                                         height: 180,
                                         fit: BoxFit.cover,
@@ -346,7 +345,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                         topRight: Radius.circular(0),
                                       ),
                                       child: Image.asset(
-                                        'assets/images/download_(4).jpeg',
+                                        'assets/images/onboarding/download_(4).jpeg',
                                         width: 120,
                                         height: 190,
                                         fit: BoxFit.cover,
@@ -355,7 +354,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                 () => ClipRRect(
                                       borderRadius: BorderRadius.circular(16),
                                       child: Image.asset(
-                                        'assets/images/download_(2).jpeg',
+                                        'assets/images/onboarding/download_(2).jpeg',
                                         width: 120,
                                         height: 160,
                                         fit: BoxFit.cover,
@@ -364,7 +363,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                 () => ClipRRect(
                                       borderRadius: BorderRadius.circular(16),
                                       child: Image.asset(
-                                        'assets/images/shphoto.jpg',
+                                        'assets/images/onboarding/shphoto.jpg',
                                         width: 120,
                                         height: 180,
                                         fit: BoxFit.cover,
@@ -378,7 +377,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                         topRight: Radius.circular(0),
                                       ),
                                       child: Image.asset(
-                                        'assets/images/deep_blue_tulips_.jpg',
+                                        'assets/images/onboarding/deep_blue_tulips_.jpg',
                                         width: 120,
                                         height: 190,
                                         fit: BoxFit.cover,
@@ -387,7 +386,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                 () => ClipRRect(
                                       borderRadius: BorderRadius.circular(16),
                                       child: Image.asset(
-                                        'assets/images/Red_Preserved_Hydrangea_Bouquet.jpg',
+                                        'assets/images/onboarding/tulipmothers.jpeg',
                                         width: 120,
                                         height: 160,
                                         fit: BoxFit.cover,

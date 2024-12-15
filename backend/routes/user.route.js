@@ -69,4 +69,9 @@ router.post('/send-reset-link', UserController.sendPasswordResetOtp);
 // Route to handle resetting the password
 router.put('/reset-password', UserController.resetPasswordWithOtp);
 
+router.put('/update-address', UserController.verifyToken, UserController.updateAddress);
+
+router.get('/user/:username', UserController.getUserByUsername);
+
+
 module.exports = router;

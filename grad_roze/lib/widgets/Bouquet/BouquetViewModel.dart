@@ -1,14 +1,29 @@
-import '/custom/theme.dart';
-import '/custom/util.dart';
-import 'BouquetViewWidget.dart' show BouquetViewWidget;
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
+import 'package:grad_roze/config.dart';
 
-class BouquetViewModel extends FlutterFlowModel<BouquetViewWidget> {
-  @override
-  void initState(BuildContext context) {}
+import 'bouquetViewWidget.dart' show BouquetViewWidget;
 
-  @override
-  void dispose() {}
+class BouquetViewModel {
+  final String id;
+  final String name;
+  final double price;
+  final String businessName;
+  final String imageUrl;
+
+  BouquetViewModel({
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.businessName,
+    required this.imageUrl,
+  });
+
+  // Create a model from JSON response
+  factory BouquetViewModel.fromJson(Map<String, dynamic> json) {
+    return BouquetViewModel(
+        id: json['_id'],
+        name: json['name'],
+        price: json['price'].toDouble(),
+        businessName: json['business'],
+        imageUrl: '$url${json['imageURL']}');
+  }
 }

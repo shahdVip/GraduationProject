@@ -25,3 +25,12 @@ export 'pages/customer_profile/customer_profile_widget.dart'
 export 'pages/mood_quiz/mood_quiz_widget.dart' show MoodQuizWidget;
 export 'pages/customer_home/customer_home_widget.dart' show CustomerHomeWidget;
 export 'pages/homePage/home.dart' show HomePage;
+export 'pages/full_explore/full_explore_widget.dart' show ViewMoreExploreWidget;
+export 'pages/full_top_picks/full_top_picks_widget.dart'
+    show FullTopPicksWidget;
+export 'pages/myprofile_customer/myprofile_customer_widget.dart'
+    show MyprofileCustomerWidget;
+export 'pages/cart/cart_widget.dart' show CartWidget;
+export 'pages/business_pages/inventory/inventory_widget.dart'
+    show InventoryWidget;
+export 'pages/webview/webview_widget.dart' show WebviewWidget;

@@ -1,11 +1,18 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:grad_roze/pages/business_pages/inventory/inventory_widget.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_model.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_widget.dart';
+import 'package:grad_roze/pages/cart/cart_widget.dart';
 import 'package:grad_roze/pages/favorite_list/favorite_list_widget.dart';
+import 'package:grad_roze/pages/full_top_picks/full_top_picks_model.dart';
+import 'package:grad_roze/pages/full_top_picks/full_top_picks_widget.dart';
+import 'package:grad_roze/pages/myprofile_customer/myprofile_customer_widget.dart';
 import 'package:grad_roze/pages/navigation_menu/navigation_menu.dart';
 import 'package:grad_roze/pages/navigation_menu_users/navigation_menu_users.dart';
+import 'package:grad_roze/pages/webview/webview_model.dart';
+import 'package:grad_roze/pages/webview/webview_widget.dart';
 import 'package:provider/provider.dart';
 
 import '/index.dart';
@@ -45,12 +52,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'onboarding',
           path: '/onboarding',
-          builder: (context, params) => OnboardingWidget(),
+          builder: (context, params) => const OnboardingWidget(),
         ),
         FFRoute(
           name: 'SignInUp',
           path: '/signInUp',
-          builder: (context, params) => SignInUpWidget(),
+          builder: (context, params) => const SignInUpWidget(),
         ),
         FFRoute(
           name: 'OTP',
@@ -58,6 +65,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => OtpWidget(
             email: params.getParam(
               'email',
+              ParamType.String,
+            ),
+            role: params.getParam(
+              'role',
               ParamType.String,
             ),
           ),
@@ -104,22 +115,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             return BusinessProfileWidget(
               username: params.getParam(
                 'username',
-                ParamType.String,
-              ),
-              email: params.getParam(
-                'email',
-                ParamType.String,
-              ),
-              address: params.getParam(
-                'address',
-                ParamType.String,
-              ),
-              phoneNumber: params.getParam(
-                'phoneNumber',
-                ParamType.String,
-              ),
-              profilePhoto: params.getParam(
-                'profilePhoto',
                 ParamType.String,
               ),
             );
@@ -182,7 +177,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'HomePage',
           path: '/homePage',
           builder: (context, params) => const HomePage(),
-        )
+        ),
+        FFRoute(
+          name: 'FullExplore',
+          path: '/fullExplore',
+          builder: (context, params) => const ViewMoreExploreWidget(),
+        ),
+        FFRoute(
+          name: 'myprofileCustomer',
+          path: '/myprofileCustomer',
+          builder: (context, params) => const MyprofileCustomerWidget(),
+        ),
+        FFRoute(
+          name: 'cart',
+          path: '/cart',
+          builder: (context, params) => const CartWidget(),
+        ),
+        FFRoute(
+          name: 'inventory',
+          path: '/inventory',
+          builder: (context, params) => const InventoryWidget(),
+        ),
+        FFRoute(
+          name: 'webview',
+          path: '/webview',
+          builder: (context, params) => const WebviewWidget(),
+        ),
+        // FFRoute(
+        //   name: 'FullTopPicks',
+        //   path: '/fullTopPicks',
+        //   builder: (context, params) => const FullTopPicksWidget(),
+        // )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 

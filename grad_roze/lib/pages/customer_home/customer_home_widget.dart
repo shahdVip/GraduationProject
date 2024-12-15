@@ -1,4 +1,6 @@
 import 'package:grad_roze/config.dart';
+import 'package:grad_roze/widgets/Bouquet/BouquetViewModel.dart';
+import 'package:grad_roze/widgets/Bouquet/BouquetViewWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '/custom/animations.dart';
@@ -48,22 +50,20 @@ class CustomerHomeWidget extends StatefulWidget {
 class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
     with TickerProviderStateMixin {
   late CustomerHomeModel _model;
-  late Future<List<Item>> _itemsFuture;
-
+  late Future<List<BouquetViewModel>> _itemsFuture;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = <String, AnimationInfo>{};
-  //final String baseUrl = 'http://192.168.1.9:3000';
-  Future<List<Item>> fetchRecommendedItems() async {
+  Future<List<BouquetViewModel>> fetchRecommendedItems() async {
     final prefs = await SharedPreferences.getInstance();
-    final String? username =
-        prefs.getString('username'); // Get username from shared preferences
+    final String? username = prefs.getString('username'); // Get username
 
     if (username == null) {
       print("Username not found, user needs to sign in");
       return [];
     }
-    // Update with your API URL
+
+    // Replace with your API URL
     final response = await http.post(
       Uri.parse('$url/item/recommendations'),
       headers: {'Content-Type': 'application/json'},
@@ -72,7 +72,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
 
     if (response.statusCode == 200) {
       List<dynamic> data = jsonDecode(response.body);
-      return data.map((item) => Item.fromJson(item)).toList();
+      return data.map((item) => BouquetViewModel.fromJson(item)).toList();
     } else {
       throw Exception('Failed to load items');
     }
@@ -99,8 +99,8 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 60.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 60.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -118,8 +118,8 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 50.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 50.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -155,7 +155,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
@@ -173,12 +173,13 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                 ),
                 Container(
                   height: 1000,
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                         child: Container(
                           width: double.infinity,
                           height: 420,
@@ -186,12 +187,12 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                           ),
-                          child: FutureBuilder<List<Item>>(
-                            future: _itemsFuture,
+                          child: FutureBuilder<List<BouquetViewModel>>(
+                            future: fetchRecommendedItems(),
                             builder: (context, snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return Center(
+                                return const Center(
                                     child: CircularProgressIndicator());
                               } else if (snapshot.hasError) {
                                 return Center(
@@ -199,40 +200,43 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                               } else if (!snapshot.hasData ||
                                   snapshot.data!.isEmpty) {
                                 return Center(
-                                    child: Text(
-                                  'No items found',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelMedium
-                                      .override(
-                                        fontFamily: 'Funnel Display',
-                                        useGoogleFonts: false,
-                                        letterSpacing: 0.0,
-                                      ),
-                                ));
+                                  child: Text(
+                                    'No items found',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Funnel Display',
+                                          useGoogleFonts: false,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                );
                               }
 
-                              final items = snapshot.data!;
+                              final bouquets = snapshot.data!;
                               return GridView.builder(
                                 padding: EdgeInsets.zero,
                                 gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 10,
                                   childAspectRatio: 1,
                                 ),
-                                itemCount: items.length > 4 ? 4 : items.length,
+                                itemCount:
+                                    bouquets.length > 4 ? 4 : bouquets.length,
                                 itemBuilder: (context, index) {
-                                  final item = items[index];
+                                  final item = bouquets[index];
                                   return Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        12, 12, 0, 0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            12, 12, 0, 0),
                                     child: Container(
                                       width: 160,
                                       height: 180,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4,
                                             color: Color(0x3F15212B),
@@ -243,15 +247,16 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                         shape: BoxShape.rectangle,
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0, 0, 0, 12),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(0, 0, 0, 12),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Expanded(
                                               child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(8, 8, 8, 0),
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(8, 8, 8, 0),
                                                 child: Container(
                                                   width: double.infinity,
                                                   height: 100,
@@ -265,7 +270,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                                         BorderRadius.circular(
                                                             12),
                                                     child: Image.network(
-                                                      '$url${item.imageURL}',
+                                                      '$url${item.imageUrl}',
                                                       width: double.infinity,
                                                       height: 110,
                                                       fit: BoxFit.cover,
@@ -275,8 +280,9 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(16, 4, 16, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(16, 4, 16, 0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -302,8 +308,9 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                               ),
                                             ),
                                             Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(16, 4, 16, 0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(16, 4, 16, 0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -311,7 +318,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                                                         .spaceBetween,
                                                 children: [
                                                   Text(
-                                                    item.business,
+                                                    item.businessName,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodySmall
@@ -349,154 +356,13 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                               );
                             },
                           ),
-                          // child: GridView(
-                          //   padding: EdgeInsets.zero,
-                          //   gridDelegate:
-                          //       SliverGridDelegateWithFixedCrossAxisCount(
-                          //     crossAxisCount: 2,
-                          //     crossAxisSpacing: 10,
-                          //     childAspectRatio: 1,
-                          //   ),
-                          //   scrollDirection: Axis.vertical,
-                          //   children: [
-                          //     Padding(
-                          //       padding: EdgeInsetsDirectional.fromSTEB(
-                          //           12, 12, 0, 0),
-                          //       child: Container(
-                          //         width: 160,
-                          //         height: 180,
-                          //         decoration: BoxDecoration(
-                          //           color: FlutterFlowTheme.of(context)
-                          //               .secondaryBackground,
-                          //           boxShadow: [
-                          //             BoxShadow(
-                          //               blurRadius: 4,
-                          //               color: Color(0x3F15212B),
-                          //               offset: Offset(
-                          //                 0.0,
-                          //                 3,
-                          //               ),
-                          //             )
-                          //           ],
-                          //           borderRadius: BorderRadius.circular(12),
-                          //           shape: BoxShape.rectangle,
-                          //         ),
-                          //         child: Padding(
-                          //           padding: EdgeInsetsDirectional.fromSTEB(
-                          //               0, 0, 0, 12),
-                          //           child: Column(
-                          //             mainAxisSize: MainAxisSize.max,
-                          //             children: [
-                          //               Expanded(
-                          //                 child: Padding(
-                          //                   padding:
-                          //                       EdgeInsetsDirectional.fromSTEB(
-                          //                           8, 8, 8, 0),
-                          //                   child: Container(
-                          //                     width: double.infinity,
-                          //                     height: 100,
-                          //                     decoration: BoxDecoration(
-                          //                       color:
-                          //                           FlutterFlowTheme.of(context)
-                          //                               .info,
-                          //                       borderRadius:
-                          //                           BorderRadius.circular(8),
-                          //                     ),
-                          //                     child: Padding(
-                          //                       padding: EdgeInsetsDirectional
-                          //                           .fromSTEB(0, 0, 0, 8),
-                          //                       child: ClipRRect(
-                          //                         borderRadius:
-                          //                             BorderRadius.circular(12),
-                          //                         child: Image.asset(
-                          //                           'assets/images/shphoto.jpg',
-                          //                           width: double.infinity,
-                          //                           height: 110,
-                          //                           fit: BoxFit.cover,
-                          //                         ),
-                          //                       ),
-                          //                     ),
-                          //                   ),
-                          //                 ),
-                          //               ),
-                          //               Padding(
-                          //                 padding:
-                          //                     EdgeInsetsDirectional.fromSTEB(
-                          //                         16, 4, 16, 0),
-                          //                 child: Row(
-                          //                   mainAxisSize: MainAxisSize.max,
-                          //                   mainAxisAlignment:
-                          //                       MainAxisAlignment.spaceBetween,
-                          //                   children: [
-                          //                     Text(
-                          //                       'item name',
-                          //                       style:
-                          //                           FlutterFlowTheme.of(context)
-                          //                               .bodyMedium
-                          //                               .override(
-                          //                                 fontFamily:
-                          //                                     'Funnel Display',
-                          //                                 color: FlutterFlowTheme
-                          //                                         .of(context)
-                          //                                     .primary,
-                          //                                 letterSpacing: 0.0,
-                          //                                 useGoogleFonts: false,
-                          //                               ),
-                          //                     ),
-                          //                     Text(
-                          //                       '\$120',
-                          //                       style:
-                          //                           FlutterFlowTheme.of(context)
-                          //                               .labelMedium
-                          //                               .override(
-                          //                                 fontFamily:
-                          //                                     'Funnel Display',
-                          //                                 letterSpacing: 0.0,
-                          //                                 useGoogleFonts: false,
-                          //                               ),
-                          //                     ),
-                          //                   ],
-                          //                 ),
-                          //               ),
-                          //               Padding(
-                          //                 padding:
-                          //                     EdgeInsetsDirectional.fromSTEB(
-                          //                         16, 4, 16, 0),
-                          //                 child: Row(
-                          //                   mainAxisSize: MainAxisSize.max,
-                          //                   children: [
-                          //                     Text(
-                          //                       'business name',
-                          //                       style:
-                          //                           FlutterFlowTheme.of(context)
-                          //                               .bodySmall
-                          //                               .override(
-                          //                                 fontFamily:
-                          //                                     'Funnel Display',
-                          //                                 color: FlutterFlowTheme
-                          //                                         .of(context)
-                          //                                     .secondaryText,
-                          //                                 letterSpacing: 0.0,
-                          //                                 useGoogleFonts: false,
-                          //                               ),
-                          //                     ),
-                          //                   ],
-                          //                 ),
-                          //               ),
-                          //             ],
-                          //           ),
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
                         ).animateOnPageLoad(
                             animationsMap['containerOnPageLoadAnimation']!),
                       ),
                       Flexible(
                         child: Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 12, 16, 24),
                           child: FFButtonWidget(
                             onPressed: () {
                               print('Button pressed ...');
@@ -505,11 +371,11 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 45,
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              iconPadding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                              color: Color(0x00FFFFFF),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 0),
+                              iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 0, 0, 0),
+                              color: const Color(0x00FFFFFF),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(

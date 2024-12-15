@@ -41,7 +41,7 @@ class _BouquetforeverymomentsectionWidgetState
         children: [
           // Title Row
           Align(
-            alignment: AlignmentDirectional(0, 0),
+            alignment: const AlignmentDirectional(0, 0),
             child: Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
               child: Row(
@@ -50,39 +50,19 @@ class _BouquetforeverymomentsectionWidgetState
                 children: [
                   Align(
                     alignment: const AlignmentDirectional(-1, 0),
-                    child: Text(
-                      'Bouquet for every moment',
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Funnel Display',
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.w600,
-                            useGoogleFonts: false,
-                          ),
-                    ),
-                  ),
-                  FFButtonWidget(
-                    onPressed: () {
-                      print('View More button pressed');
-                      // Add pagination or navigation logic here if needed
-                    },
-                    text: 'view more',
-                    options: FFButtonOptions(
-                      height: 40,
+                    child: Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                      color: const Color.fromARGB(0, 4, 4, 37),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Funnel Display',
-                                color: const Color(0xFF040425),
-                                fontSize: 10,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: false,
-                              ),
-                      elevation: 0,
-                      borderRadius: BorderRadius.circular(8),
+                          const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
+                      child: Text(
+                        'Bouquet for every moment',
+                        style:
+                            FlutterFlowTheme.of(context).titleMedium.override(
+                                  fontFamily: 'Funnel Display',
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w700,
+                                  useGoogleFonts: false,
+                                ),
+                      ),
                     ),
                   ),
                 ],

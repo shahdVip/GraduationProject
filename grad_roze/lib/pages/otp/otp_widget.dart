@@ -20,10 +20,12 @@ class OtpWidget extends StatefulWidget {
   const OtpWidget({
     super.key,
     String? email,
-  }) : email = email ?? ' ';
+    String? role,
+  })  : email = email ?? ' ',
+        role = role ?? ' ';
 
   final String email;
-
+  final String role;
   @override
   State<OtpWidget> createState() => _OtpWidgetState();
 }
@@ -51,6 +53,82 @@ class _OtpWidgetState extends State<OtpWidget> {
     _model.dispose();
 
     super.dispose();
+  }
+
+  Future<void> verifyOtpCustomer(
+      BuildContext context, String email, String enteredOtp) async {
+    var verifyBody = {
+      "email": email,
+      "otp": enteredOtp,
+    };
+
+    try {
+      // Make the POST request to verify the OTP
+      final response = await http.post(
+        Uri.parse(verifyOtpUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(verifyBody),
+      );
+
+      // Parse the response
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+
+        if (responseData['valid'] == true) {
+          // OTP is valid and not expired
+
+          // Show the dialog immediately instead of creating the user request
+          await showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (dialogContext) {
+              return Dialog(
+                elevation: 0,
+                insetPadding: EdgeInsets.zero,
+                backgroundColor: Colors.transparent,
+                alignment: const AlignmentDirectional(0, 0)
+                    .resolve(Directionality.of(context)),
+                child: GestureDetector(
+                  onTap: () => FocusScope.of(dialogContext).unfocus(),
+                  child: const UsrRgstrDialogWidget(), // Your dialog widget
+                ),
+              );
+            },
+          );
+        } else if (response.statusCode == 400) {
+          // OTP is invalid or expired, delete the user record
+          final deleteResponse = await http.post(
+            Uri.parse(deleteUserUrl),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({'email': email}),
+          );
+
+          if (deleteResponse.statusCode == 200) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('Incorrect/Expired OTP. Sign up again.'),
+                  backgroundColor: Colors.red),
+            );
+            context.pushNamed('onboarding');
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                  content: Text('Failed to delete user record.'),
+                  backgroundColor: Colors.red),
+            );
+          }
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Bad Request: ${response.body}')),
+          );
+        }
+      }
+    } catch (e) {
+      // Exception handling
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('An error occurred: $e')),
+      );
+    }
   }
 
   Future<void> verifyOtpAndNavigate(
@@ -98,12 +176,12 @@ class _OtpWidgetState extends State<OtpWidget> {
                   elevation: 0,
                   insetPadding: EdgeInsets.zero,
                   backgroundColor: Colors.transparent,
-                  alignment: AlignmentDirectional(0, 0)
+                  alignment: const AlignmentDirectional(0, 0)
                       .resolve(Directionality.of(context)),
                   child: GestureDetector(
                     onTap: () => FocusScope.of(dialogContext).unfocus(),
                     child:
-                        UsrRgstrDialogWidget(), // Replace with your dialog widget
+                        const UsrRgstrDialogWidget(), // Replace with your dialog widget
                   ),
                 );
               },
@@ -111,7 +189,7 @@ class _OtpWidgetState extends State<OtpWidget> {
           } else {
             // Handle failed user request creation
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Failed to create user request.')),
+              const SnackBar(content: Text('Failed to create user request.')),
             );
           }
         }
@@ -125,14 +203,14 @@ class _OtpWidgetState extends State<OtpWidget> {
 
         if (deleteResponse.statusCode == 200) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
                 content: Text('Incorrect/Expired OTP. Sign up again.'),
                 backgroundColor: Colors.red),
           );
           context.pushNamed('onboarding');
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
                 content: Text('Failed to delete user record.'),
                 backgroundColor: Colors.red),
           );
@@ -179,7 +257,7 @@ class _OtpWidgetState extends State<OtpWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Image.asset(
-                              'assets/images/mail-attack_(1).png',
+                              'assets/images/defaults/mail-attack_(1).png',
                               width: 150,
                               height: 150,
                               fit: BoxFit.cover,
@@ -411,14 +489,14 @@ class _OtpWidgetState extends State<OtpWidget> {
                                   if (response.statusCode == 200) {
                                     // Success - Show a success message
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
+                                      const SnackBar(
                                           content:
                                               Text('OTP resent successfully')),
                                     );
                                   } else {
                                     // Error - Show an error message
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
+                                      const SnackBar(
                                           content: Text('Failed to resend OTP'),
                                           backgroundColor: Colors.red),
                                     );
@@ -426,7 +504,7 @@ class _OtpWidgetState extends State<OtpWidget> {
                                 } catch (e) {
                                   // Exception - Show an error message
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                         content: Text('An error occurred'),
                                         backgroundColor: Colors.red),
                                   );
@@ -474,7 +552,10 @@ class _OtpWidgetState extends State<OtpWidget> {
                     onPressed: () async {
                       // Get the OTP entered by the user from the PinCodeTextField controller
                       String enteredOtp = _model.pinCodeController.text;
-                      verifyOtpAndNavigate(context, widget.email, enteredOtp);
+                      if (widget.role == 'Business')
+                        verifyOtpAndNavigate(context, widget.email, enteredOtp);
+                      else if (widget.role == 'Customer')
+                        verifyOtpCustomer(context, widget.email, enteredOtp);
                     },
                     text: 'Continue',
                     options: FFButtonOptions(

@@ -253,6 +253,7 @@ exports.register = async (req, res) => {
   try {
     const { email, password, address, phoneNumber, username, role } = req.body;
     let profilePhotoUrl = '';
+    const adminApproved = req.body.adminApproved === 'true'; // Convert 'true' to a boolean
 
     // Handle profile photo URL if a file is uploaded
     if (req.file) {
@@ -282,7 +283,8 @@ exports.register = async (req, res) => {
       role,
       profilePhoto: profilePhotoUrl,
       otp,
-      otpExpiration
+      otpExpiration,
+      adminApproved
     });
 
     // Save the user in the database
@@ -367,6 +369,29 @@ exports.verifyToken = (req, res, next) => {
       next(); // Proceed to the next middleware or route handler
     });
   };
+
+
+// Controller function to update the address
+exports.updateAddress = async (req, res) => {
+  const { address } = req.body;
+  const username = req.user.username; // Retrieved from token by middleware
+
+  if (!address) {
+    return res.status(400).json({ error: 'Address is required' });
+  }
+
+  try {
+    const updatedUser = await UserService.updateUserAddress(username, address);
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.status(200).json({ message: 'Address updated successfully', user: updatedUser });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while updating the address' });
+  }
+};
   
   // Get logged-in user's information
   exports.getLoggedInUserInfo = async (req, res) => {
@@ -710,4 +735,34 @@ exports.resetPasswordWithOtp = async (req, res) => {
   await user.save();
 
   res.status(200).send('Password reset successfully');
+};
+
+
+// Fetch user info by username
+exports.getUserByUsername = async (req, res) => {
+  try {
+    const { username } = req.params; // Extract username from request parameters
+
+    // Search for the user in the database
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      // If user is not found
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Respond with user information
+    res.status(200).json({
+      username: user.username,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
+      address: user.address,
+      profilePhoto: user.profilePhoto,
+      role: user.role,
+    });
+  } catch (error) {
+    // Handle server errors
+    console.error('Error fetching user:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
 };
