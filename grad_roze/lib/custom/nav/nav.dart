@@ -206,21 +206,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/webview',
           builder: (context, params) => const WebviewWidget(),
         ),
-        FFRoute(
-          name: 'myprofileCustomer',
-          path: '/myprofileCustomer',
-          builder: (context, params) => const MyprofileCustomerWidget(),
-        ),
-        FFRoute(
-          name: 'cart',
-          path: '/cart',
-          builder: (context, params) => const CartWidget(),
-        ),
-        FFRoute(
-          name: 'inventory',
-          path: '/inventory',
-          builder: (context, params) => const InventoryWidget(),
-        ),
+
         FFRoute(
           name: 'business_Pages',
           path: '/business',
