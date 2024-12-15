@@ -11,6 +11,8 @@ import 'package:grad_roze/pages/full_top_picks/full_top_picks_widget.dart';
 import 'package:grad_roze/pages/myprofile_customer/myprofile_customer_widget.dart';
 import 'package:grad_roze/pages/navigation_menu/navigation_menu.dart';
 import 'package:grad_roze/pages/navigation_menu_users/navigation_menu_users.dart';
+import 'package:grad_roze/pages/webview/webview_model.dart';
+import 'package:grad_roze/pages/webview/webview_widget.dart';
 import 'package:provider/provider.dart';
 
 import '/index.dart';
@@ -195,6 +197,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'inventory',
           path: '/inventory',
           builder: (context, params) => const InventoryWidget(),
+        ),
+        FFRoute(
+          name: 'webview',
+          path: '/webview',
+          builder: (context, params) => const WebviewWidget(),
         ),
         // FFRoute(
         //   name: 'FullTopPicks',
