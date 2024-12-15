@@ -13,8 +13,7 @@ const colorRoutes = require("./routes/color.route");
 const flowerTypeRoutes = require("./routes/flowerType.route");
 const tagRoutes = require("./routes/tag.route");
 const orderRoutes = require("./routes/order.route");
-const cartRoutes = require("./routes/userCart.route");
-const inventoryRoutes = require("./routes/inventory.route");
+
 const specialOrdersRoutes = require("./routes/specialOrder.route");
 
 const mongoose = require("mongoose");
