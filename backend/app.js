@@ -9,6 +9,11 @@ const itemRoutes = require("./routes/item.route");
 const momentRoutes = require("./routes/moments.route");
 const cartRoutes = require("./routes/userCart.route");
 const inventoryRoutes = require("./routes/inventory.route");
+const colorRoutes = require("./routes/color.route");
+const flowerTypeRoutes = require("./routes/flowerType.route");
+const tagRoutes = require("./routes/tag.route");
+const orderRoutes = require("./routes/order.route");
+
 const specialOrdersRoutes = require("./routes/specialOrder.route");
 
 const mongoose = require("mongoose");
@@ -35,12 +40,24 @@ app.use(
 );
 
 app.use(body_parser.json());
+app.use(
+  "/uploadsFlowers",
+  express.static(path.join(__dirname, "uploadsFlowers"))
+);
 
 // Routes
 app.use("/", userRoute);
 app.use("/userRequests", userRequestRoutes);
 app.use("/userPreference", userPreferenceRoutes); // Add the user preference routes
 app.use("/moments", momentRoutes);
+app.use("/item", itemRoutes);
+app.use("/orders", orderRoutes);
+
+app.use("/cart", cartRoutes);
+app.use("/inventory", inventoryRoutes);
+app.use("/colors", colorRoutes);
+app.use("/flowerTypes", flowerTypeRoutes);
+app.use("/tags", tagRoutes);
 app.use("/item", itemRoutes);
 app.use("/cart", cartRoutes);
 app.use("/inventory", inventoryRoutes);

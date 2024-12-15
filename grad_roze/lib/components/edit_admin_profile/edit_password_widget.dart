@@ -8,9 +8,7 @@ import 'edit_password_model.dart';
 export 'edit_password_model.dart';
 import '/config.dart';
 import 'package:http/http.dart' as http;
-import 'package:google_fonts/google_fonts.dart';
 
-import 'edit_password_model.dart';
 export 'edit_password_model.dart';
 
 class EditPasswordWidget extends StatefulWidget {

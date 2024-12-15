@@ -2,9 +2,7 @@ import '/custom/animations.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
 import '/custom/widgets.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,7 +45,7 @@ class _CustomizeSectionWidgetState extends State<CustomizeSectionWidget>
             curve: Curves.easeInOut,
             delay: 5000.0.ms,
             duration: 1500.0.ms,
-            color: Color(0x80FFFFFF),
+            color: const Color(0x80FFFFFF),
             angle: 0.524,
           ),
         ],
@@ -73,9 +71,9 @@ class _CustomizeSectionWidgetState extends State<CustomizeSectionWidget>
             FlutterFlowTheme.of(context).primary,
             FlutterFlowTheme.of(context).secondary
           ],
-          stops: [0, 1],
-          begin: AlignmentDirectional(0, -1),
-          end: AlignmentDirectional(0, 1),
+          stops: const [0, 1],
+          begin: const AlignmentDirectional(0, -1),
+          end: const AlignmentDirectional(0, 1),
         ),
       ),
       child: Stack(
@@ -96,30 +94,30 @@ class _CustomizeSectionWidgetState extends State<CustomizeSectionWidget>
               gradient: LinearGradient(
                 colors: [
                   FlutterFlowTheme.of(context).accent4,
-                  Color(0x00FFFFFF),
+                  const Color(0x00FFFFFF),
                   FlutterFlowTheme.of(context).secondaryBackground
                 ],
-                stops: [0, 0.7, 1],
-                begin: AlignmentDirectional(0, -1),
-                end: AlignmentDirectional(0, 1),
+                stops: const [0, 0.7, 1],
+                begin: const AlignmentDirectional(0, -1),
+                end: const AlignmentDirectional(0, 1),
               ),
             ),
           ),
           Align(
-            alignment: AlignmentDirectional(0, 1),
+            alignment: const AlignmentDirectional(0, 1),
             child: Container(
               width: double.infinity,
               height: 100,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color(0x00FFFFFF),
+                    const Color(0x00FFFFFF),
                     FlutterFlowTheme.of(context).accent4,
                     FlutterFlowTheme.of(context).secondaryBackground
                   ],
-                  stops: [0, 0.3, 1],
-                  begin: AlignmentDirectional(0, -1),
-                  end: AlignmentDirectional(0, 1),
+                  stops: const [0, 0.3, 1],
+                  begin: const AlignmentDirectional(0, -1),
+                  end: const AlignmentDirectional(0, 1),
                 ),
               ),
               child: Column(
@@ -128,7 +126,7 @@ class _CustomizeSectionWidgetState extends State<CustomizeSectionWidget>
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 3),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 3),
                       child: Text(
                         'Make Your OWN Bouquet',
                         style:
@@ -146,8 +144,10 @@ class _CustomizeSectionWidgetState extends State<CustomizeSectionWidget>
                     text: 'Customize a Bouquet',
                     options: FFButtonOptions(
                       height: 40,
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                      iconPadding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -174,11 +174,11 @@ class _CustomizeSectionWidgetState extends State<CustomizeSectionWidget>
                 colors: [
                   FlutterFlowTheme.of(context).secondaryBackground,
                   FlutterFlowTheme.of(context).accent4,
-                  Color(0x00FFFFFF)
+                  const Color(0x00FFFFFF)
                 ],
-                stops: [0, 0.3, 0.5],
-                begin: AlignmentDirectional(0, -1),
-                end: AlignmentDirectional(0, 1),
+                stops: const [0, 0.3, 0.5],
+                begin: const AlignmentDirectional(0, -1),
+                end: const AlignmentDirectional(0, 1),
               ),
             ),
           ),

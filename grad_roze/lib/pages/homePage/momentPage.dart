@@ -1,38 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:grad_roze/components/explore_card/explore_card_widget.dart';
 import 'package:grad_roze/custom/theme.dart';
-import 'package:grad_roze/widgets/Bouquet/BouquetViewModel.dart';
 import 'package:grad_roze/config.dart';
 import 'package:grad_roze/widgets/Bouquet/BouquetViewWidget.dart';
 import '../../widgets/MomentsModel.dart';
 export '../../widgets/MomentsModel.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:grad_roze/config.dart';
-import 'package:grad_roze/custom/animations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '/components/explore_card/explore_card_widget.dart';
-import '/custom/choice_chips.dart';
-import '/custom/icon_button.dart';
-import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
-import '/custom/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
-
-import '/custom/theme.dart';
-import '/custom/util.dart';
-
-import 'package:easy_debounce/easy_debounce.dart';
-
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
-import '/config.dart' show url;
 import 'momentPage_model.dart';
 export 'momentPage_model.dart';
 
@@ -128,9 +106,6 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    if (_model == null) {
-      return const Center(child: CircularProgressIndicator());
-    }
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -156,14 +131,14 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
               child: TextFormField(
                 controller: _model.textController,
                 focusNode: _model.textFieldFocusNode,
                 onChanged: (_) {
                   EasyDebounce.debounce(
                     '_model.textController',
-                    Duration(milliseconds: 2000),
+                    const Duration(milliseconds: 2000),
                     () {
                       setState(() {
                         isSearching = true; // Set the search flag
@@ -226,7 +201,8 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
                     ),
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  contentPadding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                  contentPadding:
+                      const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                   prefixIcon: Icon(
                     Icons.search,
                     color: FlutterFlowTheme.of(context).secondaryText,
@@ -277,7 +253,7 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
                               padding: EdgeInsets.zero,
                               shrinkWrap: true,
                               gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 8.0,
                                 mainAxisSpacing: 8.0,

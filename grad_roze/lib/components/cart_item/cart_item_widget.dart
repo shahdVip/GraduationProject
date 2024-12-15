@@ -62,13 +62,13 @@ class _CartItemWidgetState extends State<CartItemWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
       child: Container(
         width: double.infinity,
         height: 100,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4,
               color: Color(0x320E151B),
@@ -81,7 +81,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(12, 8, 8, 8),
+          padding: const EdgeInsetsDirectional.fromSTEB(12, 8, 8, 8),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,14 +107,15 @@ class _CartItemWidgetState extends State<CartItemWidget> {
               // Expanded column for item name and price
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                         child: Text(
                           widget.itemName,
                           style:

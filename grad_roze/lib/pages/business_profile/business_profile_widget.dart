@@ -29,7 +29,6 @@ class BusinessProfileWidget extends StatefulWidget {
 
 class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
   late BusinessProfileModel _model;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
   bool favtoggle = true;
 
@@ -102,7 +101,6 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 
@@ -232,7 +230,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {},
-                            child: Container(
+                            child: SizedBox(
                               width: double.infinity,
                               height: 144,
                               // decoration: const BoxDecoration(
@@ -375,11 +373,11 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                     children: [
                       Expanded(
                         child: isLoading
-                            ? Center(child: CircularProgressIndicator())
+                            ? const Center(child: CircularProgressIndicator())
                             : GridView.builder(
                                 padding: const EdgeInsets.all(8.0),
                                 gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 8.0,
                                   mainAxisSpacing: 8.0,
