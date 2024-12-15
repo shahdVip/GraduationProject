@@ -8,12 +8,8 @@ import '/custom/theme.dart';
 import '/custom/util.dart';
 import '/custom/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
-
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'customer_home_model.dart';
 export 'customer_home_model.dart';
@@ -34,7 +30,7 @@ class Item {
     return Item(
       name: json['name'],
       business: json['business'],
-      price: json['price'].toDouble(),
+      price: json['price'].toInt(),
       imageURL: json['imageURL'],
     );
   }

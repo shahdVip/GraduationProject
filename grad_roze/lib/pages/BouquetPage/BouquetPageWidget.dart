@@ -7,12 +7,8 @@ import '/custom/widgets.dart';
 import '/config.dart' show url;
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
-
 import 'BouquetPageModel.dart';
-import '/widgets/MomentsModel.dart';
 
 class BouquetPageWidget extends StatefulWidget {
   final String bouquetId;
@@ -118,15 +114,16 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                             ),
                                           ),
                                           Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0, 20, 0, 0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(0, 20, 0, 0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(20, 0, 0, 0),
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
+                                                          20, 0, 0, 0),
                                                   child: FlutterFlowIconButton(
                                                     borderRadius: 8,
                                                     buttonSize: 40,
@@ -339,7 +336,7 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                                     .override(
                                                                       fontFamily:
                                                                           'Funnel Display',
-                                                                      color: Color(
+                                                                      color: const Color(
                                                                           0xFF040425),
                                                                       letterSpacing:
                                                                           0.0,
@@ -474,8 +471,9 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                             color: FlutterFlowTheme
                                                                     .of(context)
                                                                 .secondaryText,
-                                                            offset: Offset(
-                                                                2.0, 2.0),
+                                                            offset:
+                                                                const Offset(
+                                                                    2.0, 2.0),
                                                             blurRadius: 2.0,
                                                           )
                                                         ],
@@ -536,7 +534,8 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                 .labelMedium
                                                 .override(
                                                   fontFamily: 'Funnel Display',
-                                                  color: Color(0xFF040425),
+                                                  color:
+                                                      const Color(0xFF040425),
                                                   letterSpacing: 0.0,
                                                   useGoogleFonts: false,
                                                 ),

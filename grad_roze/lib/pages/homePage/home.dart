@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grad_roze/components/bouqet_builder/bouqet_builder_widget.dart';
+import 'package:grad_roze/components/BottomNavBar.dart';
 import 'package:grad_roze/components/explore_widget/explore_widget.dart';
 import 'package:grad_roze/custom/icon_button.dart';
 import 'package:grad_roze/widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_widget.dart';
@@ -11,7 +12,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../widgets/CarouselSliderModel.dart';
 export '../../widgets/CarouselSliderModel.dart';
-
+import 'package:grad_roze/custom/icon_button.dart';
 export '../../widgets/MomentsModel.dart';
 
 export '../../widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_model.dart';
@@ -462,9 +463,9 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
           scrollDirection: Axis.horizontal,
           autoPlay: true, // Enable auto-play
           autoPlayInterval:
-              Duration(seconds: 3), // Interval between auto-play slides
+              const Duration(seconds: 3), // Interval between auto-play slides
           autoPlayAnimationDuration:
-              Duration(milliseconds: 800), // Animation duration
+              const Duration(milliseconds: 800), // Animation duration
           autoPlayCurve: Curves.fastOutSlowIn, // Animation curve
           onPageChanged: (index, _) => _model.carouselCurrentIndex = index,
         ),

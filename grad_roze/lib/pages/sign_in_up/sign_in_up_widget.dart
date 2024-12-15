@@ -12,13 +12,9 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:http_parser/http_parser.dart';
-import 'package:mime/mime.dart';
-import 'package:flutter/material.dart';
 import '/config.dart';
-import 'dart:convert';
 
 import 'sign_in_up_model.dart';
 export 'sign_in_up_model.dart';
@@ -85,15 +81,15 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
             } else {
               // Handle other errors if needed
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
+                const SnackBar(
                   content: Text('Error checking preferences'),
                   backgroundColor: Colors.red,
                 ),
               );
             }
-            //context.pushNamed('moodQuiz'); // Navigate to the user home page
+            //context.pushNamed(''); // Navigate to the user home page
           } else {
-            context.pushNamed('inventory');
+            context.pushNamed('business_Pages');
           }
         } else {
           String message = 'Something went wrong!';
@@ -152,8 +148,9 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
       request.fields['phoneNumber'] = _model.phoneCreateTextController.text;
       request.fields['username'] = _model.usernameCreateTextController.text;
       request.fields['role'] = _model.rolesValue!; // Use non-null assertion
-      if (_model.rolesValue == 'Customer')
+      if (_model.rolesValue == 'Customer') {
         request.fields['adminApproved'] = 'true';
+      }
       // Add the image file if available
       if (_image != null) {
         var file = http.MultipartFile.fromBytes(

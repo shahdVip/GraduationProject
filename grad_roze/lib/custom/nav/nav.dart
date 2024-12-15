@@ -1,9 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:grad_roze/components/bottomNavBar/customer_layout.dart';
+import 'package:grad_roze/components/business_components/business_layout.dart';
 import 'package:grad_roze/pages/business_pages/inventory/inventory_widget.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_model.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_widget.dart';
+import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
 import 'package:grad_roze/pages/cart/cart_widget.dart';
 import 'package:grad_roze/pages/favorite_list/favorite_list_widget.dart';
 import 'package:grad_roze/pages/full_top_picks/full_top_picks_model.dart';
@@ -176,7 +179,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => const HomePage(),
+          builder: (context, params) => const CustomerLayout(),
         ),
         FFRoute(
           name: 'FullExplore',
@@ -202,6 +205,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'webview',
           path: '/webview',
           builder: (context, params) => const WebviewWidget(),
+        ),
+        FFRoute(
+          name: 'myprofileCustomer',
+          path: '/myprofileCustomer',
+          builder: (context, params) => const MyprofileCustomerWidget(),
+        ),
+        FFRoute(
+          name: 'cart',
+          path: '/cart',
+          builder: (context, params) => const CartWidget(),
+        ),
+        FFRoute(
+          name: 'inventory',
+          path: '/inventory',
+          builder: (context, params) => const InventoryWidget(),
+        ),
+        FFRoute(
+          name: 'business_Pages',
+          path: '/business',
+          builder: (context, params) => const BusinessLayout(),
         ),
         // FFRoute(
         //   name: 'FullTopPicks',

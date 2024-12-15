@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:grad_roze/components/admin_order_card/admin_order_card_model.dart';
-import 'package:grad_roze/custom/nav/nav.dart';
 import 'package:grad_roze/custom/widgets.dart';
-import 'package:grad_roze/index.dart';
 import 'package:provider/provider.dart';
 
 import '../../custom/theme.dart';
@@ -35,7 +32,7 @@ class TopPicksWidget extends StatelessWidget {
           } else {
             return Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 height: 350, // Reduced the height of the container
                 child: Column(
@@ -48,7 +45,7 @@ class TopPicksWidget extends StatelessWidget {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
                         child: Text(
-                          'Our Top Picks',
+                          'Top Picks',
                           style:
                               FlutterFlowTheme.of(context).titleMedium.override(
                                     fontFamily: 'Funnel Display',
@@ -73,7 +70,8 @@ class TopPicksWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 24),
                       child: FFButtonWidget(
                         onPressed: () {
                           Navigator.push(
@@ -84,18 +82,20 @@ class TopPicksWidget extends StatelessWidget {
                           );
                         },
                         text: 'View More',
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_forward_ios_outlined,
                           size: 15,
                         ),
                         options: FFButtonOptions(
                           width: double.infinity,
                           height: 40,
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 0, 16, 0),
                           iconAlignment: IconAlignment.end,
                           iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          color: Color(0x00040425), // Button background color
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                          color: const Color(
+                              0x00040425), // Button background color
                           textStyle: FlutterFlowTheme.of(context)
                               .titleSmall
                               .override(

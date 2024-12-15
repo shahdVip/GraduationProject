@@ -9,15 +9,7 @@ const getAllItems = async () => {
     throw new Error('Error fetching items: ' + error.message);
   }
 };
-const createItem = async (itemData) => {
-  try {
-    const newItem = new Item(itemData); // wrapColor is automatically handled here
-    await newItem.save();
-    return newItem;
-  } catch (error) {
-    throw new Error('Error creating item: ' + error.message);
-  }
-};
+
 // Function to fetch items based on user preferences
 const getRecommendedItems = async (username) => {
   try {
@@ -55,4 +47,4 @@ score += matchingColors.length;
   }
 };
  
-module.exports = { getAllItems, createItem, getRecommendedItems };
+module.exports = { getAllItems, getRecommendedItems };

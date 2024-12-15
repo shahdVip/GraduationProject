@@ -1,8 +1,7 @@
 // services/userRequest.service.js
-const UserRequest = require('../model/userRequest.model');
-const User = require('../model/user.model');
-const InventoryModel = require('../model/inventory.model'); // Adjust path as necessary
-
+const UserRequest = require("../model/userRequest.model");
+const User = require("../model/user.model");
+const InventoryModel = require("../model/inventory.model"); // Adjust path as necessary
 
 const createUserRequest = async (userData) => {
   const userRequest = new UserRequest(userData);
@@ -24,7 +23,6 @@ const approveUser = async (username) => {
 
   await newInventory.save();
 
-  // Remove the request from the userRequest collection
   return await deleteUserRequest(username);
 };
 

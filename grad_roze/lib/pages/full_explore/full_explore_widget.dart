@@ -10,12 +10,9 @@ import '/custom/choice_chips.dart';
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
 import '/custom/form_field_controller.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 import 'full_explore_model.dart';
@@ -59,8 +56,8 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(20.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(20.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -72,8 +69,8 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(20.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(20.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -85,8 +82,8 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 20.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -140,8 +137,9 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
 
 // Fetch recommended items from the backend API
   Future<void> fetchRecommendedItems() async {
-    if (username.isEmpty)
+    if (username.isEmpty) {
       return; // Prevent making the API call if username is empty
+    }
 
     final response = await http.post(
       Uri.parse(fetchPreferenceUrl), // Replace with your API endpoint
@@ -233,7 +231,7 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
                   useGoogleFonts: false,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
@@ -244,14 +242,14 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
                 child: TextFormField(
                   controller: _model.textController,
                   focusNode: _model.textFieldFocusNode,
                   onChanged: (_) {
                     EasyDebounce.debounce(
                       '_model.textController',
-                      Duration(milliseconds: 2000),
+                      const Duration(milliseconds: 2000),
                       () {
                         setState(() {
                           isSearching = true; // Set the search flag
@@ -317,7 +315,8 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
                       ),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    contentPadding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                    contentPadding:
+                        const EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                     prefixIcon: Icon(
                       Icons.search,
                       color: FlutterFlowTheme.of(context).secondaryText,
@@ -357,25 +356,26 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                       child: FutureBuilder<List<String>>(
                         future: _flowerTypesFuture,
                         builder: (context, snapshot) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return Center(child: CircularProgressIndicator());
+                            return const Center(
+                                child: CircularProgressIndicator());
                           } else if (snapshot.hasError) {
                             return Center(
                                 child: Text('Error: ${snapshot.error}'));
                           } else if (!snapshot.hasData ||
                               snapshot.data!.isEmpty) {
-                            return Center(
+                            return const Center(
                                 child: Text('No flower types available.'));
                           } else {
                             // Build the Choice Chips with fetched data
                             final flowerTypes = snapshot.data!;
                             final chipOptions = [
-                              ChipData('All'),
+                              const ChipData('All'),
                               ...flowerTypes.map((type) => ChipData(type)),
                             ];
 
@@ -397,7 +397,7 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
                                       letterSpacing: 0.0,
                                       useGoogleFonts: false,
                                     ),
-                                iconColor: Color(0x00000000),
+                                iconColor: const Color(0x00000000),
                                 iconSize: 0,
                                 elevation: 1,
                                 borderWidth: 1,
@@ -415,7 +415,7 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
                                       letterSpacing: 0.0,
                                       useGoogleFonts: false,
                                     ),
-                                iconColor: Color(0x00000000),
+                                iconColor: const Color(0x00000000),
                                 iconSize: 0,
                                 elevation: 1,
                                 borderColor:
@@ -437,8 +437,8 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
                       ),
                     ),
                   ]
-                      .addToStart(SizedBox(width: 16))
-                      .addToEnd(SizedBox(width: 16)),
+                      .addToStart(const SizedBox(width: 16))
+                      .addToEnd(const SizedBox(width: 16)),
                 ).animateOnPageLoad(animationsMap['rowOnPageLoadAnimation']!),
               ),
               Expanded(
@@ -455,13 +455,13 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
                         ),
                       )
                     : Padding(
-                        padding:
-                            EdgeInsets.only(right: 10.0), // Add right padding
+                        padding: const EdgeInsets.only(
+                            right: 10.0), // Add right padding
                         child: GridView.builder(
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 8.0,
                             mainAxisSpacing: 8.0,
