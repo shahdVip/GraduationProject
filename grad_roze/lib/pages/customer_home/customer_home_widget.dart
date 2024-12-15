@@ -30,7 +30,7 @@ class Item {
     return Item(
       name: json['name'],
       business: json['business'],
-      price: json['price'].toDouble(),
+      price: json['price'].toInt(),
       imageURL: json['imageURL'],
     );
   }
@@ -50,7 +50,6 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = <String, AnimationInfo>{};
-  //final String baseUrl = 'http://192.168.1.9:3000';
   Future<List<BouquetViewModel>> fetchRecommendedItems() async {
     final prefs = await SharedPreferences.getInstance();
     final String? username = prefs.getString('username'); // Get username
@@ -59,7 +58,8 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
       print("Username not found, user needs to sign in");
       return [];
     }
-    // Update with your API URL
+
+    // Replace with your API URL
     final response = await http.post(
       Uri.parse('$url/item/recommendations'),
       headers: {'Content-Type': 'application/json'},

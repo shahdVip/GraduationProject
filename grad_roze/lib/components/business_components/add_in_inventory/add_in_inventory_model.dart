@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 
 class AddInInventoryModel extends FlutterFlowModel<AddInInventoryWidget> {
   ///  State fields for stateful widgets in this component.
+
   final formKey = GlobalKey<FormState>();
   // State field(s) for flowerType widget.
   FocusNode? flowerTypeFocusNode;

@@ -12,13 +12,9 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:http/http.dart' as http;
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:http_parser/http_parser.dart';
-import 'package:mime/mime.dart';
-import 'package:flutter/material.dart';
 import '/config.dart';
-import 'dart:convert';
 
 import 'sign_in_up_model.dart';
 export 'sign_in_up_model.dart';
@@ -91,9 +87,9 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                 ),
               );
             }
-            //context.pushNamed('moodQuiz'); // Navigate to the user home page
+            //context.pushNamed(''); // Navigate to the user home page
           } else {
-            context.pushNamed('inventory');
+            context.pushNamed('business_Pages');
           }
         } else {
           String message = 'Something went wrong!';
