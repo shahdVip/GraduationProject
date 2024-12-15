@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/index.dart';
 import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
-import 'package:grad_roze/pages/cart/cart_widget.dart';
 
 class CustomerLayout extends StatefulWidget {
   const CustomerLayout({super.key});

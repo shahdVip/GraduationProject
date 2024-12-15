@@ -427,17 +427,15 @@ class _CartWidgetState extends State<CartWidget> {
 
   void calculateTotalPrice() async {
     final items = await cartItems; // Wait for the cart items
-    if (items != null) {
-      double newTotalPrice = 0.0;
-      for (var item in items) {
-        final price = item['price'] ?? 0; // Default price 0
-        final quantity = item['quantity'] ?? 0; // Default quantity 0
-        newTotalPrice += price * quantity;
-      }
-      setState(() {
-        totalPrice = newTotalPrice; // Update the total price in state
-      });
+    double newTotalPrice = 0.0;
+    for (var item in items) {
+      final price = item['price'] ?? 0; // Default price 0
+      final quantity = item['quantity'] ?? 0; // Default quantity 0
+      newTotalPrice += price * quantity;
     }
+    setState(() {
+      totalPrice = newTotalPrice; // Update the total price in state
+    });
   }
 
   @override
@@ -450,18 +448,6 @@ class _CartWidgetState extends State<CartWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderRadius: 8,
-            buttonSize: 40,
-            icon: Icon(
-              Icons.arrow_back,
-              color: FlutterFlowTheme.of(context).primary,
-              size: 24,
-            ),
-            onPressed: () async {
-              context.safePop();
-            },
-          ),
           title: Text(
             'My Cart',
             style: FlutterFlowTheme.of(context).displaySmall.override(
@@ -471,7 +457,7 @@ class _CartWidgetState extends State<CartWidget> {
                   useGoogleFonts: false,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 0,
         ),
@@ -481,7 +467,7 @@ class _CartWidgetState extends State<CartWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Container(
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -489,7 +475,8 @@ class _CartWidgetState extends State<CartWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                           child: Text(
                             'Below are the items in your cart.',
                             style: FlutterFlowTheme.of(context)
@@ -502,20 +489,21 @@ class _CartWidgetState extends State<CartWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                           child: FutureBuilder<List<Map<String, dynamic>>>(
                               future: cartItems,
                               builder: (context, snapshot) {
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return Center(
+                                  return const Center(
                                       child: CircularProgressIndicator());
                                 } else if (snapshot.hasError) {
                                   return Center(
                                       child: Text('Error: ${snapshot.error}'));
                                 } else if (!snapshot.hasData ||
                                     snapshot.data!.isEmpty) {
-                                  return Center(
+                                  return const Center(
                                       child: Text('Your cart is empty.'));
                                 } else {
                                   items = snapshot.data!;
@@ -584,23 +572,24 @@ class _CartWidgetState extends State<CartWidget> {
               ],
             ),
             Align(
-              alignment: AlignmentDirectional(0, 1),
+              alignment: const AlignmentDirectional(0, 1),
               child: Container(
                 width: double.infinity,
                 height: 180,
-                decoration: BoxDecoration(),
+                decoration: const BoxDecoration(),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0, 1),
+                      alignment: const AlignmentDirectional(0, 1),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
                         child: Container(
-                          decoration: BoxDecoration(),
+                          decoration: const BoxDecoration(),
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(24, 10, 24, 12),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                24, 10, 24, 12),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -633,13 +622,13 @@ class _CartWidgetState extends State<CartWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, 1),
+                      alignment: const AlignmentDirectional(0, 1),
                       child: Container(
                         width: double.infinity,
                         height: 100,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).secondary,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 4,
                               color: Color(0x320E151B),
@@ -649,16 +638,17 @@ class _CartWidgetState extends State<CartWidget> {
                               ),
                             )
                           ],
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(0),
                             bottomRight: Radius.circular(0),
                             topLeft: Radius.circular(12),
                             topRight: Radius.circular(12),
                           ),
                         ),
-                        alignment: AlignmentDirectional(0, 0),
+                        alignment: const AlignmentDirectional(0, 0),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 32),
                           child: Text(
                             'Checkout ',
                             style: FlutterFlowTheme.of(context)

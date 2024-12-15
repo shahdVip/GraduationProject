@@ -1,7 +1,7 @@
 // models/inventory.model.js
 
-const mongoose = require('mongoose');
-const db = require('../config/db');
+const mongoose = require("mongoose");
+const db = require("../config/db");
 
 const FlowerSchema = new mongoose.Schema({
   flowerType: { type: String, required: true },
@@ -15,6 +15,6 @@ const InventorySchema = new mongoose.Schema({
   username: { type: String, required: true }, // Business username
   flowers: [FlowerSchema], // Array of flowers for the business
 });
-const InventoryModel = db.model('inventory', InventorySchema);
+const InventoryModel = db.model("inventory", InventorySchema);
 
 module.exports = InventoryModel;

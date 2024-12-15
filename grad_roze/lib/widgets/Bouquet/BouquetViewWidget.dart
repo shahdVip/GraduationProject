@@ -105,7 +105,7 @@ class BouquetViewWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        '\$${model.price}',
+                        '\$${model.price.toInt()}',
                         style:
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: 'Funnel Display',
@@ -144,7 +144,7 @@ class BouquetViewWidget extends StatelessWidget {
                           style:
                               FlutterFlowTheme.of(context).bodySmall.override(
                                     fontFamily: 'Funnel Display',
-                                    color: Color(0xff040425),
+                                    color: const Color(0xff040425),
                                     letterSpacing: 0.0,
                                     useGoogleFonts: false,
                                   ),

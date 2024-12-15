@@ -2,13 +2,12 @@ import '/custom/animations.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
 import '/custom/widgets.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'CustomizeSectionModel.dart';
 export 'CustomizeSectionModel.dart';
@@ -139,7 +138,8 @@ class _CustomizeSectionWidgetState extends State<CustomizeSectionWidget>
                       )),
                   FFButtonWidget(
                     onPressed: () {
-                      print('Button pressed ...');
+                      print("Button Pressed");
+                      // launchUrl(Uri.parse(url)); // Use `url_launcher` package
                     },
                     text: 'Customize a Bouquet',
                     options: FFButtonOptions(

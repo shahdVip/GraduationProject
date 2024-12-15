@@ -10,8 +10,7 @@ import '/config.dart' show url;
 class UserSectionBusWidget extends StatefulWidget {
   final Map<String, dynamic> userData;
 
-  const UserSectionBusWidget({required this.userData, Key? key})
-      : super(key: key);
+  const UserSectionBusWidget({required this.userData, super.key});
 
   @override
   State<UserSectionBusWidget> createState() => _UserSectionBusWidgetState();

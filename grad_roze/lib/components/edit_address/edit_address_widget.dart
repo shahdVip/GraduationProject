@@ -54,7 +54,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
     return Material(
       color: Colors.transparent,
       elevation: 5,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(0),
           bottomRight: Radius.circular(0),
@@ -67,7 +67,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
         height: 300,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.of(context).secondaryBackground,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(0),
             bottomRight: Radius.circular(0),
             topLeft: Radius.circular(16),
@@ -84,7 +84,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                     child: Container(
                       width: 50,
                       height: 4,
@@ -97,7 +97,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                 child: Text(
                   'Edit Address',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -109,15 +109,15 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
-                child: Container(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
+                child: SizedBox(
                   width: double.infinity,
                   child: TextFormField(
                     controller: _model.shortBioTextController,
                     focusNode: _model.shortBioFocusNode,
                     onChanged: (_) => EasyDebounce.debounce(
                       '_model.shortBioTextController',
-                      Duration(milliseconds: 2000),
+                      const Duration(milliseconds: 2000),
                       () => safeSetState(() {}),
                     ),
                     autofocus: true,
@@ -178,7 +178,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                       fillColor:
                           FlutterFlowTheme.of(context).secondaryBackground,
                       contentPadding:
-                          EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
+                          const EdgeInsetsDirectional.fromSTEB(0, 16, 16, 8),
                       prefixIcon: Icon(
                         Icons.location_on_rounded,
                         color: FlutterFlowTheme.of(context).secondaryText,
@@ -189,7 +189,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                                 _model.shortBioTextController?.clear();
                                 safeSetState(() {});
                               },
-                              child: Icon(
+                              child: const Icon(
                                 Icons.clear,
                                 color: Color(0xFF757575),
                                 size: 22,
@@ -216,7 +216,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         final newAddress =
@@ -263,7 +263,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                             Navigator.pop(context, newAddress);
                             // Address updated successfully
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
+                              const SnackBar(
                                   content:
                                       Text('Address updated successfully!')),
                             );
@@ -294,8 +294,10 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                       options: FFButtonOptions(
                         width: 200,
                         height: 50,
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: FlutterFlowTheme.of(context).primary,
                         textStyle:
                             FlutterFlowTheme.of(context).titleMedium.override(
@@ -305,7 +307,7 @@ class _EditAddressWidgetState extends State<EditAddressWidget> {
                                   useGoogleFonts: false,
                                 ),
                         elevation: 3,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1,
                         ),

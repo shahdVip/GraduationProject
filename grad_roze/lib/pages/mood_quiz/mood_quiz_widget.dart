@@ -237,7 +237,6 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
 
   // Future<String> fetchItemData(String itemId) async {
   //   final response =
-  //       await http.get(Uri.parse('http://192.168.1.6:3000/item/items/$itemId'));
 
   //   if (response.statusCode == 200) {
   //     final itemData = json.decode(response.body);
