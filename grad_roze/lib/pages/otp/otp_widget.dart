@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:google_fonts/google_fonts.dart';
 
 import 'otp_model.dart';
 export 'otp_model.dart';
@@ -552,9 +551,9 @@ class _OtpWidgetState extends State<OtpWidget> {
                     onPressed: () async {
                       // Get the OTP entered by the user from the PinCodeTextField controller
                       String enteredOtp = _model.pinCodeController.text;
-                      if (widget.role == 'Business')
+                      if (widget.role == 'Business') {
                         verifyOtpAndNavigate(context, widget.email, enteredOtp);
-                      else if (widget.role == 'Customer')
+                      } else if (widget.role == 'Customer')
                         verifyOtpCustomer(context, widget.email, enteredOtp);
                     },
                     text: 'Continue',

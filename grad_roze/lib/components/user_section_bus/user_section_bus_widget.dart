@@ -5,20 +5,12 @@ import '/custom/util.dart';
 import 'package:flutter/material.dart';
 import 'user_section_bus_model.dart';
 export 'user_section_bus_model.dart';
+import '/config.dart' show url;
 
 class UserSectionBusWidget extends StatefulWidget {
-  final String username;
-  final String email;
-  final String profilePhoto;
-  final String phoneNumber;
-  final String address;
-  const UserSectionBusWidget(
-      {super.key,
-      required this.username,
-      required this.email,
-      required this.profilePhoto,
-      required this.phoneNumber,
-      required this.address});
+  final Map<String, dynamic> userData;
+
+  const UserSectionBusWidget({required this.userData, super.key});
 
   @override
   State<UserSectionBusWidget> createState() => _UserSectionBusWidgetState();
@@ -86,16 +78,16 @@ class _UserSectionBusWidgetState extends State<UserSectionBusWidget> {
                 padding: const EdgeInsets.all(2.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: widget.profilePhoto.isEmpty
+                  child: widget.userData['profilePhoto'] == null ||
+                          widget.userData['profilePhoto'].isEmpty
                       ? Image.asset(
-                          'assets/images/defaults/default_avatar.png', // Path to your default image
+                          'assets/images/defaults/default_avatar.png',
                           width: 60.0,
                           height: 60.0,
                           fit: BoxFit.cover,
                         )
                       : Image.network(
-                          widget
-                              .profilePhoto, // Use the passed profile photo URL
+                          '$url${widget.userData['profilePhoto']}',
                           width: 60.0,
                           height: 60.0,
                           fit: BoxFit.cover,
@@ -123,16 +115,16 @@ class _UserSectionBusWidgetState extends State<UserSectionBusWidget> {
                         context.pushNamed(
                           'businessProfile',
                           queryParameters: {
-                            'username': widget.username,
-                            'email': widget.email,
-                            'address': widget.address,
-                            'phoneNumber': widget.phoneNumber,
-                            'profilePhoto': widget.profilePhoto
+                            'username': widget.userData['username'],
+                            'email': widget.userData['email'],
+                            'address': widget.userData['address'],
+                            'phoneNumber': widget.userData['phoneNumber'],
+                            'profilePhoto': widget.userData['profilePhoto'],
                           },
                         );
                       },
                       child: Text(
-                        widget.username,
+                        widget.userData['username'],
                         style: FlutterFlowTheme.of(context).bodyLarge.override(
                               fontFamily: 'Funnel Display',
                               useGoogleFonts: false,
@@ -145,7 +137,7 @@ class _UserSectionBusWidgetState extends State<UserSectionBusWidget> {
                       padding: const EdgeInsetsDirectional.fromSTEB(
                           0.0, 0.0, 12.0, 0.0),
                       child: Text(
-                        widget.email,
+                        widget.userData['email'],
                         style: FlutterFlowTheme.of(context).labelSmall.override(
                               fontFamily: 'Funnel Display',
                               useGoogleFonts: false,
@@ -205,9 +197,9 @@ class _UserSectionBusWidgetState extends State<UserSectionBusWidget> {
                       return Padding(
                         padding: MediaQuery.viewInsetsOf(context),
                         child: EditUserWidget(
-                          usernamee: widget.username,
+                          usernamee: widget.userData['username'],
                           role: 'Business',
-                          profilePhoto: widget.profilePhoto,
+                          profilePhoto: widget.userData['profilePhoto'],
                         ),
                       );
                     },

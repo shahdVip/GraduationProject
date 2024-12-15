@@ -5,13 +5,8 @@ import '/custom/animations.dart';
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'full_top_picks_model.dart';
 export 'full_top_picks_model.dart';
@@ -47,8 +42,8 @@ class _FullTopPicksWidgetState extends State<FullTopPicksWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 20.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -97,7 +92,7 @@ class _FullTopPicksWidgetState extends State<FullTopPicksWidget>
                   useGoogleFonts: false,
                 ),
           ),
-          actions: [],
+          actions: const [],
           centerTitle: false,
           elevation: 1,
         ),
@@ -108,7 +103,7 @@ class _FullTopPicksWidgetState extends State<FullTopPicksWidget>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 16, 10),
                 child: Text(
                   'Elevate Your Occasions with Our Most Popular Flower Choices!',
                   style: FlutterFlowTheme.of(context).labelLarge.override(
