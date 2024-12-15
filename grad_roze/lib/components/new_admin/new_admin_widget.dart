@@ -79,7 +79,7 @@ class _NewAdminWidgetState extends State<NewAdminWidget>
         // You can navigate or show a success message here
       } else {
         setState(() {
-          errorMessage = 'Failed to create admin: ${responseBody}';
+          errorMessage = 'Failed to create admin: $responseBody';
         });
         print('Error creating admin: $responseBody');
       }
@@ -325,7 +325,7 @@ class _NewAdminWidgetState extends State<NewAdminWidget>
                                                           Colors.transparent,
                                                       radius: 100,
                                                       backgroundImage: AssetImage(
-                                                          'assets/images/userphoto.png'),
+                                                          'assets/images/defaults/userphoto.png'),
                                                     ),
                                             ),
                                             Align(
@@ -796,8 +796,8 @@ class _NewAdminWidgetState extends State<NewAdminWidget>
                               ),
                               // Generated code for this password Widget...
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0, 0, 0, 12),
                                 child: TextFormField(
                                   controller: _model.passwordTextController,
                                   focusNode: _model.passwordFocusNode,
@@ -878,7 +878,7 @@ class _NewAdminWidgetState extends State<NewAdminWidget>
                                         _model.passwordVisibility
                                             ? Icons.visibility_outlined
                                             : Icons.visibility_off_outlined,
-                                        color: Color(0xFF757575),
+                                        color: const Color(0xFF757575),
                                         size: 22,
                                       ),
                                     ),

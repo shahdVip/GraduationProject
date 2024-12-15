@@ -224,15 +224,15 @@ class _AdminUsersSectionWidgetState extends State<AdminUsersSectionWidget> {
                             // Generated code for this TextField Widget...
                             // Generated code for this TextField Widget...
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 8, 16, 0),
                               child: TextFormField(
                                 controller: _model.textController,
                                 focusNode: _model.textFieldFocusNode,
                                 onChanged: (_) {
                                   EasyDebounce.debounce(
                                     '_model.textController',
-                                    Duration(milliseconds: 1000),
+                                    const Duration(milliseconds: 1000),
                                     () {
                                       setState(() {
                                         _searchTerm =
@@ -290,7 +290,7 @@ class _AdminUsersSectionWidgetState extends State<AdminUsersSectionWidget> {
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   contentPadding:
-                                      EdgeInsetsDirectional.fromSTEB(
+                                      const EdgeInsetsDirectional.fromSTEB(
                                           20, 0, 0, 0),
                                   prefixIcon: Icon(
                                     Icons.search,
@@ -492,7 +492,7 @@ class _AdminUsersSectionWidgetState extends State<AdminUsersSectionWidget> {
                                 // Show loading indicator while data is being fetched
                                 if (snapshot.connectionState ==
                                     ConnectionState.waiting) {
-                                  return Center(
+                                  return const Center(
                                       child: CircularProgressIndicator());
                                 }
 
@@ -505,7 +505,7 @@ class _AdminUsersSectionWidgetState extends State<AdminUsersSectionWidget> {
                                 // If no data is received
                                 if (!snapshot.hasData ||
                                     snapshot.data!.isEmpty) {
-                                  return Center(
+                                  return const Center(
                                       child: Text('No data available'));
                                 }
 
@@ -535,7 +535,7 @@ class _AdminUsersSectionWidgetState extends State<AdminUsersSectionWidget> {
 
                                 // If no users match the filter
                                 if (filteredUsers.isEmpty) {
-                                  return Center(
+                                  return const Center(
                                       child: Text('No users available '));
                                 }
 

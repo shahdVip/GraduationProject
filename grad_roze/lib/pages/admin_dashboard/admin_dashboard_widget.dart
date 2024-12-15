@@ -63,15 +63,15 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 20.0),
+            end: const Offset(0.0, 0.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.698, 0),
-            end: Offset(0, 0),
+            begin: const Offset(0.698, 0),
+            end: const Offset(0, 0),
           ),
         ],
       ),
@@ -89,15 +89,15 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, 20.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 20.0),
+            end: const Offset(0.0, 0.0),
           ),
           TiltEffect(
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.698, 0),
-            end: Offset(0, 0),
+            begin: const Offset(0.698, 0),
+            end: const Offset(0, 0),
           ),
         ],
       ),
@@ -126,7 +126,7 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
         });
       } else {
         // Handle error if request fails
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Failed to load user requests'),
           backgroundColor: Colors.red,
         ));
@@ -178,47 +178,47 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                      child: badges.Badge(
-                        badgeContent: Text(
-                          '1',
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Funnel Display',
-                                    useGoogleFonts: false,
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                        showBadge: true,
-                        shape: badges.BadgeShape.circle,
-                        badgeColor: FlutterFlowTheme.of(context).primary,
-                        elevation: 4,
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        position: badges.BadgePosition.topEnd(),
-                        animationType: badges.BadgeAnimationType.scale,
-                        toAnimate: true,
-                        child: Align(
-                          alignment: const AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 0, 0, 10),
-                            child: FlutterFlowIconButton(
-                              borderRadius: 8,
-                              buttonSize: 30,
-                              icon: FaIcon(
-                                FontAwesomeIcons.bell,
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 30,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
+                      // child: badges.Badge(
+                      //   badgeContent: Text(
+                      //     '1',
+                      //     style:
+                      //         FlutterFlowTheme.of(context).titleSmall.override(
+                      //               fontFamily: 'Funnel Display',
+                      //               useGoogleFonts: false,
+                      //               color: Colors.white,
+                      //               fontSize: 16,
+                      //               letterSpacing: 0.0,
+                      //             ),
+                      //   ),
+                      //   showBadge: true,
+                      //   shape: badges.BadgeShape.circle,
+                      //   badgeColor: FlutterFlowTheme.of(context).primary,
+                      //   elevation: 4,
+                      //   padding:
+                      //       const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      //   position: badges.BadgePosition.topEnd(),
+                      //   animationType: badges.BadgeAnimationType.scale,
+                      //   toAnimate: true,
+                      //   child: Align(
+                      //     alignment: const AlignmentDirectional(0, 0),
+                      //     child: Padding(
+                      //       padding: const EdgeInsetsDirectional.fromSTEB(
+                      //           0, 0, 0, 10),
+                      //       child: FlutterFlowIconButton(
+                      //         borderRadius: 8,
+                      //         buttonSize: 30,
+                      //         icon: FaIcon(
+                      //           FontAwesomeIcons.bell,
+                      //           color: FlutterFlowTheme.of(context).primary,
+                      //           size: 30,
+                      //         ),
+                      //         onPressed: () {
+                      //           print('IconButton pressed ...');
+                      //         },
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ),
                   Align(
@@ -278,8 +278,8 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                           children: [
                             // Generated code for this Text Widget...
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 0, 0, 0),
                               child: Text(
                                 'Recent insights',
                                 style: FlutterFlowTheme.of(context)
@@ -536,7 +536,7 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                             children: [
                               // Generated code for this Text Widget...
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16, 12, 0, 0),
                                 child: Text(
                                   'Recent Requsts',
@@ -603,7 +603,7 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                               ),
                               // Generated code for this Button Widget...
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     context
@@ -612,11 +612,13 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                                   text: 'Show more',
                                   options: FFButtonOptions(
                                     height: 40,
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16, 0, 16, 0),
-                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 0),
-                                    color: Color(0x00F83B46),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            16, 0, 16, 0),
+                                    iconPadding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 0),
+                                    color: const Color(0x00F83B46),
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .override(
@@ -748,11 +750,12 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                               text: 'Show more',
                               options: FFButtonOptions(
                                 height: 40,
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16, 0, 16, 0),
                                 iconPadding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                color: Color(0x00F83B46),
+                                    const EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 0, 0),
+                                color: const Color(0x00F83B46),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(

@@ -60,18 +60,17 @@ class _CustomerProfileWidgetState extends State<CustomerProfileWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
+              SizedBox(
                 width: double.infinity,
                 height: 500,
                 child: Stack(
-                  alignment: AlignmentDirectional(0, -1),
+                  alignment: const AlignmentDirectional(0, -1),
                   children: [
                     Align(
-                      alignment: AlignmentDirectional(0, -1),
-                      child: widget.profilePhoto == null ||
-                              widget.profilePhoto.isEmpty
+                      alignment: const AlignmentDirectional(0, -1),
+                      child: widget.profilePhoto.isEmpty
                           ? Image.asset(
-                              'assets/images/default_avatar.png', // Path to your default image
+                              'assets/images/defaults/default_avatar.png', // Path to your default image
                               width: double.infinity,
                               height: double.infinity,
                               fit: BoxFit.cover,
@@ -85,9 +84,10 @@ class _CustomerProfileWidgetState extends State<CustomerProfileWidget> {
                             ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, -1),
+                      alignment: const AlignmentDirectional(0, -1),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 44, 16, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(16, 44, 16, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,7 +119,7 @@ class _CustomerProfileWidgetState extends State<CustomerProfileWidget> {
                       ),
                     ),
                     Align(
-                      alignment: AlignmentDirectional(0, 1),
+                      alignment: const AlignmentDirectional(0, 1),
                       child: ClipRRect(
                         child: BackdropFilter(
                           filter: ImageFilter.blur(
@@ -129,19 +129,20 @@ class _CustomerProfileWidgetState extends State<CustomerProfileWidget> {
                           child: Container(
                             width: double.infinity,
                             height: 144,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Color(0x801D2429),
                             ),
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  15, 0, 15, 0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 8, 0, 0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 8, 0, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -164,8 +165,9 @@ class _CustomerProfileWidgetState extends State<CustomerProfileWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 4, 0, 0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 4, 0, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -186,8 +188,9 @@ class _CustomerProfileWidgetState extends State<CustomerProfileWidget> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 4, 0, 0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 4, 0, 0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -239,7 +242,7 @@ class _CustomerProfileWidgetState extends State<CustomerProfileWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -255,7 +258,7 @@ class _CustomerProfileWidgetState extends State<CustomerProfileWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 44),
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 44),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   primary: false,
@@ -265,7 +268,7 @@ class _CustomerProfileWidgetState extends State<CustomerProfileWidget> {
                     wrapWithModel(
                       model: _model.userOfferCardModel,
                       updateCallback: () => safeSetState(() {}),
-                      child: UserOfferCardWidget(),
+                      child: const UserOfferCardWidget(),
                     ),
                   ],
                 ),

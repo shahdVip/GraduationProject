@@ -7,6 +7,9 @@ const {
   getItemById,
   fetchRecommendedItems,
   fetchItemsByTag,
+  getTop4RatedItems,
+  getTopRatedItems,
+  getItemsByBusiness
 } = require('../controller/item.controller');
 
 const router = express.Router();
@@ -17,11 +20,14 @@ router.post('/create', uploadImage, createItemController);
 router.get('/items/:id', getItemById); // Route to fetch an item by ID
 router.get('/items', fetchItems);
 router.get('/items/tag/:tag',fetchItemsByTag);
-
+router.get('/top4-rated-items', getTop4RatedItems);
+router.get('/top-rated-items', getTopRatedItems);
 
 // Route to fetch recommended items
+
 router.post('/recommendations', fetchRecommendedItems);
 
-
+// Route to fetch items by business name
+router.get('/business/:businessName', getItemsByBusiness);
 
 module.exports = router;

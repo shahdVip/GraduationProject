@@ -76,7 +76,7 @@ class _AdminUserCreationBottomsheetWidgetState
       if (response.statusCode == 200) {
         print('Registration successful');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('User redistered successfully'),
             backgroundColor: Colors.grey,
           ),
@@ -85,7 +85,7 @@ class _AdminUserCreationBottomsheetWidgetState
       } else if (response.statusCode == 409) {
         // Username or email already exists
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('User already exists'),
             backgroundColor: Colors.red,
           ),
@@ -94,7 +94,7 @@ class _AdminUserCreationBottomsheetWidgetState
       } else {
         // Other errors
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('Registration failed. Please try again.'),
             backgroundColor: Colors.red,
           ),
@@ -339,7 +339,7 @@ class _AdminUserCreationBottomsheetWidgetState
                                                           Colors.transparent,
                                                       radius: 100,
                                                       backgroundImage: AssetImage(
-                                                          'assets/images/userphoto.png'),
+                                                          'assets/images/defaults/userphoto.png'),
                                                     ),
                                             ),
                                             Align(
@@ -810,8 +810,8 @@ class _AdminUserCreationBottomsheetWidgetState
                               ),
                               // Generated code for this password Widget...
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0, 0, 0, 12),
                                 child: TextFormField(
                                   controller: _model.passwordTextController,
                                   focusNode: _model.passwordFocusNode,
@@ -892,7 +892,7 @@ class _AdminUserCreationBottomsheetWidgetState
                                         _model.passwordVisibility
                                             ? Icons.visibility_outlined
                                             : Icons.visibility_off_outlined,
-                                        color: Color(0xFF757575),
+                                        color: const Color(0xFF757575),
                                         size: 22,
                                       ),
                                     ),

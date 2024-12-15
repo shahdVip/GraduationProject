@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:grad_roze/components/bouqet_builder/bouqet_builder_widget.dart';
+import 'package:grad_roze/components/explore_widget/explore_widget.dart';
+import 'package:grad_roze/custom/icon_button.dart';
 import 'package:grad_roze/widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_widget.dart';
 import 'package:grad_roze/widgets/top_picks/top_picks_widget.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/custom/util.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../widgets/CarouselSliderModel.dart';
 export '../../widgets/CarouselSliderModel.dart';
 
@@ -15,8 +18,14 @@ export '../../widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_
 export '../../widgets/top_picks/top_picks_model.dart';
 export '../../widgets/top_picks_component/top_picks_component_model.dart';
 
+import '../../widgets/CustomizeSectionWidget.dart';
+import '../../widgets/CustomizeSectionModel.dart';
+export '../../widgets/CustomizeSectionModel.dart';
+export '../../widgets/CustomizeSectionWidget.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +39,11 @@ class HomePage extends StatelessWidget {
             BouquetforeverymomentsectionWidget(),
             SizedBox(height: 20),
             TopPicksWidget(),
+            SizedBox(height: 20),
+            ExploreWidget(),
+            SizedBox(height: 20),
+            BouqetBuilderWidget(),
+            SizedBox(height: 20),
           ],
         ),
       ),
@@ -49,7 +63,10 @@ class HomePage extends StatelessWidget {
       elevation: 0.0,
       centerTitle: true,
       leading: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          print('profile button');
+          context.pushNamed('myprofileCustomer');
+        },
         child: Container(
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10),
@@ -65,31 +82,24 @@ class HomePage extends StatelessWidget {
         ),
       ), //container
       actions: [
-        SearchDelegate(context),
+        Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+          child: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 60,
+            icon: Icon(
+              Icons.shopping_cart_outlined,
+              color: FlutterFlowTheme.of(context).primary,
+              size: 24,
+            ),
+            onPressed: () {
+              // context.pushNamed('cart'); // Navigate to the home page
+            },
+          ),
+        ),
       ],
-    );
-  }
-
-  GestureDetector SearchDelegate(BuildContext context) {
-    return GestureDetector(
-      onTap: () => showSearch(
-        context: context,
-        delegate: CustomSearchDelegate(),
-      ),
-      child: Container(
-        width: 37,
-        alignment: Alignment.center,
-        margin: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: const Color(0xFFF7F8F8), //COLOR OF THE BACKGROUND!
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: SvgPicture.asset(
-          'assets/icons/search.svg',
-          height: 17,
-          width: 17,
-        ),
-      ),
     );
   }
 }
@@ -254,19 +264,20 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0x00F0F0F0),
+                        const Color(0x00F0F0F0),
                         FlutterFlowTheme.of(context).accent1,
                         FlutterFlowTheme.of(context).secondaryBackground
                       ],
-                      stops: [0, 0.5, 1],
-                      begin: AlignmentDirectional(0, -1),
-                      end: AlignmentDirectional(0, 1),
+                      stops: const [0, 0.5, 1],
+                      begin: const AlignmentDirectional(0, -1),
+                      end: const AlignmentDirectional(0, 1),
                     ),
                   ),
                   child: Align(
                     alignment: const AlignmentDirectional(0, 1),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -274,7 +285,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                           Text(
                             'Matching Bouquet',
                             style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                                .titleLarge
                                 .override(
                                   fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
@@ -321,19 +332,20 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0x00F0F0F0),
+                        const Color(0x00F0F0F0),
                         FlutterFlowTheme.of(context).accent1,
                         FlutterFlowTheme.of(context).secondaryBackground
                       ],
-                      stops: [0, 0.5, 1],
-                      begin: AlignmentDirectional(0, -1),
-                      end: AlignmentDirectional(0, 1),
+                      stops: const [0, 0.5, 1],
+                      begin: const AlignmentDirectional(0, -1),
+                      end: const AlignmentDirectional(0, 1),
                     ),
                   ),
                   child: Align(
                     alignment: const AlignmentDirectional(0, 1),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -341,7 +353,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                           Text(
                             'Customize Bouquet',
                             style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                                .titleLarge
                                 .override(
                                   fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
@@ -388,19 +400,20 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Color(0x00F0F0F0),
+                        const Color(0x00F0F0F0),
                         FlutterFlowTheme.of(context).accent1,
                         FlutterFlowTheme.of(context).secondaryBackground
                       ],
-                      stops: [0, 0.5, 1],
-                      begin: AlignmentDirectional(0, -1),
-                      end: AlignmentDirectional(0, 1),
+                      stops: const [0, 0.5, 1],
+                      begin: const AlignmentDirectional(0, -1),
+                      end: const AlignmentDirectional(0, 1),
                     ),
                   ),
                   child: Align(
                     alignment: const AlignmentDirectional(0, 1),
                     child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -408,7 +421,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
                           Text(
                             'Meaningful Bouquet',
                             style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                                .titleLarge
                                 .override(
                                   fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
@@ -441,13 +454,18 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
             CarouselSliderController(),
         options: CarouselOptions(
           initialPage: 1,
-          viewportFraction: 0.5,
+          viewportFraction: 0.7,
           disableCenter: true,
           enlargeCenterPage: true,
           enlargeFactor: 0.25,
           enableInfiniteScroll: true,
           scrollDirection: Axis.horizontal,
-          autoPlay: false,
+          autoPlay: true, // Enable auto-play
+          autoPlayInterval:
+              Duration(seconds: 3), // Interval between auto-play slides
+          autoPlayAnimationDuration:
+              Duration(milliseconds: 800), // Animation duration
+          autoPlayCurve: Curves.fastOutSlowIn, // Animation curve
           onPageChanged: (index, _) => _model.carouselCurrentIndex = index,
         ),
       ),
