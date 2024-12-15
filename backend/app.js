@@ -12,6 +12,7 @@ const inventoryRoutes = require('./routes/inventory.route');
 const colorRoutes = require('./routes/color.route');
 const flowerTypeRoutes = require('./routes/flowerType.route');
 const tagRoutes = require('./routes/tag.route');
+const orderRoutes = require('./routes/order.route');
 
 require('dotenv').config(); // To load environment variables
 
@@ -33,7 +34,7 @@ app.use('/userRequests', userRequestRoutes);
 app.use('/userPreference', userPreferenceRoutes); // Add the user preference routes
 app.use("/moments", momentRoutes);
 app.use('/item', itemRoutes);
-
+app.use('/orders', orderRoutes);
 
 app.use('/cart', cartRoutes);
 app.use('/inventory', inventoryRoutes);

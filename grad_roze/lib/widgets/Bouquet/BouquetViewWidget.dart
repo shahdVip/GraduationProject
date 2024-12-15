@@ -105,7 +105,7 @@ class BouquetViewWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        '\$${model.price}',
+                        '\$${model.price.toInt()}',
                         style:
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: 'Funnel Display',

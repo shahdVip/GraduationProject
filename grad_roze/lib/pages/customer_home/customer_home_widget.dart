@@ -30,7 +30,7 @@ class Item {
     return Item(
       name: json['name'],
       business: json['business'],
-      price: json['price'].toDouble(),
+      price: json['price'].toInt(),
       imageURL: json['imageURL'],
     );
   }
