@@ -178,47 +178,47 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                      child: badges.Badge(
-                        badgeContent: Text(
-                          '1',
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Funnel Display',
-                                    useGoogleFonts: false,
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                        showBadge: true,
-                        shape: badges.BadgeShape.circle,
-                        badgeColor: FlutterFlowTheme.of(context).primary,
-                        elevation: 4,
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        position: badges.BadgePosition.topEnd(),
-                        animationType: badges.BadgeAnimationType.scale,
-                        toAnimate: true,
-                        child: Align(
-                          alignment: const AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 0, 0, 10),
-                            child: FlutterFlowIconButton(
-                              borderRadius: 8,
-                              buttonSize: 30,
-                              icon: FaIcon(
-                                FontAwesomeIcons.bell,
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 30,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
+                      // child: badges.Badge(
+                      //   badgeContent: Text(
+                      //     '1',
+                      //     style:
+                      //         FlutterFlowTheme.of(context).titleSmall.override(
+                      //               fontFamily: 'Funnel Display',
+                      //               useGoogleFonts: false,
+                      //               color: Colors.white,
+                      //               fontSize: 16,
+                      //               letterSpacing: 0.0,
+                      //             ),
+                      //   ),
+                      //   showBadge: true,
+                      //   shape: badges.BadgeShape.circle,
+                      //   badgeColor: FlutterFlowTheme.of(context).primary,
+                      //   elevation: 4,
+                      //   padding:
+                      //       const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      //   position: badges.BadgePosition.topEnd(),
+                      //   animationType: badges.BadgeAnimationType.scale,
+                      //   toAnimate: true,
+                      //   child: Align(
+                      //     alignment: const AlignmentDirectional(0, 0),
+                      //     child: Padding(
+                      //       padding: const EdgeInsetsDirectional.fromSTEB(
+                      //           0, 0, 0, 10),
+                      //       child: FlutterFlowIconButton(
+                      //         borderRadius: 8,
+                      //         buttonSize: 30,
+                      //         icon: FaIcon(
+                      //           FontAwesomeIcons.bell,
+                      //           color: FlutterFlowTheme.of(context).primary,
+                      //           size: 30,
+                      //         ),
+                      //         onPressed: () {
+                      //           print('IconButton pressed ...');
+                      //         },
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ),
                   Align(

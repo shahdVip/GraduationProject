@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:grad_roze/components/bouqet_builder/bouqet_builder_widget.dart';
 import 'package:grad_roze/components/explore_widget/explore_widget.dart';
 import 'package:grad_roze/custom/icon_button.dart';
 import 'package:grad_roze/widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_widget.dart';
@@ -41,7 +42,7 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 20),
             ExploreWidget(),
             SizedBox(height: 20),
-            CustomizeSectionWidget(),
+            BouqetBuilderWidget(),
             SizedBox(height: 20),
           ],
         ),
