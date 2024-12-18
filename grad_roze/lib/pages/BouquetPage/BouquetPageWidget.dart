@@ -11,8 +11,10 @@ import 'package:http/http.dart' as http;
 import 'BouquetPageModel.dart';
 
 class BouquetPageWidget extends StatefulWidget {
+  final String username;
   final String bouquetId;
-  const BouquetPageWidget({super.key, required this.bouquetId});
+  const BouquetPageWidget(
+      {super.key, required this.bouquetId, required this.username});
   @override
   State<BouquetPageWidget> createState() => _BouquetPageWidgetState();
 }
@@ -30,6 +32,35 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
         // Trigger UI update after fetching data
       });
     });
+  }
+
+  Future<void> addToCart() async {
+    try {
+      final response = await http.put(
+        Uri.parse('$url/cart/addItem'), // API Endpoint
+        headers: {'Content-Type': 'application/json'}, // Request headers
+        body: jsonEncode({
+          'username': widget.username, // Username parameter
+          'itemId': widget.bouquetId, // Item ID (bouquetId)
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(responseData['message'])),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+              content: Text('Failed to add to cart: ${response.statusCode}')),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
   }
 
   @override
@@ -316,10 +347,15 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                                                 Navigator.push(
                                                                   context,
                                                                   MaterialPageRoute(
-                                                                    builder: (context) =>
-                                                                        MomentPageWidget(
-                                                                            moment:
-                                                                                moment),
+                                                                    builder:
+                                                                        (context) =>
+                                                                            MomentPageWidget(
+                                                                      moment:
+                                                                          moment,
+                                                                      username:
+                                                                          widget
+                                                                              .username,
+                                                                    ),
                                                                   ),
                                                                 );
                                                               },
@@ -399,49 +435,7 @@ class _BouquetPageWidgetState extends State<BouquetPageWidget> {
                                             // Add to Cart Button
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                SharedPreferences prefs =
-                                                    await SharedPreferences
-                                                        .getInstance();
-                                                String? username = prefs.getString(
-                                                    'username'); // Retrieve username from shared preferences
-
-                                                if (username != null) {
-                                                  try {
-                                                    // Replace with your API URL
-                                                    final response =
-                                                        await http.post(
-                                                      Uri.parse(
-                                                          '$url/cart/add'),
-                                                      headers: {
-                                                        'Content-Type':
-                                                            'application/json'
-                                                      },
-                                                      body: jsonEncode({
-                                                        'username': username,
-                                                        'itemName': _model
-                                                                .bouquetData?[
-                                                            'name'], // Replace with actual item name
-                                                        'quantity':
-                                                            1, // Default quantity
-                                                      }),
-                                                    );
-
-                                                    if (response.statusCode ==
-                                                        200) {
-                                                      print(
-                                                          'Item added to cart');
-                                                    } else {
-                                                      print(
-                                                          'Failed to add item to cart: ${response.body}');
-                                                    }
-                                                  } catch (e) {
-                                                    print(
-                                                        'Error adding item to cart: $e');
-                                                  }
-                                                } else {
-                                                  print(
-                                                      'Username not found in shared preferences');
-                                                }
+                                                await addToCart();
                                               },
                                               text: 'Add to Cart',
                                               icon: Icon(

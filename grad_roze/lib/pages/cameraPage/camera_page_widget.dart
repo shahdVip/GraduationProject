@@ -12,7 +12,8 @@ import 'camera_page_model.dart';
 export 'camera_page_model.dart';
 
 class CameraPageWidget extends StatefulWidget {
-  const CameraPageWidget({super.key});
+  final String username;
+  const CameraPageWidget({super.key, required this.username});
 
   @override
   State<CameraPageWidget> createState() => _CameraPageWidgetState();
@@ -230,8 +231,10 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>
-                          MatchingPageWidget(color: bestMatch),
+                      builder: (context) => MatchingPageWidget(
+                        color: bestMatch,
+                        username: widget.username,
+                      ),
                     ),
                   );
                 },

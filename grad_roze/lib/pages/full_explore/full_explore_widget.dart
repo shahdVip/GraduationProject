@@ -505,6 +505,7 @@ class _ViewMoreExploreWidgetState extends State<ViewMoreExploreWidget> {
                                 'rating':
                                     item['rating']?.toString() ?? 'No Rating',
                               },
+                              username: username,
                             );
                           },
                         ).animateOnPageLoad(

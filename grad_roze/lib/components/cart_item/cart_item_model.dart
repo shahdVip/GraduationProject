@@ -1,11 +1,34 @@
-import '/custom/util.dart';
-import 'cart_item_widget.dart' show CartItemWidget;
-import 'package:flutter/material.dart';
+import '../../config.dart';
 
-class CartItemModel extends FlutterFlowModel<CartItemWidget> {
-  @override
-  void initState(BuildContext context) {}
+class CartItemModel {
+  final String id;
+  final String name;
+  final double price;
+  final String businessName;
+  final String imageUrl;
 
+  CartItemModel({
+    required this.id,
+    required this.name,
+    required this.price,
+    required this.businessName,
+    required this.imageUrl,
+  });
+
+  // Factory method to parse from a database JSON response
+  factory CartItemModel.fromJson(Map<String, dynamic> json) {
+    return CartItemModel(
+      id: json['_id'] as String,
+      name: json['name'] as String,
+      price: (json['price'] as num).toDouble(), // Ensure double type
+      businessName: json['business'] as String,
+      imageUrl: '$url${json['imageURL']}' as String,
+    );
+  }
+
+  // Override toString method for better logging
   @override
-  void dispose() {}
+  String toString() {
+    return 'CartItemModel(id: $id, name: $name, price: $price, businessName: $businessName, imageUrl: $imageUrl)';
+  }
 }

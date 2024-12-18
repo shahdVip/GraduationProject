@@ -12,9 +12,11 @@ import 'BouquetViewModel.dart';
 export 'BouquetViewModel.dart';
 
 class BouquetViewWidget extends StatelessWidget {
+  final String username;
   final BouquetViewModel model;
 
-  const BouquetViewWidget({super.key, required this.model});
+  const BouquetViewWidget(
+      {super.key, required this.model, required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class BouquetViewWidget extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => BouquetPageWidget(
+                username: username,
                 bouquetId: model.id,
               ),
             ),

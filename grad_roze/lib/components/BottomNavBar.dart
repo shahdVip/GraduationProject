@@ -3,7 +3,8 @@ import 'package:grad_roze/pages/homePage/home.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+  final String username;
+  const BottomNavBar({super.key, required this.username});
 
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
@@ -14,13 +15,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
 
   // Define pages for navigation
-  final List<Widget> _pages = [
-    const HomePage(),
-    const PlaceholderWidget('Page 2'),
-    const PlaceholderWidget('Page 3'),
-    const PlaceholderWidget('Page 4'),
-    const PlaceholderWidget('Page 5'),
-  ];
+  final List<Widget> _pages = [];
 
   @override
   Widget build(BuildContext context) {

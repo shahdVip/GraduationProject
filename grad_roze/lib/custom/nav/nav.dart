@@ -7,7 +7,7 @@ import 'package:grad_roze/pages/business_pages/inventory/inventory_widget.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_model.dart';
 import 'package:grad_roze/pages/business_profile/business_profile_widget.dart';
 import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
-import 'package:grad_roze/pages/cart/cart_widget.dart';
+import 'package:grad_roze/pages/cart/MyCartWidget.dart';
 import 'package:grad_roze/pages/favorite_list/favorite_list_widget.dart';
 import 'package:grad_roze/pages/full_top_picks/full_top_picks_model.dart';
 import 'package:grad_roze/pages/full_top_picks/full_top_picks_widget.dart';
@@ -188,11 +188,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'myprofileCustomer',
           path: '/myprofileCustomer',
           builder: (context, params) => const MyprofileCustomerWidget(),
-        ),
-        FFRoute(
-          name: 'cart',
-          path: '/cart',
-          builder: (context, params) => const CartWidget(),
         ),
         FFRoute(
           name: 'inventory',

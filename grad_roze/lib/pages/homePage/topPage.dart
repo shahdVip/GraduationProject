@@ -10,9 +10,8 @@ import 'dart:convert';
 import '/config.dart' show url;
 
 class TopPageWidget extends StatefulWidget {
-  const TopPageWidget({
-    super.key,
-  });
+  final String username;
+  const TopPageWidget({super.key, required this.username});
 
   @override
   State<TopPageWidget> createState() => _TopPageWidgetState();
@@ -115,8 +114,9 @@ class _TopPageWidgetState extends State<TopPageWidget> {
                 itemBuilder: (context, index) {
                   final bouquet = bouquets[index];
                   return BouquetViewWidget(
-                      model:
-                          bouquet); // Use BouquetViewWidget for each grid item
+                    model: bouquet,
+                    username: widget.username,
+                  ); // Use BouquetViewWidget for each grid item
                 },
               ),
             );

@@ -386,7 +386,10 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                                 itemCount: items.length,
                                 itemBuilder: (context, index) {
                                   final item = items[index];
-                                  return ExploreCardWidget(item: item);
+                                  return ExploreCardWidget(
+                                    item: item,
+                                    username: widget.username,
+                                  );
                                 },
                               ),
                       ),

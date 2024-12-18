@@ -8,7 +8,8 @@ import 'top_picks_model.dart';
 import '../Bouquet/BouquetViewWidget.dart';
 
 class TopPicksWidget extends StatelessWidget {
-  const TopPicksWidget({super.key});
+  final String username;
+  const TopPicksWidget({super.key, required this.username});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,9 @@ class TopPicksWidget extends StatelessWidget {
                           itemCount: model.topPicks.length,
                           itemBuilder: (context, index) {
                             return BouquetViewWidget(
-                                model: model.topPicks[index]);
+                              model: model.topPicks[index],
+                              username: username,
+                            );
                           },
                         ),
                       ),
@@ -76,7 +79,9 @@ class TopPicksWidget extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const TopPageWidget(),
+                              builder: (context) => TopPageWidget(
+                                username: username,
+                              ),
                             ),
                           );
                         },

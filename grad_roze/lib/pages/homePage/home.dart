@@ -23,25 +23,26 @@ export '../../widgets/CustomizeSectionModel.dart';
 export '../../widgets/CustomizeSectionWidget.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final String username;
+  const HomePage({super.key, required this.username});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context),
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            CarouselSliderWidget(),
-            SizedBox(height: 20),
-            BouquetforeverymomentsectionWidget(),
-            SizedBox(height: 20),
-            TopPicksWidget(),
-            SizedBox(height: 20),
-            ExploreWidget(),
-            SizedBox(height: 20),
-            CustomizeSectionWidget(),
-            SizedBox(height: 20),
+            const CarouselSliderWidget(),
+            const SizedBox(height: 20),
+            BouquetforeverymomentsectionWidget(username: username),
+            const SizedBox(height: 20),
+            TopPicksWidget(username: username),
+            const SizedBox(height: 20),
+            ExploreWidget(username: username),
+            const SizedBox(height: 20),
+            const CustomizeSectionWidget(),
+            const SizedBox(height: 20),
           ],
         ),
       ),

@@ -6,9 +6,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class MatchingPageWidget extends StatefulWidget {
+  final String username;
   final String color; // Pass the color for matching
 
-  const MatchingPageWidget({super.key, required this.color});
+  const MatchingPageWidget(
+      {super.key, required this.color, required this.username});
 
   @override
   State<MatchingPageWidget> createState() => _MatchingPageWidgetState();
@@ -195,6 +197,7 @@ class _MatchingPageWidgetState extends State<MatchingPageWidget> {
                                 item['careTips'] ?? 'No Care Tips Provided',
                             'rating': item['rating']?.toString() ?? 'No Rating',
                           },
+                          username: widget.username,
                         );
                       },
                     );
