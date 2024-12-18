@@ -15,9 +15,11 @@ import 'momentPage_model.dart';
 export 'momentPage_model.dart';
 
 class MomentPageWidget extends StatefulWidget {
+  final String username;
   final MomentsModel moment;
 
-  const MomentPageWidget({super.key, required this.moment});
+  const MomentPageWidget(
+      {super.key, required this.moment, required this.username});
 
   @override
   State<MomentPageWidget> createState() => _MomentPageWidgetState();
@@ -292,6 +294,7 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
                                     'rating': item['rating']?.toString() ??
                                         'No Rating',
                                   },
+                                  username: widget.username,
                                 );
                               },
                             )
@@ -308,8 +311,9 @@ class _MomentPageWidgetState extends State<MomentPageWidget> {
                               itemBuilder: (context, index) {
                                 final item = bouquets[index];
                                 return BouquetViewWidget(
-                                    model:
-                                        item); // Display either search result or all items
+                                  model: item,
+                                  username: widget.username,
+                                ); // Display either search result or all items
                               },
                             ),
                     ),

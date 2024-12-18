@@ -28,7 +28,6 @@ const getRecommendedItems = async (username) => {
 const matchingFlowerTypes = flowerType.filter(type => item.flowerType.includes(type));
 score += matchingFlowerTypes.length;
 if (matchingFlowerTypes.length > 0) {
-  console.log(`FlowerType Match: Item "${item.name}" matches ${matchingFlowerTypes.length} types: ${matchingFlowerTypes.join(", ")}`);
 }
 
 // Count the number of matching colors

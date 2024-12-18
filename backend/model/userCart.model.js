@@ -1,15 +1,17 @@
 const mongoose = require('mongoose');
-const db = require('../config/db');
 
-const userCartSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  items: [
-    {
-      itemName: { type: String, required: true }, // Changed from itemId to itemName
-      quantity: { type: Number, required: true }
-    }
-  ]
-});
+// Define the schema for the user cart
+const UserCartSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true, // Ensure username is unique for a cart
+  },
+  itemsId: {
+    type: [String], // Array of item IDs
+    default: [],
+  },
+}); // Automatically add createdAt and updatedAt fields
 
-const UserCartModel = db.model('userCart', userCartSchema);
-module.exports = UserCartModel;
+// Export the model
+module.exports = mongoose.model('UserCart', UserCartSchema);

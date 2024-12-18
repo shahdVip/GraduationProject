@@ -1,62 +1,45 @@
-import 'package:grad_roze/config.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '/custom/icon_button.dart';
-import '/custom/theme.dart';
-import 'package:http/http.dart' as http;
-
-import '/custom/util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
+import 'package:grad_roze/config.dart';
+import '../../custom/icon_button.dart';
+import '../../pages/cart/MyCartModel.dart';
+import '/custom/theme.dart';
+import '/custom/widgets.dart';
 import 'cart_item_model.dart';
 export 'cart_item_model.dart';
+import 'package:http/http.dart' as http;
 
-class CartItemWidget extends StatefulWidget {
-  final String itemName;
-  final String itemPrice;
-  final String itemPhoto;
-  final int quantity;
-  final VoidCallback fetchCartDetails;
-  final Function(String) removeItemFromCart;
+class CartItemWidget extends StatelessWidget {
+  final CartItemModel cartItem;
+  final MyCartModel model;
+  final int index;
+  final String username;
+  final VoidCallback? onDelete;
 
-  const CartItemWidget({
-    super.key,
-    required this.itemName,
-    required this.itemPrice,
-    required this.itemPhoto,
-    required this.quantity,
-    required this.fetchCartDetails,
-    required this.removeItemFromCart,
-  });
+  const CartItemWidget(
+      {Key? key,
+      required this.cartItem,
+      required this.index,
+      required this.username,
+      required this.onDelete,
+      required this.model})
+      : super(key: key);
 
-  @override
-  State<CartItemWidget> createState() => _CartItemWidgetState();
-}
+  Future<void> removeItemFromCart(String username, int index) async {
+    final apiUrl = '$url/cart/$username/remove/item/$index';
 
-class _CartItemWidgetState extends State<CartItemWidget> {
-  late CartItemModel _model;
+    try {
+      final response = await http.delete(Uri.parse(apiUrl));
 
-  @override
-  void setState(VoidCallback callback) {
-    super.setState(callback);
-    _model.onUpdate();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _model = createModel(context, () => CartItemModel());
-
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
-  }
-
-  @override
-  void dispose() {
-    _model.maybeDispose();
-
-    super.dispose();
+      if (response.statusCode == 200) {
+        print('Item removed successfully');
+        // Optionally, call a callback or notify parent to refresh the list
+      } else {
+        print('Failed to remove item: ${response.body}');
+      }
+    } catch (error) {
+      print('Error removing item: $error');
+    }
   }
 
   @override
@@ -72,10 +55,7 @@ class _CartItemWidgetState extends State<CartItemWidget> {
             BoxShadow(
               blurRadius: 4,
               color: Color(0x320E151B),
-              offset: Offset(
-                0.0,
-                1,
-              ),
+              offset: Offset(0.0, 1),
             )
           ],
           borderRadius: BorderRadius.circular(8),
@@ -85,26 +65,20 @@ class _CartItemWidgetState extends State<CartItemWidget> {
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment:
-                CrossAxisAlignment.center, // Ensures proper alignment
             children: [
-              // Image
               Hero(
-                tag: 'ControllerImage',
+                tag: 'ControllerImage-${cartItem.id}', // Unique tag
                 transitionOnUserGestures: true,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
-                    '$url${widget.itemPhoto}',
+                    cartItem.imageUrl,
                     width: 80,
                     height: 80,
-                    fit: BoxFit
-                        .cover, // Ensures the image fills the allocated space
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
-
-              // Expanded column for item name and price
               Expanded(
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
@@ -117,55 +91,57 @@ class _CartItemWidgetState extends State<CartItemWidget> {
                         padding:
                             const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                         child: Text(
-                          widget.itemName,
+                          cartItem.name,
                           style:
                               FlutterFlowTheme.of(context).titleLarge.override(
                                     fontFamily: 'Funnel Display',
                                     letterSpacing: 0.0,
                                     useGoogleFonts: false,
                                   ),
-                          overflow: TextOverflow.ellipsis, // Prevents overflow
-                          maxLines: 1, // Restricts to a single line
                         ),
                       ),
                       Text(
-                        '\$${widget.itemPrice}',
+                        '\$${cartItem.price.toInt()}',
                         style:
                             FlutterFlowTheme.of(context).labelMedium.override(
                                   fontFamily: 'Funnel Display',
                                   letterSpacing: 0.0,
                                   useGoogleFonts: false,
                                 ),
-                      ), // Generated code for this Text Widget...
-                      Text(
-                        'Quantity: ${widget.quantity}',
-                        style:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Funnel Display',
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: false,
-                                ),
-                      )
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                        child: Text(
+                          cartItem.businessName,
+                          style:
+                              FlutterFlowTheme.of(context).labelSmall.override(
+                                    fontFamily: 'Funnel Display',
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
-
-              // Icon Button
               FlutterFlowIconButton(
-                  borderColor: Colors.transparent,
-                  borderRadius: 30,
-                  borderWidth: 1,
-                  buttonSize: 40,
-                  icon: Icon(
-                    Icons.delete_outline_rounded,
-                    color: FlutterFlowTheme.of(context).error,
-                    size: 20,
-                  ),
-                  onPressed: () {
-                    widget.removeItemFromCart(
-                        widget.itemName); // Remove item from cart
-                  }),
+                borderColor: Colors.transparent,
+                borderRadius: 30,
+                borderWidth: 1,
+                buttonSize: 40,
+                icon: Icon(
+                  Icons.delete_outline_rounded,
+                  color: FlutterFlowTheme.of(context).error,
+                  size: 20,
+                ),
+                onPressed: () async {
+                  // Call the remove API and refresh items
+                  await removeItemFromCart(username, index);
+                  await model.fetchCartItems(username);
+                },
+              ),
             ],
           ),
         ),

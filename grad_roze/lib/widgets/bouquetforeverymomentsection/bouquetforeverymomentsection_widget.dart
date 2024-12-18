@@ -5,7 +5,8 @@ import 'package:grad_roze/services/moment_service.dart';
 import 'package:grad_roze/widgets/moments_widget.dart';
 
 class BouquetforeverymomentsectionWidget extends StatefulWidget {
-  const BouquetforeverymomentsectionWidget({super.key});
+  final String username;
+  const BouquetforeverymomentsectionWidget({super.key, required this.username});
 
   @override
   State<BouquetforeverymomentsectionWidget> createState() =>
@@ -94,8 +95,10 @@ class _BouquetforeverymomentsectionWidgetState
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                MomentPageWidget(moment: moment),
+                            builder: (context) => MomentPageWidget(
+                              moment: moment,
+                              username: widget.username,
+                            ),
                           ),
                         );
                       },

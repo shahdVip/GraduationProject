@@ -1,5 +1,6 @@
 const Order = require('../model/order.model');
 const Item = require('../model/item.model');
+const UserCart = require('../model/userCart.model'); // User Cart model
 
 const getOrdersByBusiness = async (req, res) => {
   try {
@@ -247,6 +248,55 @@ const DenyOrder = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+// Function to create an order from the user's cart
+const createOrder = async (req, res) => {
+  const { username } = req.params;
 
+  try {
+    // Step 1: Fetch the user's cart
+    const userCart = await UserCart.findOne({ username });
+    if (!userCart || userCart.itemsId.length === 0) {
+      return res.status(404).json({ message: 'Cart is empty or not found.' });
+    }
+
+    // Step 2: Fetch bouquet details from the items collection
+    const items = await Item.find({ _id: { $in: userCart.itemsId } });
+
+    if (!items || items.length === 0) {
+      return res.status(400).json({ message: 'No valid items found in the cart.' });
+    }
+
+    // Step 3: Extract business names (remove duplicates)
+    const businessUsernames = [
+      ...new Set(items.map((item) => item.business)), // Assuming "business" is the field for the business name
+    ];
+
+    // Step 4: Prepare order data
+    const orderData = {
+      bouquetsId: userCart.itemsId, // All bouquet/item IDs
+      customerUsername: username,
+      businessUsername: businessUsernames,
+      totalPrice: items.reduce((sum, item) => sum + item.price, 0), // Sum of all prices
+      time: new Date().toISOString(), // Current date and time
+      status: businessUsernames.map(() => 'pending'), // One 'pending' per business
+    };
+
+    // Step 5: Create the order
+    const newOrder = new Order(orderData);
+    await newOrder.save();
+
+    // Step 6: Clear the user's cart after order creation
+    userCart.itemsId = [];
+    await userCart.save();
+
+    res.status(201).json({
+      message: 'Order created successfully',
+      order: newOrder,
+    });
+  } catch (error) {
+    console.error('Error creating order:', error);
+    res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
+};
   
-module.exports = { getOrdersByBusiness,getTotalPriceByBusiness,getOrderItemsByBusiness,updateOrderStatus,getOrdersByBusinessAndStatus,DenyOrder};
+module.exports = { getOrdersByBusiness,getTotalPriceByBusiness,getOrderItemsByBusiness,updateOrderStatus,getOrdersByBusinessAndStatus,DenyOrder,createOrder};

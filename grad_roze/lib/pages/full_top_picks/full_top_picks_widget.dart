@@ -12,9 +12,11 @@ import 'full_top_picks_model.dart';
 export 'full_top_picks_model.dart';
 
 class FullTopPicksWidget extends StatefulWidget {
+  final String username;
   final List<dynamic> topPicks;
 
-  const FullTopPicksWidget({super.key, required this.topPicks});
+  const FullTopPicksWidget(
+      {super.key, required this.topPicks, required this.username});
 
   @override
   State<FullTopPicksWidget> createState() => _FullTopPicksWidgetState();
@@ -126,7 +128,10 @@ class _FullTopPicksWidgetState extends State<FullTopPicksWidget>
                   ),
                   itemCount: widget.topPicks.length,
                   itemBuilder: (context, index) {
-                    return BouquetViewWidget(model: widget.topPicks[index]);
+                    return BouquetViewWidget(
+                      model: widget.topPicks[index],
+                      username: widget.username,
+                    );
                   },
                 ),
               ),

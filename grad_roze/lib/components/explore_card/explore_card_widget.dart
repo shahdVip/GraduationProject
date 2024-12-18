@@ -11,10 +11,12 @@ import 'explore_card_model.dart';
 export 'explore_card_model.dart';
 
 class ExploreCardWidget extends StatefulWidget {
+  final String username;
   //final Map<String, String> item;
   final Map<String, dynamic> item;
 
-  const ExploreCardWidget({super.key, required this.item});
+  const ExploreCardWidget(
+      {super.key, required this.item, required this.username});
 
   @override
   State<ExploreCardWidget> createState() => _ExploreCardWidgetState();
@@ -61,6 +63,7 @@ class _ExploreCardWidgetState extends State<ExploreCardWidget> {
             MaterialPageRoute(
               builder: (context) => BouquetPageWidget(
                 bouquetId: itemId,
+                username: widget.username,
               ),
             ),
           );

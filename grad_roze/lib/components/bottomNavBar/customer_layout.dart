@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:grad_roze/config.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/index.dart';
 import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class CustomerLayout extends StatefulWidget {
   const CustomerLayout({super.key});
@@ -13,16 +18,79 @@ class CustomerLayout extends StatefulWidget {
 
 class _CustomerLayoutState extends State<CustomerLayout> {
   int _currentIndex = 1; // Keeps track of the current tab
+  final GlobalKey<ScaffoldState> _scaffoldKey =
+      GlobalKey<ScaffoldState>(); // Define a GlobalKey
+
+  bool isLoading = true; // Track loading state
+  String username = '';
+  String userEmail = '';
+  String userprofilePhotoUrl = '';
+
+  Future<void> _fetchUserProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('jwt_token'); // Retrieve the token
+    if (token != null) {
+      try {
+        final response = await http.get(
+          Uri.parse(loggedInInfo),
+          headers: {'Authorization': 'Bearer $token'},
+        );
+
+        if (response.statusCode == 200) {
+          final data = jsonDecode(response.body);
+          setState(() {
+            username = data['username']; // Set the fetched username
+            userEmail = data['email'];
+            userprofilePhotoUrl = data['profilePhoto'];
+            isLoading = false; // Stop loading
+          });
+        } else {
+          setState(() {
+            isLoading = false; // Stop loading even if error occurs
+          });
+          print('Failed to load profile');
+        }
+      } catch (e) {
+        setState(() {
+          isLoading = false; // Stop loading in case of error
+        });
+        print('Error: $e');
+      }
+    } else {
+      setState(() {
+        isLoading = false; // Stop loading when no token is found
+      });
+      print('No token found');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserProfile(); // Fetch user profile during initialization
+  }
 
   // List of pages displayed for each tab
-  final List<Widget> _pages = [
-    const CameraPageWidget(),
-    const HomePage(),
-    const CartWidget(),
-  ];
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            color: FlutterFlowTheme.of(context).primary,
+          ),
+        ),
+      );
+    }
+
+    // Return main layout once business name is fetched
+    final List<Widget> _pages = [
+      CameraPageWidget(username: username),
+      HomePage(username: username),
+      MyCartWidget(username: username),
+    ];
+
     return Scaffold(
       body: _pages[_currentIndex], // Display the current page
       bottomNavigationBar: CircleNavBar(

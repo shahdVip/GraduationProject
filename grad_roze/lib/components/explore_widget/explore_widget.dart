@@ -16,7 +16,8 @@ import 'explore_model.dart';
 export 'explore_model.dart';
 
 class ExploreWidget extends StatefulWidget {
-  const ExploreWidget({super.key});
+  final String username;
+  const ExploreWidget({super.key, required this.username});
 
   @override
   State<ExploreWidget> createState() => _ExploreWidgetState();
@@ -169,32 +170,36 @@ class _ExploreWidgetState extends State<ExploreWidget>
                     final item = recommendedItems[index][
                         'item']; // Assuming your API response has an 'item' field
 
-                    return ExploreCardWidget(item: {
-                      'id':
-                          item['_id'] ?? '', // Default to empty string if null
-                      'name': item['name'] ??
-                          'No Name', // Default value for missing name
-                      'flowerType':
-                          (item['flowerType'] as List<dynamic>?)?.join(', ') ??
-                              'Unknown', // Join list or default
-                      'tags': (item['tags'] as List<dynamic>?)?.join(', ') ??
-                          'No Tags',
-                      'imageURL':
-                          item['imageURL'] ?? '', // Default to empty string
-                      'description':
-                          item['description'] ?? 'No Description Available',
-                      'business': item['business'] ?? 'Unknown Business',
-                      'color': (item['color'] as List<dynamic>?)?.join(', ') ??
-                          'Unknown Color',
-                      'wrapColor':
-                          (item['wrapColor'] as List<dynamic>?)?.join(', ') ??
-                              'No Wrap Color',
-                      'price': item['price']?.toString() ??
-                          '0', // Convert to String or default to '0'
-                      'careTips': item['careTips'] ?? 'No Care Tips Provided',
-                      'rating': item['rating']?.toString() ??
-                          'No Rating', // Convert rating to String
-                    });
+                    return ExploreCardWidget(
+                      item: {
+                        'id': item['_id'] ??
+                            '', // Default to empty string if null
+                        'name': item['name'] ??
+                            'No Name', // Default value for missing name
+                        'flowerType': (item['flowerType'] as List<dynamic>?)
+                                ?.join(', ') ??
+                            'Unknown', // Join list or default
+                        'tags': (item['tags'] as List<dynamic>?)?.join(', ') ??
+                            'No Tags',
+                        'imageURL':
+                            item['imageURL'] ?? '', // Default to empty string
+                        'description':
+                            item['description'] ?? 'No Description Available',
+                        'business': item['business'] ?? 'Unknown Business',
+                        'color':
+                            (item['color'] as List<dynamic>?)?.join(', ') ??
+                                'Unknown Color',
+                        'wrapColor':
+                            (item['wrapColor'] as List<dynamic>?)?.join(', ') ??
+                                'No Wrap Color',
+                        'price': item['price']?.toString() ??
+                            '0', // Convert to String or default to '0'
+                        'careTips': item['careTips'] ?? 'No Care Tips Provided',
+                        'rating': item['rating']?.toString() ??
+                            'No Rating', // Convert rating to String
+                      },
+                      username: username,
+                    );
 // Use your ExploreCard widget to display each item
                   },
                 ),
