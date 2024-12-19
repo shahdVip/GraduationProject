@@ -1,12 +1,14 @@
 const express = require("express");
-const {
-  saveBouquetCustomization,
-  updateSpecialOrder,
-} = require("../controller/specialOrder.controller");
+const specialOrderController = require("../controller/specialOrder.controller");
 
 const router = express.Router();
-router.post("/save", saveBouquetCustomization);
+//router.post("/save", saveBouquetCustomization);
+router.post(
+  "/save",
+  specialOrderController.upload.single("file"), // Middleware for file upload
+  specialOrderController.saveBouquetCustomization
+);
 
-router.put("/updateSpecialOrder", updateSpecialOrder);
+router.put("/updateSpecialOrder", specialOrderController.updateSpecialOrder);
 
 module.exports = router;

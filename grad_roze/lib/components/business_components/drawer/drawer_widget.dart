@@ -299,15 +299,22 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
           ),
           _buildDrawerItem(
             context,
+            title: ' Special Orders', // The title of the new page
+            icon: HugeIcons.strokeRoundedFlowerPot, // An appropriate icon
+            index:
+                3, // Ensure this matches the position in the parent _pages list
+          ),
+          _buildDrawerItem(
+            context,
             title: 'Calendar',
             icon: HugeIcons.strokeRoundedCalendar03,
-            index: 3,
+            index: 4,
           ),
           _buildDrawerItem(
             context,
             title: 'Statics',
             icon: HugeIcons.strokeRoundedAutoConversations,
-            index: 4,
+            index: 5,
           ),
           Expanded(
             child: Padding(
@@ -508,7 +515,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                             child: Text(
-                              'Roze',
+                              'Roze`',
                               style: FlutterFlowTheme.of(context)
                                   .headlineLarge
                                   .override(
@@ -632,8 +639,9 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 5,
+                  height: 1,
                   decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(12),
                     shape: BoxShape.rectangle,
                     border: Border.all(

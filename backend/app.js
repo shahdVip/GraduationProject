@@ -13,6 +13,7 @@ const colorRoutes = require("./routes/color.route");
 const flowerTypeRoutes = require("./routes/flowerType.route");
 const tagRoutes = require("./routes/tag.route");
 const orderRoutes = require("./routes/order.route");
+const specialOrderFile = require("./routes/specialOrderFile.route");
 
 const specialOrdersRoutes = require("./routes/specialOrder.route");
 
@@ -127,5 +128,27 @@ app.get("/groups-with-assets", async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+app.use("/download", specialOrderFile); // All file-related routes will have the prefix /api/files
+
+// app.post("/save-file", (req, res) => {
+//   const filePath = path.join(
+//     __dirname,
+//     "../grad_roze/assets/specialOrders",
+//     `bouquet_${Date.now()}.glb`
+//   );
+//   const writeStream = fs.createWriteStream(filePath);
+
+//   req.pipe(writeStream);
+
+//   req.on("end", () => {
+//     res.status(200).send("File saved successfully");
+//   });
+
+//   req.on("error", (err) => {
+//     console.error(err);
+//     res.status(500).send("Error saving file");
+//   });
+// });
 
 module.exports = app;
