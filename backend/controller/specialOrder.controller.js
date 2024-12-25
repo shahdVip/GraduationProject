@@ -1,6 +1,13 @@
+const mongoose = require("mongoose");
+
 const SpecialOrderModel = require("../model/specialOrder.model");
 const {
   updateLatestSpecialOrder,
+  getSpecialOrdersService,
+  fetchPendingOrdersByCustomer,
+  acceptOrderByCustomer,
+  resetOrderStatus,
+  getSpecialOrdersNewPendingService,
 } = require("../services/specialOrder.service");
 const path = require("path");
 const fs = require("fs");
@@ -8,14 +15,7 @@ const fs = require("fs");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadDir = path.join(
-      __dirname,
-      "..",
-      "..",
-      "grad_roze",
-      "assets",
-      "specialOrders"
-    );
+    const uploadDir = path.join(__dirname, "..", "assets", "specialOrders");
     // Ensure directory exists
     if (!fs.existsSync(uploadDir)) {
       fs.mkdirSync(uploadDir, { recursive: true });
@@ -59,6 +59,27 @@ const saveBouquetCustomization = async (req, res) => {
   }
 };
 
+const getPendingOrders = async (req, res) => {
+  try {
+    const { customerUsername } = req.body;
+
+    if (!customerUsername) {
+      return res.status(400).json({ message: "Customer username is required" });
+    }
+
+    const orders = await fetchPendingOrdersByCustomer(customerUsername);
+
+    if (orders.length === 0) {
+      return res.status(404).json({ message: "No pending orders found" });
+    }
+
+    return res.status(200).json(orders);
+  } catch (error) {
+    console.error("Error fetching pending orders:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 // // This will save bouquet details to the database
 // const saveBouquetCustomization = async (req, res) => {
 //   try {
@@ -81,13 +102,12 @@ const saveBouquetCustomization = async (req, res) => {
 //     res.status(500).json({ message: "Error saving Special order" });
 //   }
 // };
-
 const updateSpecialOrder = async (req, res) => {
   try {
-    const { username } = req.body; // Get username from the request body
+    const { username, orderName } = req.body; // Get username and order name from the request body
 
     // Delegate the update logic to the service
-    const updatedOrder = await updateLatestSpecialOrder(username);
+    const updatedOrder = await updateLatestSpecialOrder(username, orderName);
 
     if (!updatedOrder) {
       return res.status(404).json({ message: "No special orders found" });
@@ -100,4 +120,163 @@ const updateSpecialOrder = async (req, res) => {
   }
 };
 
-module.exports = { saveBouquetCustomization, updateSpecialOrder, upload };
+// Function to fetch all unassigned orders
+const getUnassignedOrders = async (req, res) => {
+  try {
+    const orders = await SpecialOrderModel.find({
+      businessUsername: "Unassigned",
+    });
+    res.status(200).json(orders); // Respond with the list of unassigned orders
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error fetching orders", error: error.message });
+  }
+};
+const resetOrder = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const updatedOrder = await resetOrderStatus(id);
+    res.status(200).json({
+      success: true,
+      message:
+        "Order status reset to New and business username set to Unassigned",
+      order: updatedOrder,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+const getSpecialOrdersNewPending = async (req, res) => {
+  try {
+    const { businessUsername } = req.query;
+
+    // Validate the businessUsername value
+    if (!businessUsername) {
+      return res.status(400).json({ error: "Business username is required" });
+    }
+
+    // Fetch bouquets with status 'New' or 'Pending', and businessUsername not matching the provided one
+    const bouquets = await getSpecialOrdersService(businessUsername);
+    res.status(200).json(bouquets);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+// Get special orders based on choice
+const getSpecialOrders = async (req, res) => {
+  try {
+    let { status, businessUsername, businessUsernameOpp } = req.query;
+    // If status is a string, split it into an array
+    if (typeof status === "string") {
+      status = status.split(",");
+    }
+    // Validate that statuses are valid if provided
+    const validStatuses = ["New", "Assigned"];
+    if (status && !status.every((s) => validStatuses.includes(s))) {
+      return res.status(400).json({ error: "Invalid status value(s)" });
+    }
+
+    // Fetch the bouquets based on status and businessUsername (if provided)
+    const bouquets = await getSpecialOrdersService(
+      status,
+      businessUsername,
+      businessUsernameOpp
+    );
+    res.status(200).json(bouquets);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+  // try {
+  //   const { status, businessUsername } = req.query;
+
+  //   // Validate status value
+  //   if (
+  //     !["New", "Pending", "AcceptedByCustomer", "RejectedByCustomer"].includes(
+  //       status
+  //     )
+  //   ) {
+  //     return res.status(400).json({ error: "Invalid status" });
+  //   }
+
+  //   // Fetch the bouquets based on status and businessUsername (if provided)
+  //   const bouquets = await getSpecialOrdersService(status, businessUsername);
+  //   res.status(200).json(bouquets);
+  // } catch (error) {
+  //   res.status(500).json({ error: error.message });
+  // }
+};
+const acceptOrder = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const updatedOrder = await acceptOrderByCustomer(id);
+    res.status(200).json({
+      success: true,
+      message: "Order status updated to AcceptedByCustomer",
+      order: updatedOrder,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+const updateBusinessUsername = async (req, res) => {
+  try {
+    const { id } = req.params; // Extract the bouquet ID from the request parameters
+    const { businessUsername, price } = req.body; // Extract businessUsername and price from the request body
+
+    // Validate input
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid bouquet ID format" });
+    }
+
+    if (!businessUsername) {
+      return res.status(400).json({ message: "Business username is required" });
+    }
+
+    if (!price) {
+      return res.status(400).json({ message: "Price is required" });
+    }
+
+    // Find the bouquet with status "New" and update the businessUsername, price, and status to "Pending"
+    const updatedBouquet = await SpecialOrderModel.findOneAndUpdate(
+      { _id: id, status: "New" }, // Find bouquet by ID and ensure status is "New"
+      { businessUsername, price, status: "Pending" }, // Update the businessUsername, price, and change the status to "Pending"
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedBouquet) {
+      return res
+        .status(404)
+        .json({ message: "Bouquet not found or not in New status" });
+    }
+
+    res.status(200).json({
+      message: "Business username and price updated, status changed to Pending",
+      bouquet: updatedBouquet,
+    });
+  } catch (error) {
+    console.error("Error updating business username and price:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+module.exports = {
+  saveBouquetCustomization,
+  updateSpecialOrder,
+  upload,
+  getUnassignedOrders,
+  updateBusinessUsername,
+  getSpecialOrders,
+  getPendingOrders,
+  acceptOrder,
+  resetOrder,
+  getSpecialOrdersNewPending,
+};

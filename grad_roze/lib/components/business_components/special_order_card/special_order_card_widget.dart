@@ -1,3 +1,5 @@
+import 'package:grad_roze/config.dart';
+
 import '/custom/animations.dart';
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
@@ -17,7 +19,9 @@ import 'special_order_card_model.dart';
 export 'special_order_card_model.dart';
 
 class SpecialOrderCardWidget extends StatefulWidget {
-  const SpecialOrderCardWidget({super.key});
+  final dynamic order; // Pass the order object
+
+  const SpecialOrderCardWidget({super.key, required this.order});
 
   @override
   State<SpecialOrderCardWidget> createState() => _SpecialOrderCardWidgetState();
@@ -117,7 +121,7 @@ class _SpecialOrderCardWidgetState extends State<SpecialOrderCardWidget>
                     height: 200,
                     child: ModelViewer(
                       src:
-                          'assets/specialOrders/bouquet_1734447789730.glb', // Path to your GLB model
+                          '$url/assets/specialOrders/${widget.order['fileName']}', // Path to your GLB model
                       alt: "A 3D model of an object", // Alternative text
                       ar: false, // Enable AR if needed
                       autoRotate: false, // Automatically rotate the model
@@ -134,8 +138,8 @@ class _SpecialOrderCardWidgetState extends State<SpecialOrderCardWidget>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Customerusername',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        "${widget.order['orderName']}",
+                        style: FlutterFlowTheme.of(context).titleSmall.override(
                               fontFamily: 'Funnel Display',
                               color: FlutterFlowTheme.of(context).primary,
                               letterSpacing: 0.0,
@@ -161,11 +165,8 @@ class _SpecialOrderCardWidgetState extends State<SpecialOrderCardWidget>
                               return WebViewAware(
                                 child: Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
-                                  child: Container(
-                                    height:
-                                        400, // Set a fixed height for the content
-                                    child: SpecialOrderViewWidget(),
-                                  ),
+                                  child: SpecialOrderViewWidget(
+                                      order: widget.order),
                                 ),
                               );
                             },

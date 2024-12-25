@@ -275,7 +275,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildDrawerHeader(context),
+          _buildDrawerHeader(context, index: 3),
           _buildDrawerItem(
             context,
             title: ' My Profile', // The title of the new page
@@ -306,15 +306,9 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
           ),
           _buildDrawerItem(
             context,
-            title: 'Calendar',
-            icon: HugeIcons.strokeRoundedCalendar03,
-            index: 4,
-          ),
-          _buildDrawerItem(
-            context,
             title: 'Statics',
             icon: HugeIcons.strokeRoundedAutoConversations,
-            index: 5,
+            index: 4,
           ),
           Expanded(
             child: Padding(
@@ -470,7 +464,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
     );
   }
 
-  Widget _buildDrawerHeader(BuildContext context) {
+  Widget _buildDrawerHeader(BuildContext context, {required int index}) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -606,11 +600,19 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                               ),
                             ),
                           ),
-                          Icon(
-                            Icons.notifications_none,
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            size: 28,
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_none,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              size: 28,
+                            ),
+                            onPressed: () {
+                              // Navigate to the notification page
+                              setState(() => index);
+                              widget.onNavSelect(index);
+                              Navigator.pop(context);
+                            },
                           ),
                         ],
                       ),

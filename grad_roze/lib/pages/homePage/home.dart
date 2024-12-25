@@ -4,6 +4,7 @@ import 'package:grad_roze/components/bouqet_builder/bouqet_builder_widget.dart';
 import 'package:grad_roze/components/BottomNavBar.dart';
 import 'package:grad_roze/components/explore_widget/explore_widget.dart';
 import 'package:grad_roze/custom/icon_button.dart';
+import 'package:grad_roze/pages/notifications/notifications_widget.dart';
 import 'package:grad_roze/widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_widget.dart';
 import 'package:grad_roze/widgets/top_picks/top_picks_widget.dart';
 import 'package:grad_roze/custom/theme.dart';
@@ -41,9 +42,9 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 20),
             TopPicksWidget(),
             SizedBox(height: 20),
-            ExploreWidget(),
-            SizedBox(height: 20),
             BouqetBuilderWidget(),
+            SizedBox(height: 20),
+            ExploreWidget(),
             SizedBox(height: 20),
           ],
         ),
@@ -72,13 +73,13 @@ class HomePage extends StatelessWidget {
           alignment: Alignment.center,
           margin: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: const Color(0xFFF7F8F8), //COLOR OF THE BACKGROUND!
+            color: const Color(0xFFFF00), //COLOR OF THE BACKGROUND!
             borderRadius: BorderRadius.circular(10),
           ),
           child: SvgPicture.asset(
             'assets/icons/user.svg',
-            height: 17,
-            width: 17,
+            height: 20,
+            width: 20,
           ),
         ),
       ), //container
@@ -91,12 +92,19 @@ class HomePage extends StatelessWidget {
             borderWidth: 1,
             buttonSize: 60,
             icon: Icon(
-              Icons.shopping_cart_outlined,
+              Icons.notifications_none_outlined,
               color: FlutterFlowTheme.of(context).primary,
               size: 24,
             ),
             onPressed: () {
               // context.pushNamed('cart'); // Navigate to the home page
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      NotificationsWidget(), // Replace with your page
+                ),
+              );
             },
           ),
         ),

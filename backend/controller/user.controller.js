@@ -49,12 +49,10 @@ exports.updateProfilePhoto = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res
-      .status(200)
-      .json({
-        message: "Profile photo updated successfully",
-        profilePhoto: user.profilePhoto,
-      });
+    res.status(200).json({
+      message: "Profile photo updated successfully",
+      profilePhoto: user.profilePhoto,
+    });
   } catch (error) {
     console.error("Error updating profile photo:", error);
     res.status(500).json({ message: "Failed to update profile photo" });

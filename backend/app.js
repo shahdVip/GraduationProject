@@ -13,7 +13,8 @@ const colorRoutes = require("./routes/color.route");
 const flowerTypeRoutes = require("./routes/flowerType.route");
 const tagRoutes = require("./routes/tag.route");
 const orderRoutes = require("./routes/order.route");
-const specialOrderFile = require("./routes/specialOrderFile.route");
+const offerRoutes = require("./routes/offer.route");
+const notificationRoutes = require("./routes/notification.route");
 
 const specialOrdersRoutes = require("./routes/specialOrder.route");
 
@@ -63,6 +64,8 @@ app.use("/item", itemRoutes);
 app.use("/cart", cartRoutes);
 app.use("/inventory", inventoryRoutes);
 app.use("/specialOrder", specialOrdersRoutes);
+app.use("/offers", offerRoutes);
+app.use("/notification", notificationRoutes);
 
 // Test route to insert initial data
 app.get("/create-test-data", async (req, res) => {
@@ -129,7 +132,7 @@ app.get("/groups-with-assets", async (req, res) => {
   }
 });
 
-app.use("/download", specialOrderFile); // All file-related routes will have the prefix /api/files
+//app.use("/download", specialOrderFile); // All file-related routes will have the prefix /api/files
 
 // app.post("/save-file", (req, res) => {
 //   const filePath = path.join(

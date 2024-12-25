@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/index.dart';
 import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
+import 'package:grad_roze/pages/offers/offers_widget.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class CustomerLayout extends StatefulWidget {
   const CustomerLayout({super.key});
@@ -19,6 +21,7 @@ class _CustomerLayoutState extends State<CustomerLayout> {
     const CameraPageWidget(),
     const HomePage(),
     const CartWidget(),
+    const OffersWidget(),
   ];
 
   @override
@@ -35,12 +38,22 @@ class _CustomerLayoutState extends State<CustomerLayout> {
           Icon(Icons.camera, color: Colors.white),
           Icon(Icons.home, color: Colors.white),
           Icon(Icons.shopping_cart_outlined, color: Colors.white),
+          HugeIcon(
+            icon: HugeIcons.strokeRoundedFlowerPot,
+            color: Colors.white,
+            size: 30.0,
+          )
         ],
         inactiveIcons: <Widget>[
           Icon(Icons.camera, color: FlutterFlowTheme.of(context).secondaryText),
           Icon(Icons.home, color: FlutterFlowTheme.of(context).secondaryText),
           Icon(Icons.shopping_cart_outlined,
               color: FlutterFlowTheme.of(context).secondaryText),
+          HugeIcon(
+            icon: HugeIcons.strokeRoundedFlowerPot,
+            color: FlutterFlowTheme.of(context).secondaryText,
+            size: 30.0,
+          )
         ],
         color: FlutterFlowTheme.of(context)
             .secondaryBackground, // Nav bar background color

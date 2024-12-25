@@ -5,6 +5,7 @@ import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/pages/business_pages/myBouquets/my_bouquet_widget.dart';
 import 'package:grad_roze/pages/business_pages/myOrders/myOrdersWidget.dart';
 import 'package:grad_roze/pages/business_pages/special_orders_list/special_orders_list_widget.dart';
+import 'package:grad_roze/pages/notifications/notifications_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './drawer/drawer_widget.dart';
 import 'package:http/http.dart' as http;
@@ -88,6 +89,7 @@ class _BusinessLayoutState extends State<BusinessLayout> {
       MyBouquetWidget(business: businessUsername),
       MyOrdersWidget(business: businessUsername),
       SpecialOrdersListWidget(),
+      NotificationsWidget(),
     ];
 
     return Scaffold(

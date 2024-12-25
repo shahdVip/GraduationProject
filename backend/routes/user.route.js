@@ -3,6 +3,7 @@ const express = require("express");
 const router = require("express").Router();
 const UserController = require("../controller/user.controller");
 const multer = require("multer");
+const User = require("../model/user.model"); // Make sure to import your User model
 
 // Configure Multer to store images in the 'uploads' folder
 const storage = multer.diskStorage({
@@ -110,4 +111,30 @@ router.put(
 );
 
 router.get("/user/:username", UserController.getUserByUsername);
+
+// Endpoint to save the device token
+router.post("/save-device-token", async (req, res) => {
+  const { deviceToken, username } = req.body;
+
+  if (!deviceToken || !username) {
+    return res.status(400).send("Device token and username are required");
+  }
+
+  try {
+    const user = await User.findOneAndUpdate(
+      { username },
+      { deviceToken }, // Update the user's device token
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).send("User not found");
+    }
+
+    res.status(200).send("Device token saved successfully");
+  } catch (error) {
+    console.error("Error saving device token:", error);
+    res.status(500).send("Internal server error");
+  }
+});
 module.exports = router;

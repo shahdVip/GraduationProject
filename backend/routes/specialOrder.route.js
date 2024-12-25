@@ -11,4 +11,20 @@ router.post(
 
 router.put("/updateSpecialOrder", specialOrderController.updateSpecialOrder);
 
+// router.get("/unassigned", specialOrderController.getUnassignedOrders);
+
+router.put(
+  "/offer/:id/business-username",
+  specialOrderController.updateBusinessUsername
+);
+
+// Get special orders (unassigned, by business, or based on status)
+router.get("/filter", specialOrderController.getSpecialOrders);
+router.get("/filter1", specialOrderController.getSpecialOrdersNewPending);
+
+router.post("/pending", specialOrderController.getPendingOrders);
+router.patch("/:id/accept", specialOrderController.acceptOrder);
+
+router.put("/reset-order/:id", specialOrderController.resetOrder);
+
 module.exports = router;

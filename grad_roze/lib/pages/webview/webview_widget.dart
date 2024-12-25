@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:grad_roze/components/business_components/order_name/order_name_widget.dart';
 import 'package:grad_roze/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
@@ -38,42 +40,42 @@ class _WebviewWidgetState extends State<WebviewWidget> {
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
-  Future<void> updateSpecialOrder() async {
-    try {
-      // Retrieve the username from SharedPreferences
-      final prefs = await SharedPreferences.getInstance();
-      final username = prefs.getString('username');
+  // Future<void> updateSpecialOrder() async {
+  //   try {
+  //     // Retrieve the username from SharedPreferences
+  //     final prefs = await SharedPreferences.getInstance();
+  //     final username = prefs.getString('username');
 
-      if (username == null || username.isEmpty) {
-        print('Username not found in SharedPreferences');
-        return;
-      }
+  //     if (username == null || username.isEmpty) {
+  //       print('Username not found in SharedPreferences');
+  //       return;
+  //     }
 
-      // Define the API endpoint
+  //     // Define the API endpoint
 
-      // Create the request body
-      final body = json.encode({"username": username});
+  //     // Create the request body
+  //     final body = json.encode({"username": username});
 
-      // Make the PUT request
-      final response = await http.put(
-        Uri.parse(updateSpecialOrderurl),
-        headers: {
-          'Content-Type': 'application/json', // Set the content type
-        },
-        body: body,
-      );
+  //     // Make the PUT request
+  //     final response = await http.put(
+  //       Uri.parse(updateSpecialOrderurl),
+  //       headers: {
+  //         'Content-Type': 'application/json', // Set the content type
+  //       },
+  //       body: body,
+  //     );
 
-      // Handle the response
-      if (response.statusCode == 200) {
-        print('Order updated successfully: ${response.body}');
-      } else {
-        print(
-            'Failed to update order: ${response.statusCode} ${response.body}');
-      }
-    } catch (error) {
-      print('Error updating order: $error');
-    }
-  }
+  //     // Handle the response
+  //     if (response.statusCode == 200) {
+  //       print('Order updated successfully: ${response.body}');
+  //     } else {
+  //       print(
+  //           'Failed to update order: ${response.statusCode} ${response.body}');
+  //     }
+  //   } catch (error) {
+  //     print('Error updating order: $error');
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -132,9 +134,31 @@ class _WebviewWidgetState extends State<WebviewWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    // Call the function to update the special order
-                    await updateSpecialOrder();
+                    await showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      enableDrag: false,
+                      context: context,
+                      builder: (context) {
+                        return WebViewAware(
+                          child: GestureDetector(
+                            onTap: () {
+                              FocusScope.of(context).unfocus();
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            },
+                            child: Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: OrderNameWidget(),
+                            ),
+                          ),
+                        );
+                      },
+                    ).then((value) => safeSetState(() {}));
                   },
+                  // onPressed: () async {
+                  //   // Call the function to update the special order
+                  //   await updateSpecialOrder();
+                  // },
                   text: 'Place Order',
                   options: FFButtonOptions(
                     height: 40,
