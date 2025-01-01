@@ -1,0 +1,404 @@
+ [
+    {"Input": "I love you", 
+     "Outputs": [
+         "You are my everything. Every moment with you is a treasure. I love you!",
+         "My heart belongs to you, now and forever. I love you deeply.",
+         "Every day with you feels like a dream come true. I love you!",
+         "You bring joy and meaning to my life. I love you more than words can say.",
+         "You complete me. Being with you is the best part of my day. I love you!"
+     ]
+    },
+    {"Input": "Congratulations on your new job!", 
+     "Outputs": [
+         "Wishing you great success in your exciting new role. You've earned it!",
+         "Congratulations on this amazing achievement! You’re going to do great things.",
+         "Your hard work has paid off! Best wishes for your new journey.",
+         "May your new role bring you fulfillment and happiness. Congratulations!",
+         "You're off to a great start in this exciting chapter. Wishing you all the best!"
+     ]
+    },
+    {"Input": "Happy Birthday!", 
+     "Outputs": [
+         "Hope your birthday is filled with joy, laughter, and wonderful memories!",
+         "Wishing you a year full of happiness, success, and love. Happy Birthday!",
+         "May this special day bring you endless joy and unforgettable moments.",
+         "Another year older, wiser, and even more amazing. Happy Birthday!",
+         "Celebrate big today—you deserve all the happiness in the world!"
+     ]
+    },
+    {"Input": "Thank you", 
+     "Outputs": [
+         "Thank you for your kindness and support. You are truly appreciated!",
+         "Your thoughtfulness means the world to me. Thank you so much!",
+         "I am so grateful for everything you've done. Thank you from the bottom of my heart!",
+         "You’ve made such a difference in my life. Thank you for being incredible.",
+         "Thank you for always being there. You’re truly one of a kind!"
+     ]
+    },
+    {"Input": "Congratulations on your wedding", 
+     "Outputs": [
+         "Wishing you both a lifetime of love, happiness, and endless joy together!",
+         "May your journey together be filled with love and unforgettable memories.",
+         "Congratulations on finding your forever person. Best wishes for your future together!",
+         "Here’s to a beautiful beginning and a lifetime of happiness. Congratulations!",
+         "May your love story continue to be as beautiful as your wedding day."
+     ]
+    },
+    {"Input": "Get well soon", 
+     "Outputs": [
+         "Wishing you a speedy recovery and sending you lots of positive energy.",
+         "Take care and get well soon. We’re all thinking of you!",
+         "Sending you warm wishes and hopes for a quick recovery. You’ve got this!",
+         "Hoping to see you back on your feet soon. Get well soon!",
+         "You’re in my thoughts and prayers. Wishing you strength and healing."
+     ]
+    },
+    {"Input": "Welcome to the world, baby", 
+     "Outputs": [
+         "Congratulations on your new arrival! May your home be filled with love and laughter.",
+         "Welcome to the world, little one! Wishing you a lifetime of happiness and love.",
+         "Your family just grew a little brighter. Congratulations on your beautiful baby!",
+         "Sending love and best wishes to you and your growing family. Welcome, baby!",
+         "May your home overflow with joy and laughter as you celebrate your little miracle."
+     ]
+    },
+    {"Input": "Happy Anniversary", 
+     "Outputs": [
+         "Wishing you both another year of love, laughter, and cherished memories together!",
+         "Happy Anniversary to a beautiful couple. Here’s to many more years of happiness!",
+         "May your love continue to grow stronger with each passing year. Happy Anniversary!",
+         "Here’s to another year of building a beautiful life together. Congratulations!",
+         "Wishing you endless love and joy on your special day. Happy Anniversary!"
+     ]
+    },
+    {"Input": "Good luck on your journey", 
+     "Outputs": [
+         "May this new chapter of your life be filled with endless opportunities and happiness.",
+         "Wishing you success and joy as you embark on this exciting adventure!",
+         "Your journey is just beginning, and I know you’ll make it amazing.",
+         "Good luck on this incredible journey. You’ve got what it takes to succeed!",
+         "Here’s to new experiences and exciting adventures ahead. Best of luck!"
+     ]
+    },
+    {"Input": "You're amazing", 
+     "Outputs": [
+         "Your kindness and strength inspire everyone around you. Keep shining!",
+         "You’re a true gem, and the world is better because of you. Stay amazing!",
+         "Your positive energy lights up every room. Keep being wonderful!",
+         "You’re incredible in so many ways. Never forget how much you’re appreciated.",
+         "The world needs more people like you. You’re simply amazing!"
+     ]
+    },
+    {"Input": "Happy Mother's Day", 
+     "Outputs": [
+         "You are the heart of our family. Thank you for your endless love and care.",
+         "Wishing you a Mother’s Day as beautiful as your heart.",
+         "Thank you for being the best mom anyone could ever ask for. Happy Mother’s Day!",
+         "Your love and sacrifices mean the world to me. Happy Mother’s Day!",
+         "Celebrating you today and every day. Happy Mother’s Day!"
+     ]
+    },
+    {"Input": "Happy Father's Day", 
+     "Outputs": [
+         "Thank you for being the rock of our family. We are so lucky to have you.",
+         "Wishing you a Father’s Day filled with love and laughter.",
+         "You’re my hero and my greatest inspiration. Happy Father’s Day!",
+         "Thank you for all the guidance and love. Happy Father’s Day!",
+         "You make our lives so much better. Have an amazing Father’s Day!"
+     ]
+    },
+    {"Input": "Happy Holidays!", 
+     "Outputs": [
+         "Wishing you a season filled with love, laughter, and cherished memories.",
+         "May your holidays be filled with joy and your heart with peace.",
+         "Sending you warm wishes for a holiday season full of happiness.",
+         "Hope your holidays are filled with magical moments and beautiful memories.",
+         "Wishing you love, joy, and peace this holiday season and always."
+     ]
+    },
+    {"Input": "Congratulations on your engagement", 
+     "Outputs": [
+         "Wishing you both a lifetime of love, happiness, and unforgettable moments together!",
+         "Congratulations on finding your forever love. Wishing you endless joy.",
+         "Your love story is just beginning. Best wishes on your engagement!",
+         "Here’s to a lifetime of laughter and love. Congratulations on your engagement!",
+         "May your engagement be the start of a wonderful and fulfilling journey together."
+     ]
+    },
+    {"Input": "You're special", 
+     "Outputs": [
+         "The world is brighter with you in it. Never forget how special you are.",
+         "Your unique kindness and warmth make the world a better place.",
+         "You’re one of a kind, and I’m so grateful to know you.",
+         "Thank you for being your amazing self. You’re truly special.",
+         "Always remember: you’re loved, cherished, and one of a kind."
+     ]
+    },
+    {"Input": "Best of luck in your exams", 
+    "Outputs": [
+        "You’ve worked so hard for this moment. Believe in yourself, and success will follow!",
+        "Wishing you focus, confidence, and success in your exams!",
+        "Remember, you’re capable of achieving anything you set your mind to. Good luck!",
+        "Stay calm, stay focused, and give it your best. Best of luck on your exams!",
+        "You’ve got this! Trust your preparation and go ace those exams!"
+    ]
+   },
+   {"Input": "Wishing you strength", 
+    "Outputs": [
+        "May you find the courage and strength to overcome any challenge.",
+        "Sending you love and positive energy to get through tough times.",
+        "You are braver and stronger than you realize. Keep going!",
+        "Remember, challenges are what make you stronger. Wishing you strength!",
+        "Take it one step at a time. You’ve got the strength to overcome this."
+    ]
+   },
+   {"Input": "Happy Retirement", 
+    "Outputs": [
+        "Congratulations on this new chapter of your life! May it be filled with joy and relaxation.",
+        "Wishing you endless days of happiness and leisure in your retirement.",
+        "Enjoy this well-earned break. Happy Retirement!",
+        "Here’s to exciting adventures and peaceful moments in your retirement!",
+        "Retirement is the reward for a life well-lived. Wishing you all the best!"
+    ]
+   },
+   {"Input": "So proud of you", 
+    "Outputs": [
+        "Your hard work and dedication have paid off. I’m so proud of all that you’ve achieved.",
+        "You’ve accomplished something incredible, and I couldn’t be prouder of you.",
+        "Keep shining and making a difference. So proud of you!",
+        "Your success is an inspiration to us all. I’m bursting with pride!",
+        "Every step you take makes me prouder. Keep up the amazing work!"
+    ]
+   },
+   {"Input": "You inspire me", 
+    "Outputs": [
+        "Your determination and passion are truly inspiring. Thank you for being amazing!",
+        "The way you tackle challenges is an inspiration to everyone around you.",
+        "Your kindness and strength light up the world. You inspire me every day!",
+        "You make me want to be better. Thank you for being such an inspiration!",
+        "Your actions speak volumes, and they inspire me to do more and be more."
+    ]
+   },
+   {"Input": "Happy Graduation", 
+    "Outputs": [
+        "Congratulations on this incredible milestone! Your future is so bright, and we’re cheering for you!",
+        "The hard work has paid off—well done, graduate!",
+        "Here’s to your bright future and all the amazing things you’ll achieve. Congratulations!",
+        "You’ve reached an incredible milestone. The best is yet to come. Happy Graduation!",
+        "Your dedication and effort are truly inspiring. Congratulations, graduate!"
+    ]
+   },
+   {"Input": "You deserve the best", 
+    "Outputs": [
+        "You bring so much joy to everyone around you. You truly deserve all the happiness in the world.",
+        "Never forget how amazing you are. You deserve the very best life has to offer.",
+        "The kindness you share deserves to come back to you tenfold. You’re incredible!",
+        "You’re a shining star, and the best is always meant for you.",
+        "Keep being the wonderful person you are. You deserve nothing but the best!"
+    ]
+   },
+   {"Input": "Happy Valentine's Day", 
+    "Outputs": [
+        "You fill my heart with love and my days with happiness. Happy Valentine's Day!",
+        "Here’s to celebrating the love and joy you bring into my life every day.",
+        "You are my heart, my love, and my everything. Happy Valentine’s Day!",
+        "Every moment with you is like Valentine’s Day. Wishing you all my love!",
+        "You make every day special. Today is just another reason to celebrate you!"
+    ]
+   },
+   {"Input": "Thank you for your support", 
+    "Outputs": [
+        "Your encouragement has made all the difference. Thank you for always being there.",
+        "I couldn’t have done it without you. Thank you for your amazing support!",
+        "Your kindness and support have been a blessing. Thank you so much!",
+        "Thank you for believing in me and lifting me up when I needed it most.",
+        "You’ve been my rock through it all. Thank you for your unwavering support!"
+    ]
+   },
+   {"Input": "Wishing you peace", 
+    "Outputs": [
+        "May your heart find peace and comfort in difficult times. You are not alone.",
+        "Wishing you calm and serenity as you navigate through challenges.",
+        "You deserve peace and joy in your life. Wishing you both today and always.",
+        "May peace fill your heart and mind, now and forever.",
+        "Sending thoughts of comfort and peace your way. You are deeply loved."
+    ]
+   },
+   {"Input": "Happy Thanksgiving", 
+    "Outputs": [
+        "Grateful for the love and kindness you bring into my life. Happy Thanksgiving!",
+        "Thanksgiving is brighter with people like you to share it with. Thank you!",
+        "May your Thanksgiving be filled with laughter, love, and all your favorite dishes!",
+        "Counting my blessings, and you’re at the top of the list. Happy Thanksgiving!",
+        "Wishing you a Thanksgiving overflowing with love and gratitude."
+    ]
+   },
+   {"Input": "Best of luck in your new home", 
+    "Outputs": [
+        "May your new home be filled with love, laughter, and happiness.",
+        "Wishing you beautiful memories and endless joy in your new place.",
+        "Here’s to new beginnings in your wonderful new home. Congratulations!",
+        "May your new home be a sanctuary of peace and love.",
+        "A new home is a fresh start. Wishing you all the best as you settle in!"
+    ]
+   },
+   {"Input": "You're incredible", 
+    "Outputs": [
+        "Your presence makes everything better. Never stop being the wonderful person you are.",
+        "The world is brighter with you in it. You’re truly incredible!",
+        "Your strength and resilience inspire everyone around you. Keep shining!",
+        "You’re a beacon of positivity and love. Thank you for being you.",
+        "Your kindness, courage, and spirit make you truly extraordinary."
+    ]
+   },
+   {"Input": "Thinking of you", 
+    "Outputs": [
+        "Just a little note to remind you how much you mean to me. Thinking of you always.",
+        "You’re in my thoughts and my heart. I hope this brightens your day.",
+        "I’m sending warm thoughts your way. Just know I’m always here for you.",
+        "Whenever I think of you, it brings a smile to my face. You’re amazing.",
+        "Thinking of you and wishing you all the love and happiness in the world."
+    ]
+   },
+   {"Input": "Sending hugs", 
+    "Outputs": [
+        "Sending you warm hugs and all my love. You’re in my thoughts.",
+        "Consider this message a big virtual hug from me to you!",
+        "Hugs carry love and warmth—sending you both today and always.",
+        "Wrap yourself in this hug and know you’re deeply loved and appreciated.",
+        "Hugs can’t solve everything, but they sure can help. Here’s one for you!"
+    ]
+   },
+   {"Input": "I forgive you", 
+   "Outputs": [
+       "I accept your apology and value our relationship. Let’s move forward together.",
+       "Forgiveness is not about forgetting, but about healing. I forgive you.",
+       "Thank you for owning up to your mistake. I appreciate it, and I forgive you.",
+       "Let’s leave the past behind and focus on building a stronger bond.",
+       "Everyone makes mistakes. I forgive you, and I’m ready to move on."
+   ]
+  },
+  {"Input": "I'm disappointed", 
+  "Outputs": [
+      "I’m feeling disappointed, but I hope we can work through this together.",
+      "I expected more, but I value the chance to improve our understanding.",
+      "This situation hurts, but I believe we can grow from it.",
+      "I’m disappointed, but I know things can get better if we try.",
+      "Let’s use this as an opportunity to learn and do better next time."
+  ]
+ },
+ {"Input": "Stay strong", 
+     "Outputs": [
+         "You have the strength to overcome anything. I’m here for you, always.",
+         "Life’s challenges may be tough, but you’re tougher. Stay strong!",
+         "Remember, every storm passes. You’ve got the strength to get through this.",
+         "You’re not alone—stay strong and keep moving forward.",
+         "Sending you courage and strength to face whatever comes your way."
+     ]
+    },
+    {"Input": "You deserve better", 
+    "Outputs": [
+        "You are worthy of so much more. Don’t settle for less than you deserve.",
+        "Remember, you are amazing, and the best is yet to come.",
+        "You bring so much value to the world. You deserve nothing but the best!",
+        "Don’t let anyone dim your light. You’re destined for greatness.",
+        "You’re incredible, and I hope life gives you everything you’ve ever dreamed of."
+    ]
+   },   
+   {"Input": "I’m sorry for your loss", 
+   "Outputs": [
+       "My heart goes out to you during this difficult time.",
+       "Sending you love and strength as you navigate this loss.",
+       "I’m here for you—please let me know how I can support you.",
+       "Wishing you peace and comfort in this time of sorrow.",
+       "May the memories of your loved one bring you solace."
+   ]
+  },
+  {"Input": "I’m here for you", 
+  "Outputs": [
+      "Whatever you need, whenever you need it, I’m just a call away.",
+      "Lean on me—together, we can get through anything.",
+      "You’re not alone in this. I’m here for you every step of the way.",
+      "No matter what happens, you have my full support. I’m here for you.",
+      "You can always count on me. I’ve got your back."
+  ]
+ },
+  {"Input": "I’m disappointed in myself", 
+  "Outputs": [
+      "It’s okay to make mistakes. What matters is how you grow from them.",
+      "Don’t be too hard on yourself—you’re doing your best.",
+      "Every setback is a setup for a comeback. You’ve got this!",
+      "Learn from this moment and let it guide you to something better.",
+      "You’re stronger than you think. This is just a stepping stone to success."
+  ]
+ },
+ {"Input": "Sorry I let you down", 
+ "Outputs": [
+     "I truly regret my actions and the hurt they caused. Please forgive me.",
+     "I never meant to let you down, and I’m deeply sorry.",
+     "I take full responsibility for my actions. I hope you can forgive me.",
+     "I value our relationship more than words can say. Please accept my apology.",
+     "I’m truly sorry. Let me know how I can make things right."
+ ]
+},
+{"Input": "It’s okay to be sad", 
+"Outputs": [
+    "It’s okay to feel your emotions. Take the time you need to heal.",
+    "Sadness is a part of life, but it doesn’t last forever. You’re strong.",
+    "You’re allowed to feel sad, but remember, brighter days are ahead.",
+    "Let yourself feel, but don’t forget there’s a world of hope waiting for you.",
+    "Sadness is temporary, but your strength is forever. Hang in there."
+]
+},
+{
+    "Input": "Graduation",
+    "Outputs": [
+        "Congratulations on your graduation! Your hard work and dedication have truly paid off.",
+        "Hats off to you, graduate! Wishing you success and happiness in all your future endeavors.",
+        "Your graduation is a celebration of your perseverance and achievements. Well done!",
+        "Here’s to your bright future! Congratulations on reaching this incredible milestone.",
+        "You’ve made us all so proud. Cheers to a future full of possibilities and success!"
+    ]
+},
+{
+    "Input": "Wedding",
+    "Outputs": [
+        "Congratulations on your wedding day! May your journey together be filled with love and joy.",
+        "Wishing you both a lifetime of happiness, laughter, and endless love. Congratulations!",
+        "Today marks the start of your forever. Best wishes on this beautiful new chapter in your lives.",
+        "May your marriage be filled with as much happiness as your wedding day brings. Congratulations!",
+        "Here's to love, laughter, and a happily ever after. Congratulations on your special day!"
+    ]
+},
+{
+    "Input": "Engagement",
+    "Outputs": [
+        "Congratulations on your engagement! Wishing you both a lifetime of love and happiness.",
+        "May your engagement be the start of a beautiful journey together. Best wishes!",
+        "Here’s to your love and the exciting adventure that lies ahead. Congratulations!",
+        "Your engagement is a celebration of love and commitment. Wishing you endless joy!",
+        "Congratulations on finding your forever partner. May your bond grow stronger every day."
+    ]
+}
+,
+{
+    "Input": "Congratulations on your new car!",
+    "Outputs": [
+        "Congratulations on your new ride! May it take you to amazing places.",
+        "Here’s to exciting journeys and great adventures in your new car!",
+        "Wishing you safe and happy travels in your new car. Enjoy every mile!",
+        "Congratulations on this wonderful milestone. Drive safe and have fun!",
+        "May your new car bring you joy and make every trip a memorable one!"
+    ]
+},
+{
+    "Input": "Thinking of you in this tough time",
+    "Outputs": [
+        "Please know you’re in my thoughts during this difficult time.",
+        "Sending you strength and love as you face these challenges.",
+        "You’re not alone—I'm here for you every step of the way.",
+        "Wishing you peace and resilience as you navigate through this tough time.",
+        "Thinking of you and sending all my love and support."
+    ]
+}
+]
