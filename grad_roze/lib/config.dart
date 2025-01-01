@@ -1,4 +1,4 @@
-const url = 'http://192.168.1.6:3000';
+const url = 'http://192.168.1.17:3000';
 
 const registeration = "$url/registeration";
 const signInEndpoint = "$url/signin";

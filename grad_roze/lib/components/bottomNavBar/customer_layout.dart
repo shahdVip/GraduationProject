@@ -6,6 +6,7 @@ import 'package:grad_roze/config.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/index.dart';
 import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
+import 'package:grad_roze/pages/giftCardPage/giftCardPageWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,7 +18,7 @@ class CustomerLayout extends StatefulWidget {
 }
 
 class _CustomerLayoutState extends State<CustomerLayout> {
-  int _currentIndex = 1; // Keeps track of the current tab
+  int _currentIndex = 2; // Keeps track of the current tab
   final GlobalKey<ScaffoldState> _scaffoldKey =
       GlobalKey<ScaffoldState>(); // Define a GlobalKey
 
@@ -85,26 +86,31 @@ class _CustomerLayoutState extends State<CustomerLayout> {
     }
 
     // Return main layout once business name is fetched
-    final List<Widget> _pages = [
+    final List<Widget> pages = [
+      GiftCardPageWidget(username: username),
       CameraPageWidget(username: username),
       HomePage(username: username),
       MyCartWidget(username: username),
     ];
 
     return Scaffold(
-      body: _pages[_currentIndex], // Display the current page
+      body: pages[_currentIndex], // Display the current page
       bottomNavigationBar: CircleNavBar(
         activeIndex: _currentIndex,
         height: 70, // Height of the navigation bar
         circleWidth: 60, // Size of the floating circle
         circleColor:
             FlutterFlowTheme.of(context).primary, // Floating circle color
+
         activeIcons: const <Widget>[
+          Icon(Icons.edit_note, color: Colors.white),
           Icon(Icons.camera, color: Colors.white),
           Icon(Icons.home, color: Colors.white),
           Icon(Icons.shopping_cart_outlined, color: Colors.white),
         ],
         inactiveIcons: <Widget>[
+          Icon(Icons.edit_note,
+              color: FlutterFlowTheme.of(context).secondaryText),
           Icon(Icons.camera, color: FlutterFlowTheme.of(context).secondaryText),
           Icon(Icons.home, color: FlutterFlowTheme.of(context).secondaryText),
           Icon(Icons.shopping_cart_outlined,
