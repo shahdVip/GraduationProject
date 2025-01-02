@@ -3,14 +3,7 @@ import 'dart:convert';
 import 'package:grad_roze/config.dart';
 
 import '../../components/cart_item/cart_item_model.dart';
-import '/custom/theme.dart';
-import '/custom/util.dart';
-import '/custom/widgets.dart';
-import 'MyCartWidget.dart' show MyCartWidget;
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 class MyCartModel extends ChangeNotifier {

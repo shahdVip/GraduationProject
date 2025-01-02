@@ -3,22 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:grad_roze/components/bottomNavBar/customer_layout.dart';
 import 'package:grad_roze/components/business_components/business_layout.dart';
-import 'package:grad_roze/pages/business_pages/inventory/inventory_widget.dart';
-import 'package:grad_roze/pages/business_profile/business_profile_model.dart';
-import 'package:grad_roze/pages/business_profile/business_profile_widget.dart';
-import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
-import 'package:grad_roze/pages/cart/MyCartWidget.dart';
-import 'package:grad_roze/pages/favorite_list/favorite_list_widget.dart';
-import 'package:grad_roze/pages/full_top_picks/full_top_picks_model.dart';
-import 'package:grad_roze/pages/full_top_picks/full_top_picks_widget.dart';
-import 'package:grad_roze/pages/myprofile_customer/myprofile_customer_widget.dart';
-import 'package:grad_roze/pages/navigation_menu/navigation_menu.dart';
-import 'package:grad_roze/pages/navigation_menu_users/navigation_menu_users.dart';
 import 'package:provider/provider.dart';
-
 import '/index.dart';
 import '/custom/util.dart';
-import '/custom/theme.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -193,6 +180,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'inventory',
           path: '/inventory',
           builder: (context, params) => const InventoryWidget(),
+        ),
+        FFRoute(
+          name: 'webview',
+          path: '/webview',
+          builder: (context, params) => const WebviewWidget(),
         ),
         FFRoute(
           name: 'business_Pages',

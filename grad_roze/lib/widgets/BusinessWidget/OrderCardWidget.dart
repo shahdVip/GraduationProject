@@ -1,11 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:grad_roze/config.dart';
-import 'package:grad_roze/custom/nav/nav.dart';
 import 'package:grad_roze/pages/business_pages/myOrders/OrderViewWidget.dart';
 import '/custom/theme.dart';
-import '/custom/widgets.dart';
 import 'package:grad_roze/widgets/BusinessWidget/orderCardmodel.dart';
 import '/config.dart' show url;
 import 'package:http/http.dart' as http;
@@ -14,8 +10,8 @@ class OrderCardWidget extends StatelessWidget {
   final OrderCardModel order;
   final String business; // Pass the business name
 
-  const OrderCardWidget({Key? key, required this.order, required this.business})
-      : super(key: key);
+  const OrderCardWidget(
+      {super.key, required this.order, required this.business});
 
   Future<int?> fetchBusinessSpecificTotal(
       String orderId, String business) async {
@@ -49,10 +45,10 @@ class OrderCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
       child: Container(
         width: double.infinity,
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxWidth: 570,
         ),
         decoration: BoxDecoration(
@@ -64,7 +60,7 @@ class OrderCardWidget extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+          padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -85,7 +81,7 @@ class OrderCardWidget extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                       child: Text(
                         order.time,
                         style:
@@ -96,7 +92,8 @@ class OrderCardWidget extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                       child: Container(
                         decoration: BoxDecoration(
                           color: _getStatusColor(
@@ -108,9 +105,10 @@ class OrderCardWidget extends StatelessWidget {
                           ),
                         ),
                         child: Align(
-                          alignment: AlignmentDirectional(0, 0),
+                          alignment: const AlignmentDirectional(0, 0),
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(7, 0, 7, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                7, 0, 7, 0),
                             child: Text(
                               order.status,
                               style: FlutterFlowTheme.of(context)
@@ -139,9 +137,9 @@ class OrderCardWidget extends StatelessWidget {
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return CircularProgressIndicator(); // Loading indicator
+                          return const CircularProgressIndicator(); // Loading indicator
                         } else if (snapshot.hasError || snapshot.data == null) {
-                          return Text(
+                          return const Text(
                             'Error',
                             style: TextStyle(color: Colors.red),
                           );
@@ -159,7 +157,7 @@ class OrderCardWidget extends StatelessWidget {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     GestureDetector(

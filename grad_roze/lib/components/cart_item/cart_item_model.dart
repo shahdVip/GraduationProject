@@ -22,7 +22,7 @@ class CartItemModel {
       name: json['name'] as String,
       price: (json['price'] as num).toDouble(), // Ensure double type
       businessName: json['business'] as String,
-      imageUrl: '$url${json['imageURL']}' as String,
+      imageUrl: '$url${json['imageURL']}',
     );
   }
 

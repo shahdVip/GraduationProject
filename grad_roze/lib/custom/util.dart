@@ -25,6 +25,7 @@ export 'package:page_transition/page_transition.dart';
 export 'custom_icons.dart' show FFIcons;
 export 'nav/nav.dart';
 
+final RouteObserver<ModalRoute> routeObserver = RouteObserver<PageRoute>();
 pickImage(ImageSource source) async {
   final ImagePicker imagePicker = ImagePicker();
   XFile? file = await imagePicker.pickImage(source: source);

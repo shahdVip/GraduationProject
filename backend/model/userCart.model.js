@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 // Define the schema for the user cart
 const UserCartSchema = new mongoose.Schema({
@@ -14,4 +14,4 @@ const UserCartSchema = new mongoose.Schema({
 }); // Automatically add createdAt and updatedAt fields
 
 // Export the model
-module.exports = mongoose.model('UserCart', UserCartSchema);
+module.exports = mongoose.model("UserCart", UserCartSchema);

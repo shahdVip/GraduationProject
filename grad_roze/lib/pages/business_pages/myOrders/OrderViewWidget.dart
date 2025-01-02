@@ -5,7 +5,6 @@ import 'package:grad_roze/widgets/BusinessWidget/orderCardmodel.dart';
 
 import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
 import 'package:flutter/material.dart';
 import '/config.dart' show url;
 import 'package:http/http.dart' as http;
@@ -22,14 +21,14 @@ class OrderViewWidget extends StatefulWidget {
   final OrderCardModel order;
 
   const OrderViewWidget({
-    Key? key,
+    super.key,
     required this.orderId,
     required this.customerUserName,
     required this.businessSpecificTotal,
     required this.business,
     required this.status,
     required this.order,
-  }) : super(key: key);
+  });
 
   @override
   State<OrderViewWidget> createState() => _OrderViewWidgetState();
@@ -98,7 +97,7 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondary,
           automaticallyImplyLeading: false,
-          actions: [],
+          actions: const [],
           leading: IconButton(
             icon: Icon(
               Icons.arrow_back,
@@ -121,21 +120,21 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
               children: [
                 Expanded(
                   child: Align(
-                    alignment: AlignmentDirectional(0, -1),
+                    alignment: const AlignmentDirectional(0, -1),
                     child: Container(
                       width: double.infinity,
-                      constraints: BoxConstraints(
+                      constraints: const BoxConstraints(
                         maxWidth: 970,
                       ),
-                      decoration: BoxDecoration(),
+                      decoration: const BoxDecoration(),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  20, 0, 0, 0),
                               child: Text(
                                 'Order Details',
                                 textAlign: TextAlign.center,
@@ -150,8 +149,8 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 20, 16, 0),
                               child: Container(
                                 width: double.infinity,
                                 height: 40,
@@ -160,7 +159,7 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                       .primaryBackground,
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                alignment: AlignmentDirectional(-1, 0),
+                                alignment: const AlignmentDirectional(-1, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -169,7 +168,8 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                     Expanded(
                                       flex: 4,
                                       child: Align(
-                                        alignment: AlignmentDirectional(-1, 0),
+                                        alignment:
+                                            const AlignmentDirectional(-1, 0),
                                         child: Text(
                                           'OrderID:',
                                           style: FlutterFlowTheme.of(context)
@@ -183,7 +183,8 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(1, 0),
+                                      alignment:
+                                          const AlignmentDirectional(1, 0),
                                       child: Text(
                                         widget.orderId,
                                         style: FlutterFlowTheme.of(context)
@@ -196,14 +197,14 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                       ),
                                     ),
                                   ]
-                                      .addToStart(SizedBox(width: 40))
-                                      .addToEnd(SizedBox(width: 40)),
+                                      .addToStart(const SizedBox(width: 40))
+                                      .addToEnd(const SizedBox(width: 40)),
                                 ),
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 20, 16, 0),
                               child: Container(
                                 width: double.infinity,
                                 height: 40,
@@ -212,7 +213,7 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                       .primaryBackground,
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                alignment: AlignmentDirectional(-1, 0),
+                                alignment: const AlignmentDirectional(-1, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -221,7 +222,8 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                     Expanded(
                                       flex: 4,
                                       child: Align(
-                                        alignment: AlignmentDirectional(-1, 0),
+                                        alignment:
+                                            const AlignmentDirectional(-1, 0),
                                         child: Text(
                                           'OrderedBy:',
                                           style: FlutterFlowTheme.of(context)
@@ -235,7 +237,8 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(1, 0),
+                                      alignment:
+                                          const AlignmentDirectional(1, 0),
                                       child: Text(
                                         widget.customerUserName,
                                         style: FlutterFlowTheme.of(context)
@@ -248,14 +251,14 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                       ),
                                     ),
                                   ]
-                                      .addToStart(SizedBox(width: 40))
-                                      .addToEnd(SizedBox(width: 40)),
+                                      .addToStart(const SizedBox(width: 40))
+                                      .addToEnd(const SizedBox(width: 40)),
                                 ),
                               ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 10, 16, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 10, 16, 0),
                               child: Container(
                                 width: double.infinity,
                                 height: 40,
@@ -264,7 +267,7 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                       .primaryBackground,
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                alignment: AlignmentDirectional(-1, 0),
+                                alignment: const AlignmentDirectional(-1, 0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
@@ -273,7 +276,8 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                     Expanded(
                                       flex: 4,
                                       child: Align(
-                                        alignment: AlignmentDirectional(-1, 0),
+                                        alignment:
+                                            const AlignmentDirectional(-1, 0),
                                         child: Text(
                                           'Total Price:',
                                           style: FlutterFlowTheme.of(context)
@@ -287,7 +291,8 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: AlignmentDirectional(1, 0),
+                                      alignment:
+                                          const AlignmentDirectional(1, 0),
                                       child: Text(
                                         '\$${widget.businessSpecificTotal.toString()}',
                                         style: FlutterFlowTheme.of(context)
@@ -300,8 +305,8 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                       ),
                                     ),
                                   ]
-                                      .addToStart(SizedBox(width: 40))
-                                      .addToEnd(SizedBox(width: 40)),
+                                      .addToStart(const SizedBox(width: 40))
+                                      .addToEnd(const SizedBox(width: 40)),
                                 ),
                               ),
                             ),
@@ -313,10 +318,10 @@ class _OrderViewWidgetState extends State<OrderViewWidget> {
                                   business: widget.business,
                                 )),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0, 20, 0, 0),
                               child: ListView(
-                                padding: EdgeInsets.fromLTRB(0, 0, 0, 44),
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 44),
                                 shrinkWrap: true,
                                 scrollDirection: Axis.vertical,
                                 children: _bouquets.map((bouquet) {

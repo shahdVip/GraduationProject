@@ -4,10 +4,7 @@ import 'package:grad_roze/widgets/BusinessWidget/addBouquet.dart';
 
 import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import '/config.dart' show url;
 import 'package:http/http.dart' as http;
 import 'my_bouquet_model.dart';
@@ -15,7 +12,7 @@ export 'my_bouquet_model.dart';
 
 class MyBouquetWidget extends StatefulWidget {
   final String business;
-  const MyBouquetWidget({Key? key, required this.business}) : super(key: key);
+  const MyBouquetWidget({super.key, required this.business});
 
   @override
   State<MyBouquetWidget> createState() => _MyBouquetWidgetState();
@@ -128,14 +125,14 @@ class _MyBouquetWidgetState extends State<MyBouquetWidget> {
             children: [
               Expanded(
                 child: Align(
-                  alignment: AlignmentDirectional(0, -1),
+                  alignment: const AlignmentDirectional(0, -1),
                   child: Container(
                     width: double.infinity,
                     height: double.infinity,
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       maxWidth: 970,
                     ),
-                    decoration: BoxDecoration(),
+                    decoration: const BoxDecoration(),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,8 +141,8 @@ class _MyBouquetWidgetState extends State<MyBouquetWidget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 16, 0, 4),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  16, 16, 0, 4),
                               child: Text(
                                 'My Bouquets',
                                 style: FlutterFlowTheme.of(context)
@@ -162,7 +159,8 @@ class _MyBouquetWidgetState extends State<MyBouquetWidget> {
                           ],
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(16, 0, 0, 0),
                           child: Text(
                             'Below is a list of bouquets you offer',
                             style: FlutterFlowTheme.of(context)
@@ -175,7 +173,8 @@ class _MyBouquetWidgetState extends State<MyBouquetWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 8, 16, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 8, 16, 0),
                           child: TextFormField(
                             controller: searchController,
                             focusNode: _model.textFieldFocusNode,

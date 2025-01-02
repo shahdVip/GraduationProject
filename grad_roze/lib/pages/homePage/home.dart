@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:grad_roze/components/BottomNavBar.dart';
 import 'package:grad_roze/components/explore_widget/explore_widget.dart';
+import 'package:grad_roze/components/bouqet_builder/bouqet_builder_widget.dart';
+import 'package:grad_roze/custom/icon_button.dart';
 import 'package:grad_roze/widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_widget.dart';
 import 'package:grad_roze/widgets/top_picks/top_picks_widget.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/custom/util.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../widgets/CarouselSliderModel.dart';
 export '../../widgets/CarouselSliderModel.dart';
-import 'package:grad_roze/custom/icon_button.dart';
 export '../../widgets/MomentsModel.dart';
 
 export '../../widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_model.dart';
 export '../../widgets/top_picks/top_picks_model.dart';
 export '../../widgets/top_picks_component/top_picks_component_model.dart';
 
-import '../../widgets/CustomizeSectionWidget.dart';
-import '../../widgets/CustomizeSectionModel.dart';
 export '../../widgets/CustomizeSectionModel.dart';
 export '../../widgets/CustomizeSectionWidget.dart';
 
@@ -41,7 +38,7 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
             ExploreWidget(username: username),
             const SizedBox(height: 20),
-            const CustomizeSectionWidget(),
+            const BouqetBuilderWidget(),
             const SizedBox(height: 20),
           ],
         ),
@@ -82,7 +79,7 @@ class HomePage extends StatelessWidget {
       ), //container
       actions: [
         Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
           child: FlutterFlowIconButton(
             borderColor: Colors.transparent,
             borderRadius: 30,

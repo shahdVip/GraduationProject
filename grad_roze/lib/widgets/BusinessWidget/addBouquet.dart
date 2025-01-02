@@ -5,15 +5,10 @@ import '/custom/count_controller.dart';
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
 import 'dart:ui';
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart'; // Import image picker
 import '/config.dart' show url;
@@ -21,8 +16,7 @@ import 'addBouquetModel.dart';
 export 'addBouquetModel.dart';
 
 class AddBouquetWidget extends StatefulWidget {
-  const AddBouquetWidget({Key? key, required this.business, this.onAdded})
-      : super(key: key);
+  const AddBouquetWidget({super.key, required this.business, this.onAdded});
   final String business;
   final VoidCallback? onAdded;
   @override
@@ -96,8 +90,8 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 70.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 70.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -141,7 +135,8 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
     } catch (e) {
       print('Error fetching colors: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to load colors. Please try again.')),
+        const SnackBar(
+            content: Text('Failed to load colors. Please try again.')),
       );
     }
   }
@@ -286,7 +281,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
       if (response.statusCode == 201) {
         final responseData = jsonDecode(responseBody);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Item added successfully!')),
+          const SnackBar(content: Text('Item added successfully!')),
         );
         Navigator.pop(context); // Close the form after success
       } else {
@@ -298,7 +293,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
     } catch (e) {
       print('Error: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('An error occurred')),
+        const SnackBar(content: Text('An error occurred')),
       );
     }
   }
@@ -334,13 +329,13 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: Container(
                   width: double.infinity,
-                  constraints: BoxConstraints(maxWidth: 670),
+                  constraints: const BoxConstraints(maxWidth: 670),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 3,
                         color: Color(0x33000000),
@@ -362,7 +357,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                           key: _model.formKey,
                           autovalidateMode: AutovalidateMode.always,
                           child: Padding(
-                            padding: EdgeInsets.all(24),
+                            padding: const EdgeInsets.all(24),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -381,7 +376,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineMedium,
                                           ),
-                                          SizedBox(height: 8),
+                                          const SizedBox(height: 8),
                                           Text(
                                             'Please enter the flower info below',
                                             style: FlutterFlowTheme.of(context)
@@ -414,7 +409,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 // Image Picker Section
                                 Center(
                                   child: Stack(
@@ -425,7 +420,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                         backgroundColor: Colors.grey[200],
                                         backgroundImage: _selectedImage != null
                                             ? FileImage(_selectedImage!)
-                                            : AssetImage(
+                                            : const AssetImage(
                                                 'assets/images/defaults/bouquet.png',
                                               ) as ImageProvider,
                                       ),
@@ -448,7 +443,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 TextFormField(
                                   controller: _model.flowerTypeTextController,
                                   focusNode: _model.flowerTypeFocusNode,
@@ -459,7 +454,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 // Dropdown for Colors
                                 Card(
                                   child: Padding(
@@ -491,7 +486,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                boxShadow: [
+                                                boxShadow: const [
                                                   BoxShadow(
                                                     blurRadius: 3,
                                                     color: Color(0x33000000),
@@ -522,7 +517,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 // Dropdown for Colors
                                 Card(
                                   //for flowerTypes
@@ -555,7 +550,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                boxShadow: [
+                                                boxShadow: const [
                                                   BoxShadow(
                                                     blurRadius: 3,
                                                     color: Color(0x33000000),
@@ -619,7 +614,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                boxShadow: [
+                                                boxShadow: const [
                                                   BoxShadow(
                                                     blurRadius: 3,
                                                     color: Color(0x33000000),
@@ -650,7 +645,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 TextFormField(
                                   controller: _model.descTextController,
                                   focusNode: _model.descFocusNode,
@@ -662,7 +657,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 TextFormField(
                                   controller: _model.careTipsTextController,
                                   focusNode: _model.careTipsFocusNode,
@@ -674,7 +669,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -683,7 +678,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),
-                                    SizedBox(width: 16),
+                                    const SizedBox(width: 16),
                                     FlutterFlowCountController(
                                       decrementIconBuilder: (enabled) => Icon(
                                         Icons.remove_rounded,
@@ -716,21 +711,21 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 24),
+                                const SizedBox(height: 24),
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: ElevatedButton(
                                     onPressed: () {
                                       _addBouquet();
                                     },
-                                    child: Text('Add'),
                                     style: ElevatedButton.styleFrom(
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           vertical: 12, horizontal: 32),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(40),
                                       ),
                                     ),
+                                    child: Text('Add'),
                                   ),
                                 ),
                               ],

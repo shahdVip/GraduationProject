@@ -3,11 +3,9 @@ import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
 import '/custom/widgets.dart';
-import 'dart:ui';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 import 'GiftCardWidget.dart';
@@ -136,8 +134,8 @@ class _GiftCardPageWidgetState extends State<GiftCardPageWidget>
                       Align(
                         alignment: const AlignmentDirectional(-1, 0),
                         child: Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(20, 20, 20, 5),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20, 20, 20, 5),
                           child: Text(
                             'Let\'s help you write a meaningful gift card',
                             textAlign: TextAlign.start,
@@ -157,8 +155,8 @@ class _GiftCardPageWidgetState extends State<GiftCardPageWidget>
                       Align(
                         alignment: const AlignmentDirectional(-1, 0),
                         child: Padding(
-                          padding:
-                              const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              20, 0, 20, 20),
                           child: Text(
                             'Please enter a feeling, occasion, or a short message for the gift card (e.g., \'I love you,\' \'Congratulations,\' \'Happy Birthday\').',
                             textAlign: TextAlign.start,
@@ -175,7 +173,8 @@ class _GiftCardPageWidgetState extends State<GiftCardPageWidget>
                       ),
                       // Input Fields
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 25),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 25),
                         child: Container(
                           width: double.infinity,
                           decoration: const BoxDecoration(
@@ -206,7 +205,8 @@ class _GiftCardPageWidgetState extends State<GiftCardPageWidget>
                                   FFButtonWidget(
                                     onPressed: _generateGiftCard,
                                     text: 'Generate',
-                                    icon: const Icon(Icons.auto_awesome, size: 15),
+                                    icon: const Icon(Icons.auto_awesome,
+                                        size: 15),
                                     options: FFButtonOptions(
                                       height: 40,
                                       color:
@@ -222,8 +222,9 @@ class _GiftCardPageWidgetState extends State<GiftCardPageWidget>
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        5, 0, 5, 0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            5, 0, 5, 0),
                                     child: FlutterFlowIconButton(
                                       borderColor:
                                           FlutterFlowTheme.of(context).primary,

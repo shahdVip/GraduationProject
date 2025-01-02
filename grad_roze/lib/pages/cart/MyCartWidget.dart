@@ -3,11 +3,7 @@ import 'dart:ui';
 import '../../components/cart_item/cart_item_widget.dart';
 import '../../components/cart_item/submit_order_widget.dart';
 import '/custom/theme.dart';
-import '/custom/util.dart';
-import '/custom/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import 'MyCartModel.dart';
@@ -66,7 +62,7 @@ class _MyCartWidgetState extends State<MyCartWidget> {
                         useGoogleFonts: false,
                       ),
                 ),
-                actions: [],
+                actions: const [],
                 centerTitle: false,
                 elevation: 0,
               ),
@@ -168,7 +164,8 @@ class _MyCartWidgetState extends State<MyCartWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -204,7 +201,7 @@ class _MyCartWidgetState extends State<MyCartWidget> {
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: FlutterFlowTheme.of(context).primary,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               blurRadius: 4,
                               color: Color(0x320E151B),
@@ -214,7 +211,7 @@ class _MyCartWidgetState extends State<MyCartWidget> {
                               ),
                             )
                           ],
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(12),
                             bottomRight: Radius.circular(12),
                             topLeft: Radius.circular(12),
