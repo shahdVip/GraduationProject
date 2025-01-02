@@ -8,3 +8,4 @@ grad_roze/build/app/outputs/flutter-apk/app-debug.apk
 python_service/fine_tuned_model/model.safetensors
 python_service/venv/Lib/site-packages/torch/lib/*.dll
 python_service/venv/Lib/site-packages/torch/lib/*.lib
+python_service/fine_tuned_model/model.safetensors
