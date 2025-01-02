@@ -7,10 +7,8 @@ const checkUserPreferenceExists = async (username) => {
 
 // Service for initializing user preferences
 const initializeUserPreference = async (username) => {
-  // Check if a preference document already exists
   let userPreference = await UserPreferenceModel.findOne({ username });
   if (!userPreference) {
-    // If not, create a new one with empty arrays
     userPreference = new UserPreferenceModel({ username });
     await userPreference.save();
   }
@@ -42,7 +40,9 @@ const updateUserPreference = async (username, colors, flowerTypes, tags) => {  /
     });
   }
 
-  // Save the updated document
+ 
+  
+
   await userPreference.save();
   return userPreference;
 };

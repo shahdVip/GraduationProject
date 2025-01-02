@@ -5,15 +5,10 @@ import '/custom/count_controller.dart';
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
 import 'dart:ui';
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart'; // Import image picker
 import '/config.dart' show url;
@@ -23,12 +18,12 @@ export 'editBouquetModel.dart';
 
 class EditBouquetWidget extends StatefulWidget {
   const EditBouquetWidget({
-    Key? key,
+    super.key,
     required this.bouquetId,
     required this.bouquetDetails,
     required this.business,
     this.onUpdated,
-  }) : super(key: key);
+  });
 
   final String bouquetId;
   final dynamic bouquetDetails;
@@ -139,8 +134,8 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
             curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 600.0.ms,
-            begin: Offset(0.0, 70.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, 70.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -275,7 +270,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
       // Check response
       if (response.statusCode == 200) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Bouquet updated successfully!')),
+          const SnackBar(content: Text('Bouquet updated successfully!')),
         );
         Navigator.pop(context);
         widget.onUpdated?.call();
@@ -290,7 +285,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
     } catch (e) {
       print('Error updating bouquet: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('An error occurred')),
+        const SnackBar(content: Text('An error occurred')),
       );
     }
   }
@@ -316,13 +311,13 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: Container(
                   width: double.infinity,
-                  constraints: BoxConstraints(maxWidth: 670),
+                  constraints: const BoxConstraints(maxWidth: 670),
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         blurRadius: 3,
                         color: Color(0x33000000),
@@ -344,7 +339,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                           key: _model.formKey,
                           autovalidateMode: AutovalidateMode.always,
                           child: Padding(
-                            padding: EdgeInsets.all(24),
+                            padding: const EdgeInsets.all(24),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -363,7 +358,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                             style: FlutterFlowTheme.of(context)
                                                 .headlineMedium,
                                           ),
-                                          SizedBox(height: 8),
+                                          const SizedBox(height: 8),
                                           Text(
                                             'Please enter the flower info below',
                                             style: FlutterFlowTheme.of(context)
@@ -396,7 +391,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 // Image Picker Section
                                 Center(
                                   child: Stack(
@@ -407,7 +402,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                         backgroundColor: Colors.grey[200],
                                         backgroundImage: _selectedImage != null
                                             ? FileImage(_selectedImage!)
-                                            : AssetImage(
+                                            : const AssetImage(
                                                 'assets/images/defaults/bouquet.png',
                                               ) as ImageProvider,
                                       ),
@@ -430,7 +425,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 TextFormField(
                                   controller: _model.flowerTypeTextController,
                                   focusNode: _model.flowerTypeFocusNode,
@@ -441,7 +436,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 // Dropdown for Colors
                                 Card(
                                   child: Padding(
@@ -473,7 +468,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                boxShadow: [
+                                                boxShadow: const [
                                                   BoxShadow(
                                                     blurRadius: 3,
                                                     color: Color(0x33000000),
@@ -504,7 +499,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 // Dropdown for Colors
                                 Card(
                                   //for flowerTypes
@@ -537,7 +532,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                boxShadow: [
+                                                boxShadow: const [
                                                   BoxShadow(
                                                     blurRadius: 3,
                                                     color: Color(0x33000000),
@@ -601,7 +596,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                boxShadow: [
+                                                boxShadow: const [
                                                   BoxShadow(
                                                     blurRadius: 3,
                                                     color: Color(0x33000000),
@@ -632,7 +627,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 TextFormField(
                                   controller: _model.descTextController,
                                   focusNode: _model.descFocusNode,
@@ -644,7 +639,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 TextFormField(
                                   controller: _model.careTipsTextController,
                                   focusNode: _model.careTipsFocusNode,
@@ -656,7 +651,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -665,7 +660,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),
-                                    SizedBox(width: 16),
+                                    const SizedBox(width: 16),
                                     FlutterFlowCountController(
                                       decrementIconBuilder: (enabled) => Icon(
                                         Icons.remove_rounded,
@@ -698,21 +693,21 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 24),
+                                const SizedBox(height: 24),
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: ElevatedButton(
                                     onPressed: () {
                                       _updateBouquet();
                                     },
-                                    child: Text('Update'),
                                     style: ElevatedButton.styleFrom(
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           vertical: 12, horizontal: 32),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(40),
                                       ),
                                     ),
+                                    child: Text('Update'),
                                   ),
                                 ),
                               ],

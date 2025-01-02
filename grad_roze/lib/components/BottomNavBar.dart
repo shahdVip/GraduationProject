@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:grad_roze/pages/homePage/home.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class BottomNavBar extends StatefulWidget {

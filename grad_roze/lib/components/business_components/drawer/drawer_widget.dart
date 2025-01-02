@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:grad_roze/config.dart';
 import 'package:grad_roze/custom/animations.dart';
 import 'package:grad_roze/custom/icon_button.dart';
-import 'package:grad_roze/custom/model.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/custom/util.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -13,14 +10,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'drawer_model.dart';
 export 'drawer_model.dart';
-import '/config.dart' show url;
 
 class SidedrawerWidget extends StatefulWidget {
   final Function(int) onNavSelect; // Callback to handle navigation
   final String business;
   const SidedrawerWidget(
-      {Key? key, required this.onNavSelect, required this.business})
-      : super(key: key);
+      {super.key, required this.onNavSelect, required this.business});
 
   @override
   State<SidedrawerWidget> createState() => _SidedrawerWidgetState();
@@ -95,8 +90,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, -7.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -7.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -114,8 +109,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, -7.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -7.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -133,8 +128,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, -7.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -7.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -152,8 +147,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, -7.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -7.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -171,8 +166,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, -7.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -7.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -190,8 +185,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, -7.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -7.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -209,8 +204,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, -7.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -7.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -228,8 +223,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(0.0, -7.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(0.0, -7.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -241,8 +236,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 300.0.ms,
-            begin: Offset(-40.0, 0.0),
-            end: Offset(0.0, 0.0),
+            begin: const Offset(-40.0, 0.0),
+            end: const Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -267,7 +262,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
           BoxShadow(
             blurRadius: 0,
             color: FlutterFlowTheme.of(context).secondary,
-            offset: Offset(1, 0),
+            offset: const Offset(1, 0),
           )
         ],
         borderRadius: BorderRadius.circular(0),
@@ -311,7 +306,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 16),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -327,7 +322,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
                         child: InkWell(
                           splashColor: Colors.transparent,
                           focusColor: Colors.transparent,
@@ -370,15 +366,17 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(2),
+                              padding: const EdgeInsets.all(2),
                               child: Stack(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 children: [
                                   Align(
-                                    alignment: AlignmentDirectional(-0.9, 0),
+                                    alignment:
+                                        const AlignmentDirectional(-0.9, 0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          6, 0, 0, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              6, 0, 0, 0),
                                       child: Icon(
                                         Icons.wb_sunny_rounded,
                                         color: FlutterFlowTheme.of(context)
@@ -388,10 +386,11 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(1, 0),
+                                    alignment: const AlignmentDirectional(1, 0),
                                     child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 6, 0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0, 0, 6, 0),
                                       child: Icon(
                                         Icons.mode_night_rounded,
                                         color: FlutterFlowTheme.of(context)
@@ -401,14 +400,14 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                                     ),
                                   ),
                                   Align(
-                                    alignment: AlignmentDirectional(1, 0),
+                                    alignment: const AlignmentDirectional(1, 0),
                                     child: Container(
                                       width: 36,
                                       height: 36,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4,
                                             color: Color(0x430B0D0F),
@@ -454,7 +453,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                       ),
                     ],
                   ),
-                ].divide(SizedBox(height: 12)),
+                ].divide(const SizedBox(height: 12)),
               ),
             ),
           ), // Other items...
@@ -472,19 +471,19 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
           BoxShadow(
             blurRadius: 0,
             color: FlutterFlowTheme.of(context).secondary,
-            offset: Offset(1, 0),
+            offset: const Offset(1, 0),
           )
         ],
         borderRadius: BorderRadius.circular(0),
       ),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 16),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -500,13 +499,14 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 60, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(20, 60, 0, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                12, 0, 0, 0),
                             child: Text(
                               'Roze',
                               style: FlutterFlowTheme.of(context)
@@ -524,7 +524,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 16),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(16, 20, 16, 16),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -540,7 +541,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                               ),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.all(2),
+                              padding: const EdgeInsets.all(2),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: businessprofilePhotoUrl.isNotEmpty
@@ -557,8 +558,8 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                           ),
                           Expanded(
                             child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  12, 0, 0, 0),
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -578,8 +579,9 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                                         ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 4, 0, 0),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            0, 4, 0, 0),
                                     child: Text(
                                       businessEmail.isEmpty
                                           ? 'Loading...'
@@ -613,7 +615,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
               child: InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,

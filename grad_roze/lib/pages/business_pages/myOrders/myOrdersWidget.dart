@@ -1,4 +1,3 @@
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:grad_roze/widgets/BusinessWidget/OrderCardWidget.dart';
 
 import '/custom/theme.dart';
@@ -6,15 +5,12 @@ import '/custom/util.dart';
 import '/custom/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import '/config.dart' show url;
-import 'package:http/http.dart' as http;
 import 'myOrdersModel.dart';
 export 'myOrdersModel.dart';
 
 class MyOrdersWidget extends StatefulWidget {
   final String business;
-  const MyOrdersWidget({Key? key, required this.business}) : super(key: key);
+  const MyOrdersWidget({super.key, required this.business});
 
   @override
   State<MyOrdersWidget> createState() => _MyOrdersWidgetState();
@@ -70,12 +66,12 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
           elevation: 0,
         ),
         body: ListView(
-          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             Container(
               width: double.infinity,
               height: 40,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0x00FFFFFF),
               ),
               child: SingleChildScrollView(
@@ -101,9 +97,10 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
                         options: FFButtonOptions(
                           width: 80,
                           height: 40,
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 0, 16, 0),
                           iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle: FlutterFlowTheme.of(context)
                               .labelSmall
@@ -140,9 +137,10 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
                         options: FFButtonOptions(
                           width: 80,
                           height: 40,
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 0, 16, 0),
                           iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle: FlutterFlowTheme.of(context)
                               .labelSmall
@@ -177,9 +175,10 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
                         options: FFButtonOptions(
                           width: 80,
                           height: 40,
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              10, 0, 10, 0),
                           iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle: FlutterFlowTheme.of(context)
                               .labelSmall
@@ -214,9 +213,10 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
                         options: FFButtonOptions(
                           width: 80,
                           height: 40,
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 0, 16, 0),
                           iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle: FlutterFlowTheme.of(context)
                               .labelSmall
@@ -250,9 +250,10 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
                         options: FFButtonOptions(
                           width: 80,
                           height: 40,
-                          padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              16, 0, 16, 0),
                           iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle: FlutterFlowTheme.of(context)
                               .labelSmall
@@ -284,8 +285,10 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
                       options: FFButtonOptions(
                         width: 80,
                         height: 40,
-                        padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
-                        iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                         color: FlutterFlowTheme.of(context).secondary,
                         textStyle: FlutterFlowTheme.of(context)
                             .labelSmall
@@ -307,7 +310,7 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             if (_model.orders.isEmpty)
               Center(
                 child: Text(
@@ -317,14 +320,14 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
               ),
             ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: _model.orders.length,
               itemBuilder: (context, index) {
                 final order = _model.orders[index];
 
                 // Filter orders based on the status
                 if (status.isNotEmpty && order.status != status) {
-                  return SizedBox
+                  return const SizedBox
                       .shrink(); // Skip orders that don't match the status
                 }
 

@@ -8,17 +8,12 @@ import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
 import '/custom/widgets.dart';
-import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:http_parser/http_parser.dart';
-import 'package:mime/mime.dart';
-import 'package:provider/provider.dart';
 
 import 'add_in_inventory_model.dart';
 export 'add_in_inventory_model.dart';

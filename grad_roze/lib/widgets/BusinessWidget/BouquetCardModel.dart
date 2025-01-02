@@ -1,13 +1,5 @@
 import 'package:grad_roze/config.dart';
 
-import '/custom/icon_button.dart';
-import '/custom/theme.dart';
-import '/custom/util.dart';
-import 'BouquetCardWidget.dart' show BouquetCardWidget;
-import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:grad_roze/config.dart' show url;
 
 /// bouquet_card_model.dart

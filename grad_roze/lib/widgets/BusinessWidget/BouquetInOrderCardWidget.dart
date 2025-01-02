@@ -1,15 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:grad_roze/config.dart';
 import 'package:grad_roze/custom/icon_button.dart';
-import 'package:grad_roze/custom/nav/nav.dart';
 import 'package:grad_roze/pages/business_pages/myOrders/BouquetInOrderView.dart';
 import '/custom/theme.dart';
-import '/custom/widgets.dart';
 import '/config.dart' show url;
-import 'package:http/http.dart' as http;
 
 import 'BouquetInOrderCardModel.dart';
 
@@ -18,10 +13,10 @@ class BouquetInOrderCardWidget extends StatelessWidget {
   final VoidCallback? onArrowPressed;
 
   const BouquetInOrderCardWidget({
-    Key? key,
+    super.key,
     required this.bouquet,
     this.onArrowPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

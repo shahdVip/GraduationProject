@@ -4,8 +4,6 @@ import 'package:grad_roze/pages/BouquetPage/BouquetPageWidget.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'explore_card_model.dart';
 export 'explore_card_model.dart';

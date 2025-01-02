@@ -1,12 +1,8 @@
-import 'package:grad_roze/config.dart';
-
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'BouquetCardModel.dart';
 export 'BouquetCardModel.dart';
@@ -17,11 +13,11 @@ class BouquetCardWidget extends StatelessWidget {
   final VoidCallback? onDelete;
 
   const BouquetCardWidget({
-    Key? key,
+    super.key,
     required this.bouquet,
     this.onEdit,
     this.onDelete,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +99,7 @@ class BouquetCardWidget extends StatelessWidget {
                             ignoreGestures: true,
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Text(
                           '\$${bouquet.price}',
                           style:

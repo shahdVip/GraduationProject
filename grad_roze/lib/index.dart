@@ -33,3 +33,4 @@ export 'pages/myprofile_customer/myprofile_customer_widget.dart'
 export 'pages/cart/MyCartWidget.dart' show MyCartWidget;
 export 'pages/business_pages/inventory/inventory_widget.dart'
     show InventoryWidget;
+export 'pages/webview/webview_widget.dart' show WebviewWidget;

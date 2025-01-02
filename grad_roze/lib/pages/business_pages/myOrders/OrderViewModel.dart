@@ -1,14 +1,7 @@
-import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
 import 'package:flutter/material.dart';
-import '/config.dart' show url;
-import 'package:http/http.dart' as http;
-import 'dart:convert'; // To parse JSON responses
+// To parse JSON responses
 import 'OrderViewWidget.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class OrderViewModel extends FlutterFlowModel<OrderViewWidget> {
   /// State fields for the order details

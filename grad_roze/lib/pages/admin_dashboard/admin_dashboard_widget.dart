@@ -7,12 +7,10 @@ import '/custom/icon_button.dart';
 import '/custom/theme.dart';
 import '/custom/util.dart';
 import '/custom/widgets.dart';
-import 'package:badges/badges.dart' as badges;
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'admin_dashboard_model.dart';
 export 'admin_dashboard_model.dart';
 
@@ -175,47 +173,47 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
                     child: Padding(
                       padding:
                           const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
-                      child: badges.Badge(
-                        badgeContent: Text(
-                          '1',
-                          style:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Funnel Display',
-                                    useGoogleFonts: false,
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    letterSpacing: 0.0,
-                                  ),
-                        ),
-                        showBadge: true,
-                        shape: badges.BadgeShape.circle,
-                        badgeColor: FlutterFlowTheme.of(context).primary,
-                        elevation: 4,
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-                        position: badges.BadgePosition.topEnd(),
-                        animationType: badges.BadgeAnimationType.scale,
-                        toAnimate: true,
-                        child: Align(
-                          alignment: const AlignmentDirectional(0, 0),
-                          child: Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 0, 0, 10),
-                            child: FlutterFlowIconButton(
-                              borderRadius: 8,
-                              buttonSize: 30,
-                              icon: FaIcon(
-                                FontAwesomeIcons.bell,
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 30,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
+                      // child: badges.Badge(
+                      //   badgeContent: Text(
+                      //     '1',
+                      //     style:
+                      //         FlutterFlowTheme.of(context).titleSmall.override(
+                      //               fontFamily: 'Funnel Display',
+                      //               useGoogleFonts: false,
+                      //               color: Colors.white,
+                      //               fontSize: 16,
+                      //               letterSpacing: 0.0,
+                      //             ),
+                      //   ),
+                      //   showBadge: true,
+                      //   shape: badges.BadgeShape.circle,
+                      //   badgeColor: FlutterFlowTheme.of(context).primary,
+                      //   elevation: 4,
+                      //   padding:
+                      //       const EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                      //   position: badges.BadgePosition.topEnd(),
+                      //   animationType: badges.BadgeAnimationType.scale,
+                      //   toAnimate: true,
+                      //   child: Align(
+                      //     alignment: const AlignmentDirectional(0, 0),
+                      //     child: Padding(
+                      //       padding: const EdgeInsetsDirectional.fromSTEB(
+                      //           0, 0, 0, 10),
+                      //       child: FlutterFlowIconButton(
+                      //         borderRadius: 8,
+                      //         buttonSize: 30,
+                      //         icon: FaIcon(
+                      //           FontAwesomeIcons.bell,
+                      //           color: FlutterFlowTheme.of(context).primary,
+                      //           size: 30,
+                      //         ),
+                      //         onPressed: () {
+                      //           print('IconButton pressed ...');
+                      //         },
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                     ),
                   ),
                   Align(

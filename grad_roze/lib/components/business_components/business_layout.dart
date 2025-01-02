@@ -83,7 +83,7 @@ class _BusinessLayoutState extends State<BusinessLayout> {
     }
 
     // Return main layout once business name is fetched
-    final List<Widget> _pages = [
+    final List<Widget> pages = [
       MyBouquetWidget(business: businessUsername),
       MyOrdersWidget(business: businessUsername),
     ];
@@ -119,7 +119,7 @@ class _BusinessLayoutState extends State<BusinessLayout> {
       ),
       body: IndexedStack(
         index: _currentIndex,
-        children: _pages,
+        children: pages,
       ),
     );
   }
