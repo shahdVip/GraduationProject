@@ -1,3 +1,4 @@
+import 'package:circle_nav_bar/circle_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/pages/admin_dashboard/admin_dashboard_widget.dart';
@@ -19,15 +20,25 @@ class NavigationMenuWidget extends StatefulWidget {
 
 class _NavigationMenuWidgetState extends State<NavigationMenuWidget> {
   late NavigationMenuModel _model;
-
+  int _currentIndex = 0; // Keeps track of the current tab
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
+  bool isLoading = true; // Track loading state
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => NavigationMenuModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+    // Simulate loading or perform your setup here
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // Simulate an async operation like fetching data
+      await Future.delayed(
+          Duration(seconds: 1)); // Replace with your actual logic
+
+      // Update the loading state
+      setState(() {
+        isLoading = false; // Loading is complete
+      });
+    });
   }
 
   @override
@@ -39,78 +50,54 @@ class _NavigationMenuWidgetState extends State<NavigationMenuWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NavigationController());
-    return PopScope(
-      canPop: false,
-      child: Scaffold(
-        body: Obx(() => controller.pages[controller.selectedIndex.value]),
-        bottomNavigationBar: Obx(
-          () => BottomNavigationBar(
-            currentIndex: controller.selectedIndex.value,
-            onTap: (index) => controller.selectedIndex.value = index,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            selectedItemColor: FlutterFlowTheme.of(context).secondary,
-            unselectedItemColor: FlutterFlowTheme.of(context).primary,
-            selectedLabelStyle:
-                FlutterFlowTheme.of(context).labelLarge.override(
-                      fontFamily: 'Funnel Display',
-                      useGoogleFonts: false,
-                      letterSpacing: 0.0,
-                      color: FlutterFlowTheme.of(context).secondary,
-                      fontWeight: FontWeight.w600,
-                    ),
-            unselectedLabelStyle:
-                FlutterFlowTheme.of(context).labelLarge.override(
-                      fontFamily: 'Funnel Display',
-                      useGoogleFonts: false,
-                      letterSpacing: 0.0,
-                      color: FlutterFlowTheme.of(context).primary,
-                    ),
-            items: [
-              BottomNavigationBarItem(
-                icon: HugeIcon(
-                  icon: HugeIcons.strokeRoundedHome02,
-                  color: controller.selectedIndex.value == 0
-                      ? FlutterFlowTheme.of(context).secondary
-                      : FlutterFlowTheme.of(context).primary,
-                  size: 30.0,
-                ),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: HugeIcon(
-                  icon: HugeIcons.strokeRoundedUserGroup,
-                  color: controller.selectedIndex.value == 1
-                      ? FlutterFlowTheme.of(context).secondary
-                      : FlutterFlowTheme.of(context).primary,
-                  size: 30.0,
-                ),
-                label: 'Users',
-              ),
-              BottomNavigationBarItem(
-                icon: HugeIcon(
-                  icon: HugeIcons.strokeRoundedPackageMoving,
-                  color: controller.selectedIndex.value == 2
-                      ? FlutterFlowTheme.of(context).secondary
-                      : FlutterFlowTheme.of(context).primary,
-                  size: 30.0,
-                ),
-                label: 'Orders',
-              ),
-            ],
+    if (isLoading) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            color: FlutterFlowTheme.of(context).primary,
           ),
         ),
+      );
+    }
+
+    // Return main layout once business name is fetched
+
+    final List<Widget> pages = [
+      const AdminDashboardWidget(),
+      const AdminUsersSectionWidget(),
+      const OrderSectionWidget(),
+    ];
+
+    return Scaffold(
+      body: pages[_currentIndex], // Display the current page
+      bottomNavigationBar: CircleNavBar(
+        activeIndex: _currentIndex,
+        height: 70, // Height of the navigation bar
+        circleWidth: 60, // Size of the floating circle
+        circleColor:
+            FlutterFlowTheme.of(context).secondary, // Floating circle color
+
+        activeIcons: const <Widget>[
+          Icon(Icons.home, color: Colors.white),
+          Icon(Icons.supervisor_account_outlined, color: Colors.white),
+          Icon(Icons.edit, color: Colors.white),
+        ],
+        inactiveIcons: <Widget>[
+          Icon(Icons.home, color: FlutterFlowTheme.of(context).secondary),
+          Icon(Icons.supervisor_account_outlined,
+              color: FlutterFlowTheme.of(context).secondary),
+          Icon(Icons.edit, color: FlutterFlowTheme.of(context).secondary),
+        ],
+        color: FlutterFlowTheme.of(context)
+            .secondaryBackground, // Nav bar background color
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index; // Update the active tab
+          });
+        },
+        padding: const EdgeInsets.symmetric(
+            horizontal: 20, vertical: 5), // Removed the extra comma here
       ),
     );
   }
-}
-
-class NavigationController extends GetxController {
-  final Rx<int> selectedIndex = 0.obs;
-
-  final pages = [
-    const AdminDashboardWidget(),
-    const AdminUsersSectionWidget(),
-    const OrderSectionWidget(),
-  ];
 }

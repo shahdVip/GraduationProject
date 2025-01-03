@@ -298,5 +298,70 @@ const createOrder = async (req, res) => {
     res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 };
+  const getTopBusinesses = async (req, res) => {
+    try {
+      const topBusinesses = await Order.aggregate([
+        { $unwind: "$businessUsername" }, // Unwind the array of business usernames
+        {
+          $group: {
+            _id: "$businessUsername",
+            orderCount: { $sum: 1 },
+          },
+        },
+        { $sort: { orderCount: -1 } },
+        { $limit: 3 },
+      ]);
   
-module.exports = { getOrdersByBusiness,getTotalPriceByBusiness,getOrderItemsByBusiness,updateOrderStatus,getOrdersByBusinessAndStatus,DenyOrder,createOrder};
+      res.json(topBusinesses);
+    } catch (err) {
+      res.status(500).send({ error: err.message });
+    }
+  };
+  const getOrderSummary = async (req, res) => {
+    try {
+      // Fetch orders and items collections
+      const orders = await Order.find({});
+      const items = await Item.find({});
+  
+      // Calculate total orders
+      const totalOrders = orders.length;
+  
+      // Calculate done orders
+      const doneOrders = orders.filter(order =>
+        order.status.every(status => status === "done")
+      ).length;
+  
+      // Count bouquet frequency
+      const bouquetFrequency = {};
+      orders.forEach(order => {
+        order.bouquetsId.forEach(bouquetId => {
+          bouquetFrequency[bouquetId] = (bouquetFrequency[bouquetId] || 0) + 1;
+        });
+      });
+  
+      // Find the most wanted bouquet ID
+      const mostWantedBouquetId = Object.keys(bouquetFrequency).reduce(
+        (a, b) => (bouquetFrequency[a] > bouquetFrequency[b] ? a : b),
+        null
+      );
+  
+      // Find the name of the most wanted bouquet
+      const mostWantedBouquet = items.find(
+        item => item._id.toString() === mostWantedBouquetId
+      );
+  
+      res.json({
+        totalOrders,
+        doneOrders,
+        mostWantedBouquet: mostWantedBouquet
+          ? { name: mostWantedBouquet.name, id: mostWantedBouquetId }
+          : null,
+      });
+    } catch (err) {
+      res.status(500).send({ error: err.message });
+    }
+  };
+  
+  module.exports = { getOrderSummary };
+  
+module.exports = { getOrdersByBusiness,getTotalPriceByBusiness,getOrderItemsByBusiness,updateOrderStatus,getOrdersByBusinessAndStatus,DenyOrder,createOrder,getTopBusinesses,getOrderSummary};

@@ -109,5 +109,6 @@ router.put(
   UserController.updateAddress
 );
 
+router.get('/summaryUserCounts', UserController.getUserSummary);
 router.get("/user/:username", UserController.getUserByUsername);
 module.exports = router;

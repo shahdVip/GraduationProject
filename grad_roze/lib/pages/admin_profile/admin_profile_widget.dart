@@ -205,7 +205,7 @@ class _AdminprofileWidgetState extends State<AdminprofileWidget> {
                                       backgroundImage: profilePhotoUrl
                                               .isNotEmpty
                                           ? NetworkImage(
-                                              profilePhotoUrl) // Use the URL from the database
+                                              '$url$profilePhotoUrl') // Use the URL from the database
                                           : const AssetImage(
                                                   'assets/images/defaults/default_avatar.png')
                                               as ImageProvider,

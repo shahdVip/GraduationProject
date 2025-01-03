@@ -1,6 +1,6 @@
 import 'package:grad_roze/config.dart';
 
-import '/components/admin_user_creation_bottomsheet/admin_user_creation_bottomsheet_widget.dart';
+import '../../components/AdminComp/admin_user_creation_bottomsheet/admin_user_creation_bottomsheet_widget.dart';
 import '/components/user_section_bus/user_section_bus_widget.dart';
 import '/components/user_section_cus/user_section_cus_widget.dart';
 import '/components/user_section_pending/user_section_pending_widget.dart';
