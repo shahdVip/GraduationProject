@@ -4,7 +4,9 @@ const { getOrdersByBusiness,
     getOrderItemsByBusiness,
     updateOrderStatus,
     DenyOrder,
-    getOrdersByBusinessAndStatus } = require('../controller/order.controller');
+    getOrdersByBusinessAndStatus,
+    getTopBusinesses,
+    getOrderSummary } = require('../controller/order.controller');
 
 const router = express.Router();
 
@@ -15,4 +17,6 @@ router.get('/:orderId/business/:businessName/totalPrice',getTotalPriceByBusiness
 router.get('/:orderID/business/:businessUsername/items', getOrderItemsByBusiness);
 router.put('/:orderId/business/:businessUsername/updateStatus', updateOrderStatus);
 router.put('/:orderId/business/:businessName/DenyOrder', DenyOrder);
+router.get('/topBusinesses', getTopBusinesses);
+router.get('/orderSummary', getOrderSummary);
 module.exports = router;

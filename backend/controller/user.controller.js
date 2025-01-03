@@ -804,6 +804,23 @@ exports.updateAddress = async (req, res) => {
       .json({ error: "An error occurred while updating the address" });
   }
 };
+exports.getUserSummary = async (req, res) => {
+  try {
+    const totalUsers = await User.countDocuments({});
+    const adminCount = await User.countDocuments({ role: 'Admin' });
+    const customerCount = await User.countDocuments({ role: 'Customer' });
+    const businessCount = await User.countDocuments({ role: 'Business' });
+
+    res.json({
+      totalUsers,
+      adminCount,
+      customerCount,
+      businessCount,
+    });
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+};
 // Fetch user info by username
 exports.getUserByUsername = async (req, res) => {
   try {
