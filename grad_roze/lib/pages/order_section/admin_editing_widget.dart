@@ -170,10 +170,10 @@ class _AdminEditingWidgetState extends State<AdminEditingWidget> {
 
     final picker = ImagePicker();
 
-    Future<void> pickImage() async {
+    Future<void> pickImage(Function(void Function()) dialogSetState) async {
       final pickedFile = await picker.pickImage(source: ImageSource.gallery);
       if (pickedFile != null) {
-        setState(() {
+        dialogSetState(() {
           selectedImage = File(pickedFile.path);
         });
       }
@@ -182,110 +182,120 @@ class _AdminEditingWidgetState extends State<AdminEditingWidget> {
     showDialog(
       context: context,
       builder: (dialogContext) {
-        return AlertDialog(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          title: Text(
-            'Add $title',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Funnel Display',
-                  color: FlutterFlowTheme.of(context).primary,
-                  fontSize: 18,
-                  useGoogleFonts: false,
-                ),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  labelText: '$title Name',
-                  labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Funnel Display',
-                        color: FlutterFlowTheme.of(context).primary,
-                        useGoogleFonts: false,
-                      ),
-                  border: const OutlineInputBorder(),
-                ),
+        return StatefulBuilder(
+          builder: (dialogContext, dialogSetState) {
+            return AlertDialog(
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
-              if (title == 'Moments') ...[
-                const SizedBox(height: 10),
-                GestureDetector(
-                  onTap: () async {
-                    await pickImage();
-                  },
-                  child: Container(
-                    height: 150,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(8),
+              title: Text(
+                'Add $title',
+                style: FlutterFlowTheme.of(context).headlineMedium.override(
+                      fontFamily: 'Funnel Display',
+                      color: FlutterFlowTheme.of(context).primary,
+                      fontSize: 18,
+                      useGoogleFonts: false,
                     ),
-                    child: selectedImage == null
-                        ? const Center(child: Text("Tap to select an image"))
-                        : Image.file(
-                            selectedImage!,
-                            fit: BoxFit.cover,
-                          ),
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      labelText: '$title Name',
+                      labelStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.override(
+                                fontFamily: 'Funnel Display',
+                                color: FlutterFlowTheme.of(context).primary,
+                                useGoogleFonts: false,
+                              ),
+                      border: const OutlineInputBorder(),
+                    ),
+                  ),
+                  if (title == 'Moments') ...[
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () async {
+                        await pickImage(dialogSetState);
+                      },
+                      child: Container(
+                        height: 150,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: selectedImage != null
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.file(
+                                  selectedImage!,
+                                  fit: BoxFit.cover,
+                                ),
+                              )
+                            : const Center(
+                                child: Text("Tap to select an image")),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(dialogContext).pop(),
+                  child: Text(
+                    'Cancel',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Funnel Display',
+                          color: FlutterFlowTheme.of(context).primary,
+                          useGoogleFonts: false,
+                        ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    if (nameController.text.trim().isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Name cannot be empty')),
+                      );
+                      return;
+                    }
+
+                    if (title == 'Moments' && selectedImage == null) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Please select an image')),
+                      );
+                      return;
+                    }
+
+                    final newItem = {
+                      if (title == 'Colors')
+                        'color': nameController.text.trim(),
+                      if (title == 'Flower Types')
+                        'flowerType': nameController.text.trim(),
+                      if (title == 'Moments')
+                        'text': nameController.text.trim(),
+                    };
+
+                    addItem(apiUrl, newItem, selectedImage, () {
+                      onItemAdded();
+                      Navigator.of(dialogContext).pop();
+                    });
+                  },
+                  child: Text(
+                    'Add',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Funnel Display',
+                          color: FlutterFlowTheme.of(context).primary,
+                          useGoogleFonts: false,
+                        ),
                   ),
                 ),
               ],
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(dialogContext).pop(),
-              child: Text(
-                'Cancel',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Funnel Display',
-                      color: FlutterFlowTheme.of(context).primary,
-                      useGoogleFonts: false,
-                    ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                if (nameController.text.trim().isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Name cannot be empty')),
-                  );
-                  return;
-                }
-
-                if (title == 'Moments' && selectedImage == null) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Please select an image')),
-                  );
-                  return;
-                }
-
-                // Dynamically set the key based on the title
-                final newItem = {
-                  if (title == 'Colors') 'color': nameController.text.trim(),
-                  if (title == 'Flower Types')
-                    'flowerType': nameController.text.trim(),
-                  if (title == 'Moments') 'text': nameController.text.trim(),
-                };
-
-                addItem(apiUrl, newItem, selectedImage, () {
-                  onItemAdded();
-                  Navigator.of(dialogContext).pop();
-                });
-              },
-              child: Text(
-                'Add',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Funnel Display',
-                      color: FlutterFlowTheme.of(context).primary,
-                      useGoogleFonts: false,
-                    ),
-              ),
-            ),
-          ],
+            );
+          },
         );
       },
     );
@@ -447,6 +457,12 @@ class _AdminEditingWidgetState extends State<AdminEditingWidget> {
               spacing: 8,
               runSpacing: 8,
               children: moments.map((item) {
+                // Determine the image source dynamically
+                final imageUrl = item['imageUrl']!.startsWith('/')
+                    ? '$url${item['imageUrl']}'
+                    : item['imageUrl']!;
+                final isNetworkImage = imageUrl.startsWith('http');
+
                 return Opacity(
                   opacity: 0.7,
                   child: Padding(
@@ -461,28 +477,34 @@ class _AdminEditingWidgetState extends State<AdminEditingWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (item['imageUrl'] != null &&
-                              item['imageUrl']!.startsWith('http'))
-                            Image.network(
-                              item['imageUrl']!,
-                              width: 20,
-                              height: 20,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Icon(
-                                  Icons.broken_image,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                );
-                              },
-                            )
-                          else if (item['imageUrl'] != null)
-                            Image.asset(
-                              item['imageUrl']!,
-                              width: 20,
-                              height: 20,
-                              fit: BoxFit.cover,
-                            )
+                          if (item['imageUrl'] != null)
+                            isNetworkImage
+                                ? Image.network(
+                                    imageUrl, // Dynamically construct URL
+                                    width: 20,
+                                    height: 20,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Icon(
+                                        Icons.broken_image,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      );
+                                    },
+                                  )
+                                : Image.asset(
+                                    imageUrl, // Local asset path
+                                    width: 20,
+                                    height: 20,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Icon(
+                                        Icons.broken_image,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      );
+                                    },
+                                  )
                           else
                             Icon(
                               Icons.image_not_supported,
