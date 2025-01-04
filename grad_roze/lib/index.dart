@@ -13,7 +13,7 @@ export '/pages/navigation_menu_users/navigation_menu_users.dart'
 export '/pages/navigation_menu_orders/navigation_menu_orders.dart'
     show NavigationMenuOrdersWidget;
 export '/pages/admin_profile/admin_profile_widget.dart' show AdminprofileWidget;
-export '/pages/order_section/order_section_widget.dart' show OrderSectionWidget;
+export '/pages/order_section/admin_editing_widget.dart' show AdminEditingWidget;
 export '/pages/order_details/order_details_widget.dart' show OrderDetailsWidget;
 export '/pages/business_profile/business_profile_widget.dart'
     show BusinessProfileWidget;
