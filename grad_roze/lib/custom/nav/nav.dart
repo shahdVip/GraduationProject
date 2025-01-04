@@ -89,7 +89,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'orderSection',
           path: '/orderSection',
-          builder: (context, params) => const OrderSectionWidget(),
+          builder: (context, params) => const AdminEditingWidget(),
         ),
         FFRoute(
           name: 'orderDetails',

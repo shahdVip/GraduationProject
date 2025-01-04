@@ -10,7 +10,7 @@ import '/custom/widgets.dart';
 import '/config.dart' show url;
 
 class UserSummaryWidget extends StatefulWidget {
-  const UserSummaryWidget({Key? key}) : super(key: key);
+  const UserSummaryWidget({super.key});
 
   @override
   _UserSummaryWidgetState createState() => _UserSummaryWidgetState();
@@ -73,19 +73,21 @@ class _UserSummaryWidgetState extends State<UserSummaryWidget> {
                       children: [
                         Text(
                           'Users',
-                          style: FlutterFlowTheme.of(context)
-                              .titleMedium
-                              .override(
-                                fontFamily: 'Funnel Display',
-                                color: FlutterFlowTheme.of(context).primary,
-                                letterSpacing: 0.0,
-                                useGoogleFonts: false,
-                              ),
+                          style:
+                              FlutterFlowTheme.of(context).titleMedium.override(
+                                    fontFamily: 'Funnel Display',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
                         ),
                         const SizedBox(height: 8.0),
-                        _buildSummaryRow(context, "Total users", totalUsers.toString()),
-                        _buildSummaryRow(context, "Customers", customers.toString()),
-                        _buildSummaryRow(context, "Businesses", businesses.toString()),
+                        _buildSummaryRow(
+                            context, "Total users", totalUsers.toString()),
+                        _buildSummaryRow(
+                            context, "Customers", customers.toString()),
+                        _buildSummaryRow(
+                            context, "Businesses", businesses.toString()),
                         _buildSummaryRow(context, "Admins", admins.toString()),
                       ],
                     ),
@@ -101,7 +103,8 @@ class _UserSummaryWidgetState extends State<UserSummaryWidget> {
                           PieChartSectionData(
                             color: FlutterFlowTheme.of(context).primary,
                             value: customers.toDouble(),
-                            title: '${((customers / totalUsers) * 100).toStringAsFixed(1)}%',
+                            title:
+                                '${((customers / totalUsers) * 100).toStringAsFixed(1)}%',
                             titleStyle: const TextStyle(
                               color: Colors.white,
                               fontSize: 12,
@@ -111,7 +114,8 @@ class _UserSummaryWidgetState extends State<UserSummaryWidget> {
                           PieChartSectionData(
                             color: FlutterFlowTheme.of(context).secondary,
                             value: businesses.toDouble(),
-                            title: '${((businesses / totalUsers) * 100).toStringAsFixed(1)}%',
+                            title:
+                                '${((businesses / totalUsers) * 100).toStringAsFixed(1)}%',
                             titleStyle: const TextStyle(
                               color: Colors.white,
                               fontSize: 12,
@@ -119,9 +123,10 @@ class _UserSummaryWidgetState extends State<UserSummaryWidget> {
                             ),
                           ),
                           PieChartSectionData(
-                            color:  FlutterFlowTheme.of(context).alternate,
+                            color: FlutterFlowTheme.of(context).alternate,
                             value: admins.toDouble(),
-                            title: '${((admins / totalUsers) * 100).toStringAsFixed(1)}%',
+                            title:
+                                '${((admins / totalUsers) * 100).toStringAsFixed(1)}%',
                             titleStyle: const TextStyle(
                               color: Colors.white,
                               fontSize: 12,

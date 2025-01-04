@@ -5,7 +5,7 @@ import '/custom/theme.dart';
 import '/config.dart' show url;
 
 class TopBusinessesWidget extends StatefulWidget {
-  const TopBusinessesWidget({Key? key}) : super(key: key);
+  const TopBusinessesWidget({super.key});
 
   @override
   _TopBusinessesWidgetState createState() => _TopBusinessesWidgetState();

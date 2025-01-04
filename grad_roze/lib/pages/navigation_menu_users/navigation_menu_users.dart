@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/pages/admin_dashboard/admin_dashboard_widget.dart';
 import 'package:grad_roze/pages/admin_users_section/admin_users_section_widget.dart';
-import 'package:grad_roze/pages/order_section/order_section_widget.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:get/get.dart';
 import '/custom/util.dart';
@@ -112,6 +111,6 @@ class NavigationUsersController extends GetxController {
   final pages = [
     const AdminDashboardWidget(),
     const AdminUsersSectionWidget(),
-    const OrderSectionWidget(),
+    const AdminDashboardWidget(),
   ];
 }
