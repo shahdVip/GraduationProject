@@ -78,9 +78,28 @@ router.post("/addMoment", upload.single("image"), async (req, res) => {
       return res.status(400).json({ message: "Uploaded file must be an image." });
     }
 
-    const imageUrl = `${req.protocol}://${req.get("host")}/uploads/moments/${req.file.filename}`;
-    const newMoment = new Moment({ text: text.trim(), imageUrl });
+    // Check if the text exists in the tags collection
+    const existingTag = await Tag.findOne({ tag: text.trim() });
 
+    if (!existingTag) {
+      // Add the text to the tags collection
+      const newTag = new Tag({ tag: text.trim() });
+      await newTag.save();
+      console.log("New tag added:", newTag);
+    } else {
+      console.log("Tag already exists:", existingTag);
+    }
+
+    // Construct the image URL
+    const imageUrl = `/uploads/moments/${req.file.filename}`;
+
+    // Create a new moment
+    const newMoment = new Moment({
+      text: text.trim(), // Sanitize text
+      imageUrl,
+    });
+
+    // Save the moment to the database
     await newMoment.save();
 
     res.status(201).json({
@@ -92,6 +111,5 @@ router.post("/addMoment", upload.single("image"), async (req, res) => {
     res.status(500).json({ message: "Error adding moment", error });
   }
 });
-
 
 module.exports = router;
