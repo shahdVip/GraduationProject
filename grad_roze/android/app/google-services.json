@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "322163585975",
+    "project_id": "roze-657d4",
+    "storage_bucket": "roze-657d4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322163585975:android:a5c80239363452342f2e32",
+        "android_client_info": {
+          "package_name": "com.example.grad_roze"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRDrOMK5kBhAAgspYc4USR03IFQ1NURRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

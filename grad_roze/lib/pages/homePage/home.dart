@@ -3,11 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:grad_roze/components/explore_widget/explore_widget.dart';
 import 'package:grad_roze/components/bouqet_builder/bouqet_builder_widget.dart';
 import 'package:grad_roze/custom/icon_button.dart';
+import 'package:grad_roze/pages/chat_list/customer_chat_list.dart';
+import 'package:grad_roze/pages/notifications/notifications_widget.dart';
 import 'package:grad_roze/widgets/bouquetforeverymomentsection/bouquetforeverymomentsection_widget.dart';
 import 'package:grad_roze/widgets/top_picks/top_picks_widget.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/custom/util.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:hugeicons/hugeicons.dart';
 import '../../widgets/CarouselSliderModel.dart';
 export '../../widgets/CarouselSliderModel.dart';
 export '../../widgets/MomentsModel.dart';
@@ -36,9 +39,9 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 20),
             TopPicksWidget(username: username),
             const SizedBox(height: 20),
-            ExploreWidget(username: username),
-            const SizedBox(height: 20),
             const BouqetBuilderWidget(),
+            const SizedBox(height: 20),
+            ExploreWidget(username: username),
             const SizedBox(height: 20),
           ],
         ),
@@ -49,7 +52,7 @@ class HomePage extends StatelessWidget {
   AppBar appBar(BuildContext context) {
     return AppBar(
       title: Text(
-        'Roze',
+        'Roze`',
         style: FlutterFlowTheme.of(context).titleLarge.override(
               fontFamily: 'Funnel Display',
               useGoogleFonts: false,
@@ -58,41 +61,67 @@ class HomePage extends StatelessWidget {
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       elevation: 0.0,
       centerTitle: true,
-      leading: GestureDetector(
-        onTap: () {
+      leading: IconButton(
+        onPressed: () {
           print('profile button');
           context.pushNamed('myprofileCustomer');
         },
-        child: Container(
-          alignment: Alignment.center,
-          margin: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: const Color(0xFFF7F8F8), //COLOR OF THE BACKGROUND!
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: SvgPicture.asset(
-            'assets/icons/user.svg',
-            height: 17,
-            width: 17,
-          ),
+        icon: HugeIcon(
+          icon: HugeIcons.strokeRoundedUserCircle,
+          color: Colors.black,
+          size: 24.0,
         ),
-      ), //container
+        padding: const EdgeInsets.all(10), // Add padding to match the margin
+      ),
       actions: [
         Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 12, 0),
-          child: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.shopping_cart_outlined,
-              color: FlutterFlowTheme.of(context).primary,
-              size: 24,
-            ),
-            onPressed: () {
-              // context.pushNamed('cart'); // Navigate to the home page
-            },
+          padding: const EdgeInsetsDirectional.only(end: 24, bottom: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start, // or spaceAround
+
+            children: [
+              FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30,
+                borderWidth: 1,
+                buttonSize: 24,
+                icon: Icon(
+                  HugeIcons.strokeRoundedNotification01,
+                  color: FlutterFlowTheme.of(context).primary,
+                  size: 24,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          NotificationsWidget(), // Replace with your page
+                    ),
+                  ); // context.pushNamed('cart'); // Navigate to the home page
+                },
+              ),
+              SizedBox(width: 10),
+              FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                borderRadius: 30,
+                borderWidth: 1,
+                buttonSize: 24,
+                icon: Icon(
+                  HugeIcons.strokeRoundedChatting01,
+                  color: FlutterFlowTheme.of(context).primary,
+                  size: 24.0,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CustomerChatListPage(
+                          userId: username), // Replace with your page
+                    ),
+                  ); // context.pushNamed('cart'); // Navigate to the home page
+                },
+              ),
+            ],
           ),
         ),
       ],
