@@ -270,7 +270,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildDrawerHeader(context),
+          _buildDrawerHeader(context, index: 5),
           _buildDrawerItem(
             context,
             title: ' My Profile', // The title of the new page
@@ -294,14 +294,14 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
           ),
           _buildDrawerItem(
             context,
-            title: 'Calendar',
-            icon: HugeIcons.strokeRoundedCalendar03,
+            title: ' Special Orders', // The title of the new page
+            icon: HugeIcons.strokeRoundedFlowerPot,
             index: 3,
           ),
           _buildDrawerItem(
             context,
-            title: 'Statics',
-            icon: HugeIcons.strokeRoundedAutoConversations,
+            title: 'Chats',
+            icon: HugeIcons.strokeRoundedChatting01,
             index: 4,
           ),
           Expanded(
@@ -462,7 +462,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
     );
   }
 
-  Widget _buildDrawerHeader(BuildContext context) {
+  Widget _buildDrawerHeader(BuildContext context, {required int index}) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -508,7 +508,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 12, 0, 0, 0),
                             child: Text(
-                              'Roze',
+                              'Roze`',
                               style: FlutterFlowTheme.of(context)
                                   .headlineLarge
                                   .override(
@@ -546,7 +546,7 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                                 borderRadius: BorderRadius.circular(8),
                                 child: businessprofilePhotoUrl.isNotEmpty
                                     ? Image.network(
-                                        '$url$businessprofilePhotoUrl',
+                                        '$businessprofilePhotoUrl',
                                         fit: BoxFit.cover,
                                       )
                                     : Image.asset(
@@ -601,11 +601,21 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                               ),
                             ),
                           ),
-                          Icon(
-                            Icons.notifications_none,
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            size: 28,
+                          IconButton(
+                            icon: Icon(
+                              Icons.notifications_none,
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              size: 28,
+                            ),
+                            onPressed: () {
+                              // Navigate to the notification page
+                              setState(() => index);
+
+                              widget.onNavSelect(5);
+
+                              Navigator.pop(context);
+                            },
                           ),
                         ],
                       ),

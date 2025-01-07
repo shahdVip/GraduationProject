@@ -4,6 +4,12 @@ import 'package:grad_roze/config.dart';
 import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/pages/business_pages/myBouquets/my_bouquet_widget.dart';
 import 'package:grad_roze/pages/business_pages/myOrders/myOrdersWidget.dart';
+import 'package:grad_roze/pages/business_pages/my_profile/myprofile_business_widget.dart';
+import 'package:grad_roze/pages/business_pages/special_orders_list/special_orders_list_widget.dart';
+
+import 'package:grad_roze/pages/chat_list/chat_list.dart';
+
+import 'package:grad_roze/pages/notifications/notifications_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './drawer/drawer_widget.dart';
 import 'package:http/http.dart' as http;
@@ -16,7 +22,7 @@ class BusinessLayout extends StatefulWidget {
 }
 
 class _BusinessLayoutState extends State<BusinessLayout> {
-  int _currentIndex = 0;
+  int _currentIndex = 1;
   final GlobalKey<ScaffoldState> _scaffoldKey =
       GlobalKey<ScaffoldState>(); // Define a GlobalKey
 
@@ -83,9 +89,15 @@ class _BusinessLayoutState extends State<BusinessLayout> {
     }
 
     // Return main layout once business name is fetched
-    final List<Widget> pages = [
+    final List<Widget> _pages = [
+      MyprofileBusinessWidget(
+        onRefresh: _fetchUserProfile,
+      ),
       MyBouquetWidget(business: businessUsername),
       MyOrdersWidget(business: businessUsername),
+      SpecialOrdersListWidget(),
+      ChatListPage(userId: businessUsername),
+      NotificationsWidget(),
     ];
 
     return Scaffold(
@@ -119,7 +131,7 @@ class _BusinessLayoutState extends State<BusinessLayout> {
       ),
       body: IndexedStack(
         index: _currentIndex,
-        children: pages,
+        children: _pages,
       ),
     );
   }

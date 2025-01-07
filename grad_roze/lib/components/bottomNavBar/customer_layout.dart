@@ -7,6 +7,8 @@ import 'package:grad_roze/custom/theme.dart';
 import 'package:grad_roze/index.dart';
 import 'package:grad_roze/pages/cameraPage/camera_page_widget.dart';
 import 'package:grad_roze/pages/giftCardPage/giftCardPageWidget.dart';
+import 'package:grad_roze/pages/offers/offers_widget.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -90,6 +92,7 @@ class _CustomerLayoutState extends State<CustomerLayout> {
       GiftCardPageWidget(username: username),
       CameraPageWidget(username: username),
       HomePage(username: username),
+      OffersWidget(),
       MyCartWidget(username: username),
     ];
 
@@ -106,6 +109,11 @@ class _CustomerLayoutState extends State<CustomerLayout> {
           Icon(Icons.edit_note, color: Colors.white),
           Icon(Icons.camera, color: Colors.white),
           Icon(Icons.home, color: Colors.white),
+          HugeIcon(
+            icon: HugeIcons.strokeRoundedFlowerPot,
+            color: Colors.white,
+            size: 30.0,
+          ),
           Icon(Icons.shopping_cart_outlined, color: Colors.white),
         ],
         inactiveIcons: <Widget>[
@@ -113,6 +121,11 @@ class _CustomerLayoutState extends State<CustomerLayout> {
               color: FlutterFlowTheme.of(context).secondaryText),
           Icon(Icons.camera, color: FlutterFlowTheme.of(context).secondaryText),
           Icon(Icons.home, color: FlutterFlowTheme.of(context).secondaryText),
+          HugeIcon(
+            icon: HugeIcons.strokeRoundedFlowerPot,
+            color: FlutterFlowTheme.of(context).secondaryText,
+            size: 30.0,
+          ),
           Icon(Icons.shopping_cart_outlined,
               color: FlutterFlowTheme.of(context).secondaryText),
         ],

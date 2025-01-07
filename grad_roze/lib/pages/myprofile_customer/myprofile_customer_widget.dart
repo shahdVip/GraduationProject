@@ -716,7 +716,7 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                           padding: const EdgeInsetsDirectional
                                               .fromSTEB(0, 0, 12, 0),
                                           child: Text(
-                                            'Favorie Businesses',
+                                            'Favorite Businesses',
                                             textAlign: TextAlign.start,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
