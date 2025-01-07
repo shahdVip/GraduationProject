@@ -15,6 +15,8 @@ const tagRoutes = require("./routes/tag.route");
 const orderRoutes = require("./routes/order.route");
 const giftCardMessageRoutes = require("./routes/giftCardMessage.route");
 const specialOrdersRoutes = require("./routes/specialOrder.route");
+const notificationRoutes = require("./routes/notification.route");
+const offerRoutes = require("./routes/offer.route");
 
 const mongoose = require("mongoose");
 
@@ -23,7 +25,7 @@ const customizationGroupsModel = require("./model/customizationGroups.model");
 const customizationPalettesModel = require("./model/customizationPalettes.model");
 const router = express.Router();
 
-require('dotenv').config(); // To load environment variables
+require("dotenv").config(); // To load environment variables
 
 const app = express();
 
@@ -32,9 +34,6 @@ app.use(cors());
 app.use(express.json());
 // Serve static assets
 app.use("/assets", express.static("assets"));
-
-
-
 
 // Routes
 app.use("/", userRoute);
@@ -51,6 +50,10 @@ app.use("/flowerTypes", flowerTypeRoutes);
 app.use("/tags", tagRoutes);
 app.use("/ai", giftCardMessageRoutes);
 
+app.use("/specialOrder", specialOrdersRoutes);
+app.use("/offers", offerRoutes);
+app.use("/notification", notificationRoutes);
+
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(
   "/uploadsFlowers",
@@ -62,66 +65,66 @@ app.use(
   express.static(path.join(__dirname, "uploadsFlowers"))
 );
 app.get("/create-test-data", async (req, res) => {
-    try {
-      const asset = new customizationAssetsModel({
-        name: "vase1", // Name of the asset
-        thumbnail: "backend/assets/thumbnails/vase1.jpg", // Path to the thumbnail
-        url: "backend/assets/3dmodels/vase_1.glb", // Path to the 3D model file
-        group: "67574f8d43d9f8e2f19efaa0", // ID for the 'Greenery' group
-      });
-  
-      await asset.save();
-  
-      res.send("Asset data created successfully!");
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Error creating asset data");
-    }
-  });
-  
-  // Route to get categories with populated data
-  app.get("/categories", async (req, res) => {
-    try {
-      const categories = await customizationGroupsModel
-        .find()
-        .populate("colorPalette"); // Populate colorPalette inside the customization group
-      res.json(categories);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  });
-  
-  // Fetch all groups with their assets
-  app.get("/groups-with-assets", async (req, res) => {
-    try {
-      const groups = await customizationGroupsModel
-        .find()
-        .populate("colorPalette") // If you need colorPalette details
-        .lean(); // Fetch groups
-  
-      const groupIds = groups.map((group) => group._id);
-  
-      // Fetch all assets belonging to these groups
-      const assets = await customizationAssetsModel
-        .find({
-          group: { $in: groupIds },
-        })
-        .lean();
-  
-      // Map assets to their respective groups
-      const groupsWithAssets = groups.map((group) => {
-        return {
-          ...group,
-          assets: assets.filter(
-            (asset) => asset.group.toString() === group._id.toString()
-          ),
-        };
-      });
-  
-      res.json(groupsWithAssets);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Server Error");
-    }
-  });
+  try {
+    const asset = new customizationAssetsModel({
+      name: "vase1", // Name of the asset
+      thumbnail: "backend/assets/thumbnails/vase1.jpg", // Path to the thumbnail
+      url: "backend/assets/3dmodels/vase_1.glb", // Path to the 3D model file
+      group: "67574f8d43d9f8e2f19efaa0", // ID for the 'Greenery' group
+    });
+
+    await asset.save();
+
+    res.send("Asset data created successfully!");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error creating asset data");
+  }
+});
+
+// Route to get categories with populated data
+app.get("/categories", async (req, res) => {
+  try {
+    const categories = await customizationGroupsModel
+      .find()
+      .populate("colorPalette"); // Populate colorPalette inside the customization group
+    res.json(categories);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Fetch all groups with their assets
+app.get("/groups-with-assets", async (req, res) => {
+  try {
+    const groups = await customizationGroupsModel
+      .find()
+      .populate("colorPalette") // If you need colorPalette details
+      .lean(); // Fetch groups
+
+    const groupIds = groups.map((group) => group._id);
+
+    // Fetch all assets belonging to these groups
+    const assets = await customizationAssetsModel
+      .find({
+        group: { $in: groupIds },
+      })
+      .lean();
+
+    // Map assets to their respective groups
+    const groupsWithAssets = groups.map((group) => {
+      return {
+        ...group,
+        assets: assets.filter(
+          (asset) => asset.group.toString() === group._id.toString()
+        ),
+      };
+    });
+
+    res.json(groupsWithAssets);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
 module.exports = app;
