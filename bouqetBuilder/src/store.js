@@ -97,7 +97,7 @@ export const useConfiguratorStore = create((set, get) => ({
     get().categories.forEach((category) => {
       console.log("Category Object:", category); // Log the category object for debugging
 
-      const randomIndex = randInt(0, category.assets.length - 1);
+      const randomIndex = randInt(0, 2);
       let randomAsset = category.assets[randomIndex];
 
       // Access colorPalette directly
@@ -121,6 +121,10 @@ export const useConfiguratorStore = create((set, get) => ({
         ? randInt(1, 10)
         : 1;
 
+      // // Ensure the count for "Vase" is always 1
+      // if (category.name === "Vase") {
+      //   randomFlowerCount = 1;
+      // }
       // Handle removable assets
       if (
         category.removable &&
@@ -128,7 +132,7 @@ export const useConfiguratorStore = create((set, get) => ({
         category.name !== "Vase" &&
         category.name !== "Flower1"
       ) {
-        randomAsset = null;
+        randomAsset = ""; // Set to an empty string instead of null
       }
 
       customization[category.name] = {
