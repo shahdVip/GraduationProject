@@ -121,7 +121,7 @@ export const BouquetBuilder = ({ ...props }) => {
           const assetColor = customization[key]?.color || "#ffffff"; // Default color if none specified
 
           console.log(asset.name);
-          if (asset.name === "vase1") {
+          if (asset.name === "GlassVase") {
             // Apply specific properties for the "Kala_013" mesh
             return (
               <Suspense key={asset.id}>
@@ -285,7 +285,7 @@ export const BouquetBuilder = ({ ...props }) => {
             });
           }
 
-          if (asset.name === "Greenery1") {
+          if (asset.name === "Eucalyptus") {
             // Render CuteOneModel based on the index
 
             // Render CuteOneModel based on the index
@@ -301,7 +301,7 @@ export const BouquetBuilder = ({ ...props }) => {
               );
             });
           }
-          if (asset.name === "Greenery2") {
+          if (asset.name === "Olive") {
             return Array.from({ length: flowerCount }).map((_, index) => {
               const rotationY = (index / flowerCount) * (Math.PI * 2); // Rotate each flower evenly around a circle
 
@@ -314,7 +314,7 @@ export const BouquetBuilder = ({ ...props }) => {
               );
             });
           }
-          if (asset.name === "baby") {
+          if (asset.name === "BabyFlower") {
             const selectedColor = customization[key]?.color || "#ffffff";
 
             return Array.from({ length: flowerCount }).map((_, index) => {

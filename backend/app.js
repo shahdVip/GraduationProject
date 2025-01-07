@@ -67,10 +67,10 @@ app.use(
 app.get("/create-test-data", async (req, res) => {
   try {
     const asset = new customizationAssetsModel({
-      name: "vase1", // Name of the asset
-      thumbnail: "backend/assets/thumbnails/vase1.jpg", // Path to the thumbnail
-      url: "backend/assets/3dmodels/vase_1.glb", // Path to the 3D model file
-      group: "67574f8d43d9f8e2f19efaa0", // ID for the 'Greenery' group
+      name: "ScallopVase", // Name of the asset
+      thumbnail: "/assets/thumbnails/ScallopVase.jpeg", // Path to the thumbnail
+      url: "", // Path to the 3D model file
+      group: "67574f8d43d9f8e2f19efaa1", //67574f8d43d9f8e2f19efa9f  //67574f8d43d9f8e2f19efaa0// ID for the 'Greenery' group
     });
 
     await asset.save();
