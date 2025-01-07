@@ -59,8 +59,8 @@ class _BouqetBuilderWidgetState extends State<BouqetBuilderWidget> {
             videoType: VideoType.asset,
             autoPlay: true,
             looping: true,
-            showControls: true, // Enable controls for debugging
-            allowFullScreen: true,
+            showControls: false, // Enable controls for debugging
+            allowFullScreen: false,
           ),
         ),
         Column(
