@@ -71,7 +71,7 @@ class _BouqetBuilderWidgetState extends State<BouqetBuilderWidget> {
             Align(
               alignment: AlignmentDirectional(0, 0),
               child: Text(
-                'Build a Bouqet !',
+                'Build a Bouquet !',
                 style: FlutterFlowTheme.of(context).headlineLarge.override(
                       fontFamily: 'Funnel Display',
                       color: FlutterFlowTheme.of(context).info,
