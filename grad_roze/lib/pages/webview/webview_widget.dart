@@ -1,7 +1,9 @@
 import 'dart:convert';
 
+import 'package:grad_roze/components/business_components/order_name/order_name_widget.dart';
 import 'package:grad_roze/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
@@ -129,8 +131,26 @@ class _WebviewWidgetState extends State<WebviewWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    // Call the function to update the special order
-                    await updateSpecialOrder();
+                    await showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      enableDrag: false,
+                      context: context,
+                      builder: (context) {
+                        return WebViewAware(
+                          child: GestureDetector(
+                            onTap: () {
+                              FocusScope.of(context).unfocus();
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            },
+                            child: Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: OrderNameWidget(),
+                            ),
+                          ),
+                        );
+                      },
+                    ).then((value) => safeSetState(() {}));
                   },
                   text: 'Place Order',
                   options: FFButtonOptions(
