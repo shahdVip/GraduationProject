@@ -1,41 +1,61 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
-    id "dev.flutter.flutter-gradle-plugin" // The Flutter Gradle Plugin must be applied after the Android and Kotlin plugins
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.gms.google-services'
 }
+apply plugin: 'com.google.gms.google-services'  // Make sure this line is present
+
+dependencies {
+    // Import the Firebase BoM (Bill of Materials)
+    implementation platform('com.google.firebase:firebase-bom:33.7.0')
+
+    // Add Firebase dependencies (versions managed by BoM)
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Core library desugaring dependency
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+
+    // Add other Firebase dependencies as needed
+    // Refer to https://firebase.google.com/docs/android/setup#available-libraries
+}
+
 
 android {
     namespace = "com.example.grad_roze"
-    compileSdk = 34 // Update compileSdk to 34
-
-    ndkVersion = "25.1.8937393" // Keep NDK version if needed for your app
-
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = "25.1.8937393"
     defaultConfig {
-        applicationId = "com.example.grad_roze" // Specify your unique application ID
-        minSdk = 21 // Adjust if dependencies require a higher version
-        targetSdk = 34 // Update targetSdk to 34
-        versionCode = flutter.versionCode // Version code from Flutter
-        versionName = flutter.versionName // Version name from Flutter
-        
-
+        applicationId = "com.example.grad_roze"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
+
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     buildTypes {
         release {
-            // Configure signing for release build if required
-            signingConfig = signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
         }
     }
 }
+
+
 
 flutter {
     source = "../.."
