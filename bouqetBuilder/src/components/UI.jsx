@@ -297,7 +297,7 @@ export const UI = () => {
         <div className="flex justify-between items-center p-10">
           <a className="pointer-events-auto" href="">
             <h1 className="text-white pl-[5px] font-bold">
-              Roze` Bouqet Builder
+              Roze` Bouquet Builder
             </h1>
           </a>
           <div className="flex items-cente gap-2">
