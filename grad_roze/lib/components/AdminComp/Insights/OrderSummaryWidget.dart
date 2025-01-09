@@ -115,7 +115,7 @@ class _OrderSummaryWidgetState extends State<OrderSummaryWidget> {
       ),
       child: Container(
         width: 100, // Adjusted width to prevent overflow
-        height: 120, // Adjusted height for better visuals
+        height: 122, // Adjusted height for better visuals
         padding: const EdgeInsets.all(12.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

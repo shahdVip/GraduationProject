@@ -1,4 +1,7 @@
 import 'package:grad_roze/config.dart';
+import 'package:grad_roze/pages/chat_list/customer_chat_list.dart';
+import 'package:hugeicons/hugeicons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../components/AdminComp/Insights/OrderSummaryWidget.dart';
 import '../../components/AdminComp/Insights/TopBusinessesWidget.dart';
@@ -26,6 +29,10 @@ class AdminDashboardWidget extends StatefulWidget {
 class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
     with TickerProviderStateMixin {
   late AdminDashboardModel _model;
+  bool isLoading = true; // Track loading state
+  String username = '';
+  String userEmail = '';
+  String userprofilePhotoUrl = '';
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -42,7 +49,7 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
   void initState() {
     super.initState();
     fetchUserRequests(); // Fetch the user requests when the widget is initialized
-
+    _fetchUserProfile();
     _model = createModel(context, () => AdminDashboardModel());
 
     animationsMap.addAll({
@@ -137,6 +144,44 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
     }
   }
 
+  Future<void> _fetchUserProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('jwt_token'); // Retrieve the token
+    if (token != null) {
+      try {
+        final response = await http.get(
+          Uri.parse(loggedInInfo),
+          headers: {'Authorization': 'Bearer $token'},
+        );
+
+        if (response.statusCode == 200) {
+          final data = jsonDecode(response.body);
+          setState(() {
+            username = data['username']; // Set the fetched username
+            userEmail = data['email'];
+            userprofilePhotoUrl = data['profilePhoto'];
+            isLoading = false; // Stop loading
+          });
+        } else {
+          setState(() {
+            isLoading = false; // Stop loading even if error occurs
+          });
+          print('Failed to load profile');
+        }
+      } catch (e) {
+        setState(() {
+          isLoading = false; // Stop loading in case of error
+        });
+        print('Error: $e');
+      }
+    } else {
+      setState(() {
+        isLoading = false; // Stop loading when no token is found
+      });
+      print('No token found');
+    }
+  }
+
   @override
   void dispose() {
     _model.dispose();
@@ -172,17 +217,45 @@ class _AdminDashboardWidgetState extends State<AdminDashboardWidget>
               shadowColor: Colors.grey.withOpacity(0.5),
               actions: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-                  child: FlutterFlowIconButton(
-                    buttonSize: 40,
-                    icon: Icon(
-                      Icons.person,
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      size: 30,
-                    ),
-                    onPressed: () async {
-                      context.pushNamed('Adminprofile');
-                    },
+                  padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 20, 10),
+                  child: Row(
+                    mainAxisAlignment:
+                        MainAxisAlignment.start, // or spaceAround
+
+                    children: [
+                      FlutterFlowIconButton(
+                        buttonSize: 24,
+                        icon: Icon(
+                          HugeIcons.strokeRoundedUserCircle,
+                          color: Colors.white,
+                          size: 24.0,
+                        ),
+                        onPressed: () async {
+                          context.pushNamed('Adminprofile');
+                        },
+                      ),
+                      SizedBox(width: 10),
+                      FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 30,
+                        borderWidth: 1,
+                        buttonSize: 24,
+                        icon: Icon(
+                          HugeIcons.strokeRoundedChatting01,
+                          color: Colors.white,
+                          size: 24.0,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CustomerChatListPage(
+                                  userId: username), // Replace with your page
+                            ),
+                          ); // context.pushNamed('cart'); // Navigate to the home page
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ],

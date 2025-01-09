@@ -34,9 +34,7 @@ exports.updateProfilePhoto = async (req, res) => {
     }
 
     // Construct the new profile photo URL
-    const newProfilePhotoUrl = `${req.protocol}://${req.get("host")}/uploads/${
-      req.file.filename
-    }`;
+    const newProfilePhotoUrl = `/uploads/${req.file.filename}`;
 
     // Find the user by username and update the profile photo
     const user = await User.findOneAndUpdate(
@@ -49,12 +47,10 @@ exports.updateProfilePhoto = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res
-      .status(200)
-      .json({
-        message: "Profile photo updated successfully",
-        profilePhoto: user.profilePhoto,
-      });
+    res.status(200).json({
+      message: "Profile photo updated successfully",
+      profilePhoto: user.profilePhoto,
+    });
   } catch (error) {
     console.error("Error updating profile photo:", error);
     res.status(500).json({ message: "Failed to update profile photo" });
@@ -807,9 +803,9 @@ exports.updateAddress = async (req, res) => {
 exports.getUserSummary = async (req, res) => {
   try {
     const totalUsers = await User.countDocuments({});
-    const adminCount = await User.countDocuments({ role: 'Admin' });
-    const customerCount = await User.countDocuments({ role: 'Customer' });
-    const businessCount = await User.countDocuments({ role: 'Business' });
+    const adminCount = await User.countDocuments({ role: "Admin" });
+    const customerCount = await User.countDocuments({ role: "Customer" });
+    const businessCount = await User.countDocuments({ role: "Business" });
 
     res.json({
       totalUsers,
