@@ -3,15 +3,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '/custom/theme.dart';
 import '/custom/util.dart';
-import '/custom/widgets.dart';
 import '/components/offer_card/offer_card_widget.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 import 'offers_model.dart';
 export 'offers_model.dart';

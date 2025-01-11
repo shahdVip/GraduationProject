@@ -3,6 +3,7 @@ import 'package:grad_roze/config.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../customerOrders/customerOrdersPageWidget.dart';
 import '/components/edit_admin_profile/edit_password_widget.dart';
 import '/components/edit_admin_profile/edit_phone_widget.dart';
 import '/custom/icon_button.dart';
@@ -208,7 +209,7 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                       backgroundImage: profilePhotoUrl
                                               .isNotEmpty
                                           ? NetworkImage(
-                                              profilePhotoUrl) // Use the URL from the database
+                                              '$url$profilePhotoUrl') // Use the URL from the database
                                           : const AssetImage(
                                                   'assets/images/defaults/default_avatar.png')
                                               as ImageProvider,
@@ -688,7 +689,15 @@ class _MyprofileCustomerWidgetState extends State<MyprofileCustomerWidget> {
                                           size: 18,
                                         ),
                                         onPressed: () async {
-                                          print('order history button');
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CustomerOrdersWidget(
+                                                username: Username,
+                                              ), // Replace with your page
+                                            ),
+                                          ); //
                                         },
                                       ),
                                     ],

@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '/custom/animations.dart';
-import '/custom/icon_button.dart';
 import '/custom/theme.dart';
-import '/custom/util.dart';
-import '/custom/widgets.dart';
 import '/config.dart' show url;
 
 class UserSummaryWidget extends StatefulWidget {

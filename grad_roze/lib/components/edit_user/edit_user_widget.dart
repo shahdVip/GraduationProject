@@ -363,8 +363,8 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                                           .profilePhoto.isEmpty)
                                                       ? const AssetImage(
                                                           'assets/images/defaults/default_avatar.png') // Default image
-                                                      : NetworkImage(widget
-                                                          .profilePhoto), // Profile photo from the URL
+                                                      : NetworkImage(
+                                                          '$url${widget.profilePhoto}'), // Profile photo from the URL
                                                 ),
                                         ),
                                       ),

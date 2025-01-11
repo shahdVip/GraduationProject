@@ -38,7 +38,7 @@ class _BouqetBuilderWidgetState extends State<BouqetBuilderWidget> {
     super.dispose();
   }
 
-  final Uri bouquetBuilderUri = Uri.parse("http://192.168.1.9:5173/");
+  final Uri bouquetBuilderUri = Uri.parse("http://192.168.1.6:5173/");
 
   // Future<void> _launchURL() async {
   //   if (!await launchUrl(bouquetBuilderUri,

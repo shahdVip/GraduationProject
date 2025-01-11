@@ -12,8 +12,7 @@ class ChatPage extends StatefulWidget {
       {required this.chatId,
       required this.userId,
       required this.receiver,
-      Key? key})
-      : super(key: key);
+      super.key});
 
   @override
   _ChatPageState createState() => _ChatPageState();
