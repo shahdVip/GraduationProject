@@ -95,7 +95,7 @@ const AssetsBox = () => {
             >
               <img
                 className="object-cover w-full h-full"
-                src={`http://192.168.1.9:5173/src${asset.thumbnail}`}
+                src={`http://192.168.1.8:5173/src${asset.thumbnail}`}
                 alt={asset.name}
               />
             </button>

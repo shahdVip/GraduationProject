@@ -39,7 +39,6 @@
 //     }
 // });
 
-
 // userSchema.pre('save',async function(){
 //     try{
 //         var user=this;
@@ -60,9 +59,9 @@
 
 // module.exports = UserModel;
 
-const mongoose = require('mongoose');
-const db = require('../config/db');
-const bcrypt = require('bcrypt');
+const mongoose = require("mongoose");
+const db = require("../config/db");
+const bcrypt = require("bcrypt");
 
 const { Schema } = mongoose;
 
@@ -71,55 +70,56 @@ const userSchema = new Schema({
     type: String,
     lowercase: true,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   phoneNumber: {
     type: String,
-    required: true
+    required: true,
   },
   address: {
     type: String,
-    required: true
+    required: true,
   },
   profilePhoto: {
     type: String,
-    required: false
+    required: false,
   },
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   role: {
     type: String,
-    enum: ['Admin', 'Customer', 'Business'],
-    required: true
+    enum: ["Admin", "Customer", "Business"],
+    required: true,
   },
   otp: {
     type: String, // Store the OTP code
-    required: false
+    required: false,
   },
   otpExpiration: {
     type: Date, // Time when the OTP expires
-    required: false
+    required: false,
   },
   adminApproved: {
     type: Boolean,
-    default: false // Set to false by default
+    default: false, // Set to false by default
   },
-  resetPasswordOtp: { type: String },  // For storing the reset token
-  resetPasswordOtpExpires: { type: Date },  // Expiration time for the reset token
+  resetPasswordOtp: { type: String }, // For storing the reset token
+  resetPasswordOtpExpires: { type: Date }, // Expiration time for the reset token
+  deviceToken: { type: String }, // Store the device token
 });
 
 // Hash the password before saving
-userSchema.pre('save', async function (next) {
+userSchema.pre("save", async function (next) {
   try {
     // Only hash the password if it is new or has been modified
-    if (!this.isModified('password')) {
+    if (!this.isModified("password")) {
       return next();
     }
 
@@ -131,7 +131,6 @@ userSchema.pre('save', async function (next) {
   }
 });
 
-
 userSchema.methods.comparePassword = async function (inputPassword) {
   const isMatch = await bcrypt.compare(inputPassword, this.password);
 
@@ -139,14 +138,13 @@ userSchema.methods.comparePassword = async function (inputPassword) {
     const salt = await bcrypt.genSalt(10);
     // Attempt to compare the password assuming it was double-hashed
     const doubleHashed = await bcrypt.hash(inputPassword, salt);
-    
+
     return bcrypt.compare(doubleHashed, this.password);
   }
 
   return isMatch;
 };
 
-
-const UserModel = db.model('user', userSchema);
+const UserModel = db.model("user", userSchema);
 
 module.exports = UserModel;

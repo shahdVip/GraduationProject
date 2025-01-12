@@ -50,7 +50,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = <String, AnimationInfo>{};
-  //final String baseUrl = 'http://192.168.1.9:3000';
+  //final String baseUrl = 'http://192.168.1.8:3000';
   Future<List<BouquetViewModel>> fetchRecommendedItems() async {
     final prefs = await SharedPreferences.getInstance();
     final String? username = prefs.getString('username'); // Get username

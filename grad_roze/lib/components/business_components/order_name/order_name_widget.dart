@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:grad_roze/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -24,6 +26,12 @@ class OrderNameWidget extends StatefulWidget {
 
 class _OrderNameWidgetState extends State<OrderNameWidget> {
   late OrderNameModel _model;
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+  String? deviceToken;
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin(); // Initialize the plugin
+
   final updateSpecialOrderurl =
       '$url/specialOrder/updateSpecialOrder'; // Replace with your server URL
 
@@ -31,6 +39,98 @@ class _OrderNameWidgetState extends State<OrderNameWidget> {
   void setState(VoidCallback callback) {
     super.setState(callback);
     _model.onUpdate();
+  }
+
+  Future<void> sendDeviceTokenToBackend(String token) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String? username = prefs.getString('username'); // Replace with your key
+
+      final response = await http.post(
+        Uri.parse('$url/save-device-token'),
+        headers: {
+          'Content-Type':
+              'application/json', // Set the content type to application/json
+        },
+        body: json.encode({
+          'deviceToken': token,
+          'username':
+              username, // Replace with actual username or user identifier
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        print('Device token sent successfully');
+      } else {
+        print('Failed to send device token ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error sending device token: $e');
+    }
+  }
+
+  Future<void> _initializeFirebaseMessaging() async {
+    // Get the device token
+    deviceToken = await messaging.getToken();
+    print("Device Token: $deviceToken");
+    sendDeviceTokenToBackend(deviceToken!);
+    // Listen to foreground notifications
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('Foreground Message: ${message.notification?.title}');
+      // Handle the notification
+      _showNotification(message);
+    });
+
+    // Handle background notifications
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('Background Message: ${message.notification?.title}');
+      // Navigate to a specific screen if needed
+    });
+  }
+
+// Function to initialize notification channel
+  Future<void> _initializeNotificationChannel() async {
+    const AndroidNotificationChannel channel = AndroidNotificationChannel(
+      'offer_notifications', // ID must match with AndroidNotificationDetails
+      'Offers Notifications', // Channel name
+      description: 'Your channel description',
+      importance: Importance.high,
+    );
+
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+  }
+
+  Future<void> _showNotification(RemoteMessage message) async {
+    try {
+      print("Attempting to show notification...");
+      var androidDetails = AndroidNotificationDetails(
+        'offer_notifications',
+        'Offers Notifications',
+        channelDescription: 'Your channel description',
+        importance: Importance.high,
+        priority: Priority.high,
+      );
+
+      var generalNotificationDetails = NotificationDetails(
+        android: androidDetails,
+      );
+
+      await flutterLocalNotificationsPlugin.show(
+        0,
+        message.notification?.title ?? "No Title",
+        message.notification?.body ?? "No Body",
+        generalNotificationDetails,
+      );
+      print("Notification displayed successfully.");
+    } catch (e) {
+      print("Error displaying notification: $e");
+    }
   }
 
   Future<void> updateSpecialOrder() async {
@@ -85,6 +185,8 @@ class _OrderNameWidgetState extends State<OrderNameWidget> {
   @override
   void initState() {
     super.initState();
+    _initializeFirebaseMessaging();
+    _initializeNotificationChannel();
     _model = createModel(context, () => OrderNameModel());
 
     _model.emailAddressTextController ??= TextEditingController();
