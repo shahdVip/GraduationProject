@@ -34,7 +34,7 @@ const createOffer = async (offerData) => {
 
   // Send a push notification to the customer
   const customerDeviceToken = await getDeviceTokenByUsername(customerUsername);
-
+  console.log("Customer device token:", customerDeviceToken);
   if (customerDeviceToken) {
     // Send the notification
     await sendPushNotification(

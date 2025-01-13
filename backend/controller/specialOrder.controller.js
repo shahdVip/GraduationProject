@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const UserModel = require("../model/user.model"); // Make sure to import your User model
+const NotificationService = require("../services/notification.service"); // Import the notification service
+const { sendPushNotification } = require("../config/firebase");
 
 const SpecialOrderModel = require("../model/specialOrder.model");
 const {
@@ -58,6 +61,11 @@ const saveBouquetCustomization = async (req, res) => {
     res.status(500).json({ message: "Error saving Special order" });
   }
 };
+const getDeviceTokenByUsername = async (username) => {
+  // Assuming you have a collection to store device tokens
+  const user = await UserModel.findOne({ username });
+  return user?.deviceToken;
+};
 
 const getPendingOrders = async (req, res) => {
   try {
@@ -86,10 +94,38 @@ const updateSpecialOrder = async (req, res) => {
 
     // Delegate the update logic to the service
     const updatedOrder = await updateLatestSpecialOrder(username, orderName);
-
     if (!updatedOrder) {
       return res.status(404).json({ message: "No special orders found" });
     }
+
+    // Fetch all users with a "business" role
+    const businessUsers = await UserModel.find({ role: "Business" });
+    console.log("Business users:", businessUsers);
+    const businessUsernames = businessUsers.map((user) => user.username);
+
+    // Send notifications to all business users
+    const notificationPromises = businessUsernames.map((businessUsername) =>
+      NotificationService.createNotification(
+        businessUsername,
+        "New Special Order",
+        `A new special order has been placed by ${username}`
+      )
+    );
+
+    // Send push notifications to their device tokens
+    const pushNotificationPromises = businessUsers.map(async (user) => {
+      const deviceToken = await getDeviceTokenByUsername(user.username);
+      if (deviceToken) {
+        return sendPushNotification(
+          deviceToken,
+          "New Special Order",
+          `A new special order has been placed by ${username}`
+        );
+      }
+    });
+
+    // Wait for all notifications to be sent
+    await Promise.all([...notificationPromises, ...pushNotificationPromises]);
 
     return res.status(200).json(updatedOrder); // Return the updated order
   } catch (error) {

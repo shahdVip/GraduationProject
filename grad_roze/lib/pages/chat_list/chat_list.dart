@@ -18,10 +18,35 @@ class ChatListPage extends StatefulWidget {
 }
 
 class _ChatListPageState extends State<ChatListPage> {
+  Future<List<String>> fetchBusinessUsers() async {
+    final response = await http.get(Uri.parse('$url/allUsers'));
+
+    if (response.statusCode == 200) {
+      // Parse the response to get the users
+      List<dynamic> allUsers = json.decode(response.body);
+
+      // Filter the users based on their role and collect their usernames
+      List<String> businessUsernames = [];
+      for (var user in allUsers) {
+        if (user['role'] == 'Admin') {
+          businessUsernames.add(user['username']);
+        }
+      }
+
+      return businessUsernames;
+    } else {
+      // Handle error if the request fails
+      throw Exception('Failed to load users');
+    }
+  }
+
   // Function to create a new chat or open existing chat
   void createNewChat() async {
+    List<String> businessUsernames = await fetchBusinessUsers();
+
     // Show a dialog to enter the username
-    String? enteredUsername = await showUsernameDialog(context);
+    String? enteredUsername =
+        await showUsernameDialog(context, businessUsernames);
 
     if (enteredUsername != null && enteredUsername.isNotEmpty) {
       try {
@@ -36,7 +61,7 @@ class _ChatListPageState extends State<ChatListPage> {
           var selectedUser = allUsers.firstWhere(
               (user) =>
                   user['username'] == enteredUsername &&
-                  user['role'] == 'Customer',
+                  user['role'] == 'Admin',
               orElse: () => null);
 
           if (selectedUser != null) {
@@ -114,11 +139,17 @@ class _ChatListPageState extends State<ChatListPage> {
   }
 
   // Function to show the dialog for entering the username
-  Future<String?> showUsernameDialog(BuildContext context) async {
+  Future<String?> showUsernameDialog(
+      BuildContext context, List<String> users) async {
     return await showDialog<String>(
       context: context,
       builder: (BuildContext context) {
-        return const DialogWidget();
+        return DialogWidget(
+          users: users,
+          onUserSelected: (selectedUser) {
+            Navigator.of(context).pop(selectedUser);
+          },
+        );
       },
     );
   }

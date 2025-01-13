@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import '../../widgets/MomentsModel.dart';
 
 class MomentService {
-  //static const String _baseUrl = "http://192.168.1.9:5000/api/moments";
+  //static const String _baseUrl = "http://192.168.1.4:5000/api/moments";
 
   // Fetch moments from the backend
   static Future<List<MomentsModel>> fetchMoments() async {
