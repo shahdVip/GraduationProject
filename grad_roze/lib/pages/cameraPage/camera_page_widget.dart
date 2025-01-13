@@ -206,78 +206,90 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text("Bouquet Match"),
+        title: Text("Bouquet Match",
+            style: FlutterFlowTheme.of(context).titleMedium.override(
+                  fontFamily: 'Funnel Display',
+                  useGoogleFonts: false,
+                  letterSpacing: 0.0,
+                )),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.file(File(imagePath), height: 150, fit: BoxFit.cover),
             const SizedBox(height: 10),
             Text(
-              "Best match: $bestMatch",
-              style: TextStyle(
-                fontSize: 18,
-                color: dominantColor,
-                fontWeight: FontWeight.bold,
-              ),
+              "A $bestMatch bouquet would be a great match!",
+              style: FlutterFlowTheme.of(context).labelMedium.override(
+                    fontFamily: 'Funnel Display',
+                    useGoogleFonts: false,
+                    letterSpacing: 0.0,
+                  ),
             ),
           ],
         ),
         actions: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MatchingPageWidget(
-                        color: bestMatch,
-                        username: widget.username,
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MatchingPageWidget(
+                          color: bestMatch,
+                          username: widget.username,
+                        ),
                       ),
+                    );
+                  },
+                  // Example icon (optional)
+                  label: Text(
+                    "See The Matching Bouquets",
+                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                          fontFamily: 'Funnel Display',
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: false,
+                        ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: FlutterFlowTheme.of(context).primary,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
                     ),
-                  );
-                },
-                label: Text(
-                  "See The Matching Bouquets",
-                  style: FlutterFlowTheme.of(context).bodyLarge.override(
-                        fontFamily: 'Funnel Display',
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        letterSpacing: 0.0,
-                        useGoogleFonts: false,
-                      ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: FlutterFlowTheme.of(context).primary,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(30), // Set your desired radius
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 24.0,
+                        vertical: 12.0), // Add uniform padding
                   ),
                 ),
-              ),
-              ElevatedButton.icon(
-                onPressed: () => Navigator.pop(context),
-                label: Text(
-                  "OK",
-                  style: FlutterFlowTheme.of(context).bodyLarge.override(
-                        fontFamily: 'Funnel Display',
-                        color: FlutterFlowTheme.of(context).primaryBackground,
-                        letterSpacing: 0.0,
-                        useGoogleFonts: false,
-                      ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: FlutterFlowTheme.of(context).secondary,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(30), // Set your desired radius
+                const SizedBox(height: 10), // Add spacing between buttons
+                ElevatedButton.icon(
+                  onPressed: () => Navigator.pop(context),
+                  icon: Icon(Icons.refresh), // Example icon (optional)
+                  label: Text(
+                    "Retake",
+                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                          fontFamily: 'Funnel Display',
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: false,
+                        ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: FlutterFlowTheme.of(context).secondary,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -354,45 +366,48 @@ class _CameraPageWidgetState extends State<CameraPageWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ElevatedButton.icon(
-                  onPressed:
-                      _isProcessingImage ? null : _captureAndProcessImage,
-                  icon: const Icon(Icons.camera_alt_outlined),
-                  label: Text(
-                    "Capture",
-                    style: FlutterFlowTheme.of(context).bodyLarge.override(
-                          fontFamily: 'Funnel Display',
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          letterSpacing: 0.0,
-                          useGoogleFonts: false,
+                Padding(
+                  padding: const EdgeInsets.only(left: 170),
+                  child: IconButton(
+                    onPressed:
+                        _isProcessingImage ? null : _captureAndProcessImage,
+                    icon: Icon(
+                      Icons.camera,
+                      color: FlutterFlowTheme.of(context).primary,
+                    ),
+                    iconSize: 30,
+                    tooltip: "Capture",
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                        FlutterFlowTheme.of(context).primary,
+                      ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              30), // Set your desired radius
                         ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: FlutterFlowTheme.of(context).primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(30), // Set your desired radius
+                      ),
                     ),
                   ),
                 ),
-                ElevatedButton.icon(
-                  onPressed: _switchCamera,
-                  icon: const Icon(Icons.switch_camera),
-                  label: Text(
-                    "Switch Camera",
-                    style: FlutterFlowTheme.of(context).bodyLarge.override(
-                          fontFamily: 'Funnel Display',
-                          color: FlutterFlowTheme.of(context).primaryBackground,
-                          letterSpacing: 0.0,
-                          useGoogleFonts: false,
+                Padding(
+                  padding: const EdgeInsets.only(left: 0),
+                  child: IconButton(
+                    onPressed: _switchCamera,
+                    icon: Icon(
+                      Icons.switch_camera_outlined,
+                      color: FlutterFlowTheme.of(context).primary,
+                    ),
+                    tooltip: "Switch Camera",
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              50), // Set your desired radius
                         ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: FlutterFlowTheme.of(context).secondary,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(30), // Set your desired radius
+                      ),
                     ),
                   ),
                 ),

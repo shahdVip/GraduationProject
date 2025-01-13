@@ -363,10 +363,10 @@ class _SignInUpWidgetState extends State<SignInUpWidget>
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.asset(
-                                    'assets/images/favicon.png',
+                                    'assets/images/1+.png',
                                     width: 70,
                                     height: 70,
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.contain,
                                   ),
                                 ),
                               ],
