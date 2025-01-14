@@ -51,12 +51,9 @@ class HomePage extends StatelessWidget {
 
   AppBar appBar(BuildContext context) {
     return AppBar(
-      title: Text(
-        'Roze`',
-        style: FlutterFlowTheme.of(context).titleLarge.override(
-              fontFamily: 'Funnel Display',
-              useGoogleFonts: false,
-            ),
+      title: Image.asset(
+        'assets/images/band.png', // Replace with your image path
+        height: 40.0, // Adjust the height of the image
       ),
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       elevation: 0.0,

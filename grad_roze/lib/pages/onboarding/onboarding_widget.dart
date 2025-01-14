@@ -724,10 +724,25 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                         const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        await _model.pageViewController?.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.ease,
-                        );
+                        // Get the current page index
+                        int currentIndex =
+                            _model.pageViewController?.page?.toInt() ?? 0;
+
+                        // Define the total number of slides
+                        int totalSlides =
+                            3; // Adjust this based on your PageView
+
+                        if (currentIndex == totalSlides - 1) {
+                          // Navigate to the new page when the last slide is reached
+                          context.pushNamed(
+                              'SignInUp'); // Replace 'newPage' with your desired route
+                        } else {
+                          // Go to the next page
+                          await _model.pageViewController?.nextPage(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.ease,
+                          );
+                        }
                       },
                       text: 'Next',
                       options: FFButtonOptions(
