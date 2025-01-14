@@ -27,7 +27,12 @@ Future<void> initializeNotificationPlugin() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+      options: FirebaseOptions(
+          apiKey: 'AIzaSyBPLAG4-s17ZL4s77xfYhZz62XyF27zaeU',
+          appId: '1:322163585975:android:a5c80239363452342f2e32',
+          messagingSenderId: '',
+          projectId: 'roze-657d4'));
   // Request notification permissions
   await FirebaseMessaging.instance.requestPermission(
     alert: true,
