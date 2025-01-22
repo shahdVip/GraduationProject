@@ -4,7 +4,7 @@ const OfferModel = require("../model/offer.model");
 const mongoose = require("mongoose");
 const NotificationService = require("../services/notification.service"); // Import the notification service
 const User = require("../model/user.model"); // Make sure to import your User model
-const { sendPushNotification } = require("../config/firebase");
+const { sendFirebaseNotification } = require("../config/firebase");
 
 // Create an offer
 // Create a new offer
@@ -98,19 +98,18 @@ const updateOrderAndDeleteOffers = async (req, res) => {
     );
 
     // Send a push notification to the customer
-    const customerDeviceToken = await getDeviceTokenByUsername(
-      businessUsername
-    );
+    // const customerDeviceToken = await getDeviceTokenByUsername(
+    //   businessUsername
+    // );
 
-    if (customerDeviceToken) {
-      // Send the notification
-      await sendPushNotification(
-        customerDeviceToken,
-        businessUsername,
-        `Your offer for "${specialOrder.customerUsername}" order "${specialOrder.orderName}" has been accepted!`
-      );
-      console.log("Push notification sent to customer");
-    }
+    // if (customerDeviceToken) {
+    // Send the notification
+    await sendFirebaseNotification(
+      businessUsername,
+      `Your offer for "${specialOrder.customerUsername}" order "${specialOrder.orderName}" has been accepted!`
+    );
+    console.log("Push notification sent to customer");
+    // }
 
     // Step 4: Fetch all other offers for the same order
     const existingOffers = await OfferModel.find({

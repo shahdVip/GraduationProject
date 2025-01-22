@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const UserModel = require("../model/user.model"); // Make sure to import your User model
 const NotificationService = require("../services/notification.service"); // Import the notification service
-const { sendPushNotification } = require("../config/firebase");
+const { sendFirebaseNotification } = require("../config/firebase");
 
 const SpecialOrderModel = require("../model/specialOrder.model");
 const {
@@ -114,14 +114,13 @@ const updateSpecialOrder = async (req, res) => {
 
     // Send push notifications to their device tokens
     const pushNotificationPromises = businessUsers.map(async (user) => {
-      const deviceToken = await getDeviceTokenByUsername(user.username);
-      if (deviceToken) {
-        return sendPushNotification(
-          deviceToken,
-          "New Special Order",
-          `A new special order has been placed by ${username}`
-        );
-      }
+      // const deviceToken = await getDeviceTokenByUsername(user.username);
+      // if (deviceToken) {
+      return sendFirebaseNotification(
+        "New Special Order",
+        `A new special order has been placed by ${username}`
+      );
+      //}
     });
 
     // Wait for all notifications to be sent

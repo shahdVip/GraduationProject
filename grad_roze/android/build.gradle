@@ -3,13 +3,13 @@ buildscript {
     dependencies {
 
         // Add the classpath for Google services plugin here
-        classpath 'com.google.gms:google-services:4.4.2'  // Correct version if needed, you can try 4.4.2 if 4.3.15 doesn't work
+        classpath 'com.google.gms:google-services:4.3.15'  // Correct version if needed, you can try 4.4.2 if 4.3.15 doesn't work
     }
 }
 
 plugins {
     // Google services plugin is applied here, but no need for `classpath`
-    id 'com.google.gms.google-services' version '4.4.2' apply false
+    id 'com.google.gms.google-services' version '4.3.15' apply false
 }
 
 allprojects {
