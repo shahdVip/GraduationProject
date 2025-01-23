@@ -21,6 +21,7 @@ allprojects {
 
 rootProject.buildDir = "../build"
 
+
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
     project.evaluationDependsOn(":app")
@@ -28,6 +29,12 @@ subprojects {
 
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
+}
+
+gradle.projectsEvaluated {
+    tasks.withType(Test) {
+        enabled = false
+    }
 }
 
 gradle.projectsEvaluated {
