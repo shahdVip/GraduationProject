@@ -2,7 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 import { randInt } from "three/src/math/MathUtils.js";
 
-const apiUrl = "http://192.168.1.4:3000";
+const apiUrl = "http://192.168.1.29:3000";
 
 export const useConfiguratorStore = create((set, get) => ({
   categories: [],

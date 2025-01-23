@@ -1,6 +1,8 @@
 import 'package:grad_roze/config.dart';
 import 'package:grad_roze/widgets/Bouquet/BouquetViewModel.dart';
 import 'package:grad_roze/widgets/Bouquet/BouquetViewWidget.dart';
+import 'package:grad_roze/widgets/Bouquet/BouquetViewModel.dart';
+import 'package:grad_roze/widgets/Bouquet/BouquetViewWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '/custom/animations.dart';
@@ -50,7 +52,7 @@ class _CustomerHomeWidgetState extends State<CustomerHomeWidget>
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final animationsMap = <String, AnimationInfo>{};
-  //final String baseUrl = 'http://192.168.1.4:3000';
+  //final String baseUrl = 'http://192.168.1.29:3000';
   Future<List<BouquetViewModel>> fetchRecommendedItems() async {
     final prefs = await SharedPreferences.getInstance();
     final String? username = prefs.getString('username'); // Get username

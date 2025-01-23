@@ -104,7 +104,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
   //   // Sending the PUT request
   //   try {
   //     final response = await http.put(
-  //       Uri.parse('http://192.168.1.4:3000/updateUser/${widget.usernamee}'),
+  //       Uri.parse('http://192.168.1.29:3000/updateUser/${widget.usernamee}'),
   //       headers: {
   //         'Content-Type': 'application/json',
   //       },
@@ -364,6 +364,7 @@ class _EditUserWidgetState extends State<EditUserWidget>
                                                       ? const AssetImage(
                                                           'assets/images/defaults/default_avatar.png') // Default image
                                                       : NetworkImage(widget
+                                                          // Profile photo from the URL
                                                           .profilePhoto), // Profile photo from the URL
                                                 ),
                                         ),
