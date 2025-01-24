@@ -54,8 +54,8 @@ class _OtpWidgetState extends State<OtpWidget> {
     super.dispose();
   }
 
-  Future<void> verifyOtpCustomer(
-      BuildContext context, String email, String enteredOtp) async {
+  Future<void> verifyOtpCustomer(BuildContext context, String email,
+      String enteredOtp, String role) async {
     var verifyBody = {
       "email": email,
       "otp": enteredOtp,
@@ -73,7 +73,7 @@ class _OtpWidgetState extends State<OtpWidget> {
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
 
-        if (responseData['valid'] == true) {
+        if (responseData['valid'] == true && role == 'Business') {
           // OTP is valid and not expired
 
           // Show the dialog immediately instead of creating the user request
@@ -94,6 +94,8 @@ class _OtpWidgetState extends State<OtpWidget> {
               );
             },
           );
+        } else if (responseData['valid'] == true && role == 'Customer') {
+          context.pushNamed('onboarding');
         } else if (response.statusCode == 400) {
           // OTP is invalid or expired, delete the user record
           final deleteResponse = await http.post(
@@ -554,7 +556,8 @@ class _OtpWidgetState extends State<OtpWidget> {
                       if (widget.role == 'Business') {
                         verifyOtpAndNavigate(context, widget.email, enteredOtp);
                       } else if (widget.role == 'Customer')
-                        verifyOtpCustomer(context, widget.email, enteredOtp);
+                        verifyOtpCustomer(
+                            context, widget.email, enteredOtp, widget.role);
                     },
                     text: 'Continue',
                     options: FFButtonOptions(

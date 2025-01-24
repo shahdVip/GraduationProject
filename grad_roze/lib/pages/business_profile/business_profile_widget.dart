@@ -106,18 +106,6 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            print('FloatingActionButton pressed ...');
-          },
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          elevation: 8,
-          child: Icon(
-            Icons.chat_rounded,
-            color: FlutterFlowTheme.of(context).info,
-            size: 24,
-          ),
-        ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -138,7 +126,7 @@ class _BusinessProfileWidgetState extends State<BusinessProfileWidget> {
                               fit: BoxFit.cover,
                             )
                           : Image.network(
-                              profilePhoto, // Use the passed profile photo URL
+                              '$url$profilePhoto', // Use the passed profile photo URL
                               width: double.infinity,
                               height: double.infinity,
                               fit: BoxFit.cover,

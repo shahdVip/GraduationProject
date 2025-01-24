@@ -69,7 +69,7 @@ export const BouquetBuilder = ({ ...props }) => {
         formData.append("selectedAssets", JSON.stringify(selectedAssets)); // Example selected assets
 
         const response = await axios.post(
-          "http://192.168.1.29:3000/specialOrder/save", // Replace with your API endpoint
+          "http://192.168.1.7:3000/specialOrder/save", // Replace with your API endpoint
           formData,
           {
             headers: {

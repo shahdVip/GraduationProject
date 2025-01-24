@@ -96,13 +96,6 @@ class _NotificationsWidgetState extends State<NotificationsWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back,
-                color: FlutterFlowTheme.of(context).primary),
-            onPressed: () {
-              Navigator.pop(context); // Navigates back to the previous screen
-            },
-          ),
           title: Text(
             'Notifications',
             style: FlutterFlowTheme.of(context).headlineLarge.override(
