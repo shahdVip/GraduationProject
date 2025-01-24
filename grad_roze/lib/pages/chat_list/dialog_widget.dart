@@ -347,6 +347,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                 ),
               ),
             ),
+
             const SizedBox(height: 16),
             // List of filtered users
             Expanded(
@@ -360,6 +361,7 @@ class _DialogWidgetState extends State<DialogWidget> {
                           title: Text(user),
                           onTap: () {
                             widget.onUserSelected(user); // Return selected user
+
                           },
                         );
                       },

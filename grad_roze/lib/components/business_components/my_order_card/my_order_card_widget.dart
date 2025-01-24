@@ -116,7 +116,7 @@ class _MyOrderCardWidgetState extends State<MyOrderCardWidget>
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
-                  child: Container(
+                  child: SizedBox(
                     height: 200,
                     child: ModelViewer(
                       src:

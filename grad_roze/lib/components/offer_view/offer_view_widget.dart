@@ -57,7 +57,7 @@ class _OfferViewWidgetState extends State<OfferViewWidget>
 
     try {
       final response = await http.delete(
-        Uri.parse('$apiUrl'), // Send the offerId in the URL
+        Uri.parse(apiUrl), // Send the offerId in the URL
       );
 
       if (response.statusCode == 200) {

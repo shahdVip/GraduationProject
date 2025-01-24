@@ -11,7 +11,7 @@ import 'package:hugeicons/hugeicons.dart';
 class ChatListPage extends StatefulWidget {
   final String userId; // Logged-in user ID (customer or business)
 
-  const ChatListPage({required this.userId, Key? key}) : super(key: key);
+  const ChatListPage({required this.userId, super.key});
 
   @override
   _ChatListPageState createState() => _ChatListPageState();
@@ -220,16 +220,16 @@ class _ChatListPageState extends State<ChatListPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewChat,
-        backgroundColor: FlutterFlowTheme.of(context)
-            .secondary, // Set the button's background color
+        backgroundColor:
+            FlutterFlowTheme.of(context).secondary, // Set the icon's color),
+
+        tooltip: 'Start a New Chat', // Set the button's background color
 
         child: HugeIcon(
           icon: HugeIcons.strokeRoundedBubbleChatAdd,
           color: Colors.white,
           size: 24.0,
-        ), // Set the icon's color),
-
-        tooltip: 'Start a New Chat',
+        ),
       ),
     );
   }

@@ -167,7 +167,7 @@ class _MyprofileBusinessWidgetState extends State<MyprofileBusinessWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
+              SizedBox(
                 width: 140,
                 child: Stack(
                   children: [
@@ -194,7 +194,7 @@ class _MyprofileBusinessWidgetState extends State<MyprofileBusinessWidget> {
                                   radius: 100,
                                   backgroundImage: profilePhotoUrl.isNotEmpty
                                       ? NetworkImage(
-                                          profilePhotoUrl) // Use the URL from the database
+                                          '$url$profilePhotoUrl') // Use the URL from the database
                                       : const AssetImage(
                                               'assets/images/defaults/default_avatar.png')
                                           as ImageProvider,
