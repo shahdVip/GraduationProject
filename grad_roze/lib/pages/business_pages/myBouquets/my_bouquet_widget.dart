@@ -57,6 +57,33 @@ class _MyBouquetWidgetState extends State<MyBouquetWidget> {
     });
   }
 
+  Future<void> deleteItem(String itemId) async {
+    final String endpoint =
+        '$url/item/delete/$itemId'; // Update with your backend URL
+
+    try {
+      final response = await http.delete(Uri.parse(endpoint));
+
+      if (response.statusCode == 200) {
+        print('Item deleted successfully');
+        setState(() {
+          fetchBouquets();
+          // Trigger a rebuild of the parent page
+        });
+        // Handle success, e.g., refresh the UI or show a message
+      } else if (response.statusCode == 404) {
+        print('Item not found');
+        // Show a "not found" message to the user
+      } else {
+        print('Failed to delete item: ${response.body}');
+        // Handle other response codes
+      }
+    } catch (error) {
+      print('Error deleting item: $error');
+      // Handle error (e.g., network issues)
+    }
+  }
+
   Future<void> fetchBouquets() async {
     try {
       final APIurl = Uri.parse('$url/item/business/${widget.business}');
@@ -263,21 +290,34 @@ class _MyBouquetWidgetState extends State<MyBouquetWidget> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => EditBouquetWidget(
-                                          bouquetId: filteredBouquets[index]
-                                              ['_id'],
-                                          // Ensure this is a valid ID
-                                          bouquetDetails: filteredBouquets[
-                                              index], // Ensure this is a valid Map<String, dynamic>
-                                          business: widget.business,
-                                          onUpdated: () =>
-                                              fetchBouquets(), // Callback to refresh bouquets
-                                        ),
+                                            bouquetId: filteredBouquets[index]
+                                                ['_id'],
+                                            // Ensure this is a valid ID
+                                            bouquetDetails: filteredBouquets[
+                                                index], // Ensure this is a valid Map<String, dynamic>
+                                            business: widget.business,
+                                            onUpdated: () =>
+                                                fetchBouquets(), // Callback to refresh bouquets
+                                            onUpdatedrefresh: () =>
+                                                setState(() {
+                                                  fetchBouquets();
+                                                  // Trigger a rebuild of the parent page
+                                                })),
                                       ),
                                     );
                                   },
-                                  onDelete: () {
+                                  onDelete: () async {
                                     print(
-                                        'Delete action triggered for bouquet ${bouquet.name}');
+                                        'Delete action triggered for bouquet ${bouquet.name} ${bouquet.id}');
+                                    try {
+                                      await deleteItem(bouquet
+                                          .id); // Pass the bouquet's ID to delete it
+                                      print('Item deleted');
+                                      // Optionally refresh the parent page or list
+                                      setState(() {}); // Refreshes the UI
+                                    } catch (e) {
+                                      print('Failed to delete bouquet: $e');
+                                    }
                                   },
                                 ),
                               );

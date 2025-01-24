@@ -53,7 +53,7 @@ class _AcceptOrDenyWidgetState extends State<AcceptOrDenyWidget> {
     if (text == "Done" || text == "Waiting for the Customer") {
       return FlutterFlowTheme.of(context).primary; // Primary color
     }
-    return const Color(0xFF0A7111); // Default green
+    return FlutterFlowTheme.of(context).success; // Default green
   }
 
   Color getDenyButtonColor(String status) {
@@ -97,11 +97,49 @@ class _AcceptOrDenyWidgetState extends State<AcceptOrDenyWidget> {
           widget.order.status = statuses[businessIndex];
           isAcceptButtonDisabled = false; // Re-enable button
         });
+        //////////////////
+        try {
+          String? receiverToken =
+              "c00yJFUcQACgGMkE-vMtYc:APA91bFW2I4qaoz68VsdzbPPyu7t-SKqMEbK3zXrirI-JyZl7ZZ2B9uox4NqaHndIjfjopvFIdbzZ7g_Fqu9v9_3ogzEYH-qVB2HBMwITPLE8_pEFxTxhj0"; // Assuming you store the FCM token in 'fcmToken'
+          // Send a push notification to the receiver via your backend
+          await sendPushNotificationToBackend(
+              receiverToken,
+              'Order Status Update',
+              "Your order status has been updated to ${widget.order.status}");
+        } catch (e) {
+          print("Error fetching receiver's FCM token: $e");
+        }
       } else {
         print('Failed to update order status: ${response.body}');
       }
     } catch (e) {
       print('Error updating order status: $e');
+    }
+  }
+
+  // Function to send push notification to backend
+  Future<void> sendPushNotificationToBackend(
+      String deviceToken, String title, String message) async {
+    try {
+      final response = await http.post(
+        Uri.parse('$url/notification/send-message'),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'deviceToken': deviceToken,
+          'title': title,
+          'message': message,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        print('Push notification sent successfully');
+      } else {
+        print('Failed to send push notification: ${response.body}');
+      }
+    } catch (e) {
+      print('Error sending push notification: $e');
     }
   }
 

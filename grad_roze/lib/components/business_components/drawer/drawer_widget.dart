@@ -546,7 +546,9 @@ class _SidedrawerWidgetState extends State<SidedrawerWidget>
                                 borderRadius: BorderRadius.circular(8),
                                 child: businessprofilePhotoUrl.isNotEmpty
                                     ? Image.network(
-                                        businessprofilePhotoUrl,
+
+                                        '$url$businessprofilePhotoUrl',
+
                                         fit: BoxFit.cover,
                                       )
                                     : Image.asset(

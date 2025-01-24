@@ -91,8 +91,12 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
           'username': username,
           'color': ['white'], // Customize based on cardIndex
           'flowerType': ['rose'], // Customize based on cardIndex
+          'color': ['white'], // Customize based on cardIndex
+          'flowerType': ['rose'], // Customize based on cardIndex
           'tag': [
             'Engagement',
+            'Congratulations'
+                'Engagement',
             'Congratulations'
           ], // Customize based on cardIndex
         });
@@ -106,15 +110,24 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
             'Thank You',
             'Get Well Soon '
           ], // Customize based on cardIndex
+          'color': ['yellow'], // Customize based on cardIndex
+          'flowerType': ['sunflower'], // Customize based on cardIndex
+          'tag': [
+            'Thank You',
+            'Get Well Soon '
+          ], // Customize based on cardIndex
         });
         break;
       case 2:
         body = json.encode({
           'username': username,
           'color': ['white'], // Customize based on cardIndex
+          'color': ['white'], // Customize based on cardIndex
           'flowerType': ['lily'], // Customize based on cardIndex
           'tag': [
             'Engagement',
+            'Get Well Soon'
+                'Engagement',
             'Get Well Soon'
           ], // Customize based on cardIndex
         });
@@ -125,6 +138,9 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
           'color': ['red'], // Customize based on cardIndex
           'flowerType': ['rose'], // Customize based on cardIndex
           'tag': ['Engagement'], // Customize based on cardIndex
+          'color': ['red'], // Customize based on cardIndex
+          'flowerType': ['rose'], // Customize based on cardIndex
+          'tag': ['Engagement'], // Customize based on cardIndex
         });
         break;
       case 4:
@@ -132,7 +148,10 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
           'username': username,
           'color': ['pink', 'orange'], // Customize based on cardIndex
           'flowerType': ['tulip'], // Customize based on cardIndex
+          'color': ['pink', 'orange'], // Customize based on cardIndex
+          'flowerType': ['tulip'], // Customize based on cardIndex
           'tag': [
+            'Thank You',
             'Thank You',
           ], // Customize based on cardIndex
         });
@@ -143,6 +162,9 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
           'color': ['pink', 'orange', 'white'], // Customize based on cardIndex
           'flowerType': ['peony'], // Customize based on cardIndex
           'tag': ['Get Well Soon', 'Thank You'], // Customize based on cardIndex
+          'color': ['pink', 'orange', 'white'], // Customize based on cardIndex
+          'flowerType': ['peony'], // Customize based on cardIndex
+          'tag': ['Get Well Soon', 'Thank You'], // Customize based on cardIndex
         });
         break;
       case 6:
@@ -150,7 +172,10 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
           'username': username,
           'color': ['yellow'], // Customize based on cardIndex
           'flowerType': ['calla'], // Customize based on cardIndex
+          'color': ['yellow'], // Customize based on cardIndex
+          'flowerType': ['calla'], // Customize based on cardIndex
           'tag': [
+            'Engagement',
             'Engagement',
           ], // Customize based on cardIndex
         });
@@ -160,8 +185,11 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
           'username': username,
           'color': ['pink'], // Customize based on cardIndex
           'flowerType': ['orchid'], // Customize based on cardIndex
+          'flowerType': ['orchid'], // Customize based on cardIndex
           'tag': [
             'Thank You',
+            'Congratulations'
+                'Thank You',
             'Congratulations'
           ], // Customize based on cardIndex
         });
@@ -198,7 +226,25 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
           'flowerType': [
             'crocus',
           ], // Customize based on cardIndex
+          'color': ['pink', 'purple', 'blue'], // Customize based on cardIndex
+          'flowerType': [
+            'chrysanthemums',
+            'Hydrangea',
+          ], // Customize based on cardIndex
           'tag': [
+            'Get Well Soon',
+          ], // Customize based on cardIndex
+        });
+        break;
+      case 10:
+        body = json.encode({
+          'username': username,
+          'color': ['blue'], // Customize based on cardIndex
+          'flowerType': [
+            'crocus',
+          ], // Customize based on cardIndex
+          'tag': [
+            'Get Well Soon',
             'Get Well Soon',
           ], // Customize based on cardIndex
         });
@@ -237,7 +283,7 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
 
   // Future<String> fetchItemData(String itemId) async {
   //   final response =
-  //       await http.get(Uri.parse('http://192.168.1.9:3000/item/items/$itemId'));
+  //       await http.get(Uri.parse('http://192.168.1.29:3000/item/items/$itemId'));
 
   //   if (response.statusCode == 200) {
   //     final itemData = json.decode(response.body);
@@ -433,6 +479,15 @@ class _MoodQuizWidgetState extends State<MoodQuizWidget>
                                     borderRadius: BorderRadius.circular(8),
                                     child: Image.asset(
                                       'assets/images/moodQuiz/1.jpg',
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                              () => ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.asset(
+                                      'assets/images/moodQuiz/2.jpg',
                                       width: double.infinity,
                                       height: double.infinity,
                                       fit: BoxFit.cover,

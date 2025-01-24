@@ -4,7 +4,7 @@ const NotificationService = require("../services/notification.service"); // Impo
 const mongoose = require("mongoose");
 const User = require("../model/user.model"); // Make sure to import your User model
 const admin = require("../config/firebase");
-const { sendPushNotification } = require("../config/firebase");
+const { sendFirebaseNotification } = require("../config/firebase");
 
 // Create an offer
 
@@ -33,17 +33,16 @@ const createOffer = async (offerData) => {
   );
 
   // Send a push notification to the customer
-  const customerDeviceToken = await getDeviceTokenByUsername(customerUsername);
-
-  if (customerDeviceToken) {
-    // Send the notification
-    await sendPushNotification(
-      customerDeviceToken,
-      customerUsername,
-      `A new offer has been made for your order: ${specialOrder.orderName}`
-    );
-    console.log("Push notification sent to customer");
-  }
+  //const customerDeviceToken = await getDeviceTokenByUsername(customerUsername);
+  //console.log("Customer device token:", customerDeviceToken);
+  // if (customerDeviceToken) {
+  // Send the notification
+  await sendFirebaseNotification(
+    customerUsername,
+    `A new offer has been made for your order: ${specialOrder.orderName}`
+  );
+  console.log("Push notification sent to customer");
+  //}
   // Fetch all offers for the same order
   const existingOffers = await OfferModel.find({
     "orderDetails._id": new mongoose.Types.ObjectId(orderId),

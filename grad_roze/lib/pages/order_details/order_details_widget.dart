@@ -100,7 +100,7 @@ class _OrderDetailsWidgetState extends State<OrderDetailsWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Get well soon bouqet',
+                        'Get well soon Bouquet',
                         style:
                             FlutterFlowTheme.of(context).displaySmall.override(
                                   fontFamily: 'Funnel Display',

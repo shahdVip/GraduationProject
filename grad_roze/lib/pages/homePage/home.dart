@@ -50,12 +50,9 @@ class HomePage extends StatelessWidget {
 
   AppBar appBar(BuildContext context) {
     return AppBar(
-      title: Text(
-        'Roze`',
-        style: FlutterFlowTheme.of(context).titleLarge.override(
-              fontFamily: 'Funnel Display',
-              useGoogleFonts: false,
-            ),
+      title: Image.asset(
+        'assets/images/band.png', // Replace with your image path
+        height: 40.0, // Adjust the height of the image
       ),
       backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
       elevation: 0.0,
@@ -99,27 +96,27 @@ class HomePage extends StatelessWidget {
                   ); // context.pushNamed('cart'); // Navigate to the home page
                 },
               ),
-              SizedBox(width: 10),
-              FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30,
-                borderWidth: 1,
-                buttonSize: 24,
-                icon: Icon(
-                  HugeIcons.strokeRoundedChatting01,
-                  color: FlutterFlowTheme.of(context).primary,
-                  size: 24.0,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CustomerChatListPage(
-                          userId: username), // Replace with your page
-                    ),
-                  ); // context.pushNamed('cart'); // Navigate to the home page
-                },
-              ),
+              //   SizedBox(width: 10),
+              //   FlutterFlowIconButton(
+              //     borderColor: Colors.transparent,
+              //     borderRadius: 30,
+              //     borderWidth: 1,
+              //     buttonSize: 24,
+              //     icon: Icon(
+              //       HugeIcons.strokeRoundedChatting01,
+              //       color: FlutterFlowTheme.of(context).primary,
+              //       size: 24.0,
+              //     ),
+              //     onPressed: () {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) => CustomerChatListPage(
+              //               userId: username), // Replace with your page
+              //         ),
+              //       ); // context.pushNamed('cart'); // Navigate to the home page
+              //     },
+              //   ),
             ],
           ),
         ),

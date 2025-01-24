@@ -38,7 +38,9 @@ class _BouqetBuilderWidgetState extends State<BouqetBuilderWidget> {
     super.dispose();
   }
 
-  final Uri bouquetBuilderUri = Uri.parse("http://192.168.1.6:5173/");
+
+  final Uri bouquetBuilderUri = Uri.parse("http://192.168.1.29:5173/");
+
 
   // Future<void> _launchURL() async {
   //   if (!await launchUrl(bouquetBuilderUri,
@@ -59,8 +61,8 @@ class _BouqetBuilderWidgetState extends State<BouqetBuilderWidget> {
             videoType: VideoType.asset,
             autoPlay: true,
             looping: true,
-            showControls: true, // Enable controls for debugging
-            allowFullScreen: true,
+            showControls: false, // Enable controls for debugging
+            allowFullScreen: false,
           ),
         ),
         Column(
@@ -71,7 +73,7 @@ class _BouqetBuilderWidgetState extends State<BouqetBuilderWidget> {
             Align(
               alignment: AlignmentDirectional(0, 0),
               child: Text(
-                'Build a Bouqet !',
+                'Build a Bouquet !',
                 style: FlutterFlowTheme.of(context).headlineLarge.override(
                       fontFamily: 'Funnel Display',
                       color: FlutterFlowTheme.of(context).info,

@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:chips_input_autocomplete/chips_input_autocomplete.dart';
 
 import '/custom/animations.dart';
 import '/custom/count_controller.dart';
 import '/custom/icon_button.dart';
 import '/custom/theme.dart';
+import 'package:mime/mime.dart';
+import 'package:http_parser/http_parser.dart';
+
 import '/custom/util.dart';
 import 'dart:ui';
 import 'dart:io';
@@ -23,12 +28,14 @@ class EditBouquetWidget extends StatefulWidget {
     required this.bouquetDetails,
     required this.business,
     this.onUpdated,
+    this.onUpdatedrefresh,
   });
 
   final String bouquetId;
   final dynamic bouquetDetails;
   final String business;
   final VoidCallback? onUpdated;
+  final Function? onUpdatedrefresh; // Accept the callback function
 
   @override
   State<EditBouquetWidget> createState() => _EditBouquetWidgetState();
@@ -44,6 +51,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
   List<String> flowerTypes = [];
   List<String> selectedFlowerTypes = [];
   File? _selectedImage;
+
   final picker = ImagePicker();
   final ChipsAutocompleteController controller = ChipsAutocompleteController();
   final ChipsAutocompleteController flowerTypesController =
@@ -51,6 +59,13 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
   final ChipsAutocompleteController tagsController =
       ChipsAutocompleteController();
   final animationsMap = <String, AnimationInfo>{};
+  Uint8List? _image;
+  void selectImage() async {
+    Uint8List img = await pickImage(ImageSource.gallery);
+    setState(() {
+      _image = img;
+    });
+  }
 
   @override
   void initState() {
@@ -231,62 +246,72 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
   }
 
   Future<void> _updateBouquet() async {
-    final Uri apiUrl = Uri.parse('$url/item/update/${widget.bouquetId}');
-    try {
-      final request = http.MultipartRequest('PUT', apiUrl);
+    final String id = widget.bouquetId; // Replace with the actual item ID
 
-      // Add headers
-      request.headers.addAll({
-        'Content-Type': 'multipart/form-data',
-        'Accept': 'application/json',
-      });
+    String name = _model.flowerTypeTextController.text;
+    String color = jsonEncode(selectedColors);
+    String flowerType = jsonEncode(selectedFlowerTypes);
+    String tags = jsonEncode(selectedTags);
+    String description = _model.descTextController.text.trim();
+    String careTips = _model.careTipsTextController.text.trim();
+    String price = (_model.quantityValue ?? 0).toString();
 
-      // Add fields
-      request.fields['name'] = _model.flowerTypeTextController.text.trim();
-      request.fields['description'] = _model.descTextController.text.trim();
-      request.fields['price'] = (_model.quantityValue ?? 0).toString();
-      request.fields['careTips'] = _model.careTipsTextController.text.trim();
-      request.fields['business'] = widget.business;
-      request.fields['tags'] = jsonEncode(selectedTags);
-      request.fields['color'] = jsonEncode(selectedColors);
-      request.fields['flowerType'] = jsonEncode(selectedFlowerTypes);
+    final apiurl = Uri.parse('$url/item/update/$id');
+    var request = http.MultipartRequest('PUT', apiurl);
 
-      // Add image only if a new one is selected
-      if (_selectedImage != null) {
-        request.files.add(
-          await http.MultipartFile.fromPath('image', _selectedImage!.path),
-        );
-      } else {
-        // Send a flag to server to indicate no new image is provided
-        request.fields['imageURL'] =
-            ''; // This can also be omitted based on server handling
-        print(request.fields);
-      }
-
-      // Send request
-      final response = await request.send();
-      final responseBody = await response.stream.bytesToString();
-
-      // Check response
-      if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Bouquet updated successfully!')),
-        );
-        Navigator.pop(context);
-        widget.onUpdated?.call();
-      } else {
-        final responseData = jsonDecode(responseBody);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              content: Text(
-                  'Failed: ${responseData['message'] ?? "Unknown error"}')),
-        );
-      }
-    } catch (e) {
-      print('Error updating bouquet: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('An error occurred')),
+    if (name.isNotEmpty) request.fields['name'] = name;
+    if (color.isNotEmpty) request.fields['color'] = color;
+    if (flowerType.isNotEmpty) request.fields['flowerType'] = flowerType;
+    if (tags.isNotEmpty) request.fields['tags'] = tags;
+    if (description.isNotEmpty) request.fields['description'] = description;
+    if (careTips.isNotEmpty) request.fields['careTips'] = careTips;
+    if (price.isNotEmpty) request.fields['price'] = price;
+    if (_image != null) {
+      // Check and split MIME type
+      final mimeTypeData = lookupMimeType('', headerBytes: _image!)?.split('/');
+      request.files.add(
+        http.MultipartFile.fromBytes(
+          'imageURL',
+          _image!,
+          contentType: mimeTypeData != null
+              ? MediaType(mimeTypeData[0], mimeTypeData[1])
+              : MediaType('image', 'jpeg'), // Default to jpeg
+          filename: 'item.jpg',
+        ),
       );
+    } else {
+      // Show an error if the image is missing
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No image selected for upload')),
+      );
+      return; // Exit the function early
+    }
+
+    try {
+      // Sending the request
+      final response = await request.send();
+
+      if (response.statusCode == 200) {
+        if (widget.onUpdatedrefresh != null) {
+          widget.onUpdatedrefresh!();
+        }
+        // If the server returns a success response
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('User updated successfully!'),
+        ));
+        Navigator.pop(context);
+      } else {
+        // If the server returns an error
+        final responseBody = await response.stream.bytesToString();
+        final data = jsonDecode(responseBody);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Error: ${data['message']}'),
+        ));
+      }
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Error: $error'),
+      ));
     }
   }
 
@@ -400,8 +425,8 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                       CircleAvatar(
                                         radius: 50,
                                         backgroundColor: Colors.grey[200],
-                                        backgroundImage: _selectedImage != null
-                                            ? FileImage(_selectedImage!)
+                                        backgroundImage: _image != null
+                                            ? MemoryImage(_image!)
                                             : const AssetImage(
                                                 'assets/images/defaults/bouquet.png',
                                               ) as ImageProvider,
@@ -419,7 +444,7 @@ class _EditBouquetWidgetState extends State<EditBouquetWidget>
                                                 .secondaryText,
                                             size: 30,
                                           ),
-                                          onPressed: _pickImage,
+                                          onPressed: selectImage,
                                         ),
                                       ),
                                     ],

@@ -52,11 +52,11 @@ const AssetsBox = () => {
       </div>
 
       {/* Assets display */}
-      <div className="flex gap-2 flex-wrap px-6">
+      <div className="flex items-center gap-1 pointer-events-auto overflow-x-auto px-6 pb-2 noscrollbar">
         {currentCategory?.removable && (
           <button
             onClick={() => changeAsset(currentCategory.name, null)}
-            className={`w-20 h-20 rounded-xl overflow-hidden pointer-events-auto hover:opacity-100 transition-all border-2 duration-300 ${
+            className={`w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden pointer-events-auto hover:opacity-100 transition-all border-2 duration-300 ${
               !customization[currentCategory?.name]?.asset
                 ? "border-white opacity-100"
                 : "opacity-80 border-transparent"
@@ -87,7 +87,7 @@ const AssetsBox = () => {
             <button
               key={asset._id}
               onClick={() => changeAsset(currentCategory.name, asset)}
-              className={`w-20 h-20 rounded-xl overflow-hidden bg-gray-200 pointer-events-auto hover:opacity-100 transition-all border-2 duration-300 ${
+              className={`w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden bg-gray-200 pointer-events-auto hover:opacity-100 transition-all border-2 duration-300 ${
                 customization[currentCategory?.name]?.asset?.id !== asset.id
                   ? "border-white opacity-100"
                   : "opacity-80 border-transparent"
@@ -95,7 +95,9 @@ const AssetsBox = () => {
             >
               <img
                 className="object-cover w-full h-full"
+
                 src={`http://192.168.1.6:5173/src${asset.thumbnail}`}
+
                 alt={asset.name}
               />
             </button>
@@ -297,7 +299,7 @@ export const UI = () => {
         <div className="flex justify-between items-center p-10">
           <a className="pointer-events-auto" href="">
             <h1 className="text-white pl-[5px] font-bold">
-              Roze` Bouqet Builder
+              Roze` Bouquet Builder
             </h1>
           </a>
           <div className="flex items-cente gap-2">

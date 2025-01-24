@@ -54,6 +54,84 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
           ),
         ],
       ),
+      'imageOnPageLoadAnimation1': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 200.0.ms,
+            duration: 500.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 200.0.ms,
+            duration: 500.0.ms,
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
+          ),
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 200.0.ms,
+            duration: 500.0.ms,
+            begin: Offset(0.9, 0.9),
+            end: Offset(1.0, 1.0),
+          ),
+        ],
+      ),
+      'imageOnPageLoadAnimation2': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 300.0.ms,
+            duration: 500.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 300.0.ms,
+            duration: 500.0.ms,
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
+          ),
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 300.0.ms,
+            duration: 500.0.ms,
+            begin: Offset(0.9, 0.9),
+            end: Offset(1.0, 1.0),
+          ),
+        ],
+      ),
+      'imageOnPageLoadAnimation3': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 400.0.ms,
+            duration: 500.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 400.0.ms,
+            duration: 500.0.ms,
+            begin: Offset(0.0, 20.0),
+            end: Offset(0.0, 0.0),
+          ),
+          ScaleEffect(
+            curve: Curves.easeInOut,
+            delay: 400.0.ms,
+            duration: 500.0.ms,
+            begin: Offset(0.9, 0.9),
+            end: Offset(1.0, 1.0),
+          ),
+        ],
+      ),
       'textOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -427,6 +505,53 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
+                                      Stack(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            child: Image.asset(
+                                              'assets/images/2.png',
+                                              width: double.infinity,
+                                              height: 200,
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'imageOnPageLoadAnimation1']!),
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            child: Image.asset(
+                                              'assets/images/1.png',
+                                              width: double.infinity,
+                                              height: 200,
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'imageOnPageLoadAnimation2']!),
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            child: Image.asset(
+                                              'assets/images/3.png',
+                                              width: double.infinity,
+                                              height: 200,
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ).animateOnPageLoad(animationsMap[
+                                              'imageOnPageLoadAnimation3']!),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      48, 0, 48, 0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
                                       Text(
                                         ' Personalized Gifting, Reimagined.',
                                         textAlign: TextAlign.center,
@@ -508,50 +633,50 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      48, 0, 48, 0),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Connect Across Distances',
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .displayLarge
-                                            .override(
-                                              fontFamily: 'Funnel Display',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              useGoogleFonts: false,
-                                            ),
-                                      ).animateOnPageLoad(animationsMap[
-                                          'textOnPageLoadAnimation5']!),
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(0, 16, 0, 0),
-                                        child: Text(
-                                          'Send thoughtful presents to loved ones, no matter where they are!',
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelLarge
-                                              .override(
-                                                fontFamily: 'Funnel Display',
-                                                fontSize: 14,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                                useGoogleFonts: false,
-                                              ),
-                                        ).animateOnPageLoad(animationsMap[
-                                            'textOnPageLoadAnimation6']!),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding: const EdgeInsetsDirectional.fromSTEB(
+                                //       48, 0, 48, 0),
+                                //   child: Column(
+                                //     mainAxisSize: MainAxisSize.max,
+                                //     mainAxisAlignment: MainAxisAlignment.center,
+                                //     children: [
+                                //       Text(
+                                //         'Connect Across Distances',
+                                //         textAlign: TextAlign.center,
+                                //         style: FlutterFlowTheme.of(context)
+                                //             .displayLarge
+                                //             .override(
+                                //               fontFamily: 'Funnel Display',
+                                //               color:
+                                //                   FlutterFlowTheme.of(context)
+                                //                       .primary,
+                                //               letterSpacing: 0.0,
+                                //               fontWeight: FontWeight.bold,
+                                //               useGoogleFonts: false,
+                                //             ),
+                                //       ).animateOnPageLoad(animationsMap[
+                                //           'textOnPageLoadAnimation5']!),
+                                //       Padding(
+                                //         padding: const EdgeInsetsDirectional
+                                //             .fromSTEB(0, 16, 0, 0),
+                                //         child: Text(
+                                //           'Send thoughtful presents to loved ones, no matter where they are!',
+                                //           textAlign: TextAlign.center,
+                                //           style: FlutterFlowTheme.of(context)
+                                //               .labelLarge
+                                //               .override(
+                                //                 fontFamily: 'Funnel Display',
+                                //                 fontSize: 14,
+                                //                 letterSpacing: 0.0,
+                                //                 fontWeight: FontWeight.normal,
+                                //                 useGoogleFonts: false,
+                                //               ),
+                                //         ).animateOnPageLoad(animationsMap[
+                                //             'textOnPageLoadAnimation6']!),
+                                //       ),
+                                //     ],
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -599,10 +724,25 @@ class _OnboardingWidgetState extends State<OnboardingWidget>
                         const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        await _model.pageViewController?.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.ease,
-                        );
+                        // Get the current page index
+                        int currentIndex =
+                            _model.pageViewController?.page?.toInt() ?? 0;
+
+                        // Define the total number of slides
+                        int totalSlides =
+                            3; // Adjust this based on your PageView
+
+                        if (currentIndex == totalSlides - 1) {
+                          // Navigate to the new page when the last slide is reached
+                          context.pushNamed(
+                              'SignInUp'); // Replace 'newPage' with your desired route
+                        } else {
+                          // Go to the next page
+                          await _model.pageViewController?.nextPage(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.ease,
+                          );
+                        }
                       },
                       text: 'Next',
                       options: FFButtonOptions(

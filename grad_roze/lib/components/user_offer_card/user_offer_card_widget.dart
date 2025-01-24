@@ -95,7 +95,7 @@ class _UserOfferCardWidgetState extends State<UserOfferCardWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Get well soon bouqet',
+                        'Get well soon Bouquet',
                         style: FlutterFlowTheme.of(context).titleLarge.override(
                               fontFamily: 'Funnel Display',
                               useGoogleFonts: false,

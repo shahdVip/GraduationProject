@@ -1,4 +1,7 @@
-const { getAllItems, getRecommendedItems } = require("../services/item.service");
+const {
+  getAllItems,
+  getRecommendedItems,
+} = require("../services/item.service");
 const Item = require("../model/item.model");
 const UserPreference = require("../model/userPreference.model");
 const multer = require("multer");
@@ -8,11 +11,14 @@ const mongoose = require("mongoose");
 
 const fetchItemsByTag = async (req, res) => {
   const { tag } = req.params; // Get the tag from the request URL (e.g., /items/tag/flowers)
-  
+
   try {
     const items = await Item.find({ tags: tag }); // Look for items with the tag
-    if (items.length === 0) { // If no items are found
-      return res.status(404).json({ message: `No items found with tag: ${tag}` });
+    if (items.length === 0) {
+      // If no items are found
+      return res
+        .status(404)
+        .json({ message: `No items found with tag: ${tag}` });
     }
     res.status(200).json(items); // Send the items as a JSON response
   } catch (error) {
@@ -22,11 +28,14 @@ const fetchItemsByTag = async (req, res) => {
 };
 const fetchItemsByColor = async (req, res) => {
   const { color } = req.params; // Get the tag from the request URL (e.g., /items/tag/flowers)
-  
+
   try {
     const items = await Item.find({ color: color }); // Look for items with the tag
-    if (items.length === 0) { // If no items are found
-      return res.status(404).json({ message: `No items found with color: ${color}` });
+    if (items.length === 0) {
+      // If no items are found
+      return res
+        .status(404)
+        .json({ message: `No items found with color: ${color}` });
     }
     res.status(200).json(items); // Send the items as a JSON response
   } catch (error) {
@@ -44,7 +53,9 @@ const getItemsByBusiness = async (req, res) => {
     const items = await Item.find({ business: businessName });
 
     if (!items || items.length === 0) {
-      return res.status(404).json({ message: "No items found for the given business name." });
+      return res
+        .status(404)
+        .json({ message: "No items found for the given business name." });
     }
 
     // Return the fetched items
@@ -52,64 +63,118 @@ const getItemsByBusiness = async (req, res) => {
   } catch (error) {
     // Handle errors
     console.error("Error fetching items by business:", error);
-    res.status(500).json({ message: "An error occurred while fetching items.", error: error.message });
+    res.status(500).json({
+      message: "An error occurred while fetching items.",
+      error: error.message,
+    });
   }
 };
 
-const updateItem =async (req, res) => {
+const updateItem = async (req, res) => {
   const { id } = req.params;
+  const { name, color, flowerType, tags, description, careTips, price } =
+    req.body;
 
-  // Validate ObjectId
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ message: "Invalid item ID" });
   }
 
-  const {
-    name,
-    color,
-    flowerType,
-    tags,
-    description,
-    careTips,
-    price,
-    imageURL,
-  } = req.body;
-
-  // Skip imageURL if it's not provided or empty
-  const updatedFields = {
-    ...(name && { name }),
-    ...(color && { color }),
-    ...(flowerType && { flowerType }),
-    ...(tags && { tags }),
-    ...(description && { description }),
-    ...(careTips && { careTips }),
-    ...(price && { price }),
-  };
-
-  if (req.file) {
-    // Handle uploaded image if a new one is provided
-    updatedFields.imageURL = `/uploads/${req.file.filename}`;
-  } else if (imageURL) {
-    // Use existing imageURL if provided
-    updatedFields.imageURL = imageURL;
-  }
-
   try {
-    const updatedItem = await Item.findByIdAndUpdate(
-      id,
-      { $set: updatedFields },
-      { new: true, runValidators: true }
-    );
+    // Check if there is a file uploaded
+    if (req.file) {
+      // Construct the new profile photo URL
+      const newImgUrl = `/uploads/${req.file.filename}`;
 
-    if (!updatedItem) {
-      return res.status(404).json({ message: "Item not found" });
+      // Find the user by username and update the profile photo URL
+      const newItem = await Item.findByIdAndUpdate(
+        id,
+        { imageURL: newImgUrl },
+        { new: true } // Return the updated user document
+      );
+
+      // Update other fields if provided
+      if (name) newItem.name = name;
+      if (color) newItem.color = color;
+      if (flowerType) newItem.flowerType = flowerType;
+      if (tags) newItem.tags = tags;
+      if (description) newItem.description = description;
+      if (careTips) newItem.careTips = careTips;
+      if (price) newItem.price = price;
+
+      // Save any other updates
+      await newItem.save();
+
+      return res
+        .status(200)
+        .json({ message: "ITme updated successfully", newItem });
+    } else {
+      return res.status(400).json({ message: "No file uploaded" });
     }
-
-    res.status(200).json({ message: "Item updated successfully", updatedItem });
   } catch (error) {
-    console.error("Error updating item:", error);
-    res.status(500).json({ message: "Failed to update item", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error updating item", error: error.message });
   }
+  //   const { id } = req.params;
+
+  //   // Validate ObjectId
+  //   if (!mongoose.Types.ObjectId.isValid(id)) {
+  //     return res.status(400).json({ message: "Invalid item ID" });
+  //   }
+
+  //   const {
+  //     name,
+  //     color,
+  //     flowerType,
+  //     tags,
+  //     description,
+  //     careTips,
+  //     price,
+  //     imageURL,
+  //   } = req.body;
+
+  //   // Skip imageURL if it's not provided or empty
+  //   const updatedFields = {
+  //     ...(name && { name }),
+  //     ...(color && { color }),
+  //     ...(flowerType && { flowerType }),
+  //     ...(tags && { tags }),
+  //     ...(description && { description }),
+  //     ...(careTips && { careTips }),
+  //     ...(price && { price }),
+  //   };
+
+  //   // Check if there is a file uploaded
+  //   if (req.file) {
+  //     // Construct the new profile photo URL
+  //     const newItemImage = `${req.protocol}://${req.get(
+  //       "host"
+  //     )}/uploads/${req.file.filename}`;
+
+  //     // Find the user by username and update the profile photo URL
+  //     const newItem = await Item.findByIdAndUpdate(
+  //       id,
+  //       { imageURL: newItemImage },
+  //       { new: true } // Return the updated user document
+  //     );
+
+  //   try {
+  //     const updatedItem = await Item.findByIdAndUpdate(
+  //       id,
+  //       { $set: updatedFields },
+  //       { new: true, runValidators: true }
+  //     );
+
+  //     if (!updatedItem) {
+  //       return res.status(404).json({ message: "Item not found" });
+  //     }
+
+  //     res.status(200).json({ message: "Item updated successfully", updatedItem });
+  //   } catch (error) {
+  //     console.error("Error updating item:", error);
+  //     res.status(500).json({ message: "Failed to update item", error: error.message });
+  //   }
+  // }
 };
 // Controller to fetch all items
 const fetchItems = async (req, res) => {
@@ -117,7 +182,9 @@ const fetchItems = async (req, res) => {
     const items = await getAllItems();
     res.status(200).json(items);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching items", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error fetching items", error: error.message });
   }
 };
 
@@ -131,8 +198,6 @@ const storage = multer.diskStorage({
   },
 });
 const upload = multer({ storage: storage });
-
-
 
 // Helper function to delete uploaded files
 const deleteFile = (filePath) => {
@@ -168,7 +233,12 @@ const createItem = async (req, res) => {
     const existingItem = await Item.findOne({ name: itemData.name });
     if (existingItem) {
       if (req.file) {
-        const filePath = path.join(__dirname, "..", "uploads", req.file.filename);
+        const filePath = path.join(
+          __dirname,
+          "..",
+          "uploads",
+          req.file.filename
+        );
         fs.unlink(filePath, (err) => {
           if (err) {
             console.error("Error deleting file:", err);
@@ -183,11 +253,13 @@ const createItem = async (req, res) => {
     res.status(201).json(newItem);
   } catch (error) {
     if (req.file) {
-      const filePath = path.join(__dirname,  "..", "uploads", req.file.filename);
+      const filePath = path.join(__dirname, "..", "uploads", req.file.filename);
       deleteFile(filePath);
     }
     console.error("Error creating item:", error);
-    res.status(500).json({ message: "Error creating bouquet", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error creating bouquet", error: error.message });
   }
 };
 
@@ -203,7 +275,9 @@ const getItemById = async (req, res) => {
 
     res.status(200).json(bouquet);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching bouquet", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error fetching bouquet", error: error.message });
   }
 };
 // Controller to fetch recommended items based on user preferences
@@ -219,7 +293,10 @@ const fetchRecommendedItems = async (req, res) => {
 
     res.status(200).json(recommendedItems);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching recommended items", error: error.message });
+    res.status(500).json({
+      message: "Error fetching recommended items",
+      error: error.message,
+    });
   }
 };
 const getTop4RatedItems = async (req, res) => {
@@ -227,7 +304,9 @@ const getTop4RatedItems = async (req, res) => {
     const topRatedItems = await Item.find().sort({ rating: -1 }).limit(4);
     res.status(200).json(topRatedItems);
   } catch (err) {
-    res.status(500).json({ message: "Server error: Unable to fetch items.", error: err });
+    res
+      .status(500)
+      .json({ message: "Server error: Unable to fetch items.", error: err });
   }
 };
 const getTopRatedItems = async (req, res) => {
@@ -235,10 +314,24 @@ const getTopRatedItems = async (req, res) => {
     const topRatedItems = await Item.find().sort({ rating: -1 }).limit(10);
     res.status(200).json(topRatedItems);
   } catch (err) {
-    res.status(500).json({ message: "Server error: Unable to fetch items.", error: err });
+    res
+      .status(500)
+      .json({ message: "Server error: Unable to fetch items.", error: err });
   }
 };
 
 // Middleware for image upload
 const uploadImage = upload.single("image");
-module.exports = { updateItem,getItemsByBusiness,fetchItemsByColor,getTopRatedItems, getTop4RatedItems,fetchItemsByTag,fetchItems, createItem, uploadImage, getItemById, fetchRecommendedItems };
+module.exports = {
+  updateItem,
+  getItemsByBusiness,
+  fetchItemsByColor,
+  getTopRatedItems,
+  getTop4RatedItems,
+  fetchItemsByTag,
+  fetchItems,
+  createItem,
+  uploadImage,
+  getItemById,
+  fetchRecommendedItems,
+};
