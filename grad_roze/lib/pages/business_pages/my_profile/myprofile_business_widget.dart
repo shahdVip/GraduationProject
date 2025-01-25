@@ -167,7 +167,7 @@ class _MyprofileBusinessWidgetState extends State<MyprofileBusinessWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
+              SizedBox(
                 width: 140,
                 child: Stack(
                   children: [

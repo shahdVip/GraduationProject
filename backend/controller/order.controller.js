@@ -361,7 +361,206 @@ const createOrder = async (req, res) => {
       res.status(500).send({ error: err.message });
     }
   };
+
+  const getOrdersByCustomerUsername = async (req, res) => {
+    const { customerUsername } = req.params;
   
-  module.exports = { getOrderSummary };
+    console.log('Received customerUsername:', customerUsername);
   
-module.exports = { getOrdersByBusiness,getTotalPriceByBusiness,getOrderItemsByBusiness,updateOrderStatus,getOrdersByBusinessAndStatus,DenyOrder,createOrder,getTopBusinesses,getOrderSummary};
+    try {
+      // Query orders matching the exact customerUsername (case-sensitive)
+      const orders = await Order.find({
+        customerUsername: customerUsername
+      });
+  
+      console.log('Orders found:', orders);
+  
+      // If no orders are found, return 404
+      if (orders.length === 0) {
+        return res.status(404).json({ message: 'No orders found for this customer' });
+      }
+  
+      // Return the matching orders
+      res.status(200).json(orders);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  };
+  const getOrderById = async (req, res) => {
+    const { orderId } = req.params;
+  
+    console.log('Received orderId:', orderId);
+  
+    try {
+      // Fetch the order by its ID
+      const order = await Order.findById(orderId);
+  
+      // If no order is found, return a 404 response
+      if (!order) {
+        return res.status(404).json({ message: 'Order not found' });
+      }
+  
+      // Return the found order
+      res.status(200).json(order);
+    } catch (error) {
+      console.error('Error fetching order by ID:', error);
+  
+      // Handle invalid ObjectId errors
+      if (error.kind === 'ObjectId') {
+        return res.status(400).json({ error: 'Invalid orderId format' });
+      }
+  
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  };
+
+  const getOrderStatusForBusiness = async (req, res) => {
+    const { orderId, businessName } = req.params;
+
+    try {
+        // Find the order by its ID
+        const order = await Order.findById(orderId);
+
+        if (!order) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+
+        // Find the index of the business name in the businessUsername array
+        const businessIndex = order.businessUsername.indexOf(businessName);
+
+        if (businessIndex === -1) {
+            return res.status(404).json({ message: 'Business name not found in order' });
+        }
+
+        // Retrieve the corresponding status for the business
+        const status = order.status[businessIndex];
+
+        res.status(200).json({ status });
+    } catch (error) {
+        res.status(500).json({
+            message: 'Error retrieving status',
+            error: error.message,
+        });
+    }
+};
+const updateRatings = async (req, res) => {
+  const { businessName, orderId, newRating } = req.body;
+
+  if (!businessName || !orderId || newRating == null) {
+    return res.status(400).json({ error: 'businessName, orderId, and newRating are required.' });
+  }
+
+  try {
+    // Find the order by ID
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found.' });
+    }
+
+    // Filter bouquets that belong to the specified business
+    const bouquetsToUpdate = await Item.find({
+      _id: { $in: order.bouquetsId },
+      business: businessName,
+    });
+
+    if (bouquetsToUpdate.length === 0) {
+      return res.status(404).json({ error: 'No items found for the specified business in this order.' });
+    }
+
+    // Update the rating of each item
+    const updatePromises = bouquetsToUpdate.map(async (item) => {
+      const updatedRating = ((item.rating * item.ratingCount) + newRating) / (item.ratingCount + 1);
+      const updatedRatingCount = item.ratingCount + 1;
+      return Item.findByIdAndUpdate(
+        item._id,
+        { rating: updatedRating, ratingCount: updatedRatingCount },
+        { new: true }
+      );
+    });
+
+    const updatedItems = await Promise.all(updatePromises);
+
+    res.status(200).json({
+      message: 'Ratings updated successfully.',
+      updatedItems,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while updating ratings.' });
+  }
+};
+// Import necessary modules
+const express = require('express');
+const mongoose = require('mongoose');
+const router = express.Router();
+
+// Define Mongoose Schemas and Models
+const orderSchema = new mongoose.Schema({
+  bouquetsId: [mongoose.Schema.Types.ObjectId],
+  customerUsername: String,
+  businessUsername: [String],
+  totalPrice: Number,
+  time: String,
+  status: [String],
+});
+
+const itemSchema = new mongoose.Schema({
+  name: String,
+  flowerType: [String],
+  tags: [String],
+  imageURL: String,
+  description: String,
+  business: String,
+  color: [String],
+  wrapColor: [String],
+  price: Number,
+  careTips: String,
+  rating: Number,
+  ratingCount: { type: Number, default: 0 },
+});
+
+
+
+// Controller for getting total price of items in an order
+const getTotalPrice = async (req, res) => {
+  const { orderId } = req.params;
+
+  if (!orderId) {
+    return res.status(400).json({ error: 'Order ID is required.' });
+  }
+
+  try {
+    // Find the order by ID
+    const order = await Order.findById(orderId);
+
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found.' });
+    }
+
+    // Fetch item details
+    const items = await Item.find({ _id: { $in: order.bouquetsId } });
+
+    // Calculate total prices for each item and the overall total
+    const itemPrices = items.map((item) => ({
+      itemId: item._id,
+      name: item.name,
+      price: item.price,
+    }));
+
+    const totalPrice = itemPrices.reduce((sum, item) => sum + item.price, 0);
+
+    res.status(200).json({
+      message: 'Total prices fetched successfully.',
+      items: itemPrices,
+      totalPrice: totalPrice
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'An error occurred while fetching total prices.' });
+  }
+};
+
+
+module.exports = {updateRatings,getOrderStatusForBusiness, getOrderById,getOrdersByBusiness,getTotalPriceByBusiness,getOrderItemsByBusiness,updateOrderStatus,getOrdersByBusinessAndStatus,DenyOrder,createOrder,getTopBusinesses,getOrderSummary,getOrdersByCustomerUsername,getTotalPrice};

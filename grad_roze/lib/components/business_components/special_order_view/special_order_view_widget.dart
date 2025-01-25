@@ -664,7 +664,7 @@ class _SpecialOrderViewWidgetState extends State<SpecialOrderViewWidget>
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     7, 16, 16, 0),
-                                child: Container(
+                                child: SizedBox(
                                   width: 80,
                                   child: TextFormField(
                                     controller: _model.priceTextController,

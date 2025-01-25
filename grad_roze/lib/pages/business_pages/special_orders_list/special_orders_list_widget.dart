@@ -260,6 +260,7 @@ class _SpecialOrdersListWidgetState extends State<SpecialOrdersListWidget> {
                                 'Pending Offers') {
                               return PendingOfferCardWidget(order: order);
                             }
+                            return null;
                           },
                         );
                       }
