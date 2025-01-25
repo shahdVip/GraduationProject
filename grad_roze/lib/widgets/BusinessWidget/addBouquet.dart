@@ -13,6 +13,9 @@ import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart'; // Import image picker
 import '/config.dart' show url;
 import 'addBouquetModel.dart';
+import 'package:http_parser/http_parser.dart';
+import 'dart:convert';
+
 export 'addBouquetModel.dart';
 
 class AddBouquetWidget extends StatefulWidget {
@@ -43,6 +46,14 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
   final ChipsAutocompleteController tagsController =
       ChipsAutocompleteController();
   String chipsOutputTags = '';
+  Uint8List? _image;
+  void selectImage() async {
+    Uint8List img = await pickImage(ImageSource.gallery);
+    setState(() {
+      _image = img;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -267,13 +278,14 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
       request.fields['flowerType'] = selectedFlowerTypes.join(',');
 
       // Adding image file if selected
-      if (_selectedImage != null) {
-        request.files.add(
-          await http.MultipartFile.fromPath(
-              'image', _selectedImage!.path), // Ensure field name matches
+      if (_image != null) {
+        var file = http.MultipartFile.fromBytes(
+          'image',
+          _image!,
+          filename: 'profile_photo.jpg',
+          contentType: MediaType('image', 'jpeg'),
         );
-      } else {
-        request.fields['useDefaultImage'] = 'true';
+        request.files.add(file);
       }
 
       final response = await request.send();
@@ -415,15 +427,21 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                   child: Stack(
                                     alignment: Alignment.center,
                                     children: [
-                                      CircleAvatar(
-                                        radius: 50,
-                                        backgroundColor: Colors.grey[200],
-                                        backgroundImage: _selectedImage != null
-                                            ? FileImage(_selectedImage!)
-                                            : const AssetImage(
-                                                'assets/images/defaults/bouquet.png',
-                                              ) as ImageProvider,
-                                      ),
+                                      _image != null
+                                          ? CircleAvatar(
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              radius: 50,
+                                              backgroundImage:
+                                                  MemoryImage(_image!),
+                                            )
+                                          : const CircleAvatar(
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              radius: 50,
+                                              backgroundImage: AssetImage(
+                                                  'assets/images/defaults/bouquet.png'),
+                                            ),
                                       Positioned(
                                         bottom: 0,
                                         right: 0,
@@ -437,7 +455,7 @@ class _AddBouquetWidgetState extends State<AddBouquetWidget>
                                                 .secondaryText,
                                             size: 30,
                                           ),
-                                          onPressed: _pickImage,
+                                          onPressed: selectImage,
                                         ),
                                       ),
                                     ],

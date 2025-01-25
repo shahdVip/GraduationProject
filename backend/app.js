@@ -30,10 +30,28 @@ require("dotenv").config(); // To load environment variables
 const app = express();
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+
+app.use(
+  cors({
+    origin: "*", // Allow all origins (or specify your frontend URL for better security)
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"], // Allowed headers
+  })
+);
 app.use(express.json());
 // Serve static assets
-app.use("/assets", express.static("assets"));
+
+app.use(
+  "/assets",
+  express.static("assets", {
+    setHeaders: (res, path) => {
+      if (path.endsWith(".glb")) {
+        res.setHeader("Content-Type", "model/gltf-binary");
+      }
+    },
+  })
+);
 
 // Routes
 app.use("/", userRoute);
